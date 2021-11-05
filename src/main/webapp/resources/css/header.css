@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+#logo {
+	float:left;
+	height: 30px;
+}
+#top div {
+	display: inline-block;
+	float: right;
+}
+form {
+	margin-right:5px;
+}
+#menu ul {
+	display: block;
+}
+#menu ul li {
+	list-style: none;
+	display: inline-block;
+	float: left;
+	padding-left: 25px;
+}
