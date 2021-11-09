@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.clear {
+	clear: both;
+}
 
 #logo {
 	float:left;
@@ -8,7 +11,7 @@
 	display: inline-block;
 	float: right;
 }
-form {
+form[name=search_project] {
 	margin-right:5px;
 }
 #menu ul {

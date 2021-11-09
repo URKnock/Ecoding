@@ -1,33 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<%@ include file="header.jsp" %>
-	<style type="text/css">
-		table {
-			width: 80%;
-		}
-		td {
-			height: 30px;
-		}
-		form[name=post] input[type=text] {
-			width: 100%;
-		}
-		caption {
-			padding: 10px;
-			caption-side:bottom;
-		}
-		.align_right {
-			text-align:right;
-		}
-		form[name=comment] input[type=text] {
-			width:90%;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/post.css'/>"/>
 </head>
 <body>
-	<table align="center">
+	<table id="post" align="center">
 		<caption>
 			<a href="">◀</a> &nbsp; 1 &nbsp; <a href="">▶</a>
 		</caption>

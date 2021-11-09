@@ -1,0 +1,52 @@
+@charset "UTF-8";
+.left {
+	float: left;
+}
+.right {
+ 	float: right;
+}
+.clear {
+	clear: both;
+}
+
+.align_right {
+	text-align: right;
+}
+
+#communitys div {
+	margin-left:25px;
+	margin-bottom:50px;
+}
+#posts td {
+	padding-left:40px;
+	padding-right:40px;
+	padding-bottom:40px;
+}
+#posts caption {
+	padding: 10px;
+	caption-side:bottom;
+}
+#post {
+	width: 80%;
+}
+#post td {
+	height: 30px;
+}
+#post caption {
+	padding: 10px;
+	caption-side:bottom;
+}
+#posting {
+	width: 80%;
+	text-align: right;
+}
+
+form[name=search_post] {
+	text-align:right;
+}
+form[name=post] input[type=text] {
+	width: 100%;
+}
+form[name=comment] input[type=text] {
+	width:90%;
+}

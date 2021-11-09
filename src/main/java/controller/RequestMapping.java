@@ -10,12 +10,9 @@ import controller.comm.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
-    
-    // °¢ ¿äÃ» uri¿¡ ´ëÇÑ controller °´Ã¼¸¦ ÀúÀåÇÒ HashMap »ý¼º
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// °¢ uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ »ý¼º ¹× ÀúÀå
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -23,19 +20,15 @@ public class RequestMapping {
         mappings.put("/user/list", new ListUserController());
         mappings.put("/user/view", new ViewUserController());
         
-        // È¸¿ø °¡ÀÔ Æû ¿äÃ»°ú °¡ÀÔ ¿äÃ» Ã³¸® º´ÇÕ (Æû¿¡ Ä¿¹Â´ÏÆ¼ ¼±ÅÃ ¸Þ´º Ãß°¡¸¦ À§ÇÔ)
 //      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
 //      mappings.put("/user/register", new RegisterUserController());
         mappings.put("/user/register", new RegisterUserController());
-
-        // »ç¿ëÀÚ Á¤º¸ ¼öÁ¤ Æû ¿äÃ»°ú ¼öÁ¤ ¿äÃ» Ã³¸® º´ÇÕ
+        
 //      mappings.put("/user/update/form", new UpdateUserFormController());
 //      mappings.put("/user/update", new UpdateUserController());        
         mappings.put("/user/update", new UpdateUserController());
-        
         mappings.put("/user/delete", new DeleteUserController());
         
-        // Ä¿¹Â´ÏÆ¼ °ü·Ã request URI Ãß°¡
         mappings.put("/community/list", new ListCommunityController());
         mappings.put("/community/view", new ViewCommunityController());
         mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
@@ -46,7 +39,7 @@ public class RequestMapping {
     }
 
     public Controller findController(String uri) {	
-    	// ÁÖ¾îÁø uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ Ã£¾Æ ¹ÝÈ¯
+    	// ï¿½Ö¾ï¿½ï¿½ï¿½ uriï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ controller ï¿½ï¿½Ã¼ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½È¯
         return mappings.get(uri);
     }
 }
