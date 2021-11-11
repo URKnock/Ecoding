@@ -19,6 +19,12 @@ local.properties
 #설정파일 충돌 방지
 MANIFEST.MF
 
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
 # External tool builders
 .externalToolBuilders/
 
