@@ -16,4 +16,13 @@ public class DAOFactory {
 	public CommunityDAO getCommunityDAO() {
 		return new CommunityDAOImpl();		
 	}
+	
+	//211113 ProejectDAO, SupportDAO 추가 (진주)
+	public ProjectDAO getProjectDAO() {
+		return new ProjectDAOImpl();		
+	}
+	
+	public SupportDAO getSupportDAO() {
+		return new SupportDAOImpl();		
+	}
 }

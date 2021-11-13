@@ -3,28 +3,26 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.Community;
 import model.User;
-import model.dao.CommunityDAO;
 import model.dao.UserDAO;
 
 /**
- * »ç¿ëÀÚ °ü¸® API¸¦ »ç¿ëÇÏ´Â °³¹ßÀÚµéÀÌ Á÷Á¢ Á¢±ÙÇÏ°Ô µÇ´Â Å¬·¡½º.
- * UserDAO¸¦ ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍº£ÀÌ½º¿¡ µ¥ÀÌÅÍ Á¶ÀÛ ÀÛ¾÷ÀÌ °¡´ÉÇÏµµ·Ï ÇÏ¸ç,
- * µ¥ÀÌÅÍº£ÀÌ½ºÀÇ µ¥ÀÌÅÍµéÀ» ÀÌ¿ëÇÏ¿© ºñÁö´Ï½º ·ÎÁ÷À» ¼öÇàÇÏ´Â ¿ªÇÒÀ» ÇÑ´Ù.
- * ºñÁö´Ï½º ·ÎÁ÷ÀÌ º¹ÀâÇÑ °æ¿ì¿¡´Â ºñÁö´Ï½º ·ÎÁ÷¸¸À» Àü´ãÇÏ´Â Å¬·¡½º¸¦ 
- * º°µµ·Î µÑ ¼ö ÀÖ´Ù.
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ APIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ç´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
+ * UserDAOï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½,
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
  */
 public class UserManager {
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
-	private CommunityDAO commDAO;
+
 	private UserAnalysis userAanlysis;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
-			commDAO = new CommunityDAO();
+
 			userAanlysis = new UserAnalysis(userDAO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,32 +35,16 @@ public class UserManager {
 	
 	public int create(User user) throws SQLException, ExistingUserException {
 		if (userDAO.existingUser(user.getUserId()) == true) {
-			throw new ExistingUserException(user.getUserId() + "´Â Á¸ÀçÇÏ´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
+			throw new ExistingUserException(user.getUserId() + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
 		}
 		return userDAO.create(user);
 	}
 
 	public int update(User user) throws SQLException, UserNotFoundException {
-		int oldCommId = findUser(user.getUserId()).getCommId();
-		if (user.getCommId() != oldCommId) { 	// ¼Ò¼Ó Ä¿¹ÂÆ¼´Ï°¡ º¯°æµÊ
-			Community comm = commDAO.findCommunity(oldCommId);  // ±âÁ¸ ¼Ò¼Ó Ä¿¹Â´ÏÆ¼
-			if (comm != null && user.getUserId().equals(comm.getChairId())) {
-				// »ç¿ëÀÚ°¡ ±âÁ¸ ¼Ò¼Ó Ä¿¹Â´ÏÆ¼ÀÇ È¸ÀåÀÎ °æ¿ì -> ±× Ä¿¹Â´ÏÆ¼ÀÇ È¸ÀåÀ» null·Î º¯°æ ¹× ÀúÀå
-				comm.setChairId(null);
-				commDAO.updateChair(comm);
-			}
-		}
 		return userDAO.update(user);
 	}	
 
 	public int remove(String userId) throws SQLException, UserNotFoundException {
-		int commId = findUser(userId).getCommId();
-		Community comm = commDAO.findCommunity(commId);  // ¼Ò¼Ó Ä¿¹Â´ÏÆ¼
-		if (comm != null && userId.equals(comm.getChairId())) {
-			// »ç¿ëÀÚ°¡ ¼Ò¼Ó Ä¿¹Â´ÏÆ¼ÀÇ È¸ÀåÀÎ °æ¿ì -> ±× Ä¿¹Â´ÏÆ¼ÀÇ È¸ÀåÀ» null·Î º¯°æ ¹× ÀúÀå
-			comm.setChairId(null);
-			commDAO.updateChair(comm);
-		}
 		return userDAO.remove(userId);
 	}
 
@@ -71,7 +53,7 @@ public class UserManager {
 		User user = userDAO.findUser(userId);
 		
 		if (user == null) {
-			throw new UserNotFoundException(userId + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
+			throw new UserNotFoundException(userId + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
 		}		
 		return user;
 	}
@@ -90,40 +72,9 @@ public class UserManager {
 		User user = findUser(userId);
 
 		if (!user.matchPassword(password)) {
-			throw new PasswordMismatchException("ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new PasswordMismatchException("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 		}
 		return true;
-	}
-
-	public List<User> makeFriends(String userId) throws Exception {
-		return userAanlysis.recommendFriends(userId);
-	}
-	
-	public Community createCommunity(Community comm) throws SQLException {
-		return commDAO.create(comm);		
-	}
-
-	public int updateCommunity(Community comm) throws SQLException {
-		return commDAO.update(comm);				
-	}
-	
-	public Community findCommunity(int commId) throws SQLException {
-		Community comm = commDAO.findCommunity(commId); 
-		
-		List<User> memberList = userDAO.findUsersInCommunity(commId);
-		comm.setMemberList(memberList);
-		
-		int numOfMembers = userDAO.getNumberOfUsersInCommunity(commId);
-		comm.setNumOfMembers(numOfMembers);
-		return comm;
-	}
-	
-	public List<Community> findCommunityList() throws SQLException {
-		return commDAO.findCommunityList();
-	}
-	
-	public List<User> findCommunityMembers(int commId) throws SQLException {
-		return userDAO.findUsersInCommunity(commId);
 	}
 
 	public UserDAO getUserDAO() {

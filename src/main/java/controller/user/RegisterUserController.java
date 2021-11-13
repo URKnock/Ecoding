@@ -1,7 +1,5 @@
 package controller.user;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import model.Community;
 import model.User;
 import model.service.ExistingUserException;
 import model.service.UserManager;
@@ -20,16 +17,16 @@ public class RegisterUserController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
        	if (request.getMethod().equals("GET")) {	
-    		// GET request: È¸¿øÁ¤º¸ µî·Ï form ¿äÃ»	
+    		// GET request ì²˜ë¦¬ (íšŒì›ê°€ì… í¼ í˜¸ì¶œ)
     		log.debug("RegisterForm Request");
 
-    		List<Community> commList = UserManager.getInstance().findCommunityList();	// Ä¿¹Â´ÏÆ¼ ¸®½ºÆ® °Ë»ö
-			request.setAttribute("commList", commList);	
+    		//List<Community> commList = UserManager.getInstance().findCommunityList();	// Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ë»ï¿½
+			//request.setAttribute("commList", commList);	
 		
-			return "/user/registerForm.jsp";   // °Ë»öÇÑ »ç¿ëÀÚ Á¤º¸¸¦ update formÀ¸·Î Àü¼Û     	
+			return "/user/registerForm.jsp";   // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ update formï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½     	
 	    }	
 
-    	// POST request (È¸¿øÁ¤º¸°¡ parameter·Î Àü¼ÛµÊ)
+    	// POST request ì²˜ë¦¬ (ì‹ ê·œ ë“±ë¡)
        	User user = new User(
 			request.getParameter("userId"),
 			request.getParameter("password"),
@@ -43,9 +40,9 @@ public class RegisterUserController implements Controller {
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(user);
-	        return "redirect:/user/list";	// ¼º°ø ½Ã »ç¿ëÀÚ ¸®½ºÆ® È­¸éÀ¸·Î redirect
+	        return "redirect:/user/list";	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ redirect
 	        
-		} catch (ExistingUserException e) {	// ¿¹¿Ü ¹ß»ı ½Ã È¸¿ø°¡ÀÔ formÀ¸·Î forwarding
+		} catch (ExistingUserException e) {	// ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ formï¿½ï¿½ï¿½ï¿½ forwarding
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);

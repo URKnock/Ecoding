@@ -4,10 +4,8 @@ import java.time.LocalDate;
 
 public class Project {
 
-	//컬럼 전체 추가, null 가능 필드 표시
 		private int projectId; //PK ==> 필수
-		private int creatorId; //FK ==> 필수
-		private int rewardId; //FK ==> 필수
+		private int ecoerId; //FK ==> 필수
 		private String title; // ==> 필수
 		private String image; //이미지 경로
 		private String simpleInfo; //간단 설명
@@ -32,14 +30,28 @@ public class Project {
 		private String projectVideo; //영상 경로
 		private String projectFile; //인증 정보 및 기타서류의 경로 
 		
-		public Project(int projectId, int creatorId, int rewardId, String title, String image, String simpleInfo,
+		public static String[] columns = 
+		{"project_id", "ecoer_id",
+		 "title", "image", "simple_info",
+		 "category", "hashtag", "ecotag",
+		 "eco_score", "target_price", "current_price",
+		 "start_date", "end_date", "payment_date", "delivery_date",
+		 "detail_info", "plan_info", "exchange_info",
+		 "project_video", "project_file"
+		}; //DB에 정의된 컬럼들의 명칭으로 할 것 (총 20개)
+		public static int cols = columns.length;
+		
+		public Project() {
+			
+		}
+		
+		public Project(int projectId, int ecoerId, String title, String image, String simpleInfo,
 				String[] category, String[] hashTag, String[] ecoTag, double ecoScore, int targetPrice, int currentPrice,
 				LocalDate startDate, LocalDate endDate, LocalDate paymentDate, LocalDate deliveryDate, String detailInfo,
 				String planInfo, String exchangeInfo, String projectVideo, String projectFile) {
 			super();
 			this.projectId = projectId;
-			this.creatorId = creatorId;
-			this.rewardId = rewardId;
+			this.ecoerId = ecoerId;
 			this.title = title;
 			this.image = image;
 			this.simpleInfo = simpleInfo;
@@ -59,6 +71,97 @@ public class Project {
 			this.projectVideo = projectVideo;
 			this.projectFile = projectFile;
 		}
+		
+		public Object getWithIndex(int index) {
+			switch(index) {
+			case 0: return getProjectId();
+			case 1: return getEcoerId();
+			case 2: return getTitle();
+			case 3: return getImage();
+			case 4: return getSimpleInfo();
+			case 5: return getCategory();
+			case 6: return getHashTag();
+			case 7: return getEcoTag();
+			case 8: return getEcoScore();
+			case 9: return getTargetPrice();
+			case 10: return getCurrentPrice();
+			case 11: return getStartDate();
+			case 12: return getEndDate();
+			case 13: return getPaymentDate();
+			case 14: return getDeliveryDate();
+			case 15: return getDetailInfo();
+			case 16: return getPlanInfo();
+			case 17: return getExchangeInfo();
+			case 18: return getProjectVideo();
+			case 19: return getProjectFile();
+			}
+			return null;
+		}
+		
+		public void setWithIndex(int index, Object data) {
+			switch(index) {
+			case 0:
+				setProjectId((int)data);
+				break;
+			case 1:
+				setEcoerId((int)data);
+				break;
+			case 2:
+				setTitle((String)data);
+				break;
+			case 3:
+				setImage((String)data);
+				break;
+			case 4:
+				setSimpleInfo((String)data);
+				break;
+			case 5:
+				setCategory((String[])data);
+				break;
+			case 6:
+				setHashTag((String[])data);
+				break;
+			case 7:
+				setEcoTag((String[])data);
+				break;
+			case 8:
+				setEcoScore((double)data);
+				break;
+			case 9:
+				setTargetPrice((int)data);
+				break;
+			case 10:
+				setCurrentPrice((int)data);
+				break;
+			case 11:
+				setStartDate((LocalDate)data);
+				break;
+			case 12:
+				setEndDate((LocalDate)data);
+				break;
+			case 13:
+				setPaymentDate((LocalDate)data);
+				break;
+			case 14:
+				setDeliveryDate((LocalDate)data);
+				break;
+			case 15:
+				setDetailInfo((String)data);
+				break;
+			case 16:
+				setPlanInfo((String)data);
+				break;
+			case 17:
+				setExchangeInfo((String)data);
+				break;
+			case 18:
+				setProjectVideo((String)data);
+				break;
+			case 19:
+				setProjectFile((String)data);
+				break;
+			}
+		}
 
 		public int getProjectId() {
 			return projectId;
@@ -68,20 +171,12 @@ public class Project {
 			this.projectId = projectId;
 		}
 
-		public int getCreatorId() {
-			return creatorId;
+		public int getEcoerId() {
+			return ecoerId;
 		}
 
-		public void setCreatorId(int creatorId) {
-			this.creatorId = creatorId;
-		}
-
-		public int getRewardId() {
-			return rewardId;
-		}
-
-		public void setRewardId(int rewardId) {
-			this.rewardId = rewardId;
+		public void setEcoerId(int ecoerId) {
+			this.ecoerId = ecoerId;
 		}
 
 		public String getTitle() {
