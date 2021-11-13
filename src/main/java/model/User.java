@@ -1,8 +1,5 @@
 package model;
 
-/**
- * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
- */
 public class User {
 	private String userId;
 	private String password;
@@ -12,7 +9,7 @@ public class User {
 	private int commId;
 	private String commName;
 
-	public User() { }		// 기본 생성자
+	public User() { }
 	
 	public User(String userId, String password, String name, String email, String phone, int commId) {
 		this.userId = userId;
@@ -98,8 +95,6 @@ public class User {
 		this.commName = commName;
 	}
 
-	
-	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;
