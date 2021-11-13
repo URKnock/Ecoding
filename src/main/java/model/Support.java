@@ -3,16 +3,16 @@ package model;
 public class Support {
 	
 	private int supportId; //PK ==> 필수
-	private int ecoersId; //FK ==> 필수
+	private int ecoerId; //FK ==> 필수
 	private int projectId; //FK ==> 필수 
 	private int rewardId; //FK ==> 필수
 	private int amount; //결제 총액 ==> 필수
 	private String card; //카드 정보 ==> 필수
 	
-	public Support(int supportId, int ecoersId, int projectId, int rewardId, int amount, String card) {
+	public Support(int supportId, int ecoerId, int projectId, int rewardId, int amount, String card) {
 		super();
 		this.supportId = supportId;
-		this.ecoersId = ecoersId;
+		this.ecoerId = ecoerId;
 		this.projectId = projectId;
 		this.rewardId = rewardId;
 		this.amount = amount;
@@ -27,12 +27,12 @@ public class Support {
 		this.supportId = supportId;
 	}
 
-	public int getEcoersId() {
-		return ecoersId;
+	public int getEcoerId() {
+		return ecoerId;
 	}
 
-	public void setEcoersId(int ecoersId) {
-		this.ecoersId = ecoersId;
+	public void setEcoersId(int ecoerId) {
+		this.ecoerId = ecoerId;
 	}
 
 	public int getProjectId() {

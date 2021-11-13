@@ -6,6 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.registerProject.*;
+import controller.user.ListUserController;
+import controller.user.LoginController;
+import controller.user.LogoutController;
+import controller.user.RegisterUserController;
+import controller.user.ViewUserController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -16,6 +21,12 @@ public class RequestMapping {
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
     	mappings.put("/", new ForwardController("index.jsp"));
+    	 mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
+         mappings.put("/user/login", new LoginController());
+         mappings.put("/user/logout", new LogoutController());
+         mappings.put("/user/list", new ListUserController());
+         mappings.put("/user/view", new ViewUserController());
+         mappings.put("/user/register", new RegisterUserController());
     	
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
     	mappings.put("/project/start", new ForwardController("/project/registerProjectForm_step1.jsp"));   

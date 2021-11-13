@@ -18,7 +18,7 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	//후원 정보 테이블에 새로운 후원 정보를 생성.
 	public int create(Support support) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
 		String sql = "INSERT INTO SUPPORT VALUES (?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {support.getSupportId(), support.getEcoersId(), 
+		Object[] param = new Object[] {support.getSupportId(), support.getEcoerId(), 
 				support.getProjectId(), support.getRewardId(), support.getAmount(), 
 				support.getCard()};	
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
@@ -41,7 +41,7 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	public int update(Support support) throws SQLException {
 		String sql = "UPDATE SUPPORT "
 					+ "SET card=? "
-					+ "WHERE supportId=?";
+					+ "WHERE support_id=?";
 		Object[] param = new Object[] {support.getCard(), support.getSupportId()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 			
@@ -61,7 +61,7 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 
 	//supportID에 해당하는 후원을 삭제 ==> 후원 취소 기능으로 사용
 	public int remove(int supportId) throws SQLException {
-		String sql = "DELETE FROM SUPPORT WHERE supportId=?";		
+		String sql = "DELETE FROM SUPPORT WHERE support_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {supportId});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
@@ -83,9 +83,9 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	 * 저장하여 반환. ==> 필요할까? supportId를 별도로 알아낼 수 있을까??
 	 */
 	public Support findSupport(int supportId) throws SQLException {
-        String sql = "SELECT supportId, ecoersId, projectId, rewardId, amount, card "
+        String sql = "SELECT support_id, ecoer_id, project_id, reward_id, amount, card "
         			+ "FROM SUPPORT "
-        			+ "WHERE supportId=? ";              
+        			+ "WHERE support_id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {supportId});
 
 		try {
@@ -93,9 +93,9 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 			if (rs.next()) {						// 주문 정보 발견
 				Support support = new Support(		// Support 객체를 생성하여 주문 정보를 저장
 					supportId,
-					rs.getInt("ecoersId"),
-					rs.getInt("projectId"),
-					rs.getInt("rewardId"),
+					rs.getInt("ecoer_id"),
+					rs.getInt("project_id"),
+					rs.getInt("reward_id"),
 					rs.getInt("amount"),
 					rs.getString("card"));
 				return support;
@@ -110,9 +110,9 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 
 	//전체 후원 정보를 검색하여 List에 저장 및 반환 ==> 사용자 페이지에서 한꺼번에 보여주기
 	public List<Support> findSupportList() throws SQLException {
-        String sql = "SELECT supportId, ecoersId, projectId, rewardId, amount, card " 
+        String sql = "SELECT support_id, ecoer_id, project_id, reward_id, amount, card " 
         		   + "FROM SUPPORT "
-        		   + "ORDER BY supportId"; //날짜 순으로 정렬하는 게 좋지 않을까? 
+        		   + "ORDER BY support_id"; //날짜 순으로 정렬하는 게 좋지 않을까? 
 		jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil에 query문 설정
 					
 		try {
@@ -120,10 +120,10 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 			List<Support> supportList = new ArrayList<Support>();	// User들의 리스트 생성
 			while (rs.next()) {
 				Support support = new Support(	// Support 객체를 생성하여 현재 행의 정보를 저장
-						rs.getInt("supportId"),
-						rs.getInt("ecoersId"),
-						rs.getInt("projectId"),
-						rs.getInt("rewardId"),
+						rs.getInt("support_id"),
+						rs.getInt("ecoer_id"),
+						rs.getInt("project_id"),
+						rs.getInt("reward_id"),
 						rs.getInt("amount"),
 						rs.getString("card"));
 				supportList.add(support);		// List에 Support 객체 저장
@@ -140,7 +140,7 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	
 	//주어진 supportID에 해당하는 후원이 존재하는지 검사 (필요한가?)
 	public boolean existingSupport(String supportId) throws SQLException {
-		String sql = "SELECT count(*) FROM USERINFO WHERE userid=?";      
+		String sql = "SELECT count(*) FROM SUPPORT WHERE support_id=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {supportId});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
