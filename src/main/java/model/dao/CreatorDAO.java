@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Creator;
+import model.Ecoer;
 
 public class CreatorDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -62,7 +63,7 @@ public class CreatorDAO {
 	}
 
 	public int remove(String creatorId) throws SQLException {
-		String sql = "DELETE FROM creator WHERE creator_id=?";		
+		String sql = "DELETE FROM creator WHERE ecoer_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
 
 		try {				
@@ -80,22 +81,21 @@ public class CreatorDAO {
 	}
 
 	public Creator findCreator(String creatorId) throws SQLException {
-        String sql = "SELECT password";
-        String[] cols = Creator.columns;
-        for(int i = 2; i < Creator.cols; i++) {
-        	sql += ", " + cols[i];
-        }
-        sql += " FROM creator ";
-        sql += "WHERE creator_id=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
+        String sql = "SELECT * FROM creator JOIN ecoer USING(ecoer_id) WHERE ecoer_id=?";
+        String[] cols1 = Creator.columns;
+        String[] cols2 = Ecoer.columns;
+        jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
 				Creator creator = new Creator();
 				creator.setEcoerId(creatorId);
-				for(int i = 1; i < Creator.cols; i++) {
-					creator.setWithIndex(i, rs.getObject(cols[i]));
+				for(int i = 1; i < Creator.cols + Ecoer.cols; i++) {
+					if(i < Creator.cols)
+						creator.setWithIndex(i, rs.getObject(cols1[i]));
+					else
+						creator.setWithIndex(i, rs.getObject(cols2[i]));
 				}
 				return creator;
 			}
@@ -108,8 +108,9 @@ public class CreatorDAO {
 	}
 
 	public List<Creator> findCreatorList() throws SQLException {
-        String sql = "SELECT * FROM creator ORDER BY creator_id";
-        String[] cols = Creator.columns;
+        String sql = "SELECT * FROM creator JOIN ecoer USING(ecoer_id)";
+        String[] cols1 = Creator.columns;
+        String[] cols2 = Ecoer.columns;
 		jdbcUtil.setSqlAndParameters(sql, null);
 					
 		try {
@@ -117,8 +118,11 @@ public class CreatorDAO {
 			List<Creator> creatorList = new ArrayList<Creator>();
 			while (rs.next()) {
 				Creator creator = new Creator();
-				for(int i = 0; i < Creator.cols; i++) {
-					creator.setWithIndex(i, rs.getObject(cols[i]));
+				for(int i = 1; i < Creator.cols + Ecoer.cols; i++) {
+					if(i < Creator.cols)
+						creator.setWithIndex(i, rs.getObject(cols1[i]));
+					else
+						creator.setWithIndex(i, rs.getObject(cols2[i]));
 				}
 				creatorList.add(creator);
 			}		
@@ -133,7 +137,7 @@ public class CreatorDAO {
 	}
 
 	public boolean existingCreator(String creatorId) throws SQLException {
-		String sql = "SELECT count(*) FROM creator WHERE creator_id=?";      
+		String sql = "SELECT count(*) FROM creator WHERE ecoer_id=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
 
 		try {

@@ -3,7 +3,7 @@ package model;
 public class Creator extends Ecoer {
 	
 	private String ecoderId, nickName, image, creatorInfo, account;
-	public static String[] columns = { "ecoer_id", "name", "image", "creator_info", "account" };
+	public static String[] columns = { "ecoer_id", "nick_name", "image", "creator_info", "account" };
 	public static int cols = columns.length;
 	
 	public Creator() {
@@ -21,10 +21,16 @@ public class Creator extends Ecoer {
 	public Object getWithIndex(int index) {
 		switch(index) {
 			case 0: return getEcoerId();
-			case 1: return getName();
+			case 1: return getNickName();
 			case 2: return getImage();
 			case 3: return getCreatorInfo();
 			case 4: return getAccount();
+			case 5: return getPassword();
+			case 6: return getName();
+			case 7: return getAddress();
+			case 8: return getPhone();
+			case 9: return getEmail();
+			case 10: return getIsCreator();
 		}
 		return null;
 	}
@@ -45,6 +51,24 @@ public class Creator extends Ecoer {
 			break;
 		case 4:
 			setAccount((String) data);
+			break;
+		case 5:
+			setPassword((String) data);
+			break;
+		case 6:
+			setName((String) data);
+			break;
+		case 7:
+			setAddress((String) data);
+			break;
+		case 8:
+			setPhone((String) data);
+			break;
+		case 9:
+			setEmail((String) data);
+			break;
+		case 10:
+			setIsCreator((char) data);
 			break;
 		}
 	}
