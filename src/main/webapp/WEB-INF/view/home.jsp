@@ -27,11 +27,12 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 <title>프로젝트 둘러보기</title>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 <style>
-* {
-	font-family: 'Jua', sans-serif;
+
+*{
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .wrap {
