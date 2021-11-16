@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.service.UserManager;
-import model.User;
+import model.Ecoer;
 
 public class UpdateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
@@ -20,20 +20,20 @@ public class UpdateUserController implements Controller {
     	if (request.getMethod().equals("GET")) {	
     		// GET request: ȸ������ ���� form ��û	
     		// ������ UpdateUserFormController�� ó���ϴ� �۾��� ���⼭ ����
-    		String updateId = request.getParameter("userId");
+    		String updateId = request.getParameter("ecoerId");
 
     		log.debug("UpdateForm Request : {}", updateId);
     		
     		UserManager manager = UserManager.getInstance();
-			User user = manager.findUser(updateId);	// �����Ϸ��� ����� ���� �˻�
-			request.setAttribute("user", user);			
+    		Ecoer ecoer = manager.findEcoer(updateId);	// �����Ϸ��� ����� ���� �˻�
+			request.setAttribute("ecoer", ecoer);			
 
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(updateId, session) ||
 				UserSessionUtils.isLoginUser("admin", session)) {
 				// ���� �α����� ����ڰ� ���� ��� ������̰ų� �������� ��� -> ���� ����
 				
-				return "/user/updateForm.jsp";   // �˻��� ����� ������ update form���� ����     
+				return "/user/updateForm.jsp";   //이건 또 뭔가      
 			}    
 			
 			// else (���� �Ұ����� ���) ����� ���� ȭ������ ���� �޼����� ����
@@ -44,18 +44,19 @@ public class UpdateUserController implements Controller {
 	    }	
     	
     	// POST request (ȸ�������� parameter�� ���۵�)
-    	User updateUser = new User(
-    		request.getParameter("userId"),
-    		request.getParameter("password"),
-    		request.getParameter("name"),
-    		request.getParameter("email"),
-    		request.getParameter("phone"),
-			Integer.parseInt(request.getParameter("commId")));
+    	Ecoer updateEcoer = new Ecoer(
+    			request.getParameter("ecoerId"),
+    			request.getParameter("name"),
+    			request.getParameter("address"),
+    			request.getParameter("phone"),
+    			request.getParameter("email"),
+    			request.getParameter("password"),
+    			Boolean.parseBoolean(request.getParameter("isCreator")));
 
-    	log.debug("Update User : {}", updateUser);
+    	log.debug("Update Ecoer : {}", updateEcoer);
 
 		UserManager manager = UserManager.getInstance();
-		manager.update(updateUser);			
-        return "redirect:/user/list";			
+		manager.update(updateEcoer);			
+        return "redirect:/user/list";	//list 안 쓸 것 같다.		
     }
 }

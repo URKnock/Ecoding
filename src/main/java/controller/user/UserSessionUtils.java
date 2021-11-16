@@ -3,28 +3,28 @@ package controller.user;
 import javax.servlet.http.HttpSession;
 
 public class UserSessionUtils {
-    public static final String USER_SESSION_KEY = "userId";
+    public static final String USER_SESSION_KEY = "ecoerId";
 
-    /* ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚÀÇ ID¸¦ ±¸ÇÔ */
-    public static String getLoginUserId(HttpSession session) {
-        String userId = (String)session.getAttribute(USER_SESSION_KEY);
-        return userId;
+    /* ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    public static String getLoginEcoerId(HttpSession session) {
+        String ecoerId = (String)session.getAttribute(USER_SESSION_KEY);
+        return ecoerId;
     }
 
-    /* ·Î±×ÀÎÇÑ »óÅÂÀÎÁö¸¦ °Ë»ç */
+    /* ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ */
     public static boolean hasLogined(HttpSession session) {
-        if (getLoginUserId(session) != null) {
+        if (getLoginEcoerId(session) != null) {
             return true;
         }
         return false;
     }
 
-    /* ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚÀÇ ID°¡ userIdÀÎÁö °Ë»ç */
-    public static boolean isLoginUser(String userId, HttpSession session) {
-        String loginUser = getLoginUserId(session);
-        if (loginUser == null) {
+    /* ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ecoerIdï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ */
+    public static boolean isLoginUser(String ecoerId, HttpSession session) {
+        String loginEcoer = getLoginEcoerId(session);
+        if (loginEcoer == null) {
             return false;
         }
-        return loginUser.equals(userId);
+        return loginEcoer.equals(ecoerId);
     }
 }

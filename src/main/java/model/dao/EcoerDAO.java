@@ -149,5 +149,4 @@ public class EcoerDAO {
 		}
 		return false;
 	}
-
 }

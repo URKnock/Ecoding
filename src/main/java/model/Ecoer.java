@@ -116,6 +116,13 @@ public class Ecoer {
 	public void setIsCreator(char isCreator) {
 		this.isCreator = (isCreator == '1');
 	}
+	
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.password.equals(password);
+	}
 
 	@Override
 	public String toString() {
