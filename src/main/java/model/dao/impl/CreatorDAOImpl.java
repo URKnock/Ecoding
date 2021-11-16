@@ -1,7 +1,6 @@
 package model.dao.impl;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,11 +138,10 @@ public class CreatorDAOImpl implements CreatorDAO {
 		return null;
 	}
 
-	public boolean existingCreator(String creatorId) throws SQLException {
+	public boolean existingCreator(String creatorId) {
 		String sql = "SELECT count(*) FROM creator WHERE ecoer_id=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
-
 		try {
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
 				int count = rs.getInt(1);

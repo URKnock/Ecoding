@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.Ecoer;
 import model.service.UserManager;
 import model.service.UserNotFoundException;
+import model.service.dto.EcoerDTO;
 
 public class ViewUserController implements Controller {
     @Override
@@ -19,7 +19,7 @@ public class ViewUserController implements Controller {
 		UserManager manager = UserManager.getInstance();
 		String ecoerId = request.getParameter("ecoerId");
 
-    	Ecoer ecoer = null;
+    	EcoerDTO ecoer = null;
     	try {
     		ecoer = manager.findEcoer(ecoerId);
 		} catch (UserNotFoundException e) {				

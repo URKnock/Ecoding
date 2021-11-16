@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.service.UserManager;
-import model.Ecoer;
+import model.service.dto.EcoerDTO;
 
 public class UpdateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
@@ -25,7 +25,7 @@ public class UpdateUserController implements Controller {
     		log.debug("UpdateForm Request : {}", updateId);
     		
     		UserManager manager = UserManager.getInstance();
-    		Ecoer ecoer = manager.findEcoer(updateId);	// �����Ϸ��� ����� ���� �˻�
+    		EcoerDTO ecoer = manager.findEcoer(updateId);	// �����Ϸ��� ����� ���� �˻�
 			request.setAttribute("ecoer", ecoer);			
 
 			HttpSession session = request.getSession();
@@ -44,7 +44,7 @@ public class UpdateUserController implements Controller {
 	    }	
     	
     	// POST request (ȸ�������� parameter�� ���۵�)
-    	Ecoer updateEcoer = new Ecoer(
+    	EcoerDTO updateEcoer = new EcoerDTO(
     			request.getParameter("ecoerId"),
     			request.getParameter("name"),
     			request.getParameter("address"),

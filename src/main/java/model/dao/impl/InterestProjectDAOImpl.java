@@ -1,7 +1,6 @@
 package model.dao.impl;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,11 +125,10 @@ public class InterestProjectDAOImpl implements InterestProjectDAO {
 		return null;
 	}
 
-	public boolean existingInterestProject(String interest_projectId) throws SQLException {
+	public boolean existingInterestProject(String interest_projectId) {
 		String sql = "SELECT count(*) FROM interest_project WHERE ecoer_id=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {interest_projectId});
-
 		try {
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {interest_projectId});
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
 				int count = rs.getInt(1);

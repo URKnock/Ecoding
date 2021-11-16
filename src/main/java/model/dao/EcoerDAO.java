@@ -9,4 +9,5 @@ public interface EcoerDAO {
 	public int update(EcoerDTO ecoer);	
 	public int delete(String ecoerId);
 	public EcoerDTO findEcoer(String ecoerId);
+	public boolean existingEcoer(String ecoerId);
 }

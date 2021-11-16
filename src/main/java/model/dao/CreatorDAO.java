@@ -10,4 +10,5 @@ public interface CreatorDAO {
 	public int update(CreatorDTO creator);	
 	public int delete(String ecoerId);
 	public CreatorDTO findCreator(String ecoerId);
+	public boolean existingCreator(String creatorId);
 }

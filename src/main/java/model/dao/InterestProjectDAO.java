@@ -10,4 +10,5 @@ public interface InterestProjectDAO {
 	public int update(InterestProjectDTO interest_project);	
 	public int delete(String ecoerId);
 	public InterestProjectDTO findInterestProject(String ecoerId);
+	public boolean existingInterestProject(String interest_projectId);
 }
