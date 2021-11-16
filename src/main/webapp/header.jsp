@@ -4,13 +4,23 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+function userCreate(targetUri) {
+	form.action = targetUri;
+	form.method="GET";		// register form 요청
+	form.submit();
+}
+</script>
+
 <div id="header">
 	<div id="top">
 		<img id="logo" src="/resources/img/logo.png"/>
 		<div>
-			<button id="register_project">프로젝트 등록하기</button>
+			<button id="register_project"> 프로젝트 등록하기 </button>
 			<button id="login">로그인</button>
-			<button id="register_user">회원가입</button>
+			<input type="button" value="회원가입" onClick="userCreate(
+								'<c:url value='/user/register'/>')">
 		</div>
 		<div>
 			<form name="search_project" action="">
