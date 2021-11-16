@@ -1,4 +1,4 @@
-package controller.registerProject;
+package controller.project;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

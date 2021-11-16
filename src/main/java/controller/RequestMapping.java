@@ -5,7 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.registerProject.*;
+import controller.project.*;
 import controller.user.ListUserController;
 import controller.user.LoginController;
 import controller.user.LogoutController;
