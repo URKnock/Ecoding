@@ -11,12 +11,14 @@ import model.service.PostManager;
 
 public class SearchPostController implements Controller {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		
-    	PostManager manager; // = PostManager.getInstance();
-		List<Post> postList = null; // = manager.findPostList();
+    public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {		
+    	String keyword = request.getParameter("searchKeyword");
+    	String type = request.getParameter("searchType");
+    	
+    	PostManager manager = PostManager.getInstance();
+		List<Post> postList = manager.findPostList(keyword, type);
 		
 		request.setAttribute("postList", postList);				
-		return "/postList.jsp";        
+		return "/board/postList.jsp";        
     }
 }

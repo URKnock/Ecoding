@@ -1,37 +1,29 @@
 package controller.comm;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import controller.Controller;
-import model.service.UserManager;
-import model.Community;
-import model.User;
 
 public class UpdateCommunityController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(UpdateCommunityController.class);
+   // private static final Logger log = LoggerFactory.getLogger(UpdateCommunityController.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
- 
+    	/*
 		int commId = Integer.parseInt(request.getParameter("commId"));
 		
 		if (request.getMethod().equals("GET")) {	
-    		// GET request: Ä¿¹Â´ÏÆ¼ ¼öÁ¤ form ¿äÃ»	
+    		// GET request: Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ form ï¿½ï¿½Ã»	
     		UserManager manager = UserManager.getInstance();
-			Community comm = manager.findCommunity(commId);	// ¼öÁ¤ÇÏ·Á´Â Ä¿¹Â´ÏÆ¼ Á¤º¸ °Ë»ö
+			Community comm = manager.findCommunity(commId);	// ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 			request.setAttribute("community", comm);			
 			
-			List<User> members = manager.findCommunityMembers(commId); // Ä¿¹Â´ÏÆ¼ È¸¿ø ¸®½ºÆ® °Ë»ö
+			List<User> members = manager.findCommunityMembers(commId); // Ä¿ï¿½Â´ï¿½Æ¼ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ë»ï¿½
 			request.setAttribute("members", members);		
-			return "/community/updateForm.jsp";   // °Ë»öÇÑ Á¤º¸¸¦ update formÀ¸·Î Àü¼Û     
+			return "/community/updateForm.jsp";   // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ update formï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½     
 	    }	
     	
-    	// POST request (Ä¿¹Â´ÏÆ¼ Á¤º¸°¡ parameter·Î Àü¼ÛµÊ)
+    	// POST request (Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ parameterï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½)
     	Community comm = new Community(
     		commId,
     		request.getParameter("name"),
@@ -41,7 +33,8 @@ public class UpdateCommunityController implements Controller {
     	log.debug("Update Community : {}", comm);
 
 		UserManager manager = UserManager.getInstance();
-		manager.updateCommunity(comm);			
+		manager.updateCommunity(comm);
+		*/		
         return "redirect:/community/list";			
     }
 }

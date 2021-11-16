@@ -1,21 +1,18 @@
 package controller.comm;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
-import model.Community;
-import model.service.UserManager;
 
 public class ListCommunityController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		
-    	UserManager manager = UserManager.getInstance();
-		List<Community> commList = manager.findCommunityList();
+    	// UserManager manager = UserManager.getInstance();
+		// List<Community> commList = manager.findCommunityList();
 		
-		// commList °´Ã¼¸¦ request¿¡ ÀúÀåÇÏ¿© Ä¿¹Â´ÏÆ¼ ¸®½ºÆ® È­¸éÀ¸·Î ÀÌµ¿(forwarding)
-		request.setAttribute("commList", commList);				
+		// commList ï¿½ï¿½Ã¼ï¿½ï¿½ requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½Æ® È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½(forwarding)
+		// request.setAttribute("commList", commList);				
 		return "/community/list.jsp";        
     }
 }

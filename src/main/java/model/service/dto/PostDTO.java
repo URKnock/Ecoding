@@ -1,7 +1,7 @@
 package model.service.dto;
 
 public class PostDTO {
-	private String postId;
+	private int postId;
 	private String title;
 	private String postDate;
 	private String postContent;
@@ -10,16 +10,48 @@ public class PostDTO {
 	private String likes;
 	private String reports;
 	private String ecoerId;
-	private String communityId;
+	private int communityId;
 	
+	public static String[] columns = { "post_id", "title", "post_date", "post_content", "post_file", "views", "likes", "reports", "ecoer_id", "community_id" };
+	public static int cols = columns.length;
+	
+	public Object getWithIndex(int index) {
+		switch(index) {
+			case 0: return getPostId();
+			case 1: return getTitle();
+			case 2: return getPostDate();
+			case 3: return getPostContent();
+			case 4: return getPostFile();
+			case 5: return getViews();
+			case 6: return getLikes();
+			case 7: return getReports();
+			case 8: return getEcoerId();
+			case 9: return getCommunityId();
+		}
+		return null;
+	}
+	
+	public void setWithIndex(int index, Object data) {
+		switch(index) {
+			case 0: setPostId((int) data); break;
+			case 1: setTitle((String) data); break;
+			case 2: setPostDate((String) data); break;
+			case 3: setPostContent((String) data); break;
+			case 4: setPostFile((String) data); break;
+			case 5: setViews((String) data); break;
+			case 6: setLikes((String) data); break;
+			case 7: setReports((String) data); break;
+			case 8: setEcoerId((String) data); break;
+			case 9: setCommunityId((int) data); break;
+		}
+	}
 	
 	public PostDTO() {
-		super();
+		
 	}
 
-	public PostDTO(String postId, String title, String postDate, String postContent, String postFile, String views,
-			String likes, String reports, String ecoerId, String communityId) {
-		super();
+	public PostDTO(int postId, String title, String postDate, String postContent, String postFile, String views,
+			String likes, String reports, String ecoerId, int communityId) {
 		this.postId = postId;
 		this.title = title;
 		this.postDate = postDate;
@@ -32,11 +64,11 @@ public class PostDTO {
 		this.communityId = communityId;
 	}
 
-	public String getPostId() {
+	public int getPostId() {
 		return postId;
 	}
 
-	public void setPostId(String postId) {
+	public void setPostId(int postId) {
 		this.postId = postId;
 	}
 
@@ -104,11 +136,11 @@ public class PostDTO {
 		this.ecoerId = ecoerId;
 	}
 
-	public String getCommunityId() {
+	public int getCommunityId() {
 		return communityId;
 	}
 
-	public void setCommunityId(String communityId) {
+	public void setCommunityId(int communityId) {
 		this.communityId = communityId;
 	}
 }

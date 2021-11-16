@@ -1,21 +1,23 @@
 package controller.post;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.Post;
 import model.service.PostManager;
+import model.service.dto.PostDTO;
 
 public class UpdatePostController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		
-    	Post post = null;
-    	
-		request.setAttribute("post", post);				
-		return "/postList.jsp";        
+    	PostDTO post = (PostDTO) request.getAttribute("post");
+    	try {
+    		PostManager manager = PostManager.getInstance();
+    		manager.update(post);
+    		return "redirect:/board/view";
+    	} catch (Exception e) {
+    		request.setAttribute("exception", e);
+    		return "/board/postList.jsp";
+    	}
     }
 }
