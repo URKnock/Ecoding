@@ -10,17 +10,17 @@ import model.service.UserManager;
 public class LoginController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	String userId = request.getParameter("userId");
+    	String ecoerId = request.getParameter("ecoerId");
 		String password = request.getParameter("password");
 		
 		try {
 			UserManager manager = UserManager.getInstance();
-			manager.login(userId, password);
+			manager.login(ecoerId, password);
 	
 			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, ecoerId);
             
-            return "redirect:/user/list";			
+            return "redirect:/home/main"; //혹은 직전에 있었던 페이지로 		
 		} catch (Exception e) {
             request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);

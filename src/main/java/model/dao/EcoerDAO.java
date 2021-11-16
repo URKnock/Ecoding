@@ -1,7 +1,6 @@
 package model.dao;
 
 import java.util.List;
-
 import model.service.dto.EcoerDTO;
 
 public interface EcoerDAO {

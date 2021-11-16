@@ -26,12 +26,12 @@ public class RequestMapping {
         mappings.put("/home/main", new ForwardController("/view/home.jsp")); //홈
         mappings.put("/home/list", new ForwardController("/view/projectList.jsp")); //둘러보기
         
-    	mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동
+    	mappings.put("/user/loginform", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동
         mappings.put("/user/login", new LoginController()); //로그인 버튼을 클릭했을 때 연산 실행
         mappings.put("/user/logout", new LogoutController()); //로그아웃 버튼을 클릭했을 때
-        mappings.put("/user/list", new ListUserController());
-        mappings.put("/user/view", new ViewUserController());
-        mappings.put("/user/register", new RegisterUserController());
+        mappings.put("/user/list", new ListUserController()); //유저 목록 출력 ==> 안 쓸 것 같다.
+        mappings.put("/user/view", new ViewUserController()); //유저 정보 (내 정보 보기)
+        mappings.put("/user/register", new RegisterUserController()); //회원가입 폼으로 이동
         
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
     	mappings.put("/project/start", new ForwardController("/project/registerProjectForm_step1.jsp"));   

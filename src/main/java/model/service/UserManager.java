@@ -3,8 +3,8 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.User;
-import model.dao.UserDAO;
+import model.Ecoer;
+import model.dao.EcoerDAO;
 
 /**
  * ����� ���� API�� ����ϴ� �����ڵ��� ���� �����ϰ� �Ǵ� Ŭ����.
@@ -13,17 +13,15 @@ import model.dao.UserDAO;
  * �����Ͻ� ������ ������ ��쿡�� �����Ͻ� �������� �����ϴ� Ŭ������ 
  * ������ �� �� �ִ�.
  */
-public class UserManager {
+public class UserManager { //EcoerManager처럼 사용
 	private static UserManager userMan = new UserManager();
-	private UserDAO userDAO;
+	private EcoerDAO ecoerDAO;
 
-	private UserAnalysis userAanlysis;
+	//private UserAnalysis userAanlysis; 사용 안 함
 
 	private UserManager() {
 		try {
-			userDAO = new UserDAO();
-
-			userAanlysis = new UserAnalysis(userDAO);
+			ecoerDAO = new EcoerDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -33,51 +31,51 @@ public class UserManager {
 		return userMan;
 	}
 	
-	public int create(User user) throws SQLException, ExistingUserException {
-		if (userDAO.existingUser(user.getUserId()) == true) {
-			throw new ExistingUserException(user.getUserId() + "�� �����ϴ� ���̵��Դϴ�.");
+	public int create(Ecoer ecoer) throws SQLException, ExistingUserException {
+		if (ecoerDAO.existingEcoer(ecoer.getEcoerId()) == true) {
+			throw new ExistingUserException(ecoer.getEcoerId() + "는 이미 존재합니다.");
 		}
-		return userDAO.create(user);
+		return ecoerDAO.create(ecoer);
 	}
 
-	public int update(User user) throws SQLException, UserNotFoundException {
-		return userDAO.update(user);
+	public int update(Ecoer ecoer) throws SQLException, UserNotFoundException {
+		return ecoerDAO.update(ecoer);
 	}	
 
 	public int remove(String userId) throws SQLException, UserNotFoundException {
-		return userDAO.remove(userId);
+		return ecoerDAO.remove(userId);
 	}
 
-	public User findUser(String userId)
+	public Ecoer findEcoer(String ecoerId)
 		throws SQLException, UserNotFoundException {
-		User user = userDAO.findUser(userId);
+		Ecoer ecoer = ecoerDAO.findEcoer(ecoerId);
 		
-		if (user == null) {
-			throw new UserNotFoundException(userId + "�� �������� �ʴ� ���̵��Դϴ�.");
+		if (ecoer == null) {
+			throw new UserNotFoundException(ecoerId + "를 찾을 수 없습니다.");
 		}		
-		return user;
+		return ecoer;
 	}
 
-	public List<User> findUserList() throws SQLException {
-			return userDAO.findUserList();
+	public List<Ecoer> findEcoerList() throws SQLException {
+			return ecoerDAO.findEcoerList();
 	}
 	
-	public List<User> findUserList(int currentPage, int countPerPage)
+	public List<Ecoer> findEcoerList(int currentPage, int countPerPage)
 		throws SQLException {
-		return userDAO.findUserList(currentPage, countPerPage);
+		return ecoerDAO.findEcoerList(); //(currentPage, countPerPage); ==> Page는 쓰지않는지?
 	}
 
-	public boolean login(String userId, String password)
+	public boolean login(String ecoerId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
-		User user = findUser(userId);
+		Ecoer ecoer = findEcoer(ecoerId);
 
-		if (!user.matchPassword(password)) {
-			throw new PasswordMismatchException("��й�ȣ�� ��ġ���� �ʽ��ϴ�.");
+		if (!ecoer.matchPassword(password)) {
+			throw new PasswordMismatchException("패스워드가 올바르지 않습니다.");
 		}
 		return true;
 	}
 
-	public UserDAO getUserDAO() {
-		return this.userDAO;
+	public EcoerDAO getEcoerDAO() {
+		return this.ecoerDAO;
 	}
 }

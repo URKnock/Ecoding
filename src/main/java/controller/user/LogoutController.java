@@ -9,11 +9,11 @@ import controller.Controller;
 public class LogoutController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//¼¼¼Ç¿¡ ÀúÀåµÈ »ç¿ëÀÚ ÀÌÀÌµğ¸¦ »èÁ¦ÇÏ°í ¼¼¼ÇÀ» ¹«È¿È­ ÇÔ 
+		//ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿È­ ï¿½ï¿½ 
 		HttpSession session = request.getSession();
 		session.removeAttribute(UserSessionUtils.USER_SESSION_KEY);
 		session.invalidate();		
         
-        return "redirect:/user/list";
+        return "redirect:/home/main"; //ë¡œê·¸ì•„ì›ƒ ì´í›„ homeìœ¼ë¡œ ë˜ëŒì•„ê°€ë„ë¡ (ê·¸ëŸ°ë° ì§ì „ì— ìˆì—ˆë˜ ìœ„ì¹˜ë¥¼ ë°˜ì˜í•´ì•¼ í•  ë“¯í•¨)
     }
 }
