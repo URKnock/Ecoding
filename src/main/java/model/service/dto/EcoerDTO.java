@@ -1,6 +1,6 @@
-package model;
+package model.service.dto;
 
-public class Ecoer {
+public class EcoerDTO {
 
 	private String ecoerId, name, address, phone, email, password;
 	private boolean isCreator;
@@ -8,11 +8,11 @@ public class Ecoer {
 	public static String[] columns = { "ecoer_id", "password", "name", "address", "phone", "email", "is_creator" };
 	public static int cols = columns.length;
 	
-	public Ecoer() {
+	public EcoerDTO() {
 		
 	}
 	
-	public Ecoer(String ecoerId, String name, String address, String phone, String email, String password, boolean isCreator) {
+	public EcoerDTO(String ecoerId, String name, String address, String phone, String email, String password, boolean isCreator) {
 		this.ecoerId = ecoerId;
 		this.name = name;
 		this.address = address;

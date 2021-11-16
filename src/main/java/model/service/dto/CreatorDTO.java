@@ -1,16 +1,16 @@
-package model;
+package model.service.dto;
 
-public class Creator extends Ecoer {
+public class CreatorDTO extends EcoerDTO {
 	
 	private String ecoderId, nickName, image, creatorInfo, account;
 	public static String[] columns = { "ecoer_id", "nick_name", "image", "creator_info", "account" };
 	public static int cols = columns.length;
 	
-	public Creator() {
+	public CreatorDTO() {
 		
 	}
 
-	public Creator(String ecoderId, String nickName, String image, String creatorInfo, String account) {
+	public CreatorDTO(String ecoderId, String nickName, String image, String creatorInfo, String account) {
 		this.ecoderId = ecoderId;
 		this.nickName = nickName;
 		this.image = image;

@@ -1,13 +1,13 @@
-package model;
+package model.service.dto;
 
-public class InterestProject {
+public class InterestProjectDTO {
 	private String ecoerId;
 	private int projectId;
 	
 	public static String[] columns = { "ecoer_id", "project_id" };
 	public static int cols = columns.length;
 	
-	public InterestProject() {
+	public InterestProjectDTO() {
 		
 	}
 	
@@ -30,7 +30,7 @@ public class InterestProject {
 		}
 	}
 	
-	public InterestProject(String ecoerId, int projectId) {
+	public InterestProjectDTO(String ecoerId, int projectId) {
 		this.ecoerId = ecoerId;
 		this.projectId = projectId;
 	}
