@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
 import controller.Controller;
-import model.Community;
 import model.service.UserManager;
 
 public class CreateCommunityController implements Controller {
