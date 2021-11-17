@@ -22,7 +22,7 @@ public class UpdateUserController implements Controller {
     		// ������ UpdateUserFormController�� ó���ϴ� �۾��� ���⼭ ����
     		String updateId = request.getParameter("ecoerId");
 
-    		log.debug("UpdateForm Request : {}", updateId);
+    		log.debug("UserUpdate Request : {}", updateId);
     		
     		UserManager manager = UserManager.getInstance();
     		EcoerDTO ecoer = manager.findEcoer(updateId);	// �����Ϸ��� ����� ���� �˻�
@@ -33,14 +33,14 @@ public class UpdateUserController implements Controller {
 				UserSessionUtils.isLoginUser("admin", session)) {
 				// ���� �α����� ����ڰ� ���� ��� ������̰ų� �������� ��� -> ���� ����
 				
-				return "/user/updateForm.jsp";   //이건 또 뭔가      
+				return "/user/userUpdate.jsp";     
 			}    
 			
 			// else (���� �Ұ����� ���) ����� ���� ȭ������ ���� �޼����� ����
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", 
 					new IllegalStateException("Ÿ���� ������ ������ �� �����ϴ�."));            
-			return "/user/view.jsp";	// ����� ���� ȭ������ �̵� (forwarding)
+			return "/user/userView.jsp";	// ����� ���� ȭ������ �̵� (forwarding)
 	    }	
     	
     	// POST request (ȸ�������� parameter�� ���۵�)
