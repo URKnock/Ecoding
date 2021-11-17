@@ -40,8 +40,8 @@ public class DeleteUserController implements Controller {
 		request.setAttribute("ecoer", ecoer);						
 		request.setAttribute("deleteFailed", true);
 		String msg = (UserSessionUtils.isLoginUser("admin", session)) 
-				   ? "�ý��� ������ ������ ������ �� �����ϴ�."		
-				   : "Ÿ���� ������ ������ �� �����ϴ�.";													
+					? "시스템 관리자 정보는 삭제할 수 없습니다."		
+					: "타인의 정보는 삭제할 수 없습니다.";											
 		request.setAttribute("exception", new IllegalStateException(msg));            
 		return "/user/view.jsp";		// ����� ���� ȭ������ �̵� (forwarding)	
 	}
