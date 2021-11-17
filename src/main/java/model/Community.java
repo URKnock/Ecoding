@@ -5,11 +5,9 @@ public class Community {
 	private String name;
 	
 	public Community() {
-		super();
 	}
 
 	public Community(String communityId, String name) {
-		super();
 		this.communityId = communityId;
 		this.name = name;
 	}

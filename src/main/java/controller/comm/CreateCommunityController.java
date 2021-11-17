@@ -3,34 +3,28 @@ package controller.comm;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
 import controller.Controller;
-import model.service.UserManager;
+import model.service.CommunityManager;
+import model.service.dto.CommunityDTO;
 
 public class CreateCommunityController implements Controller {
-    private static final Logger log = (Logger) LoggerFactory.getLogger(CreateCommunityController.class);
+//    private static final Logger log = (Logger) LoggerFactory.getLogger(CreateCommunityController.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	Community comm = new Community(
-    		0, request.getParameter("name"),
-			request.getParameter("desc"),
-			null, null, null);		
+    	int id = Integer.parseInt(request.getParameter("id"));
+    	CommunityDTO comm = new CommunityDTO(id, request.getParameter("name"));
         
 		try {
-			UserManager manager = UserManager.getInstance();
-			manager.createCommunity(comm);
+			CommunityManager manager = CommunityManager.getInstance();
+			manager.insert(comm);
+			return "redirect:/board/postList.jsp";
 			
-	    	log.debug("Create Community : {}", comm);
-	        return "redirect:/community/list";	// ���� �� Ŀ�´�Ƽ ����Ʈ ȭ������ redirect
-	        
-		} catch (Exception e) {		// ���� �߻� �� �Է� form���� forwarding
+		} catch (Exception e) {
             request.setAttribute("creationFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("comm", comm);
-			return "/community/creationForm.jsp";
+			return "/board/postList.jsp";
 		}
     }
 }

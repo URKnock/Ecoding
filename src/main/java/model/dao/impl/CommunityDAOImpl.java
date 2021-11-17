@@ -28,7 +28,7 @@ public class CommunityDAOImpl implements CommunityDAO{
 		} finally {
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
 
 	public int updateCommunity(CommunityDTO comm) {
@@ -45,7 +45,7 @@ public class CommunityDAOImpl implements CommunityDAO{
 		} finally {
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
 
 	public int deleteCommunity(int commCode) {
@@ -62,7 +62,7 @@ public class CommunityDAOImpl implements CommunityDAO{
 		} finally {
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
 
 	public CommunityDTO getCommunity(int commCode) {
@@ -78,7 +78,7 @@ public class CommunityDAOImpl implements CommunityDAO{
 			CommunityDTO dto = null;
 			if (rs.next()) {
 				dto = new CommunityDTO();
-				dto.setCommunityId(rs.getString("community_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
 				dto.setName(rs.getString("community_name"));
 			}
 			return dto;

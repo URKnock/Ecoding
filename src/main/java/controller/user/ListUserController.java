@@ -4,8 +4,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
-import model.Ecoer;
 import model.service.UserManager;
+import model.service.dto.EcoerDTO;
 
 public class ListUserController implements Controller {
 	// private static final int countPerPage = 100;	// �� ȭ�鿡 ����� ����� ��
@@ -26,7 +26,7 @@ public class ListUserController implements Controller {
     	*/
     	
 		UserManager manager = UserManager.getInstance();
-		List<Ecoer> ecoerList = manager.findEcoerList();
+		List<EcoerDTO> ecoerList = manager.getEcoerList();
 		// List<User> userList = manager.findUserList(currentPage, countPerPage);
 
 		// userList ��ü�� ���� �α����� ����� ID�� request�� �����Ͽ� ����

@@ -2,21 +2,19 @@ package controller.comm;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import controller.Controller;
-import model.service.UserManager;
-import model.Community;
 
 public class ViewCommunityController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-    	
+    	/*
     	Community comm = null;
 		UserManager manager = UserManager.getInstance();
 		int commId = Integer.parseInt(request.getParameter("commId"));
-		comm = manager.findCommunity(commId);		// Ä¿¹Â´ÏÆ¼ Á¤º¸ °Ë»ö			
+		comm = manager.findCommunity(commId);		// Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½			
 		
-		request.setAttribute("community", comm);	// Ä¿¹Â´ÏÆ¼ Á¤º¸ ÀúÀå				
-		return "/community/view.jsp";				// Ä¿¹Â´ÏÆ¼ º¸±â È­¸éÀ¸·Î ÀÌµ¿
+		request.setAttribute("community", comm);	// Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½				
+		*/
+		return "/community/view.jsp";				// Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     }
 }
