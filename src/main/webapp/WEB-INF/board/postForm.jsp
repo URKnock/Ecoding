@@ -10,7 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 <body>
-	<form name="post" method="post" action="postView.jsp">
+	<form name="post" method="post" action="<c:url value='/board/view'/>">
 	<table id="posting" align="center">
 		<tr>
 			<td></td>

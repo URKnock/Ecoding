@@ -2,10 +2,16 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.project.*;
+import controller.post.CommunityController;
+import controller.post.CreatePostController;
+import controller.post.DeletePostController;
+import controller.post.PostListController;
+import controller.post.UpdatePostController;
+import controller.project.ProjectRegisterController;
 import controller.user.ListUserController;
 import controller.user.LoginController;
 import controller.user.LogoutController;
@@ -39,7 +45,15 @@ public class RequestMapping {
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
     	mappings.put("/project/start", new ForwardController("/project/registerProjectForm_step1.jsp"));   
         mappings.put("/project/register/form", new ProjectRegisterController());
-                
+        
+        // 커뮤니티 관련
+        mappings.put("/board/list", new PostListController());
+        mappings.put("/board/view", new CommunityController());
+        mappings.put("/board/form", new ForwardController("/board/postForm.jsp"));
+        mappings.put("/board/create", new CreatePostController());
+        mappings.put("/board/update", new UpdatePostController());
+        mappings.put("/board/delete", new DeletePostController());
+        
         logger.info("Initialized Request Mapping!");
     }
 

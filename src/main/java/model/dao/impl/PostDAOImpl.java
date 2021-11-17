@@ -15,7 +15,7 @@ public class PostDAOImpl implements PostDAO {
 								+ "POST.post_date AS post_date, POST.post_content AS post_content, "
 								+ "POST.post_file AS post_file, POST.views AS post_views, "
 								+ "POST.likes AS post_likes, POST.reports AS post_reports, "
-								+ "POST.ecoer_id AS post_ecoer_id, POST.community_id AS community_id";
+								+ "POST.ecoer_id AS post_ecoer_id, POST.community_id AS community_id ";
 		
 	public PostDAOImpl() {
 		jdbcUtil = new JDBCUtil();

@@ -20,7 +20,7 @@
 			</select>
 			<input type="text"/>
 			<input type="submit" value="검색"/>
-			<input type="button" value="글쓰기" onClick="location.href='postForm.jsp'"/>
+			<input type="button" value="글쓰기" onClick="location.href='<c:url value='/board/form'/>'"/>
 		</form>
 		<br/>
 	<table id="posts">

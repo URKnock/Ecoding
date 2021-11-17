@@ -12,9 +12,17 @@ import model.service.dto.PostDTO;
 public class PostListController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
+		List<PostDTO> postList;
     	PostManager manager = PostManager.getInstance();
-		List<PostDTO> postList = manager.display();
-
+    	String keyword = request.getParameter("searchKeyword");
+    	String type = request.getParameter("searchType");
+		
+    	if(keyword != null && type != null) {
+    		postList = manager.findPostList(keyword, type);
+    		
+    	} else {
+    		postList = manager.display();
+    	}
 		request.setAttribute("postList", postList);				
 		return "/board/postList.jsp";        
     }
