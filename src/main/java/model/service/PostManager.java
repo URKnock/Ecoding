@@ -45,7 +45,7 @@ public class PostManager {
 		return postDAO.getPostByCode(id);
 	}
 	
-	public List<PostDTO> getPostList() {
+	public List<PostDTO> display() {
 		return postDAO.getPostList();
 	}
 	

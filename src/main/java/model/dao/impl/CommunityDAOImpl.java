@@ -1,9 +1,12 @@
 package model.dao.impl;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.dao.CommunityDAO;
-import model.util.JDBCUtil;
 import model.service.dto.CommunityDTO;
+import model.util.JDBCUtil;
 
 public class CommunityDAOImpl implements CommunityDAO{
 	private JDBCUtil jdbcUtil = null;
@@ -82,6 +85,28 @@ public class CommunityDAOImpl implements CommunityDAO{
 				dto.setName(rs.getString("community_name"));
 			}
 			return dto;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public List<CommunityDTO> getCommunityList() {
+		String searchQuery = query + "FROM COMMUNITY";
+		jdbcUtil.setSqlAndParameters(searchQuery, null);
+	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<CommunityDTO> list = new ArrayList<CommunityDTO>();
+			while (rs.next()) {
+				CommunityDTO dto = new CommunityDTO();
+				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setName(rs.getString("community_name"));
+				list.add(dto);
+			}
+			return list;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
