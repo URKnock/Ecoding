@@ -13,7 +13,7 @@ public class ViewUserController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
     	// �α��� ���� Ȯ��
     	if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form으로 redirect
+            return "redirect:/user/loginform";		// login form으로 redirect
         }
     	
 		UserManager manager = UserManager.getInstance();
@@ -27,6 +27,6 @@ public class ViewUserController implements Controller {
 		}	
 		
     	request.setAttribute("ecoer", ecoer);				
-		return "/user/view.jsp";				//새로 작성한 페이지로 교체하기
+		return "/user/userView.jsp";
     }
 }
