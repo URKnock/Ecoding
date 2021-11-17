@@ -10,6 +10,14 @@ public class CreatorDTO extends EcoerDTO {
 		
 	}
 
+	public CreatorDTO(String nickName, String image, String creatorInfo, String account) {
+		super();
+		this.nickName = nickName;
+		this.image = image;
+		this.creatorInfo = creatorInfo;
+		this.account = account;
+	}
+	
 	public CreatorDTO(String ecoderId, String nickName, String image, String creatorInfo, String account) {
 		this.ecoderId = ecoderId;
 		this.nickName = nickName;
@@ -17,6 +25,7 @@ public class CreatorDTO extends EcoerDTO {
 		this.creatorInfo = creatorInfo;
 		this.account = account;
 	}
+
 
 	public Object getWithIndex(int index) {
 		switch(index) {

@@ -38,7 +38,7 @@ public class ProjectManager {
 		return null;
 	}
 	
-	public int registerProjecct(Project proj) throws SQLException {
+	public int registerProject(Project proj) throws SQLException {
 		return projectDAO.create(proj);
 	}
 
@@ -51,4 +51,12 @@ public class ProjectManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public int updateProject(Project proj) throws SQLException {
+		return projectDAO.update(proj);
+	}
+	
+	public int removeProject(String projId) throws SQLException {
+		return projectDAO.remove(projId);
+	};
 }

@@ -57,7 +57,7 @@
 			<h3>Q1. 프로젝트 대표 영상을 첨부해주세요.</h3>
 			<input type="file" name="thumbnailVideo">
 			<h3>Q2. 상세한 프로젝트 설명을 작성해주세요.</h3>
-			<textarea rows="15" cols="100"></textarea>
+			<textarea rows="15" cols="100" name="detailInfo"></textarea>
 			<h3>Q3. 리워드 정보를 입력해주세요.</h3>
 			<input type="text" name="reward" placeholder="리워드 정보">
 			<input type="text" name="rewardPrice" placeholder="금액 범위">
@@ -65,9 +65,9 @@
 			<input type="text" name="reward" placeholder="리워드 정보">
 			<input type="text" name="rewardPrice" placeholder="금액 범위">
 			<h3>Q4. 예산 사용 및 일정 계획을 작성해주세요.</h3>
-			<textarea rows="15" cols="100"></textarea>
+			<textarea rows="15" cols="100" name="planInfo"></textarea>
 			<h3>Q5. 교환 및 환불 안내 사항을 작성해주세요.</h3>
-			<textarea rows="15" cols="100"></textarea>
+			<textarea rows="15" cols="100" name="exchangeInfo"></textarea>
 			<h3>Q6. 프로젝트와 관련된 각종 인증 정보 및 기타 서류를 첨부해주세요.</h3>
 			<input type="file" name="projectFile">
 			<p></p>
