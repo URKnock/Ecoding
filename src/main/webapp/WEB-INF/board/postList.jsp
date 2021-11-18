@@ -35,14 +35,14 @@
 			<td>댓글수</td>
 			<td>좋아요</td>
 		</tr>
-		<c:forEach var="post" items="${postList}" varStatus="i">
+		<c:forEach var="p" items="${postList}">
 			<tr>
-				<td><a href="/board/view?post_id=${post.post_id}">${post.post_id}</a></td>
-				<td><a href="/board/view?post_id=${post.post_id}">${post.title}</a></td>
-				<td><a href="/board/view?post_id=${post.post_id}">${post.post_date}</a></td>
-				<td><a href="/board/view?post_id=${post.post_id}">${post.views}</a></td>
-				<td><a href="/board/view?post_id=${post.post_id}">${post.likes}</a></td>
-				<td><a href="/board/view?post_id=${post.post_id}">${post.reports}</a></td>
+				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.postId}</a></td>
+				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.title}</a></td>
+				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.postDate}</a></td>
+				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.views}</a></td>
+				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.likes}</a></td>
+				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.reports}</a></td>
 			</tr>
 		</c:forEach>
 	</table>

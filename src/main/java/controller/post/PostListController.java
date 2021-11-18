@@ -23,10 +23,12 @@ public class PostListController implements Controller {
 		
     	if(keyword != null && type != null) {
     		postList = manager.findPostList(keyword, type);
-    		
     	} else {
     		postList = manager.display(cid);
     	}
+    	
+    	System.out.println(postList);
+    	
 		request.setAttribute("postList", postList);				
 		return "/board/postList.jsp";        
     }
