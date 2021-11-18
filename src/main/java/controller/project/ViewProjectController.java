@@ -1,30 +1,31 @@
 package controller.project;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-//import model.User;
-//import model.service.UserManager;
-//import model.service.UserNotFoundException;
-
-import model.service.*;
+import model.service.ProjectManager;
 import model.Project;
+import model.service.dto.*;
 
 public class ViewProjectController implements Controller {
 
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
-		int project_id = (int) request.getAttribute("project_id");
-		Project project = null;
+		int projectId = (int) request.getAttribute("projectId");
 		
-		// project_id를 이용하여 project를 찾아서 project에 대입한후 request에 저장
+		// project_id를 이용하여 project를 찾아서 project에 대입한 후 request에 저장
 		ProjectManager manager = ProjectManager.getInstance();
-		project = manager.findProject(project_id);
+		Project project = manager.findProject(projectId);
+		ProjectDTO projectDTO = manager.findProjectInfo(project);
+		List<ProjectNoticeDTO> noticeList = manager.getNoticeList(projectId);
 
     	request.setAttribute("project", project);
+    	request.setAttribute("projectDTO", projectDTO);
+    	request.setAttribute("noticeList", noticeList);
 		
-		return "/projectSupport.jsp";
+		return "/project/projectSupport.jsp";
 	}
 }

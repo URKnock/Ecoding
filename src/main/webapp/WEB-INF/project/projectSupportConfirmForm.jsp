@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	div {
@@ -33,11 +33,11 @@
 				<td width="25%">
 					<img src="image.jpg" width="150" height="150">
 				</td>
-				<td style="font-size:20pt">ÇÁ·ÎÁ§Æ® ÀÌ¸§</td>
+				<td style="font-size:20pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="image.jpg" width="30" height="30">
+					<img src="image.jpg" width="30" height="30"> <!-- ì´ë¯¸ì§€ ìˆ˜ì • **** -->
 				</td>
-				<td width="20%" style="text-align:left;">Ã¢ÀÛÀÚ</td>
+				<td width="20%" style="text-align:left;">${project.creatorName}</td> <!-- DTOë¡œ ìƒì„± -->
 			</tr>
 		</table>
 	</div>
@@ -46,40 +46,40 @@
 		<table border="1" style="width:1000">
 			<tr>
 				<td style="width:55%">
-					<h4>ÈÄ¿øÁ¤º¸</h4>
+					<h4>í›„ì›ì •ë³´</h4>
 					<table style="width:480; height:100;">
 						<tr>
-							<td>¿É¼Ç Á¾·ù</td>
-							<td><button type="button" onclick="location.href='projectSupportForm.html'">
-									º¯°æ
+							<td>${reward.name}</td>
+							<td><button type="button" onclick="location.href='projectSupportForm.jsp'">
+									ë³€ê²½
 							</button></td>
 						</tr>
 						<tr>
-							<td>ÈÄ¿ø±Ý¾× + Ãß°¡ ÈÄ¿ø ±Ý¾× =</td>
-							<td style="font-weight:bold">ÃÖÁ¾ ±Ý¾×</td>
+							<td>${reward.rewardPrice} + ${add} =</td>
+							<td style="font-weight:bold">${reward.rewardPrice + add}</td>
 						</tr>
 					</table>
 				</td>
 				<td rowspan="4">
 					<table style="width:400; height:200;">
 						<tr>
-							<td>ÃÖÁ¾ ÈÄ¿ø ±Ý¾×</td>
-							<td style="font-weight:bold">80,000¿ø</td>
+							<td>ìµœì¢… í›„ì› ê¸ˆì•¡</td>
+							<td style="font-weight:bold">${reward.rewardPrice + add}ì›</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								ÇÁ·ÎÁ§Æ® ¸ñÇ¥ ´Þ¼º ½Ã, 21³â 11¿ù 1ÀÏ¿¡ °áÁ¦µË´Ï´Ù.<br>
-								ÇÁ·ÎÁ§Æ®°¡ ¹«»êµÉ °æ¿ì °áÁ¦´Â ÀÚµ¿À¸·Î Ãë¼ÒµË´Ï´Ù.
+								í”„ë¡œì íŠ¸ ëª©í‘œ ë‹¬ì„± ì‹œ, ${project.paymentDate}ì— ê²°ì œë©ë‹ˆë‹¤.<br>
+								í”„ë¡œì íŠ¸ê°€ ë¬´ì‚°ë  ê²½ìš° ê²°ì œëŠ” ìžë™ìœ¼ë¡œ ì·¨ì†Œë©ë‹ˆë‹¤.
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="radio"> °³ÀÎÁ¤º¸ Á¦ 3ÀÚ Á¦°ø µ¿ÀÇ
+								<input type="radio"> ê°œì¸ì •ë³´ ì œ 3ìž ì œê³µ ë™ì˜
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="ÈÄ¿øÇÏ±â" style="width:380; height:50;">
+								<input type="submit" value="í›„ì›í•˜ê¸°" style="width:380; height:50;">
 							</td>
 						</tr>
 					</table>
@@ -87,59 +87,58 @@
 			</tr>
 			<tr>
 				<td>
-					<h4>ÈÄ¿øÀÚ Á¤º¸</h4>
+					<h4>í›„ì›ìž ì •ë³´</h4>
 					<table style="width:480; height:100;">
 						<tr>
-							<td>ÀÌ¸§</td>
-							<td>±è¼Ø¼Ø</td>
+							<td>ì´ë¦„</td>
+							<td>${ecoer.name}</td>
 						</tr>
 						<tr>
-							<td>¿¬¶ôÃ³</td>
-							<td>010-1234-5678</td>
+							<td>ì—°ë½ì²˜</td>
+							<td>${ecoer.phone}</td>
 						</tr>
 						<tr>
-							<td>ÀÌ¸ÞÀÏ</td>
-							<td>somsom@dongduk.ac.kr</td>
+							<td>ì´ë©”ì¼</td>
+							<td>${ecoer.email}</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<h4>¹è¼ÛÁö Á¤º¸</h4>
+					<h4>ë°°ì†¡ì§€ ì •ë³´</h4>
 					<table style="width:480; height:100;">
 						<tr>
-							<td>¿ìÆí¹øÈ£</td>
+							<td>ìš°íŽ¸ë²ˆí˜¸</td>
 							<td>02748</td>
 						</tr>
 						<tr>
-							<td>ÁÖ¼Ò</td>
-							<td>¼­¿ï½Ã ¼ººÏ°í È­¶û·Î 13±æ 60</td>
+							<td>ì£¼ì†Œ</td>
+							<td>ì„œìš¸ì‹œ ì„±ë¶ê³  í™”ëž‘ë¡œ 13ê¸¸ 60</td>
 						</tr>
 						<tr>
-							<td>»ó¼¼ ÁÖ¼Ò</td>
-							<td>µ¿´ö¿©ÀÚ´ëÇÐ±³ ÀÎ¹®°ü B312È£</td>
+							<td>ìƒì„¸ ì£¼ì†Œ</td>
+							<td>ë™ë•ì—¬ìžëŒ€í•™êµ ì¸ë¬¸ê´€ B312í˜¸</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<h4>°áÁ¦ ¼ö´Ü</h4>
+					<h4>ê²°ì œ ìˆ˜ë‹¨</h4>
 					<table style="width:480; height:100;">
 						<tr>
-							<td>Ä«µå</td>
+							<td>ì¹´ë“œ</td>
 							<td><input type="text" size="10"></td>
 						</tr>
 						<tr>
-							<td>Ä«µå ¹øÈ£</td>
+							<td>ì¹´ë“œ ë²ˆí˜¸</td>
 							<td><input type="text" size="20"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
-		
 	</form>	
 	</div>
 </body>
