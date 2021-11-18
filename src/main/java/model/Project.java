@@ -45,6 +45,10 @@ public class Project {
 			
 		}
 		
+		public Project(String title) {
+			this.title = title;
+		}
+		
 		public Project(String detailInfo, String planInfo, String exchangeInfo, String projectVideo,
 				String projectFile) {
 			super();

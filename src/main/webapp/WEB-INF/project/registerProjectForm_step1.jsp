@@ -56,7 +56,7 @@
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
 			<h3>Q1. 프로젝트 제목을 입력해주세요.</h3>
-			<input type="text" name="projectName">
+			<input type="text" name="title">
 			<h3>Q2. 프로젝트 대표 이미지를 첨부해주세요.</h3>
 			<input type="file" name="thumbnailImage">
 			<h3>Q3. 간단한 프로젝트 설명을 작성해주세요.</h3>

@@ -16,7 +16,6 @@ import model.Reward;
 import model.service.CreatorManager;
 import model.service.ProjectManager;
 import model.service.dto.CreatorDTO;
-//import model.service.dto.ProjectDTO;
 
 public class ProjectRegisterController implements Controller {
     @Override
@@ -27,39 +26,31 @@ public class ProjectRegisterController implements Controller {
     		return "/project/registerProjectForm_step1.jsp";
     	}
     	else if(step.equals("step2")) {
+    		/*
     		Project project = new Project(request.getParameter("projectName"), request.getParameter("thumbnailImage"), request.getParameter("projectBrief"), 
     				request.getParameterValues("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
     				Integer.parseInt(request.getParameter("targetAmount")), LocalDate.parse(request.getParameter("startDate"), DateTimeFormatter.ISO_DATE), 
     				LocalDate.parse(request.getParameter("endDate"), DateTimeFormatter.ISO_DATE), LocalDate.parse(request.getParameter("payment_date"), DateTimeFormatter.ISO_DATE), 
     				LocalDate.parse(request.getParameter("deliveryDate"), DateTimeFormatter.ISO_DATE));
-    		try {
-    			ProjectManager manager = ProjectManager.getInstance();
-    			manager.registerProject(project);
-    			request.setAttribute("project", project);
-    			return "/project/registerProjectForm_step2.jsp";
-    		} catch (Exception e) {
-    			request.setAttribute("registerFailed", true);
-    			request.setAttribute("exception", e);
-    			return "/project/registerProjectForm_step1.jsp";
-    		}
-    	}
+    		*/
+    		Project project = new Project(request.getParameter("title"));
+
+			ProjectManager manager = ProjectManager.getInstance();
+			manager.registerProject(project);
+			request.setAttribute("project", project);
+			return "/project/registerProjectForm_step2.jsp";
+	}
     	else if(step.equals("step3")) {
     		Project project = new Project(request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"), request.getParameter("projectVideo"), 
     				request.getParameter("projectFile"));
     		
     		Reward reward = new Reward(request.getParameter("reward"), Integer.parseInt(request.getParameter("rewardPrice")));
-    		
-    		try {
-    			ProjectManager manager = ProjectManager.getInstance();
-    			manager.updateProject(project);
-    			request.setAttribute("project", project);
-    			request.setAttribute("reward", reward);
-    			return "/project/registerProjectForm_step3.jsp";
-    		} catch (Exception e) {
-    			request.setAttribute("registerFailed", true);
-    			request.setAttribute("exception", e);
-    			return "/project/registerProjectForm_step2.jsp";
-    		}
+
+			ProjectManager manager = ProjectManager.getInstance();
+			manager.updateProject(project);
+			request.setAttribute("project", project);
+			request.setAttribute("reward", reward);
+			return "/project/registerProjectForm_step3.jsp";
     	}
     	else if(step.equals("step4")) {
     		CreatorDTO creator = new CreatorDTO(request.getParameter("teamName"), request.getParameter("teamImage"), request.getParameter("teamDetail"), request.getParameter("account"));
@@ -74,7 +65,6 @@ public class ProjectRegisterController implements Controller {
     			request.setAttribute("exception", e);
     			return "/project/registerProjectForm_step3.jsp";
     		}
-    		
     	}
     	else if(step.equals("final")) {
     		return "/project/successRegister.jsp";
