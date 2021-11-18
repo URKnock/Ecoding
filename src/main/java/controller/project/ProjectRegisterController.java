@@ -29,7 +29,6 @@ public class ProjectRegisterController implements Controller {
     		return "/project/registerProjectForm_step1.jsp";
     	}
     	else if(step.equals("step2")) {
-    		System.out.println("하하");
     		/*
     		Project project = new Project(request.getParameter("projectName"), request.getParameter("thumbnailImage"), request.getParameter("projectBrief"), 
     				request.getParameterValues("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
