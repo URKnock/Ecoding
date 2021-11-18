@@ -18,7 +18,7 @@ public class PostDAOImpl implements PostDAO {
 	}	
 
 	public List<PostDTO> getPostByCId(int cId) {
-		String searchQuery = query + "FROM POST WHERE POST.community_id = ?";
+		String searchQuery = query + "FROM POST WHERE POST.community_id = ? ORDER By post_id";
 		Object[] param = new Object[] {cId};
 		jdbcUtil.setSqlAndParameters(searchQuery, param); 
 
@@ -115,16 +115,22 @@ public class PostDAOImpl implements PostDAO {
 
 	public int insertPost(PostDTO post) {
 		int result = 0;
-		String insertQuery = "INSERT INTO POST VALUES (seq_post.nextval, ?, ?, ?, ?, 0, 0, 0, ?, ?) ";
-		
-		Object[] param = new Object[] {post.getTitle(), post.getPostDate(), post.getPostContent(), post.getPostFile(), post.getEcoerId(), post.getCommunityId()};
+		String insertQuery = "INSERT INTO POST VALUES (seq_post.nextval, ?, SYSDATE, ?, ?, 0, 0, 0, ?, ?) ";
+		Object[] param = new Object[] {post.getTitle(), post.getPostContent(), post.getPostFile(), post.getEcoerId(), post.getCommunityId()};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
 		
 		try {
-			result = jdbcUtil.executeUpdate(); // insert 문 실행
+			jdbcUtil.executeUpdate(); // insert 문 실행
+			jdbcUtil.setSqlAndParameters("SELECT seq_post.currval AS result FROM POST", null);
+			ResultSet rs = jdbcUtil.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("result");
+			}
 		} catch (Exception ex) { 
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return result;
