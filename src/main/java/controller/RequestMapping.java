@@ -6,18 +6,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.post.CommunityController;
-import controller.post.CreatePostController;
-import controller.post.DeletePostController;
-import controller.post.PostListController;
-import controller.post.UpdatePostController;
-import controller.project.ProjectRegisterController;
-import controller.user.ListUserController;
-import controller.user.LoginController;
-import controller.user.LogoutController;
-import controller.user.RegisterUserController;
-import controller.user.UpdateUserController;
-import controller.user.ViewUserController;
+import controller.post.*;
+import controller.project.*;
+import controller.user.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -45,6 +36,10 @@ public class RequestMapping {
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
     	mappings.put("/project/start", new ForwardController("/project/registerProjectForm_step1.jsp"));   
         mappings.put("/project/register/form", new ProjectRegisterController());
+        mappings.put("/project/support/view", new ViewProjectController());
+        mappings.put("/project/support", new ProjectSupportController());
+        mappings.put("/project/support/confirm", new ProjectSupportController());
+        mappings.put("/project/support/complete", new ProjectSupportCompleteController());
         
         // 커뮤니티 관련
         mappings.put("/board/list", new PostListController());

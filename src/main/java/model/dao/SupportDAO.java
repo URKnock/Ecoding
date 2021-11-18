@@ -12,4 +12,5 @@ public interface SupportDAO {
 	public Support findSupport(int supportId) throws SQLException;
 	public List<Support> findSupportList() throws SQLException;
 	public boolean existingSupport(String supportId) throws SQLException;
+	public int countSupporter(int projectId) throws SQLException;
 }

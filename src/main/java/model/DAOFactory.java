@@ -26,6 +26,14 @@ public class DAOFactory {
 		return new SupportDAOImpl();		
 	}
 	
+	public ProjectNoticeDAO getNoticeDAO() {
+		return new ProjectNoticeDAOImpl();
+	}
+	
+	public RewardDAO getRewardDAO() {
+		return new RewardDAOImpl();
+	}
+	
 	//EcoerDAO, CreatorDAO, InterestProjectDAO
 	public EcoerDAO getEcoerDAO() {
 		return new EcoerDAOImpl();
