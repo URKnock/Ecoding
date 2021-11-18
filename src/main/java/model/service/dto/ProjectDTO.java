@@ -17,6 +17,7 @@ public class ProjectDTO {
 		super();
 	}
 
+	/*
 	public ProjectDTO(int projectId, String title) {
 		super();
 		this.projectId = projectId;
@@ -33,6 +34,7 @@ public class ProjectDTO {
 		this.paymentDate = paymentDate;
 	}
 	
+	*/
 	public ProjectDTO(int projectId, String title,
 			String image, String creatorImage, String creatorName,
 			int pricePercenet, long remainTime, int countSupporter) {
