@@ -25,4 +25,26 @@ public class DAOFactory {
 	public SupportDAO getSupportDAO() {
 		return new SupportDAOImpl();		
 	}
+	
+	public ProjectNoticeDAO getNoticeDAO() {
+		return new ProjectNoticeDAOImpl();
+	}
+	
+	public RewardDAO getRewardDAO() {
+		return new RewardDAOImpl();
+	}
+	
+	//EcoerDAO, CreatorDAO, InterestProjectDAO
+	public EcoerDAO getEcoerDAO() {
+		return new EcoerDAOImpl();
+	}
+	
+	public CreatorDAO getCreatorDAO() {
+		return new CreatorDAOImpl();
+	}
+	
+	public InterestProjectDAO getInterestProjectDAO() {
+		return new InterestProjectDAOImpl();
+	}
+	
 }

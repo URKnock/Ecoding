@@ -34,7 +34,7 @@ public class PostDAOImpl implements PostDAO {
 			PostDTO dto = null;
 			if (rs.next()) {
 				dto = new PostDTO();
-				dto.setPostId(rs.getString("post_id"));
+				dto.setPostId(rs.getInt("post_id"));
 				dto.setTitle(rs.getString("post_title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
@@ -43,7 +43,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setLikes(rs.getString("post_likes"));
 				dto.setReports(rs.getString("post_reports"));
 				dto.setEcoerId(rs.getString("post_ecoer_id"));
-				dto.setCommunityId(rs.getString("community_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
 			}
 			return dto;
 		} catch (Exception ex) {
@@ -62,13 +62,13 @@ public class PostDAOImpl implements PostDAO {
 			List<PostDTO> list = new ArrayList<PostDTO>(); // DTO 객체들을 담기 위한 리스트 생성
 			while (rs.next()) {
 				PostDTO dto = new PostDTO(); // PostDTO 객체 생성 후 검색 결과 저장
-				dto.setPostId(rs.getString("post_id"));
+				dto.setPostId(rs.getInt("post_id"));
 				dto.setTitle(rs.getString("post_title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setViews(rs.getString("post_views"));
 				dto.setLikes(rs.getString("post_likes"));
 				dto.setReports(rs.getString("post_reports"));
-				dto.setCommunityId(rs.getString("community_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
 				list.add(dto); // 리스트에 DTO 객체 저장
 			}
 			return list; // 게시글정보를 저장한 DTO 객체들의 리스트를 반환
@@ -93,7 +93,7 @@ public class PostDAOImpl implements PostDAO {
 		} finally {
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
 
 	public int updatePost(PostDTO post) {
@@ -110,7 +110,7 @@ public class PostDAOImpl implements PostDAO {
 		} finally {
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
 
 	public int deletePost(int pId) {
@@ -127,7 +127,7 @@ public class PostDAOImpl implements PostDAO {
 		} finally {
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
 
 	public PostDTO getPostByCode(int pCode) {
@@ -143,7 +143,7 @@ public class PostDAOImpl implements PostDAO {
 			PostDTO dto = null;
 			if (rs.next()) {
 				dto = new PostDTO();
-				dto.setPostId(rs.getString("post_id"));
+				dto.setPostId(rs.getInt("post_id"));
 				dto.setTitle(rs.getString("post_title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
@@ -152,7 +152,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setLikes(rs.getString("post_likes"));
 				dto.setReports(rs.getString("post_reports"));
 				dto.setEcoerId(rs.getString("post_ecoer_id"));
-				dto.setCommunityId(rs.getString("community_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
 			}
 			return dto;
 		} catch (Exception ex) {

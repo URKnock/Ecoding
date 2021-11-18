@@ -63,7 +63,7 @@
 		<p>심사 과정을 거쳐 관리자가 프로젝트를 승인하면 정식 프로젝트로 전환됩니다.</p>
     </div>
     <div class="goList">
-    	<button onclick="location='프로젝트 조회.jsp'">완성된 프로젝트 둘러보기</button>
+    	<button onclick="location='home.jsp'">완성된 프로젝트 둘러보기</button>
     </div>
     <div class="main">
 		하단바

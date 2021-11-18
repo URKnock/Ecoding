@@ -6,17 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.Post;
 import model.service.PostManager;
+import model.service.dto.PostDTO;
 
 public class PostListController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		
-    	PostManager manager; // = PostManager.getInstance();
-		List<Post> postList = null; // = manager.findPostList();
-		
+    	PostManager manager = PostManager.getInstance();
+		List<PostDTO> postList = manager.getPostList();
+
 		request.setAttribute("postList", postList);				
-		return "/postList.jsp";        
+		return "/board/postList.jsp";        
     }
 }

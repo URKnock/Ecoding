@@ -10,23 +10,18 @@ import model.service.UserManager;
 public class LoginController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	String userId = request.getParameter("userId");
+    	String ecoerId = request.getParameter("ecoerId");
 		String password = request.getParameter("password");
 		
 		try {
-			// ¸ğµ¨¿¡ ·Î±×ÀÎ Ã³¸®¸¦ À§ÀÓ
 			UserManager manager = UserManager.getInstance();
-			manager.login(userId, password);
+			manager.login(ecoerId, password);
 	
-			// ¼¼¼Ç¿¡ »ç¿ëÀÚ ÀÌÀÌµğ ÀúÀå
 			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, ecoerId);
             
-            return "redirect:/user/list";			
+            return "redirect:/home/main"; //í˜¹ì€ ì§ì „ì— ìˆì—ˆë˜ í˜ì´ì§€ë¡œ 		
 		} catch (Exception e) {
-			/* UserNotFoundExceptionÀÌ³ª PasswordMismatchException ¹ß»ı ½Ã
-			 * ´Ù½Ã login formÀ» »ç¿ëÀÚ¿¡°Ô Àü¼ÛÇÏ°í ¿À·ù ¸Ş¼¼Áöµµ Ãâ·Â
-			 */
             request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);
             return "/user/loginForm.jsp";			

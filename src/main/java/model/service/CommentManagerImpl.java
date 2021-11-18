@@ -5,9 +5,9 @@ import model.DAOFactory;
 import model.dao.CommentDAO;
 import model.service.dto.CommentDTO;
 
-public class CommentServiceImpl implements CommentService {
+public class CommentManagerImpl implements CommentManager {
 	private CommentDAO dao = null;
-	public CommentServiceImpl() {		
+	public CommentManagerImpl() {		
 		DAOFactory factory = new DAOFactory();
 		dao = factory.getCommentDAO();
 	}

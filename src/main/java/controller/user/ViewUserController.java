@@ -6,27 +6,27 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.service.UserManager;
 import model.service.UserNotFoundException;
-import model.User;
+import model.service.dto.EcoerDTO;
 
 public class ViewUserController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-    	// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ
+    	// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     	if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form ¿äÃ»À¸·Î redirect
+            return "redirect:/user/login/form";		// login formìœ¼ë¡œ redirect
         }
     	
 		UserManager manager = UserManager.getInstance();
-		String userId = request.getParameter("userId");
+		String ecoerId = request.getParameter("ecoerId");
 
-    	User user = null;
+    	EcoerDTO ecoer = null;
     	try {
-			user = manager.findUser(userId);	// »ç¿ëÀÚ Á¤º¸ °Ë»ö
+    		ecoer = manager.findEcoer(ecoerId);
 		} catch (UserNotFoundException e) {				
-	        return "redirect:/user/list";
+	        return "redirect:/user/list"; //ë¦¬ìŠ¤íŠ¸ ì‚¬ìš© ì•ˆ í•  ê²ƒ ê°™ìŒ
 		}	
 		
-    	request.setAttribute("user", user);		// »ç¿ëÀÚ Á¤º¸ ÀúÀå				
-		return "/user/view.jsp";				// »ç¿ëÀÚ º¸±â È­¸éÀ¸·Î ÀÌµ¿
+    	request.setAttribute("ecoer", ecoer);				
+		return "/user/view.jsp";				//ìƒˆë¡œ ì‘ì„±í•œ í˜ì´ì§€ë¡œ êµì²´í•˜ê¸°
     }
 }

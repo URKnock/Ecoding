@@ -1,22 +1,22 @@
-package model.service.dto;
+package model;
 
-public class CommunityDTO {
-	private int communityId;
+public class Community {
+	private String communityId;
 	private String name;
 	
-	public CommunityDTO() {
+	public Community() {
 	}
 
-	public CommunityDTO(int communityId, String name) {
+	public Community(String communityId, String name) {
 		this.communityId = communityId;
 		this.name = name;
 	}
 
-	public int getCommunityId() {
+	public String getCommunityId() {
 		return communityId;
 	}
 
-	public void setCommunityId(int communityId) {
+	public void setCommunityId(String communityId) {
 		this.communityId = communityId;
 	}
 

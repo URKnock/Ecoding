@@ -1,13 +1,13 @@
-package model.dao;
+package model.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.service.dto.RewardDTO;
-import model.dao.RewardDAO;
 import model.util.JDBCUtil;
+import model.dao.RewardDAO;
+import model.service.dto.RewardDTO;
 
 public class RewardDAOImpl implements RewardDAO {
 

@@ -1,13 +1,40 @@
-<%@page contentType="text/html; charset=utf-8"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../view/header.jsp" %>
+
 <html>
 <head>
-<title>사용자 등록</title> <!-- 수정 필요 -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/user.css' />"
-	type="text/css">
-<script src="<c:url value='/js/jquery-1.12.4.min.js'/>"
-	type="text/javascript"></script>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+	
+<title>사용자 등록</title> 
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<style>
+*{
+	font-family: 'Nanum Gothic', sans-serif;
+}
+</style>
+
 <script>
 function userCreate() {
 	if (form.userId.value == "") {
@@ -42,11 +69,6 @@ function userCreate() {
 		form.phone.focus();
 		return false;
 	}
-	form.submit();
-}
-
-function userList(targetUri) {
-	form.action = targetUri;
 	form.submit();
 }
 </script>
@@ -133,12 +155,14 @@ function showCommunityList() {
 						<tr height="40">
 							<td width="150" align="center" bgcolor="E6ECDE">사용자 ID</td>
 							<td width="250" bgcolor="ffffff" style="padding-left: 10"><input
-								type="text" style="width: 240;" name="userId"></td>
+								type="text" style="width: 240;" name="userId">
+								<span style="color:red; font-size: 10px;"> 필수</span></td>
 						</tr>
 						<tr height="40">
 							<td width="150" align="center" bgcolor="E6ECDE">비밀번호</td>
 							<td width="250" bgcolor="ffffff" style="padding-left: 10"><input
-								type="password" style="width: 240" name="password"></td>
+								type="password" style="width: 240" name="password">
+								<span style="color:red; font-size: 10px;"> 필수</span></td>
 						</tr>
 						<tr height="40">
 							<td width="150" align="center" bgcolor="E6ECDE">비밀번호 확인</td>
@@ -153,25 +177,32 @@ function showCommunityList() {
 							</td>
 						</tr>
 						<tr height="40">
-							<td width="150" align="center" bgcolor="E6ECDE">이메일 주소</td>
-							<td width="250" bgcolor="ffffff" style="padding-left: 10"><input
-								type="text" style="width: 240" name="email"
-								<c:if test="${registerFailed}">value="${user.email}"</c:if>>
-							</td>
-						</tr>
-						<tr height="40">
 							<td width="150" align="center" bgcolor="E6ECDE">전화번호</td>
 							<td width="250" bgcolor="ffffff" style="padding-left: 10"><input
 								type="text" style="width: 240" name="phone"
 								<c:if test="${registerFailed}">value="${user.phone}"</c:if>>
 							</td>
 						</tr>
+						<tr height="40">
+							<td width="150" align="center" bgcolor="E6ECDE">주소</td>
+							<td width="250" bgcolor="ffffff" style="padding-left: 10"><input
+								type="text" style="width: 240" name="address"
+								<c:if test="${registerFailed}">value="${user.address}"</c:if>>
+							</td>
+						</tr>
+						<tr height="40">
+							<td width="150" align="center" bgcolor="E6ECDE">이메일 주소</td>
+							<td width="250" bgcolor="ffffff" style="padding-left: 10"><input
+								type="text" style="width: 240" name="email"
+								<c:if test="${registerFailed}">value="${user.email}"</c:if>>
+							</td>
+						</tr>
+						
 					</table> <br>
 					<table style="width: 100%">
 						<tr>
-							<td align="left"><input type="button" value="회원 가입"
-								onClick="userCreate()"> &nbsp; <input type="button"
-								value="목록" onClick="userList('<c:url value='/user/list' />')">
+							<td align="left"><input type="button" value="가입하기"
+								onClick="userCreate()"> &nbsp; 
 							</td>
 						</tr>
 					</table>

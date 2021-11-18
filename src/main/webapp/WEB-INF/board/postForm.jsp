@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<%@ include file="header.jsp" %>
+	<%@ include file="../view/header.jsp" %>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/post.css'/>"/>
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

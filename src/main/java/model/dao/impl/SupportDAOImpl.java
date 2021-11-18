@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Support;
-import model.dao.JDBCUtil;
+import model.util.JDBCUtil;
 import model.dao.SupportDAO;
 
 public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 바꿀 것
@@ -154,5 +154,23 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 			jdbcUtil.close();		// resource 반환
 		}
 		return false;
+	}
+	
+	// 후원자수 카운팅
+	public int countSupporter(int projectId) throws SQLException {
+		String sql = "SELECT count(*) FROM SUPPORT WHERE project_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {projectId});
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return count;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return 0;
 	}
 }

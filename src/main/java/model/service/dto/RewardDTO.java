@@ -2,15 +2,15 @@ package model.service.dto;
 
 public class RewardDTO {
 
+	// project_id 제외
+	
 	private int rewardId;
-	private int project_id;
 	private String name;
 	private int rewardPrice;
 	private String rewardInfo;
 	
-	public RewardDTO(int rewardId, int project_id, String name, int rewardPrice, String rewardInfo) {
+	public RewardDTO(int rewardId, String name, int rewardPrice, String rewardInfo) {
 		this.rewardId = rewardId;
-		this.project_id = project_id;
 		this.name = name;
 		this.rewardPrice = rewardPrice;
 		this.rewardInfo = rewardInfo;
@@ -22,14 +22,6 @@ public class RewardDTO {
 
 	public void setRewardId(int rewardId) {
 		this.rewardId = rewardId;
-	}
-
-	public int getProject_id() {
-		return project_id;
-	}
-
-	public void setProject_id(int project_id) {
-		this.project_id = project_id;
 	}
 
 	public String getName() {

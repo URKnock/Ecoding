@@ -1,13 +1,13 @@
-package model.dao;
+package model.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.service.dto.ProjectNoticeDTO;
-import model.dao.ProjectNoticeDAO;
 import model.util.JDBCUtil;
+import model.dao.ProjectNoticeDAO;
+import model.service.dto.ProjectNoticeDTO;
 
 public class ProjectNoticeDAOImpl implements ProjectNoticeDAO {
 

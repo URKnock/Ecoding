@@ -1,15 +1,15 @@
-package model.service.dto;
+package model;
 
-public class ProjectNoticeDTO {
-	
-	// project_id는 DTO에서 제외
-	
+public class ProjectNotice {
+
 	private int noticeId;
+	private int projectId;
 	private String noticeDate;
 	private String noticeContent;
 	
-	public ProjectNoticeDTO(int noticeId, String noticeDate, String noticeContent) {
+	public ProjectNotice(int noticeId, int projectId, String noticeDate, String noticeContent) {
 		this.noticeId = noticeId;
+		this.projectId = projectId;
 		this.noticeDate = noticeDate;
 		this.noticeContent = noticeContent;
 	}
@@ -20,6 +20,14 @@ public class ProjectNoticeDTO {
 	
 	public void setNoticeId(int noticeId) {
 		this.noticeId = noticeId;
+	}
+
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
 	public String getNoticeDate() {

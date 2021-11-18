@@ -4,17 +4,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
-import model.User;
 import model.service.UserManager;
+import model.service.dto.EcoerDTO;
 
 public class ListUserController implements Controller {
-	// private static final int countPerPage = 100;	// ÇÑ È­¸é¿¡ Ãâ·ÂÇÒ »ç¿ëÀÚ ¼ö
+	// private static final int countPerPage = 100;	// ï¿½ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     	if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form ¿äÃ»À¸·Î redirect
+            return "redirect:/user/login/form";		// login form ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ redirect
         }
     	
     	/*
@@ -26,15 +26,15 @@ public class ListUserController implements Controller {
     	*/
     	
 		UserManager manager = UserManager.getInstance();
-		List<User> userList = manager.findUserList();
+		List<EcoerDTO> ecoerList = manager.getEcoerList();
 		// List<User> userList = manager.findUserList(currentPage, countPerPage);
 
-		// userList °´Ã¼¿Í ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚ ID¸¦ request¿¡ ÀúÀåÇÏ¿© Àü´Þ
-		request.setAttribute("userList", userList);				
-		request.setAttribute("curUserId", 
-				UserSessionUtils.getLoginUserId(request.getSession()));		
+		// userList ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+		request.setAttribute("ecoerList", ecoerList);				
+		request.setAttribute("curEcoerId", 
+				UserSessionUtils.getLoginEcoerId(request.getSession()));		
 
-		// »ç¿ëÀÚ ¸®½ºÆ® È­¸éÀ¸·Î ÀÌµ¿(forwarding)
-		return "/user/list.jsp";        
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½(forwarding)
+		return "/user/list.jsp"; //list ì•ˆ ì”€       
     }
 }

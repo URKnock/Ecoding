@@ -1,4 +1,4 @@
-package controller.registerProject;
+package controller.project;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +13,6 @@ import controller.Controller;
 public class ProjectRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	//DAO DTO 다 정의하고 나서 정보 넘겨주는 코드 작성하기	
     	
     	String step = request.getParameter("step");
     	

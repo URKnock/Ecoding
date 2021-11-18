@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Project {
 
 		private int projectId; //PK ==> 필수
-		private int ecoerId; //FK ==> 필수
+		private String ecoerId; //FK ==> 필수
 		private String title; // ==> 필수
 		private String image; //이미지 경로
 		private String simpleInfo; //간단 설명
@@ -45,7 +45,7 @@ public class Project {
 			
 		}
 		
-		public Project(int projectId, int ecoerId, String title, String image, String simpleInfo,
+		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo,
 				String[] category, String[] hashTag, String[] ecoTag, double ecoScore, int targetPrice, int currentPrice,
 				LocalDate startDate, LocalDate endDate, LocalDate paymentDate, LocalDate deliveryDate, String detailInfo,
 				String planInfo, String exchangeInfo, String projectVideo, String projectFile) {
@@ -171,11 +171,11 @@ public class Project {
 			this.projectId = projectId;
 		}
 
-		public int getEcoerId() {
+		public String getEcoerId() {
 			return ecoerId;
 		}
 
-		public void setEcoerId(int ecoerId) {
+		public void setEcoerId(String ecoerId) {
 			this.ecoerId = ecoerId;
 		}
 
