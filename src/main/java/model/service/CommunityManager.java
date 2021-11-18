@@ -5,7 +5,7 @@ import model.dao.CommunityDAO;
 import model.service.dto.CommunityDTO;
 
 public class CommunityManager {
-	private static CommunityManager comm = new CommunityManager();
+	private static CommunityManager manager = new CommunityManager();
 	private DAOFactory factory;
 	private CommunityDAO commDAO;
 	
@@ -19,7 +19,7 @@ public class CommunityManager {
 	}
 	
 	public static CommunityManager getInstance() {
-		return comm;
+		return manager;
 	}
 	
 	public int insert(CommunityDTO comm) throws Exception {
@@ -33,12 +33,12 @@ public class CommunityManager {
 		return commDAO.updateCommunity(comm);
 	}
 	
-	public int delete(int commNo) {
-		return commDAO.deleteCommunity(commNo);
+	public int delete(int commentId) {
+		return commDAO.deleteCommunity(commentId);
 	}
 	
-	public CommunityDTO getCommunity(int commNo) {
-		return commDAO.getCommunity(commNo);
+	public CommunityDTO getCommunity(int commentId) {
+		return commDAO.getCommunity(commentId);
 	}
 	
 	public CommunityDAO getCommunityDAO() {

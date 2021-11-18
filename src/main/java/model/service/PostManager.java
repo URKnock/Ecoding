@@ -3,7 +3,6 @@ package model.service;
 import java.util.List;
 
 import model.DAOFactory;
-import model.Post;
 import model.dao.PostDAO;
 import model.service.dto.PostDTO;
 
@@ -45,7 +44,7 @@ public class PostManager {
 		return postDAO.getPostByCode(id);
 	}
 	
-	public List<PostDTO> getPostList() {
+	public List<PostDTO> display() {
 		return postDAO.getPostList();
 	}
 	
@@ -53,7 +52,7 @@ public class PostManager {
 		return this.postDAO;
 	}
 
-	public List<Post> findPostList(String keyword, String type) {
+	public List<PostDTO> findPostList(String keyword, String type) {
 		// DB 검색 기능 구현할 것 = LIKE 연산자
 		return null;
 	}

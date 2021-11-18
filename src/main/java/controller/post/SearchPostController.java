@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.Post;
 import model.service.PostManager;
+import model.service.dto.PostDTO;
 
 public class SearchPostController implements Controller {
     @Override
@@ -16,7 +16,7 @@ public class SearchPostController implements Controller {
     	String type = request.getParameter("searchType");
     	
     	PostManager manager = PostManager.getInstance();
-		List<Post> postList = manager.findPostList(keyword, type);
+		List<PostDTO> postList = manager.findPostList(keyword, type);
 		
 		request.setAttribute("postList", postList);				
 		return "/board/postList.jsp";        

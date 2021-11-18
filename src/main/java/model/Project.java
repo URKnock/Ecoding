@@ -104,7 +104,7 @@ public class Project {
 				setProjectId((int)data);
 				break;
 			case 1:
-				setEcoerId((int)data);
+				setEcoerId((String)data);
 				break;
 			case 2:
 				setTitle((String)data);
