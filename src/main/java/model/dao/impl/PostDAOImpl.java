@@ -21,9 +21,9 @@ public class PostDAOImpl implements PostDAO {
 		jdbcUtil = new JDBCUtil();
 	}	
 
-	public PostDTO getPostByTitle(String pTitle) {
-		String searchQuery = query + "FROM POST WHERE POST.title = ?";
-		Object[] param = new Object[] {pTitle};
+	public List<PostDTO> getPostByCId(int cId) {
+		String searchQuery = query + "FROM POST WHERE POST.community_id = ?";
+		Object[] param = new Object[] {cId};
 		jdbcUtil.setSqlAndParameters(searchQuery, param); 
 
 		jdbcUtil.setSql(searchQuery);
@@ -31,11 +31,11 @@ public class PostDAOImpl implements PostDAO {
 	
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			PostDTO dto = null;
-			if (rs.next()) {
-				dto = new PostDTO();
+			List<PostDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				PostDTO dto = new PostDTO();
 				dto.setPostId(rs.getInt("post_id"));
-				dto.setTitle(rs.getString("post_title"));
+				dto.setTitle(rs.getString("title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setPostFile(rs.getString("post_file"));
@@ -44,8 +44,43 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("post_reports"));
 				dto.setEcoerId(rs.getString("post_ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				list.add(dto);
 			}
-			return dto;
+			return list;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public List<PostDTO> getPostListByTitle(String pTitle) {
+		String searchQuery = query + "FROM POST WHERE POST.title LIKE '%?%'";
+		Object[] param = new Object[] {pTitle};
+		jdbcUtil.setSqlAndParameters(searchQuery, param); 
+
+		jdbcUtil.setSql(searchQuery);
+		jdbcUtil.setParameters(param);
+	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<PostDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				PostDTO dto = new PostDTO();
+				dto.setPostId(rs.getInt("post_id"));
+				dto.setTitle(pTitle);
+				dto.setPostDate(rs.getString("post_date"));
+				dto.setPostContent(rs.getString("post_content"));
+				dto.setPostFile(rs.getString("post_file"));
+				dto.setViews(rs.getString("post_views"));
+				dto.setLikes(rs.getString("post_likes"));
+				dto.setReports(rs.getString("post_reports"));
+				dto.setEcoerId(rs.getString("post_ecoer_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
+				list.add(dto);
+			}
+			return list;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -81,7 +116,7 @@ public class PostDAOImpl implements PostDAO {
 
 	public int insertPost(PostDTO post) {
 		int result = 0;
-		String insertQuery = "INSERT INTO POST VALUES (seq_post.nextval, ?, ?, ?, ?, ?, ?) ";
+		String insertQuery = "INSERT INTO POST VALUES (seq_post.nextval, ?, ?, ?, ?, 0, 0, 0, ?, ?) ";
 		
 		Object[] param = new Object[] {post.getTitle(), post.getPostDate(), post.getPostContent(), post.getPostFile(), post.getEcoerId(), post.getCommunityId()};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
@@ -145,6 +180,39 @@ public class PostDAOImpl implements PostDAO {
 				dto = new PostDTO();
 				dto.setPostId(rs.getInt("post_id"));
 				dto.setTitle(rs.getString("post_title"));
+				dto.setPostDate(rs.getString("post_date"));
+				dto.setPostContent(rs.getString("post_content"));
+				dto.setPostFile(rs.getString("post_file"));
+				dto.setViews(rs.getString("post_views"));
+				dto.setLikes(rs.getString("post_likes"));
+				dto.setReports(rs.getString("post_reports"));
+				dto.setEcoerId(rs.getString("post_ecoer_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
+			}
+			return dto;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public PostDTO getPostByTitle(String title) {
+		String searchQuery = query + "FROM POST WHERE POST.title=?";
+		Object[] param = new Object[] {title};
+		jdbcUtil.setSqlAndParameters(searchQuery, param); 
+
+		jdbcUtil.setSql(searchQuery);
+		jdbcUtil.setParameters(param);
+	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			PostDTO dto = null;
+			if (rs.next()) {
+				dto = new PostDTO();
+				dto.setPostId(rs.getInt("post_id"));
+				dto.setTitle(title);
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setPostFile(rs.getString("post_file"));

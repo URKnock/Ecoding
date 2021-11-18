@@ -44,14 +44,16 @@ public class UpdateUserController implements Controller {
 	    }	
     	
     	// POST request (ȸ�������� parameter�� ���۵�)
-    	EcoerDTO updateEcoer = new EcoerDTO(
-    			request.getParameter("ecoerId"),
-    			request.getParameter("name"),
-    			request.getParameter("address"),
-    			request.getParameter("phone"),
-    			request.getParameter("email"),
-    			request.getParameter("password"),
-    			Boolean.parseBoolean(request.getParameter("isCreator")));
+       	EcoerDTO updateEcoer = new EcoerDTO(
+			request.getParameter("ecoerId"),
+			request.getParameter("password"),
+			request.getParameter("name"),
+			(String) null,	// code
+			request.getParameter("address"),
+			(String) null,	// detail address
+			request.getParameter("phone"),
+			request.getParameter("email"),
+			false);
 
     	log.debug("Update Ecoer : {}", updateEcoer);
 

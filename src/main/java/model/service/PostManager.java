@@ -36,6 +36,10 @@ public class PostManager {
 		return postDAO.deletePost(postId);
 	}
 	
+	public List<PostDTO> getPostListByTitle(String title) {
+		return postDAO.getPostListByTitle(title);
+	}
+	
 	public PostDTO getPostByTitle(String title) {
 		return postDAO.getPostByTitle(title);
 	}
@@ -44,8 +48,8 @@ public class PostManager {
 		return postDAO.getPostByCode(id);
 	}
 	
-	public List<PostDTO> display() {
-		return postDAO.getPostList();
+	public List<PostDTO> display(int id) {
+		return postDAO.getPostByCId(id);
 	}
 	
 	public PostDAO getPostDAO() {
