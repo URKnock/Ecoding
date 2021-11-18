@@ -75,7 +75,7 @@ function menuClicked(obj) {
 
 <div id="header">
 	<div id="top">
-		<img style="float: left" id="logo" src="../../resources/img/logo.png" />
+		<img style="float: left" id="logo" src=<c:url value='/resources/img/logo.png'/>/>
 		<div style="text-align: center;">
 			<div style="float: left; margin-left: 100px;"> <!-- 세로 정렬좀... -->
 				<form name="search_project" action="">

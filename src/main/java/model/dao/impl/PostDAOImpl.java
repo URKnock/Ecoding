@@ -11,11 +11,7 @@ import model.service.dto.PostDTO;
 public class PostDAOImpl implements PostDAO {
 	private JDBCUtil jdbcUtil = null;
 	
-	private static String query = "SELECT POST.post_id AS post_id, POST.title AS post_title, "
-								+ "POST.post_date AS post_date, POST.post_content AS post_content, "
-								+ "POST.post_file AS post_file, POST.views AS post_views, "
-								+ "POST.likes AS post_likes, POST.reports AS post_reports, "
-								+ "POST.ecoer_id AS post_ecoer_id, POST.community_id AS community_id ";
+	private static String query = "SELECT * ";
 		
 	public PostDAOImpl() {
 		jdbcUtil = new JDBCUtil();
@@ -39,10 +35,10 @@ public class PostDAOImpl implements PostDAO {
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setPostFile(rs.getString("post_file"));
-				dto.setViews(rs.getString("post_views"));
-				dto.setLikes(rs.getString("post_likes"));
-				dto.setReports(rs.getString("post_reports"));
-				dto.setEcoerId(rs.getString("post_ecoer_id"));
+				dto.setViews(rs.getString("views"));
+				dto.setLikes(rs.getString("likes"));
+				dto.setReports(rs.getString("reports"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
 				list.add(dto);
 			}
@@ -69,14 +65,14 @@ public class PostDAOImpl implements PostDAO {
 			while (rs.next()) {
 				PostDTO dto = new PostDTO();
 				dto.setPostId(rs.getInt("post_id"));
-				dto.setTitle(pTitle);
+				dto.setTitle(rs.getString("title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setPostFile(rs.getString("post_file"));
-				dto.setViews(rs.getString("post_views"));
-				dto.setLikes(rs.getString("post_likes"));
-				dto.setReports(rs.getString("post_reports"));
-				dto.setEcoerId(rs.getString("post_ecoer_id"));
+				dto.setViews(rs.getString("views"));
+				dto.setLikes(rs.getString("likes"));
+				dto.setReports(rs.getString("reports"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
 				list.add(dto);
 			}
@@ -98,11 +94,14 @@ public class PostDAOImpl implements PostDAO {
 			while (rs.next()) {
 				PostDTO dto = new PostDTO(); // PostDTO 객체 생성 후 검색 결과 저장
 				dto.setPostId(rs.getInt("post_id"));
-				dto.setTitle(rs.getString("post_title"));
+				dto.setTitle(rs.getString("title"));
 				dto.setPostDate(rs.getString("post_date"));
-				dto.setViews(rs.getString("post_views"));
-				dto.setLikes(rs.getString("post_likes"));
-				dto.setReports(rs.getString("post_reports"));
+				dto.setPostContent(rs.getString("post_content"));
+				dto.setPostFile(rs.getString("post_file"));
+				dto.setViews(rs.getString("views"));
+				dto.setLikes(rs.getString("likes"));
+				dto.setReports(rs.getString("reports"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
 				list.add(dto); // 리스트에 DTO 객체 저장
 			}
@@ -179,14 +178,14 @@ public class PostDAOImpl implements PostDAO {
 			if (rs.next()) {
 				dto = new PostDTO();
 				dto.setPostId(rs.getInt("post_id"));
-				dto.setTitle(rs.getString("post_title"));
+				dto.setTitle(rs.getString("title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setPostFile(rs.getString("post_file"));
-				dto.setViews(rs.getString("post_views"));
-				dto.setLikes(rs.getString("post_likes"));
-				dto.setReports(rs.getString("post_reports"));
-				dto.setEcoerId(rs.getString("post_ecoer_id"));
+				dto.setViews(rs.getString("views"));
+				dto.setLikes(rs.getString("likes"));
+				dto.setReports(rs.getString("reports"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
 			}
 			return dto;
@@ -212,14 +211,14 @@ public class PostDAOImpl implements PostDAO {
 			if (rs.next()) {
 				dto = new PostDTO();
 				dto.setPostId(rs.getInt("post_id"));
-				dto.setTitle(title);
+				dto.setTitle(rs.getString("title"));
 				dto.setPostDate(rs.getString("post_date"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setPostFile(rs.getString("post_file"));
-				dto.setViews(rs.getString("post_views"));
-				dto.setLikes(rs.getString("post_likes"));
-				dto.setReports(rs.getString("post_reports"));
-				dto.setEcoerId(rs.getString("post_ecoer_id"));
+				dto.setViews(rs.getString("views"));
+				dto.setLikes(rs.getString("likes"));
+				dto.setReports(rs.getString("reports"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
 			}
 			return dto;
