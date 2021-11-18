@@ -26,11 +26,14 @@ public class RegisterUserController implements Controller {
     	// POST request 처리 (신규 등록) ==> 신규 유저는 창작자 off
        	EcoerDTO ecoer = new EcoerDTO(
 			request.getParameter("ecoerId"),
+			request.getParameter("password"),
 			request.getParameter("name"),
+			(String) null,	// code
 			request.getParameter("address"),
+			(String) null,	// detail address
 			request.getParameter("phone"),
 			request.getParameter("email"),
-			request.getParameter("password"), false);
+			false);
 		
         log.debug("Create Ecoer : {}", ecoer);
 

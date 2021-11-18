@@ -2,35 +2,41 @@ package model.service.dto;
 
 public class EcoerDTO {
 
-	private String ecoerId, name, address, phone, email, password;
+	private String ecoerId, password, name, code, address, detailAddress, phone, email;
 	private boolean isCreator;
 	
-	public static String[] columns = { "ecoer_id", "password", "name", "address", "phone", "email", "is_creator" };
+	public static String[] columns = { "ecoer_id", "password", "name", "code", "address", "detail_address", "phone", "email", "is_creator" };
 	public static int cols = columns.length;
 	
 	public EcoerDTO() {
 		
 	}
 	
-	public EcoerDTO(String ecoerId, String name, String address, String phone, String email, String password, boolean isCreator) {
+	public EcoerDTO(String ecoerId, String password, String name, String code, String address, String detailAddress,
+			String phone, String email, boolean isCreator) {
+		super();
 		this.ecoerId = ecoerId;
+		this.password = password;
 		this.name = name;
+		this.code = code;
 		this.address = address;
+		this.detailAddress = detailAddress;
 		this.phone = phone;
 		this.email = email;
-		this.password = password;
 		this.isCreator = isCreator;
 	}
-	
+
 	public Object getWithIndex(int index) {
 		switch(index) {
 			case 0: return getEcoerId();
 			case 1: return getPassword();
 			case 2: return getName();
-			case 3: return getAddress();
-			case 4: return getPhone();
-			case 5: return getEmail();
-			case 6: return getIsCreator();
+			case 3: return getCode();
+			case 4: return getAddress();
+			case 5: return getDetailAddress();
+			case 6: return getPhone();
+			case 7: return getEmail();
+			case 8: return getIsCreator();
 		}
 		return null;
 	}
@@ -47,15 +53,21 @@ public class EcoerDTO {
 			setName((String) data);
 			break;
 		case 3:
-			setAddress((String) data);
+			setCode((String) data);
 			break;
 		case 4:
-			setPhone((String) data);
+			setAddress((String) data);
 			break;
 		case 5:
-			setEmail((String) data);
+			setDetailAddress((String) data);
 			break;
 		case 6:
+			setPhone((String) data);
+			break;
+		case 7:
+			setEmail((String) data);
+			break;
+		case 8:
 			setIsCreator((char) data);
 			break;
 		}
@@ -115,6 +127,26 @@ public class EcoerDTO {
 
 	public void setIsCreator(char isCreator) {
 		this.isCreator = (isCreator == '1');
+	}
+	
+	public String getCode() {
+		return code;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	public void setCreator(boolean isCreator) {
+		this.isCreator = isCreator;
 	}
 	
 	public boolean matchPassword(String password) {
