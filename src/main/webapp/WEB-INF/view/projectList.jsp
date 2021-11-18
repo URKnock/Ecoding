@@ -50,23 +50,6 @@
 </head>
 <body>
 	<div class="wrap">
-	<!-- 상단 메뉴바 -->
-		<ul class="nav nav-tabs justify-content-center">
-			<li class="nav-item"><a class="nav-link" href="#" onclick="location.href='/home/main'">홈</a></li>
-			<li class="nav-item"><a class="nav-link active" href="#">둘러보기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
-			<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-				role="button" aria-haspopup="true" aria-expanded="false">카테고리</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">항목1</a> <a
-						class="dropdown-item" href="#">항목2</a> <a
-						class="dropdown-item" href="#">항목3</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">분리된 항목</a>
-				</div></li>
-		</ul>
 		<!-- 옵션 선택?? ==> 다중 선택 가능? -->
 		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 			<li class="nav-item">
