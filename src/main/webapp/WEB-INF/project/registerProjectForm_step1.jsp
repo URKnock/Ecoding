@@ -79,9 +79,6 @@
 			시작일 설정: <input type="date" name="startDate">
 			마감일 설정: <input type="date" name="endDate">
 			<p></p>
-			시작 시간 설정: <input type="time" name="startTime">
-			마감 시간 설정: <input type="time" name="endTime">
-			<p></p>
 			결제일 설정: <input type="date" name="payDate">
 			배송 시작일 설정: <input type="date" name="deliveryDate">
 			<p></p>

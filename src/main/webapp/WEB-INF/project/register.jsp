@@ -5,6 +5,11 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script>
+    function searchData() {
+        alert("Enter Key로 제출\n프로젝트 조회.");
+    }
+</script>
 <style>
 	a {
 		text-decoration-line: none;

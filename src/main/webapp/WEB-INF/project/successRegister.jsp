@@ -5,24 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>프로젝트 등록 완료</title>
-<script>
-    function searchData() {
-        alert("Enter Key로 제출\n프로젝트 조회.");
-    }
-</script>
 <style>
-	a {
-		text-decoration-line: none;
-		color: inherit;
-	}
-	
-	a:hover { text-decoration: underline; }
-	
-	.contents { 
-		padding: 13% 0%;
-		text-align: center;
-	}
-	
 	div {
 		border: 1px solid #87CEFA;
 	}
@@ -47,17 +30,9 @@
 </style>
 </head>
 <body>
-	<div class="main">
-		상단바
-		<input type="search" name="projectsearch" size="50" placeholder="다양한 프로젝트를 검색해보세요." onkeyup="if(window.event.keyCode==13){searchData();}">
-   		<span>
-			<button type="button"><img src="돋보기 그림(?)" alt="">버튼</button>
-      	</span>
-    </div>
-    <div class="main">
-    	<a href="enrollStart.jsp" target="_self">프로젝트 등록</a>
-    	> 프로젝트 등록 완료
-    </div>
+	<c:import url="/WEB-INF/project/register.jsp">
+		<c:param name="main"></c:param>
+	</c:import>
     <div class="contents">
     	<p>축하합니다. 신청하신 프로젝트가 무사히 등록되었습니다!</p>
 		<p>심사 과정을 거쳐 관리자가 프로젝트를 승인하면 정식 프로젝트로 전환됩니다.</p>

@@ -18,12 +18,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 	//비워도 되는 필드는 null 째로 insert
 	//외래키는 어떻게 가져오나? ==> 다른 객체도 같이 매개변수로 받는지?
 	public int create(Project project) throws SQLException {
-		String sql = "INSERT INTO PROJECT VALUES (?, ?, ?, ?, ?"
+		String sql = "INSERT INTO PROJECT VALUES (seq_project.nextval, ?, ?, ?, ?"
 				+ "?, ?, ?, ?, ?, ?"
 				+ "?, ?, ?, ?, ?, ?"
-				+ "?, ?, ?)"; //20개의 컬럼
+				+ "?, ?, ?)"; //19개의 컬럼
 		Object[] param = new Object[] {};
-		for(int i = 0; i < Project.cols; i++) { //0번부터 일괄 삽입
+		for(int i = 1; i < Project.cols; i++) { //1번부터 일괄 삽입
 			param[i] = project.getWithIndex(i); 
 		}		
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
