@@ -45,6 +45,37 @@ public class Project {
 			
 		}
 		
+		public Project(String title) {
+			this.title = title;
+		}
+		
+		public Project(String detailInfo, String planInfo, String exchangeInfo, String projectVideo,
+				String projectFile) {
+			super();
+			this.detailInfo = detailInfo;
+			this.planInfo = planInfo;
+			this.exchangeInfo = exchangeInfo;
+			this.projectVideo = projectVideo;
+			this.projectFile = projectFile;
+		}
+
+		public Project(String title, String image, String simpleInfo, String[] category, String[] hashTag,
+				String[] ecoTag, int targetPrice, LocalDate startDate, LocalDate endDate, LocalDate paymentDate,
+				LocalDate deliveryDate) {
+			super();
+			this.title = title;
+			this.image = image;
+			this.simpleInfo = simpleInfo;
+			this.category = category;
+			this.hashTag = hashTag;
+			this.ecoTag = ecoTag;
+			this.targetPrice = targetPrice;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.paymentDate = paymentDate;
+			this.deliveryDate = deliveryDate;
+		}
+
 		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo,
 				String[] category, String[] hashTag, String[] ecoTag, double ecoScore, int targetPrice, int currentPrice,
 				LocalDate startDate, LocalDate endDate, LocalDate paymentDate, LocalDate deliveryDate, String detailInfo,

@@ -59,7 +59,7 @@
 			<h3>Q2. 창작자(팀) 이미지를 첨부해주세요.</h3>
 			<input type="file" name="teamImage">
 			<h3>Q3. 창작자(팀) 소개를 작성해주세요.</h3>
-			<textarea rows="15" cols="100"></textarea>
+			<textarea rows="15" cols="100" name="teamDetail"></textarea>
 			<h3>Q4. 입금 계좌 정보를 입력해주세요.</h3>
 			<input type="text" name="account">
 			<p></p>

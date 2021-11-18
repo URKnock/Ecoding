@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Project;
+import model.service.dto.ProjectDTO;
 
 public interface ProjectDAO {
-
-	public int create(Project project) throws SQLException;
+	public int create(Project project);
 	public int update(Project project) throws SQLException;
 	public int remove(String projectId) throws SQLException;
 	public Project findProject(int projectId) throws SQLException;

@@ -1,1 +1,1 @@
-<% response.sendRedirect(request.getContextPath() + "/board/form"); %>
+<% response.sendRedirect(request.getContextPath() + "/home/main");

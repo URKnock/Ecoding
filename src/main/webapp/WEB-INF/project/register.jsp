@@ -5,6 +5,11 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script>
+    function searchData() {
+        alert("Enter Key로 제출\n프로젝트 조회.");
+    }
+</script>
 <style>
 	a {
 		text-decoration-line: none;
@@ -39,8 +44,8 @@
       	</span>
     </div>
     <div class="main">
-    	<a href="enrollStart.jsp" target="_self">프로젝트 등록</a>
-    	> <span class="step">Step 01</span>
+    	<a href="registerStart.jsp" target="_self">프로젝트 등록</a>
+    	<span class="step">Step 01</span>
     </div>
     <div>
       <div class="stepList">

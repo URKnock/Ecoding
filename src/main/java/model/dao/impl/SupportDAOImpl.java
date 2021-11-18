@@ -17,8 +17,8 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 		
 	//후원 정보 테이블에 새로운 후원 정보를 생성.
 	public int create(Support support) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
-		String sql = "INSERT INTO SUPPORT VALUES (?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {support.getSupportId(), support.getEcoerId(), 
+		String sql = "INSERT INTO SUPPORT VALUES (seq_order.nextval, ?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {support.getEcoerId(), 
 				support.getProjectId(), support.getRewardId(), support.getAmount(), 
 				support.getCard()};	
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정

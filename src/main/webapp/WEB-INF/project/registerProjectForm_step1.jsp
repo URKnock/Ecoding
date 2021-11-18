@@ -56,7 +56,7 @@
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
 			<h3>Q1. 프로젝트 제목을 입력해주세요.</h3>
-			<input type="text" name="projectName">
+			<input type="text" name="title">
 			<h3>Q2. 프로젝트 대표 이미지를 첨부해주세요.</h3>
 			<input type="file" name="thumbnailImage">
 			<h3>Q3. 간단한 프로젝트 설명을 작성해주세요.</h3>
@@ -78,9 +78,6 @@
 			<h3>Q8. 프로젝트 기간을 설정해주세요.</h3>
 			시작일 설정: <input type="date" name="startDate">
 			마감일 설정: <input type="date" name="endDate">
-			<p></p>
-			시작 시간 설정: <input type="time" name="startTime">
-			마감 시간 설정: <input type="time" name="endTime">
 			<p></p>
 			결제일 설정: <input type="date" name="payDate">
 			배송 시작일 설정: <input type="date" name="deliveryDate">
