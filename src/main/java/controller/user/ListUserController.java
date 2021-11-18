@@ -14,7 +14,7 @@ public class ListUserController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		// �α��� ���� Ȯ��
     	if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form ��û���� redirect
+            return "redirect:/user/loginform";		// login form ��û���� redirect
         }
     	
     	/*

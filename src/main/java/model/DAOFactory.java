@@ -9,8 +9,8 @@ public class DAOFactory {
 		return new PostDAOImpl();		 
 	}
 	
-	public CommentDAO getCommentDAO() {
-		return new CommentDAOImpl();		
+	public ReplyDAO getReplyDAO() {
+		return new ReplyDAOImpl();		
 	}
 	
 	public CommunityDAO getCommunityDAO() {

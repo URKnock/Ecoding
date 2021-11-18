@@ -36,7 +36,7 @@ function userCreate(targetUri) {
 			<li><a href="index.jsp">홈</a></li>
 			<li><a href="">둘러보기</a></li>
 			<li><a href="">펀딩</a></li>
-			<li><a href="postList.jsp">게시판</a></li>
+			<li><a href="../board/view">게시판</a></li>
 			<li><a href="">카테고리</a></li>
 		</ul>
 	</div>
