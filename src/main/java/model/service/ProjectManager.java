@@ -90,7 +90,7 @@ public class ProjectManager {
 		return dto;
 	}
 	
-	public int registerProject(Project proj) throws SQLException {
+	public int registerProject(ProjectDTO proj) {
 		return projectDAO.create(proj);
 	}
 	

@@ -13,7 +13,16 @@ public class ProjectDTO {
 	private int countSupporter;
 	private LocalDate paymentDate;
 	
-	
+	public ProjectDTO() {
+		super();
+	}
+
+	public ProjectDTO(int projectId, String title) {
+		super();
+		this.projectId = projectId;
+		this.title = title;
+	}
+
 	public ProjectDTO(int projectId, String title, String image,
 			String creatorImage, String creatorName, LocalDate paymentDate) {
 		this.projectId = projectId;

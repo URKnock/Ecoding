@@ -3,50 +3,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script>
-    function projectCreate(targetUri) {
-    	form.action = targetUri; 
-    	form.submit();
-    }
-</script>
-<style>      
-    div.right {
-      	width: 80%;
-        float: right;
-        box-sizing: border-box;
-        border: none;
-        overflow-y:auto; 
-        overflow-x:hidden;
-    }
-    
-    .stepList > div {
-    	height: 80px;
-    	border-top: none;
-    	border-left: none;
-    	border-right: none;
-    	margin: -1px;
-    }
-    
-    #step02 {
-    	background-color: #87CEFA;
-    }
-    
-    .enrollProgress {
-    	 height: 55px;
-    	 text-align: center;
-    }
-    
-    .goNext{
-		background-color: #87CEFA;
-		width: 10%;
-		height: 80px;
-		border: 0;
-		outline: 0;
-		color: white;
-	}
-</style>
+	<meta charset="EUC-KR">
+	<title>Insert title here</title>
+	<script>
+	    function projectCreate(targetUri) {
+	    	form.action = targetUri; 
+	    	form.submit();
+	    }
+	</script>
+	<style>      
+	    div.right {
+	      	width: 80%;
+	        float: right;
+	        box-sizing: border-box;
+	        border: none;
+	        overflow-y:auto; 
+	        overflow-x:hidden;
+	    }
+	    
+	    .stepList > div {
+	    	height: 80px;
+	    	border-top: none;
+	    	border-left: none;
+	    	border-right: none;
+	    	margin: -1px;
+	    }
+	    
+	    #step02 {
+	    	background-color: #87CEFA;
+	    }
+	    
+	    .enrollProgress {
+	    	 height: 55px;
+	    	 text-align: center;
+	    }
+	    
+	    .goNext{
+			background-color: #87CEFA;
+			width: 10%;
+			height: 80px;
+			border: 0;
+			outline: 0;
+			color: white;
+		}
+	</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/project/register.jsp">

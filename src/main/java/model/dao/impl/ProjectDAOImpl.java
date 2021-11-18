@@ -8,45 +8,45 @@ import java.util.List;
 import model.Project;
 import model.dao.JDBCUtil;
 import model.dao.ProjectDAO;
+import model.service.dto.PostDTO;
+import model.service.dto.ProjectDTO;
 
 public class ProjectDAOImpl implements ProjectDAO {
 	private JDBCUtil jdbcUtil = null;
 	public ProjectDAOImpl() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
-		
+	
 	//비워도 되는 필드는 null 째로 insert
-	//외래키는 어떻게 가져오나? ==> 다른 객체도 같이 매개변수로 받는지?
-	public int create(Project project) throws SQLException {
+		//외래키는 어떻게 가져오나? ==> 다른 객체도 같이 매개변수로 받는지?
+	@Override
+	public int create(ProjectDTO proj) {
 		/*
 		String sql = "INSERT INTO PROJECT(project_id, title, image, simple_info, category, hashtag, ecotag, target_price, start_date, "
 				+ "end_date, payment_date, delivery_date) VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 		//12개의 컬럼 //ecoer_id가 현재 안들어가는 상태 
 		 */
-		String sql = "INSERT INTO PROJECT(project_id, title) VALUES (0, ?)"; 
+		
 		/*
 		Object[] param = new Object[] {project.getTitle(), project.getImage(), project.getSimpleInfo(), project.getCategory(),
 				project.getHashTag(), project.getEcoerId(), project.getTargetPrice(), project.getStartDate(),
 				project.getEndDate(), project.getPaymentDate(), project.getDeliveryDate()};
 		*/
-		Object[] param = new Object[] {project.getTitle()};
-		
-		
+		int result = 0;
+		String sql = "INSERT INTO PROJECT(project_id, title) VALUES (0, ?)"; 
+		Object[] param = new Object[] {proj.getTitle()};
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
-		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
-			return result;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
+		try {
+			result = jdbcUtil.executeUpdate(); // insert 문 실행
+		} catch (Exception ex) { 
 			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
-		}		
-		return 0;			
+		} finally {
+			jdbcUtil.close();
+		}
+		return result;
 	}
-
+	
 	// 기존의 프로젝트 정보를 수정.
 	public int update(Project project) throws SQLException {
 		String sql = "UPDATE PROJECT "

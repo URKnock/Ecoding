@@ -14,8 +14,11 @@ import controller.Controller;
 import model.Project;
 import model.Reward;
 import model.service.CreatorManager;
+import model.service.PostManager;
 import model.service.ProjectManager;
 import model.service.dto.CreatorDTO;
+import model.service.dto.PostDTO;
+import model.service.dto.ProjectDTO;
 
 public class ProjectRegisterController implements Controller {
     @Override
@@ -33,13 +36,24 @@ public class ProjectRegisterController implements Controller {
     				LocalDate.parse(request.getParameter("endDate"), DateTimeFormatter.ISO_DATE), LocalDate.parse(request.getParameter("payment_date"), DateTimeFormatter.ISO_DATE), 
     				LocalDate.parse(request.getParameter("deliveryDate"), DateTimeFormatter.ISO_DATE));
     		*/
-    		Project project = new Project(request.getParameter("title"));
-
+    		//Project project = new Project(request.getParameter("title"));
+    		/*
 			ProjectManager manager = ProjectManager.getInstance();
 			manager.registerProject(project);
 			request.setAttribute("project", project);
-			return "/project/registerProjectForm_step2.jsp";
-	}
+			*/
+    		ProjectDTO proj = (ProjectDTO) request.getAttribute("proj");
+    		try {
+    			ProjectManager manager = ProjectManager.getInstance();
+    			manager.registerProject(proj);
+    			return "/project/registerProjectForm_step2.jsp";  
+    		} catch (Exception e) {
+        		request.setAttribute("registerFailed", true);
+        		request.setAttribute("exception", e);
+        		request.setAttribute("proj", proj);
+        		return "/project/registerProjectForm_step1.jsp";
+        	}      
+    	}
     	else if(step.equals("step3")) {
     		Project project = new Project(request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"), request.getParameter("projectVideo"), 
     				request.getParameter("projectFile"));
