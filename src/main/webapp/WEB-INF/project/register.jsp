@@ -44,8 +44,8 @@
       	</span>
     </div>
     <div class="main">
-    	<a href="enrollStart.jsp" target="_self">프로젝트 등록</a>
-    	> <span class="step">Step 01</span>
+    	<a href="registerStart.jsp" target="_self">프로젝트 등록</a>
+    	<span class="step">Step 01</span>
     </div>
     <div>
       <div class="stepList">

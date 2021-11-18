@@ -13,15 +13,12 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import ch.qos.logback.core.Context;
 
 public class ConnectionManager {
-    /*
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_URL = "jdbc:oracle:thin:@202.20.119.117:1521:orcl";
-    private static final String DB_USERNAME = "dbp";
-    private static final String DB_PASSWORD = "dbp";
-    */
+    private static final String DB_USERNAME = "dbpro0209";
+    private static final String DB_PASSWORD = "candy";
 	private static DataSource ds = null;
     
-	
     public ConnectionManager() {
 		InputStream input = null;
     	Properties prop = new Properties();

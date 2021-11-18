@@ -1,27 +1,26 @@
 package model.service;
 
+import java.util.List;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-
 import model.DAOFactory;
-
 import model.Project;
 import model.Support;
-
 import model.dao.*;
-import model.service.dto.*;
+import model.service.dto.CreatorDTO;
+import model.service.dto.ProjectDTO;
+import model.service.dto.ProjectNoticeDTO;
+import model.service.dto.RewardDTO;
 
 public class ProjectManager {
-	private static ProjectManager projectMan = new ProjectManager();
+	private static ProjectManager manager = new ProjectManager();
 	private DAOFactory factory;
-	
 	private ProjectDAO projectDAO; //Impl 통해서 가져오기
-	private static CreatorDAO creatorDAO;
-	private static SupportDAO supportDAO;
-	private static ProjectNoticeDAO noticeDAO;
-	private static RewardDAO rewardDAO;
+	private CreatorDAO creatorDAO;
+	private SupportDAO supportDAO;
+	private ProjectNoticeDAO noticeDAO;
+	private RewardDAO rewardDAO;
 	
 	private ProjectManager() {
 		try {
@@ -37,9 +36,13 @@ public class ProjectManager {
 	}
 	
 	public static ProjectManager getInstance() {
-		return projectMan;
+		return manager;
 	}
-
+	
+	public int registerProject(Project project) {
+		return projectDAO.create(project);
+	}
+	
 	public void supportProject(Support support) throws SQLException {
 		// 후원 테이블 추가
 		supportDAO.create(support);
@@ -85,13 +88,9 @@ public class ProjectManager {
 		String creatorName = creator.getNickName();
 		LocalDate paymentDate = project.getPaymentDate();
 
-		dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
+		//dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
 		
 		return dto;
-	}
-	
-	public int registerProject(ProjectDTO proj) {
-		return projectDAO.create(proj);
 	}
 	
 	public int createNotice(ProjectNoticeDTO notice, int projectId) throws SQLException {

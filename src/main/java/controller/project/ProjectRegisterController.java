@@ -29,6 +29,7 @@ public class ProjectRegisterController implements Controller {
     		return "/project/registerProjectForm_step1.jsp";
     	}
     	else if(step.equals("step2")) {
+    		System.out.println("하하");
     		/*
     		Project project = new Project(request.getParameter("projectName"), request.getParameter("thumbnailImage"), request.getParameter("projectBrief"), 
     				request.getParameterValues("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
@@ -36,21 +37,21 @@ public class ProjectRegisterController implements Controller {
     				LocalDate.parse(request.getParameter("endDate"), DateTimeFormatter.ISO_DATE), LocalDate.parse(request.getParameter("payment_date"), DateTimeFormatter.ISO_DATE), 
     				LocalDate.parse(request.getParameter("deliveryDate"), DateTimeFormatter.ISO_DATE));
     		*/
-    		//Project project = new Project(request.getParameter("title"));
+    		Project project = new Project(request.getParameter("title"));
     		/*
+    		
 			ProjectManager manager = ProjectManager.getInstance();
 			manager.registerProject(project);
 			request.setAttribute("project", project);
 			*/
-    		ProjectDTO proj = (ProjectDTO) request.getAttribute("proj");
     		try {
     			ProjectManager manager = ProjectManager.getInstance();
-    			manager.registerProject(proj);
-    			return "/project/registerProjectForm_step2.jsp";  
+    			manager.registerProject(project);
+    			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
         		request.setAttribute("exception", e);
-        		request.setAttribute("proj", proj);
+        		request.setAttribute("project", project);
         		return "/project/registerProjectForm_step1.jsp";
         	}      
     	}
