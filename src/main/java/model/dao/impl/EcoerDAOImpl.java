@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.dao.EcoerDAO;
 import model.service.dto.EcoerDTO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 
 public class EcoerDAOImpl implements EcoerDAO{
 	private JDBCUtil jdbcUtil = null;

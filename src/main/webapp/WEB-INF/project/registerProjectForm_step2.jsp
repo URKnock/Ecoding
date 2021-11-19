@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -54,21 +54,21 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			<h3>Q1. ÇÁ·ÎÁ§Æ® ´ëÇ¥ ¿µ»óÀ» Ã·ºÎÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q1. í”„ë¡œì íŠ¸ ëŒ€í‘œ ì˜ìƒì„ ì²¨ë¶€í•´ì£¼ì„¸ìš”.</h3>
 			<input type="file" name="thumbnailVideo">
-			<h3>Q2. »ó¼¼ÇÑ ÇÁ·ÎÁ§Æ® ¼³¸íÀ» ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q2. ìƒì„¸í•œ í”„ë¡œì íŠ¸ ì„¤ëª…ì„ ìž‘ì„±í•´ì£¼ì„¸ìš”.</h3>
 			<textarea rows="15" cols="100" name="detailInfo"></textarea>
-			<h3>Q3. ¸®¿öµå Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.</h3>
-			<input type="text" name="reward" placeholder="¸®¿öµå Á¤º¸">
-			<input type="text" name="rewardPrice" placeholder="±Ý¾× ¹üÀ§">
+			<h3>Q3. ë¦¬ì›Œë“œ ì •ë³´ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.</h3>
+			<input type="text" name="reward" placeholder="ë¦¬ì›Œë“œ ì •ë³´">
+			<input type="text" name="rewardPrice" placeholder="ê¸ˆì•¡ ë²”ìœ„">
 			<p></p>
-			<input type="text" name="reward" placeholder="¸®¿öµå Á¤º¸">
-			<input type="text" name="rewardPrice" placeholder="±Ý¾× ¹üÀ§">
-			<h3>Q4. ¿¹»ê »ç¿ë ¹× ÀÏÁ¤ °èÈ¹À» ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
+			<input type="text" name="reward" placeholder="ë¦¬ì›Œë“œ ì •ë³´">
+			<input type="text" name="rewardPrice" placeholder="ê¸ˆì•¡ ë²”ìœ„">
+			<h3>Q4. ì˜ˆì‚° ì‚¬ìš© ë° ì¼ì • ê³„íšì„ ìž‘ì„±í•´ì£¼ì„¸ìš”.</h3>
 			<textarea rows="15" cols="100" name="planInfo"></textarea>
-			<h3>Q5. ±³È¯ ¹× È¯ºÒ ¾È³» »çÇ×À» ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q5. êµí™˜ ë° í™˜ë¶ˆ ì•ˆë‚´ ì‚¬í•­ì„ ìž‘ì„±í•´ì£¼ì„¸ìš”.</h3>
 			<textarea rows="15" cols="100" name="exchangeInfo"></textarea>
-			<h3>Q6. ÇÁ·ÎÁ§Æ®¿Í °ü·ÃµÈ °¢Á¾ ÀÎÁõ Á¤º¸ ¹× ±âÅ¸ ¼­·ù¸¦ Ã·ºÎÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q6. í”„ë¡œì íŠ¸ì™€ ê´€ë ¨ëœ ê°ì¢… ì¸ì¦ ì •ë³´ ë° ê¸°íƒ€ ì„œë¥˜ë¥¼ ì²¨ë¶€í•´ì£¼ì„¸ìš”.</h3>
 			<input type="file" name="projectFile">
 			<p></p>
 			<button name="step" class="goNext" value="step1">Step 01</button>
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="main">
-		ÇÏ´Ü¹Ù
+		í•˜ë‹¨ë°”
 	</div>
 </body>
 </html>

@@ -10,7 +10,7 @@ public class Project {
 		private String image; //이미지 경로
 		private String simpleInfo; //간단 설명
 
-		private String[] category;
+		private String category;
 		private String[] hashTag;
 		private String[] ecoTag;
 		private double ecoScore; //NUMBER(10, 9)
@@ -49,6 +49,19 @@ public class Project {
 			this.title = title;
 		}
 		
+		//확인을 위함
+		
+		public Project(String title, String simpleInfo, String category, String[] hashTag, String[] ecoTag,
+				int targetPrice) {
+			super();
+			this.title = title;
+			this.simpleInfo = simpleInfo;
+			this.category = category;
+			this.hashTag = hashTag;
+			this.ecoTag = ecoTag;
+			this.targetPrice = targetPrice;
+		}
+
 		public Project(String detailInfo, String planInfo, String exchangeInfo, String projectVideo,
 				String projectFile) {
 			super();
@@ -59,7 +72,7 @@ public class Project {
 			this.projectFile = projectFile;
 		}
 
-		public Project(String title, String image, String simpleInfo, String[] category, String[] hashTag,
+		public Project(String title, String image, String simpleInfo, String category, String[] hashTag,
 				String[] ecoTag, int targetPrice, LocalDate startDate, LocalDate endDate, LocalDate paymentDate,
 				LocalDate deliveryDate) {
 			super();
@@ -77,7 +90,7 @@ public class Project {
 		}
 
 		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo,
-				String[] category, String[] hashTag, String[] ecoTag, double ecoScore, int targetPrice, int currentPrice,
+				String category, String[] hashTag, String[] ecoTag, double ecoScore, int targetPrice, int currentPrice,
 				LocalDate startDate, LocalDate endDate, LocalDate paymentDate, LocalDate deliveryDate, String detailInfo,
 				String planInfo, String exchangeInfo, String projectVideo, String projectFile) {
 			super();
@@ -102,7 +115,7 @@ public class Project {
 			this.projectVideo = projectVideo;
 			this.projectFile = projectFile;
 		}
-		
+
 		public Object getWithIndex(int index) {
 			switch(index) {
 			case 0: return getProjectId();
@@ -147,7 +160,7 @@ public class Project {
 				setSimpleInfo((String)data);
 				break;
 			case 5:
-				setCategory((String[])data);
+				setCategory((String)data);
 				break;
 			case 6:
 				setHashTag((String[])data);
@@ -234,11 +247,11 @@ public class Project {
 			this.simpleInfo = simpleInfo;
 		}
 
-		public String[] getCategory() {
+		public String getCategory() {
 			return category;
 		}
 
-		public void setCategory(String[] category) {
+		public void setCategory(String category) {
 			this.category = category;
 		}
 

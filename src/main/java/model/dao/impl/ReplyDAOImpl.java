@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.dao.ReplyDAO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 import model.service.dto.ReplyDTO;
 
 public class ReplyDAOImpl implements ReplyDAO{

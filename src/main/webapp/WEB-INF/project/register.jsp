@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +6,7 @@
 <title>Insert title here</title>
 <script>
     function searchData() {
-        alert("Enter Key·Î Á¦Ãâ\nÇÁ·ÎÁ§Æ® Á¶È¸.");
+        alert("Enter Keyë¡œ ì œì¶œ\ní”„ë¡œì íŠ¸ ì¡°íšŒ.");
     }
 </script>
 <style>
@@ -37,38 +36,38 @@
 </head>
 <body>
 	<div class="main">
-		»ó´Ü¹Ù
-		<input type="search" name="projectsearch" size="50" placeholder="´Ù¾çÇÑ ÇÁ·ÎÁ§Æ®¸¦ °Ë»öÇØº¸¼¼¿ä." onkeyup="if(window.event.keyCode==13){searchData();}">
+		ìƒë‹¨ë°”
+		<input type="search" name="projectsearch" size="50" placeholder="ë‹¤ì–‘í•œ í”„ë¡œì íŠ¸ë¥¼ ê²€ìƒ‰í•´ë³´ì„¸ìš”." onkeyup="if(window.event.keyCode==13){searchData();}">
    		<span>
-			<button type="button"><img src="µ¸º¸±â ±×¸²(?)" alt="">¹öÆ°</button>
+			<button type="button"><img src="ë‹ë³´ê¸° ê·¸ë¦¼(?)" alt="">ë²„íŠ¼</button>
       	</span>
     </div>
     <div class="main">
-    	<a href="registerStart.jsp" target="_self">ÇÁ·ÎÁ§Æ® µî·Ï</a>
+    	<a href="registerStart.jsp" target="_self">í”„ë¡œì íŠ¸ ë“±ë¡</a>
     	<span class="step">Step 01</span>
     </div>
     <div>
       <div class="stepList">
       	<div id="step01">
       		Step 01
-      		<p>ÇÁ·ÎÁ§Æ® Á¤º¸ ÀÛ¼º</p>
+      		<p>í”„ë¡œì íŠ¸ ì •ë³´ ìž‘ì„±</p>
       	</div>
       	<div id="step02">
       		Step 02
-      		<p>ÇÁ·ÎÁ§Æ® »ó¼¼ Á¤º¸ ÀÛ¼º</p>
+      		<p>í”„ë¡œì íŠ¸ ìƒì„¸ ì •ë³´ ìž‘ì„±</p>
       	</div>
       	<div id="step03">
       		Step 03
-      		<p>ÇÁ·ÎÁ§Æ® Ã¢ÀÛÀÚ Á¤º¸ ÀÛ¼º</p>
+      		<p>í”„ë¡œì íŠ¸ ì°½ìž‘ìž ì •ë³´ ìž‘ì„±</p>
       	</div>
       	<div id="step04">
       		Step 04
-      		<p>¼­¾à¼­ Á¦Ãâ</p>
+      		<p>ì„œì•½ì„œ ì œì¶œ</p>
       	</div>
       	<div style="height: 260px;">
       	</div>
       	<div id="enrollProgress">
-      		ÁøÇàµµ <progress value="0.25"></progress>
+      		ì§„í–‰ë„ <progress value="0.25"></progress>
       	</div>
       </div>
 </body>

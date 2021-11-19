@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>га╥на╖ф╝ ╣Н╥о ╫цюш</title>
+<title>М■└К║°Л═²М┼╦ К⌠╠К║² Л▀°Л·▒</title>
 <script>
     function searchData() {
-        alert("Enter Key╥н а╕цБ\nга╥на╖ф╝ а╤х╦.");
+        alert("Enter KeyК║° Л═°Л╤°\nМ■└К║°Л═²М┼╦ Л║╟М ▄.");
     }
     
     function projectCreate(targetUri) {
@@ -54,26 +54,26 @@
 </head>
 <body>
 	<div class="main">
-		╩С╢э╧ы
-		<input type="search" name="projectsearch" size="50" placeholder="╢ы╬Ггя га╥на╖ф╝╦╕ ╟к╩Жгь╨╦╪╪©Д." onkeyup="if(window.event.keyCode==13){searchData();}">
+		Л┐│К▀╗К╟■
+		<input type="search" name="projectsearch" size="50" placeholder="К▀╓Л√▒М∙° М■└К║°Л═²М┼╦К╔╪ Й╡─Л┐┴М∙╢КЁ╢Л└╦Л ■." onkeyup="if(window.event.keyCode==13){searchData();}">
    		<span>
-			<button type="button"><img src="╣╦╨╦╠Б ╠в╦╡(?)" alt="">╧Жф╟</button>
+			<button type="button"><img src="К▐▀КЁ╢Й╦╟ Й╥╦К╕╪(?)" alt="">К╡└М┼╪</button>
       	</span>
     </div>
     <div class="main">
-    	<a href="enrollStart.jsp" target="_self">га╥на╖ф╝ ╣Н╥о</a>
-    	> га╥на╖ф╝ ╣Н╥о ╫цюш
+    	<a href="enrollStart.jsp" target="_self">М■└К║°Л═²М┼╦ К⌠╠К║²</a>
+    	> М■└К║°Л═²М┼╦ К⌠╠К║² Л▀°Л·▒
     </div>
     <div class="contents">
-    	<p>©║дз╣Ы ╪╜╨Я╫╨╦╕ ╩Г©Кгь╬ъ го╢б юлю╞ ╪р╟Ё╠ш</p>
+    	<p>Л≈░Л╫■К■╘ Л└°К╧└Л┼╓К╔╪ Л┌╛Л ╘М∙╢Л∙╪ М∙≤К┼■ Л²╢Л°═ Л├▄Й╟°Й╦─</p>
     </div>
     <div class="goList">
     	<form name="form" method="post" action="<c:url value='/project/start' />">
-    		<input type="button" class="goNext" value="╣Н╥ого╠Б" onClick="projectCreate('<c:url value='/project/start' />')">
+    		<input type="button" class="goNext" value="К⌠╠К║²М∙≤Й╦╟" onClick="projectCreate('<c:url value='/project/start' />')">
    		</form>
 	</div>
     <div class="main">
-		го╢э╧ы
+		М∙≤К▀╗К╟■
 	</div>
 </body>
 </html>
