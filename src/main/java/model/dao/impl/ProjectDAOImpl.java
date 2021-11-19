@@ -29,11 +29,13 @@ public class ProjectDAOImpl implements ProjectDAO {
 				project.getEndDate(), project.getPaymentDate(), project.getDeliveryDate()};
 		*/
 		
-		String insertQuery = "INSERT INTO PROJECT(project_id, title, simple_info, category, hashtag, ecotag, target_price)"
-				+ " VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?)";
+		String insertQuery = "INSERT INTO PROJECT(project_id, title, simple_info, category, target_price, "
+				+ "current_price, start_date, end_date, payment_date, delivery_date) "
+				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, 0, ?, ?, ?, ?)";
 		
-		Object[] param = new Object[] {project.getTitle(), project.getSimpleInfo(), project.getCategory(), project.getHashTag(), 
-				project.getEcoTag(), project.getTargetPrice()};
+		Object[] param = new Object[] {project.getTitle(), project.getSimpleInfo(), project.getCategory(), 
+				project.getTargetPrice(), new java.sql.Date(project.getStartDate().getTime()), new java.sql.Date(project.getEndDate().getTime()), 
+				new java.sql.Date(project.getPaymentDate().getTime()), new java.sql.Date(project.getDeliveryDate().getTime())};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
 
 		try {
