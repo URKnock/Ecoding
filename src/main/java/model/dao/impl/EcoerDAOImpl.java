@@ -39,14 +39,16 @@ public class EcoerDAOImpl implements EcoerDAO{
 	public int update(EcoerDTO ecoer) {
 		String sql = "UPDATE ecoer SET password=?";
 		for(int i = 2; i < EcoerDTO.cols; i++) {
-			sql += ", " + EcoerDTO.columns[i];
+			sql += ", " + EcoerDTO.columns[i] + "=?";
 		}
-		sql += "WHERE ecoer_id=?";
+		sql += " WHERE ecoer_id=?";
 		
 		Object[] param = new Object[]{};
-		for(int i = 0; i < EcoerDTO.cols; i++) {
-			param[i] = ecoer.getWithIndex(i);
+		for(int i = 0; i < EcoerDTO.cols - 2; i++) { //param의 0에 password부터 채운다. (0번~7번)
+			if(ecoer.getWithIndex(i + 1) != null) //여기서 자꾸 index 오류남
+				param[i] = ecoer.getWithIndex(i + 1);
 		}
+		param[EcoerDTO.cols - 1] = ecoer.getEcoerId(); //마지막 where절에 id를 넣는다. (8번)
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				

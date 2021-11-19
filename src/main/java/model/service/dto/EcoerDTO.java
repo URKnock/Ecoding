@@ -53,7 +53,7 @@ public class EcoerDTO {
 			setName((String) data);
 			break;
 		case 3:
-			setCode((String) data);
+			setCode(String.valueOf(data));
 			break;
 		case 4:
 			setAddress((String) data);

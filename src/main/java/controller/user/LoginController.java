@@ -17,7 +17,7 @@ public class LoginController implements Controller {
 			UserManager manager = UserManager.getInstance();
 			manager.login(ecoerId, password);
 	
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(); //세션에 사용자 아이디 저장 ==> jsp에서 꺼내쓰기
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, ecoerId);
             
             return "redirect:/home/main"; //혹은 직전에 있었던 페이지로 		

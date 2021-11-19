@@ -39,7 +39,7 @@ public class UpdateUserController implements Controller {
 			// else (���� �Ұ����� ���) ����� ���� ȭ������ ���� �޼����� ����
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", 
-					new IllegalStateException("Ÿ���� ������ ������ �� �����ϴ�."));            
+					new IllegalStateException("정보를 수정할 수 없습니다."));            
 			return "/user/userView.jsp";	// ����� ���� ȭ������ �̵� (forwarding)
 	    }	
     	
@@ -48,17 +48,18 @@ public class UpdateUserController implements Controller {
 			request.getParameter("ecoerId"),
 			request.getParameter("password"),
 			request.getParameter("name"),
-			(String) null,	// code
+			request.getParameter("code"),
 			request.getParameter("address"),
-			(String) null,	// detail address
+			request.getParameter("detailAddress"),
 			request.getParameter("phone"),
 			request.getParameter("email"),
-			false);
+			Boolean.parseBoolean(request.getParameter("isCreator"))
+			);
 
     	log.debug("Update Ecoer : {}", updateEcoer);
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateEcoer);			
-        return "redirect:/user/list";	//list 안 쓸 것 같다.		
+        return "/user/userView.jsp";		
     }
 }
