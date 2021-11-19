@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -44,8 +43,6 @@
 	color: blue;
 }
 </style>
-
-</head>
 
 <script>
 function userCreate(targetUri) {
