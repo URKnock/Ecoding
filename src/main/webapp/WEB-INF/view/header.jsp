@@ -56,19 +56,21 @@ function userCreate(targetUri) {
 }
 
 function menuClicked(obj) {
-	//alert('클릭됨');
+	//alert($(obj).attr('class'));
 	const menu_list = document.getElementsByClassName('nav-link')
-	for(let i = 0; i < menu_list.length; i++)  { //다른 엘리먼트의 active 해제
+	for(let i = 0; i < menu_list.length - 1; i++)  { //다른 엘리먼트의 active 해제
 	    menu_list[i].setAttribute('class', 'nav-link');
 	}
-	$(obj).attr('class', 'nav-link active');	//현재 엘리먼트에 active 설정
 	var clickedId = document.getElementById(obj.getAttribute('id')).getAttribute('id');
-	if(clickedId == 'home')
-		location.href='../home/main';
-	else if(clickedId == 'funding')
-		location.href='../home/list';
-	else if(clickedId == 'board')
-		location.href='../board/list';
+	if(clickedId != 'category'){ //카테고리는 클래스 수정을 하지 않음
+		$(obj).attr('class', 'nav-link active');	//현재 엘리먼트에 active 설정
+		if(clickedId == 'home')
+			location.href='../home/main';
+		else if(clickedId == 'funding')
+			location.href='../home/list';
+		else if(clickedId == 'board')
+			location.href='../board/list';
+	}
 }
 
 </script>
@@ -104,9 +106,9 @@ function menuClicked(obj) {
 			onclick="menuClicked(this)">펀딩</a></li>
 		<li class="nav-item"><a id="board" class="nav-link" href="#"
 			onclick="menuClicked(this)">게시판</a></li>
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+		<li class="nav-item dropdown"><a id = "category" class="nav-link dropdown-toggle"
 			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">카테고리</a> <!-- 왜 안 열려 -->
+			aria-expanded="false">카테고리</a> <!-- nav-link가 얘도 해제된 것 같음... -->
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="#">항목1</a> <a class="dropdown-item"
 					href="#">항목2</a> <a class="dropdown-item" href="#">항목3</a>
