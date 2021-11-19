@@ -28,9 +28,9 @@ public class RegisterUserController implements Controller {
 			request.getParameter("ecoerId"),
 			request.getParameter("password"),
 			request.getParameter("name"),
-			(String) null,	// code
+			request.getParameter("code"),
 			request.getParameter("address"),
-			(String) null,	// detail address
+			request.getParameter("detailAddress"),
 			request.getParameter("phone"),
 			request.getParameter("email"),
 			false);
@@ -40,7 +40,7 @@ public class RegisterUserController implements Controller {
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(ecoer);
-	        return "redirect:/user/list"; //listing 기능을 사용할 것인가? ==> forwarding으로 완료 화면을 보여주는 게 어떨지?
+	        return "redirect:/home/main"; //성공하면 뭐 보여줄지 띵킹좀
 	        
 		} catch (ExistingUserException e) {	
             request.setAttribute("registerFailed", true);

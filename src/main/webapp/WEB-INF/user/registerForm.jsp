@@ -108,12 +108,28 @@ function userCreate() {
 						<c:if test="${registerFailed}">value="${ecoer.phone}"</c:if>>
 				</div>
 			</div>
-						<div class="form-group row">
+			<div class="form-group row">
+				<label for="code" class="col-lg-2 col-form-label">우편번호</label>
+				<div class="col-lg-10">
+					<input type="text" name="code" class="form-control"
+						placeholder="우편번호"
+						<c:if test="${registerFailed}">value="${ecoer.code}"</c:if>>
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="address" class="col-lg-2 col-form-label">주소</label>
 				<div class="col-lg-10">
 					<input type="text" name="address" class="form-control"
 						placeholder="주소"
 						<c:if test="${registerFailed}">value="${ecoer.address}"</c:if>>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="detailAddress" class="col-lg-2 col-form-label">상세주소</label>
+				<div class="col-lg-10">
+					<input type="text" name="detailAddress" class="form-control"
+						placeholder="상세주소"
+						<c:if test="${registerFailed}">value="${ecoer.detailAddress}"</c:if>>
 				</div>
 			</div>
 			<div class="form-group row">
