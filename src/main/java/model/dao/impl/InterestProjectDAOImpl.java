@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.dao.InterestProjectDAO;
 import model.service.dto.InterestProjectDTO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 
 public class InterestProjectDAOImpl implements InterestProjectDAO {
 	private JDBCUtil jdbcUtil = null;

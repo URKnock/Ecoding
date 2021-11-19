@@ -13,6 +13,7 @@ import ch.qos.logback.classic.Logger;
 import controller.Controller;
 import model.Project;
 import model.Reward;
+import model.service.CreatorManager;
 import model.service.PostManager;
 import model.service.ProjectManager;
 import model.service.dto.CreatorDTO;
@@ -30,19 +31,16 @@ public class ProjectRegisterController implements Controller {
     	else if(step.equals("step2")) {
     		/*
     		Project project = new Project(request.getParameter("projectName"), request.getParameter("thumbnailImage"), request.getParameter("projectBrief"), 
-    				request.getParameterValues("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
+    				request.getParameter("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
     				Integer.parseInt(request.getParameter("targetAmount")), LocalDate.parse(request.getParameter("startDate"), DateTimeFormatter.ISO_DATE), 
     				LocalDate.parse(request.getParameter("endDate"), DateTimeFormatter.ISO_DATE), LocalDate.parse(request.getParameter("payment_date"), DateTimeFormatter.ISO_DATE), 
     				LocalDate.parse(request.getParameter("deliveryDate"), DateTimeFormatter.ISO_DATE));
     		*/
-    		Project project = new Project(request.getParameter("title"));
-    		/*
-    		
-			ProjectManager manager = ProjectManager.getInstance();
-			manager.registerProject(project);
-			request.setAttribute("project", project);
-			*/
+    		Project project = null; 
     		try {
+    			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), request.getParameter("category"), 
+    					request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
+    					Integer.parseInt(request.getParameter("targetAmount")));
     			ProjectManager manager = ProjectManager.getInstance();
     			manager.registerProject(project);
     			return "/project/registerProjectForm_step2.jsp";

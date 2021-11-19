@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Support;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 import model.dao.SupportDAO;
 
 public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 바꿀 것
