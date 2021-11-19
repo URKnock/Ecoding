@@ -10,15 +10,12 @@
 <script>
 	$(document).ready(function() {
 		$('#summernote').summernote({lang: 'ko-KR', minHeight: 500, maxHeight: null});
-		function submitPost() {
-			var content = $('#summernote').summernote('code');
-			request.setAttribute("post_content", content);
-			$('#summernote').summernote('destroy');
-			alert(${post_content});
-			alert(content);
-			return true;
-		}
 	});
+	function submitPost() {
+		var content = $('#summernote').summernote('code');
+		document.forms['post']['post_content'].value = content;
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -51,7 +48,8 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<div id="summernote"></div>
+				<div id="summernote"></div><br/>
+				<input type="hidden" name="post_content"/>
 			</td>
 		</tr>		
 	</table>
