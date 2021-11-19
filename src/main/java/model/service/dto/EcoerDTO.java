@@ -68,7 +68,7 @@ public class EcoerDTO {
 			setEmail((String) data);
 			break;
 		case 8:
-			setIsCreator((char) data);
+			setIsCreator(((String)data).charAt(0));
 			break;
 		}
 	}
