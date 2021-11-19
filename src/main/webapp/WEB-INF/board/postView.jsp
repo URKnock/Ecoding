@@ -44,8 +44,8 @@
 			<td>${c.ecoerId}</td>
 			<td class="align_right">
 				${c.replyDATE}&nbsp;
-				<input type="button" value="수정"/>
-				<input type="button" value="삭제"/>
+				<!-- input type="button" value="수정"/ -->
+				<input type="button" value="삭제" onClick="location.href=<c:url value='/board/delete?pid=${post.postId}'/>"/>
 				<input type="button" value="좋아요"/>
 			</td>
 		</tr>

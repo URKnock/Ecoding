@@ -14,16 +14,19 @@ import model.service.dto.ReplyDTO;
 public class CommunityController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		ReplyDTO reply = (ReplyDTO) request.getAttribute("reply");
+    	PostManager post = PostManager.getInstance();
 		ReplyManager manager = ReplyManager.getInstance();
-		PostManager post = PostManager.getInstance();
+		ReplyDTO reply = (ReplyDTO) request.getAttribute("reply");
+		
+    	int postId = 0;
+    	int replyId = 0;
+    	if(request.getParameter("pid") != null)
+    		postId = Integer.parseInt(request.getParameter("pid"));
+    	if(request.getParameter("rid") != null)
+    		replyId = Integer.parseInt(request.getParameter("rid"));
 		
 		if(request.getMethod().equals("GET")) {
 	    	String postTitle = request.getParameter("title");
-	    	int postId = 0;
-	    	
-	    	if(request.getParameter("pid") != null)
-	    		postId = Integer.parseInt(request.getParameter("pid"));
 		   	try {
 		    	PostDTO dto = null;
 		    	List<ReplyDTO> list = null;
@@ -60,8 +63,8 @@ public class CommunityController implements Controller {
 	    	} 
 		} else if(request.getMethod().equals("DELETE")) {
 	    	try {
-	    		manager.delete(reply.getReplyId());
-	    		return "redirect:/board/view";
+	    		manager.delete(replyId);
+	    		return "redirect:/board/view?rid=" + replyId;
 	    	} catch (Exception e) {
 	    		request.setAttribute("replyFailed", true);
 	    		request.setAttribute("exception", e);

@@ -42,8 +42,16 @@ function userRemove() {
 					<td>${ecoer.phone}</td>
 				</tr>
 				<tr>
+					<th>우편번호</th>
+					<td>${ecoer.code}</td>
+				</tr>
+				<tr>
 					<th>주소</th>
 					<td>${ecoer.address}</td>
+				</tr>
+				<tr>
+					<th>상세주소</th>
+					<td>${ecoer.detailAddress}</td>
 				</tr>
 				<tr>
 					<th>이메일 주소</th>
@@ -52,11 +60,11 @@ function userRemove() {
 			</tbody>
 		</table>
 		<br> <a class="btn btn-primary"
-			href="<c:url value='/user/update' >
+			href="<c:url value='../user/update' >
      		     <c:param name='ecoerId' value='${ecoer.ecoerId}'/>
 		 	  </c:url>">수정</a>
 		<a class="btn btn-warning"
-			href="<c:url value='/user/delete'>
+			href="<c:url value='../user/delete'>
 		     	 <c:param name='ecoerId' value='${ecoer.ecoerId}'/>
 	 	      </c:url>"
 			onclick="return userRemove();">삭제</a><br>
