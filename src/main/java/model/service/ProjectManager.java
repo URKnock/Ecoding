@@ -1,7 +1,9 @@
 package model.service;
 
+import java.util.Date;
 import java.util.List;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import model.DAOFactory;
@@ -60,6 +62,7 @@ public class ProjectManager {
 	public ProjectDTO findProjectInfo(Project project) throws SQLException {
 		ProjectDTO dto = null;
 		CreatorDTO creator = creatorDAO.findCreator(project.getEcoerId());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 		
 		int projectId = project.getProjectId();
 		String title = project.getTitle();
@@ -67,8 +70,7 @@ public class ProjectManager {
 		String creatorImage = creator.getImage();
 		String creatorName = creator.getNickName();
 		int pricePercent = project.getCurrentPrice() / project.getTargetPrice() * 100;
-		long remainTime = ChronoUnit.DAYS.between(
-				project.getStartDate(), project.getEndDate());
+		long remainTime = project.getStartDate().getTime() - project.getEndDate().getTime();
 		int countSupporter = supportDAO.countSupporter(projectId);
 
 		dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName,
@@ -86,7 +88,7 @@ public class ProjectManager {
 		String image = project.getImage();
 		String creatorImage = creator.getImage();
 		String creatorName = creator.getNickName();
-		LocalDate paymentDate = project.getPaymentDate();
+		Date paymentDate = project.getPaymentDate();
 
 		//dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
 		

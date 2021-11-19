@@ -1,7 +1,7 @@
 package controller.project;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,18 +29,13 @@ public class ProjectRegisterController implements Controller {
     		return "/project/registerProjectForm_step1.jsp";
     	}
     	else if(step.equals("step2")) {
-    		/*
-    		Project project = new Project(request.getParameter("projectName"), request.getParameter("thumbnailImage"), request.getParameter("projectBrief"), 
-    				request.getParameter("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
-    				Integer.parseInt(request.getParameter("targetAmount")), LocalDate.parse(request.getParameter("startDate"), DateTimeFormatter.ISO_DATE), 
-    				LocalDate.parse(request.getParameter("endDate"), DateTimeFormatter.ISO_DATE), LocalDate.parse(request.getParameter("payment_date"), DateTimeFormatter.ISO_DATE), 
-    				LocalDate.parse(request.getParameter("deliveryDate"), DateTimeFormatter.ISO_DATE));
-    		*/
     		Project project = null; 
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
-    			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), request.getParameter("category"), 
-    					request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
-    					Integer.parseInt(request.getParameter("targetAmount")));
+    			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
+        				request.getParameter("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
+        				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
+    					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")));
     			ProjectManager manager = ProjectManager.getInstance();
     			manager.registerProject(project);
     			return "/project/registerProjectForm_step2.jsp";
