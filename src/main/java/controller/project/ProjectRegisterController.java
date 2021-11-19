@@ -1,7 +1,7 @@
 package controller.project;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +13,7 @@ import ch.qos.logback.classic.Logger;
 import controller.Controller;
 import model.Project;
 import model.Reward;
+import model.service.CreatorManager;
 import model.service.PostManager;
 import model.service.ProjectManager;
 import model.service.dto.CreatorDTO;
@@ -28,21 +29,13 @@ public class ProjectRegisterController implements Controller {
     		return "/project/registerProjectForm_step1.jsp";
     	}
     	else if(step.equals("step2")) {
-    		/*
-    		Project project = new Project(request.getParameter("projectName"), request.getParameter("thumbnailImage"), request.getParameter("projectBrief"), 
-    				request.getParameterValues("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
-    				Integer.parseInt(request.getParameter("targetAmount")), LocalDate.parse(request.getParameter("startDate"), DateTimeFormatter.ISO_DATE), 
-    				LocalDate.parse(request.getParameter("endDate"), DateTimeFormatter.ISO_DATE), LocalDate.parse(request.getParameter("payment_date"), DateTimeFormatter.ISO_DATE), 
-    				LocalDate.parse(request.getParameter("deliveryDate"), DateTimeFormatter.ISO_DATE));
-    		*/
-    		Project project = new Project(request.getParameter("title"));
-    		/*
-    		
-			ProjectManager manager = ProjectManager.getInstance();
-			manager.registerProject(project);
-			request.setAttribute("project", project);
-			*/
+    		Project project = null; 
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
+    			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
+        				request.getParameter("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
+        				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
+    					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")));
     			ProjectManager manager = ProjectManager.getInstance();
     			manager.registerProject(project);
     			return "/project/registerProjectForm_step2.jsp";

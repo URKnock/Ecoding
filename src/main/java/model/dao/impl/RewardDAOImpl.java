@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 import model.dao.RewardDAO;
 import model.service.dto.RewardDTO;
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.dao.CommunityDAO;
 import model.service.dto.CommunityDTO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 
 public class CommunityDAOImpl implements CommunityDAO{
 	private JDBCUtil jdbcUtil = null;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.dao.PostDAO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 import model.service.dto.PostDTO;
 
 public class PostDAOImpl implements PostDAO {

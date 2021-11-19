@@ -5,43 +5,44 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
+import util.JDBCUtil;
 
 /**
- * »ç¿ëÀÚ °ü¸®¸¦ À§ÇØ µ¥ÀÌÅÍº£ÀÌ½º ÀÛ¾÷À» Àü´ãÇÏ´Â DAO Å¬·¡½º
- * USERINFO Å×ÀÌºí¿¡ »ç¿ëÀÚ Á¤º¸¸¦ Ãß°¡, ¼öÁ¤, »èÁ¦, °Ë»ö ¼öÇà 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ DAO Å¬ï¿½ï¿½ï¿½ï¿½
+ * USERINFO ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ 
  */
 public class UserDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public UserDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ý¼º
+		jdbcUtil = new JDBCUtil();	// JDBCUtil ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	}
 		
 	/**
-	 * »ç¿ëÀÚ °ü¸® Å×ÀÌºí¿¡ »õ·Î¿î »ç¿ëÀÚ »ý¼º.
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public int create(User user) throws SQLException {
 		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {user.getUserId(), user.getPassword(), 
 						user.getName(), user.getEmail(), user.getPhone(), 
 						(user.getCommId()!=0) ? user.getCommId() : null };				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// insert ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;			
 	}
 
 	/**
-	 * ±âÁ¸ÀÇ »ç¿ëÀÚ Á¤º¸¸¦ ¼öÁ¤.
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public int update(User user) throws SQLException {
 		String sql = "UPDATE USERINFO "
@@ -51,10 +52,10 @@ public class UserDAO {
 					user.getEmail(), user.getPhone(), 
 					(user.getCommId()!=0) ? user.getCommId() : null, 
 					user.getUserId()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil¿¡ update¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtilï¿½ï¿½ updateï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -62,20 +63,20 @@ public class UserDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;
 	}
 
 	/**
-	 * »ç¿ëÀÚ ID¿¡ ÇØ´çÇÏ´Â »ç¿ëÀÚ¸¦ »èÁ¦.
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public int remove(String userId) throws SQLException {
 		String sql = "DELETE FROM USERINFO WHERE userid=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtilï¿½ï¿½ deleteï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// delete ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -83,25 +84,25 @@ public class UserDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;
 	}
 
 	/**
-	 * ÁÖ¾îÁø »ç¿ëÀÚ ID¿¡ ÇØ´çÇÏ´Â »ç¿ëÀÚ Á¤º¸¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ Ã£¾Æ User µµ¸ÞÀÎ Å¬·¡½º¿¡ 
-	 * ÀúÀåÇÏ¿© ¹ÝÈ¯.
+	 * ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ User ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È¯.
 	 */
 	public User findUser(String userId) throws SQLException {
         String sql = "SELECT password, name, email, phone, commId, cName "
         			+ "FROM USERINFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
         			+ "WHERE userid=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			if (rs.next()) {						// ÇÐ»ý Á¤º¸ ¹ß°ß
-				User user = new User(		// User °´Ã¼¸¦ »ý¼ºÇÏ¿© ÇÐ»ý Á¤º¸¸¦ ÀúÀå
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			if (rs.next()) {						// ï¿½Ð»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+				User user = new User(		// User ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ð»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					userId,
 					rs.getString("password"),
 					rs.getString("name"),
@@ -114,25 +115,25 @@ public class UserDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
 	/**
-	 * ÀüÃ¼ »ç¿ëÀÚ Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹ÝÈ¯
+	 * ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 	 */
 	public List<User> findUserList() throws SQLException {
         String sql = "SELECT userId, name, email, NVL(commId,0) AS commId, cName " 
         		   + "FROM USERINFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
         		   + "ORDER BY userId";
-		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			
-			List<User> userList = new ArrayList<User>();	// UserµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();			// query ï¿½ï¿½ï¿½ï¿½			
+			List<User> userList = new ArrayList<User>();	// Userï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				User user = new User(			// User °´Ã¼¸¦ »ý¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				User user = new User(			// User ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					rs.getString("userId"),
 					null,
 					rs.getString("name"),
@@ -140,37 +141,37 @@ public class UserDAO {
 					null,
 					rs.getInt("commId"),
 					rs.getString("cName"));
-				userList.add(user);				// List¿¡ User °´Ã¼ ÀúÀå
+				userList.add(user);				// Listï¿½ï¿½ User ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return userList;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 	
 	/**
-	 * ÀüÃ¼ »ç¿ëÀÚ Á¤º¸¸¦ °Ë»öÇÑ ÈÄ ÇöÀç ÆäÀÌÁö¿Í ÆäÀÌÁö´ç Ãâ·ÂÇÒ »ç¿ëÀÚ ¼ö¸¦ ÀÌ¿ëÇÏ¿©
-	 * ÇØ´çÇÏ´Â »ç¿ëÀÚ Á¤º¸¸¸À» List¿¡ ÀúÀåÇÏ¿© ¹ÝÈ¯.
+	 * ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½
+	 * ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È¯.
 	 */
 	public List<User> findUserList(int currentPage, int countPerPage) throws SQLException {
 		String sql = "SELECT userId, name, email, NVL(commId, 0), cName " 
 					+ "FROM USERINFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
 					+ "ORDER BY userId";
-		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil¿¡ query¹® ¼³Á¤
-				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll °¡´É
+		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll ï¿½ï¿½ï¿½ï¿½
 				ResultSet.CONCUR_READ_ONLY);						
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();				// query ½ÇÇà			
-			int start = ((currentPage-1) * countPerPage) + 1;	// Ãâ·ÂÀ» ½ÃÀÛÇÒ Çà ¹øÈ£ °è»ê
-			if ((start >= 0) && rs.absolute(start)) {			// Ä¿¼­¸¦ ½ÃÀÛ ÇàÀ¸·Î ÀÌµ¿
-				List<User> userList = new ArrayList<User>();	// UserµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();				// query ï¿½ï¿½ï¿½ï¿½			
+			int start = ((currentPage-1) * countPerPage) + 1;	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½
+			if ((start >= 0) && rs.absolute(start)) {			// Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+				List<User> userList = new ArrayList<User>();	// Userï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 				do {
-					User user = new User(			// User °´Ã¼¸¦ »ý¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+					User user = new User(			// User ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getString("userId"),
 						null,
 						rs.getString("name"),
@@ -178,76 +179,76 @@ public class UserDAO {
 						null,
 						rs.getInt("commId"),
 						rs.getString("cName"));
-					userList.add(user);							// ¸®½ºÆ®¿¡ User °´Ã¼ ÀúÀå
+					userList.add(user);							// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ User ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 				} while ((rs.next()) && (--countPerPage > 0));		
 				return userList;							
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
 	/**
-	 * Æ¯Á¤ Ä¿¹Â´ÏÆ¼¿¡ ¼ÓÇÑ »ç¿ëÀÚµéÀ» °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹ÝÈ¯
+	 * Æ¯ï¿½ï¿½ Ä¿ï¿½Â´ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 	 */
 	public List<User> findUsersInCommunity(int communityId) throws SQLException {
         String sql = "SELECT userId, name, email, phone FROM UserInfo "
      				+ "WHERE commId = ?";                         
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {communityId});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {communityId});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			List<User> memList = new ArrayList<User>();	// memberµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			List<User> memList = new ArrayList<User>();	// memberï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				User member = new User(			// User °´Ã¼¸¦ »ý¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				User member = new User(			// User ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					rs.getString("userId"),
 					rs.getString("name"),
 					rs.getString("email"),
 					rs.getString("phone"));
-				memList.add(member);			// List¿¡ Community °´Ã¼ ÀúÀå
+				memList.add(member);			// Listï¿½ï¿½ Community ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return memList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 	
 	/**
-	 * Æ¯Á¤ Ä¿¹Â´ÏÆ¼¿¡ ¼ÓÇÑ »ç¿ëÀÚµéÀÇ ¼ö¸¦ countÇÏ¿© ¹ÝÈ¯
+	 * Æ¯ï¿½ï¿½ Ä¿ï¿½Â´ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ countï¿½Ï¿ï¿½ ï¿½ï¿½È¯
 	 */
 	public int getNumberOfUsersInCommunity(int communityId) {
 		String sql = "SELECT COUNT(userId) FROM UserInfo "
      				+ "WHERE commId = ?";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {communityId});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {communityId});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 			rs.next();										
 			return rs.getInt(1);			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
 	
 	/**
-	 * ÁÖ¾îÁø »ç¿ëÀÚ ID¿¡ ÇØ´çÇÏ´Â »ç¿ëÀÚ°¡ Á¸ÀçÇÏ´ÂÁö °Ë»ç 
+	 * ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ 
 	 */
 	public boolean existingUser(String userId) throws SQLException {
 		String sql = "SELECT count(*) FROM USERINFO WHERE userid=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);
@@ -255,7 +256,7 @@ public class UserDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return false;
 	}

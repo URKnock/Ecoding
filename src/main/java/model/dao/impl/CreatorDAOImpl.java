@@ -7,7 +7,7 @@ import java.util.List;
 import model.dao.CreatorDAO;
 import model.service.dto.CreatorDTO;
 import model.service.dto.EcoerDTO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 
 public class CreatorDAOImpl implements CreatorDAO {
 	private JDBCUtil jdbcUtil = null;

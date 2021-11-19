@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -54,13 +54,13 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			<h3>Q1. Ã¢ÀÛÀÚ(ÆÀ) ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q1. ì°½ìž‘ìž(íŒ€) ì´ë¦„ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.</h3>
 			<input type="text" name="teamName">
-			<h3>Q2. Ã¢ÀÛÀÚ(ÆÀ) ÀÌ¹ÌÁö¸¦ Ã·ºÎÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q2. ì°½ìž‘ìž(íŒ€) ì´ë¯¸ì§€ë¥¼ ì²¨ë¶€í•´ì£¼ì„¸ìš”.</h3>
 			<input type="file" name="teamImage">
-			<h3>Q3. Ã¢ÀÛÀÚ(ÆÀ) ¼Ò°³¸¦ ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q3. ì°½ìž‘ìž(íŒ€) ì†Œê°œë¥¼ ìž‘ì„±í•´ì£¼ì„¸ìš”.</h3>
 			<textarea rows="15" cols="100" name="teamDetail"></textarea>
-			<h3>Q4. ÀÔ±Ý °èÁÂ Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q4. ìž…ê¸ˆ ê³„ì¢Œ ì •ë³´ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.</h3>
 			<input type="text" name="account">
 			<p></p>
 			<button name="step" class="goNext" value="step2" onClick="userCreate('<c:url value='/project/start' />')">Step 02</button>
@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="main">
-		ÇÏ´Ü¹Ù
+		í•˜ë‹¨ë°”
 	</div>
 </body>
 </html>
