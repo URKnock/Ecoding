@@ -24,7 +24,7 @@ public class UserManager { //EcoerManager처럼 사용
 	private UserManager() {
 		try {
 			factory = new DAOFactory();
-			ecoerDAO = factory.getEcoerDAO();
+			ecoerDAO = factory.getEcoerDAO(); //EcoerDAOImpl을 리턴
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -54,7 +54,7 @@ public class UserManager { //EcoerManager처럼 사용
 		EcoerDTO ecoer = ecoerDAO.findEcoer(ecoerId);
 		
 		if (ecoer == null) {
-			throw new UserNotFoundException(ecoerId + "를 찾을 수 없습니다.");
+			throw new UserNotFoundException("UserManager: " + ecoerId + "를 찾을 수 없습니다.");
 		}		
 		return ecoer;
 	}
