@@ -50,10 +50,11 @@ public class Project {
 		}
 
 		//image 제외
-		public Project(String title, String simpleInfo, String category, String hashTag, String ecoTag,
+		public Project(int projectId, String title, String simpleInfo, String category, String hashTag, String ecoTag,
 				int targetPrice, Date startDate, Date endDate, Date paymentDate,
 				Date deliveryDate) {
 			super();
+			this.projectId = projectId;
 			this.title = title;
 			this.simpleInfo = simpleInfo;
 			this.category = category;
@@ -83,14 +84,12 @@ public class Project {
 			this.deliveryDate = deliveryDate;
 		}
 		
-		public Project(String detailInfo, String planInfo, String exchangeInfo, String projectVideo,
-				String projectFile) {
+		public Project(int projectId, String detailInfo, String planInfo, String exchangeInfo) {
 			super();
+			this.projectId = projectId;
 			this.detailInfo = detailInfo;
 			this.planInfo = planInfo;
 			this.exchangeInfo = exchangeInfo;
-			this.projectVideo = projectVideo;
-			this.projectFile = projectFile;
 		}
 
 		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo,

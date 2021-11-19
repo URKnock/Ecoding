@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="utf-8">
 	<title>Insert title here</title>
 	<script>
 	    function projectCreate(targetUri) {
@@ -54,6 +55,7 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
+      		<input type="hidden" name="projectId" value="${project.projectId}"/>
 			<h3>Q1. 프로젝트 대표 영상을 첨부해주세요.</h3>
 			<input type="file" name="thumbnailVideo">
 			<h3>Q2. 상세한 프로젝트 설명을 작성해주세요.</h3>

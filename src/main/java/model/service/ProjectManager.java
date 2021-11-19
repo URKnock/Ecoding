@@ -45,6 +45,10 @@ public class ProjectManager {
 		return projectDAO.create(project);
 	}
 	
+	public int updateProjectForm(Project project) {
+		return projectDAO.create(project);
+	}
+	
 	public void supportProject(Support support) throws SQLException {
 		// 후원 테이블 추가
 		supportDAO.create(support);
@@ -134,7 +138,7 @@ public class ProjectManager {
 		return rewardDAO.getRewardList(projectId);
 	}
 	
-	public int updateProject(Project proj) throws SQLException {
+	public int updateProject(Project proj) {
 		return projectDAO.update(proj);
 	}
 	

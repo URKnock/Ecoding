@@ -39,9 +39,30 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		return 0;
 	}
+	
+	public int updateProjectForm(Project project) {
+		String sql = "UPDATE PROJECT "
+					+ "SET detail_info = ?, plan_info = ?, exchange_info =? "
+					+ "WHERE project_id=?";
+		Object[] param = new Object[] {project.getDetailInfo(), project.getPlanInfo(), 
+				project.getExchangeInfo(), project.getProjectId()};
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
+		try {				
+			int result = jdbcUtil.executeUpdate();	// update 문 실행
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
+	}
 
 	// 기존의 프로젝트 정보를 수정.
-	public int update(Project project) throws SQLException {
+	public int update(Project project) {
 		String sql = "UPDATE PROJECT "
 					+ "SET title=?"; //2번
 		for(int i = 3; i < Project.cols; i++) { //0번(PK), 1번(FK), 2번(title) 제외

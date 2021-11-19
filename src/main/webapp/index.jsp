@@ -1,1 +1,1 @@
-<% response.sendRedirect(request.getContextPath() + "head/main");%>
+<% response.sendRedirect(request.getContextPath() + "/board/view?pid=7");%>
