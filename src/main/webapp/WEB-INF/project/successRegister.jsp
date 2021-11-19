@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>프로젝트 등록 완료</title>
 <style>
 	div {
@@ -30,15 +30,13 @@
 </style>
 </head>
 <body>
-	<c:import url="/WEB-INF/project/register.jsp">
-		<c:param name="main"></c:param>
-	</c:import>
+	<c:import url="/WEB-INF/view/header.jsp"></c:import>
     <div class="contents">
     	<p>축하합니다. 신청하신 프로젝트가 무사히 등록되었습니다!</p>
 		<p>심사 과정을 거쳐 관리자가 프로젝트를 승인하면 정식 프로젝트로 전환됩니다.</p>
     </div>
     <div class="goList">
-    	<button onclick="location='home.jsp'">완성된 프로젝트 둘러보기</button>
+    	<button onclick="location.href='<c:url value='/home/list' />'">완성된 프로젝트 둘러보기</button>
     </div>
     <div class="main">
 		하단바

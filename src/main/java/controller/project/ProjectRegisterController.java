@@ -20,6 +20,7 @@ import model.service.dto.CreatorDTO;
 import model.service.dto.PostDTO;
 import model.service.dto.ProjectDTO;
 
+//image, video 암튼 file 다 빠져있음
 public class ProjectRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -32,36 +33,47 @@ public class ProjectRegisterController implements Controller {
     		Project project = null; 
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
-    			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
+    			project = new Project(0, request.getParameter("title"), request.getParameter("simpleInfo"), 
         				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
         				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
     					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")));
     			ProjectManager manager = ProjectManager.getInstance();
     			manager.registerProject(project);
+    			request.setAttribute("project", project);
     			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
         		request.setAttribute("exception", e);
-        		request.setAttribute("project", project);
         		return "/project/registerProjectForm_step1.jsp";
         	}      
     	}
     	else if(step.equals("step3")) {
-    		Project project = new Project(request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"), request.getParameter("projectVideo"), 
-    				request.getParameter("projectFile"));
-    		
-    		Reward reward = new Reward(request.getParameter("reward"), Integer.parseInt(request.getParameter("rewardPrice")));
-
-			ProjectManager manager = ProjectManager.getInstance();
-			manager.updateProject(project);
-			request.setAttribute("project", project);
-			request.setAttribute("reward", reward);
-			return "/project/registerProjectForm_step3.jsp";
+    		Project project = null;
+    		try {
+    			int projectId = Integer.parseInt(request.getParameter("projectId"));
+	    		project = new Project(projectId, request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
+	    		
+	    		Reward reward = new Reward(0, projectId, request.getParameter("rewardName"), Integer.parseInt(request.getParameter("rewardPrice")), request.getParameter("rewardInfo"));
+	
+				ProjectManager manager = ProjectManager.getInstance();
+				manager.updateProjectForm(project);
+				manager.createReward(reward);
+				request.setAttribute("project", project);
+				request.setAttribute("reward", reward);
+				return "/project/registerProjectForm_step3.jsp";
+    		} catch (Exception e) {
+        		request.setAttribute("registerFailed", true);
+        		request.setAttribute("exception", e);
+        		request.setAttribute("project", project);
+        		return "/project/registerProjectForm_step2.jsp";
+        	}      
     	}
     	else if(step.equals("step4")) {
-    		CreatorDTO creator = new CreatorDTO(request.getParameter("teamName"), request.getParameter("teamImage"), request.getParameter("teamDetail"), request.getParameter("account"));
-    		
+    		CreatorDTO creator = null;
     		try {
+    			creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
+    					request.getParameter("teamDetail"), request.getParameter("account"));
+        		
     			CreatorManager manager = CreatorManager.getInstance();
     			manager.update(creator);
     			request.setAttribute("creator", creator);

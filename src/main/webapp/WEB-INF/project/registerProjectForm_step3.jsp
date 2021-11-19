@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <script>
     function projectCreate(targetUri) {
@@ -54,6 +54,9 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
+      		<input type="hidden" name="projectId" value="${project.projectId}"/>
+      		<h3>아이디를 입력해주세요</h3>
+      		<input type="text" name="ecoerId">
 			<h3>Q1. 창작자(팀) 이름을 입력해주세요.</h3>
 			<input type="text" name="teamName">
 			<h3>Q2. 창작자(팀) 이미지를 첨부해주세요.</h3>
