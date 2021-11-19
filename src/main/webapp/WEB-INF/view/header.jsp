@@ -71,47 +71,48 @@ function menuClicked(obj) {
 }
 
 </script>
-
-<div id="header">
-	<div id="top">
-		<img style="float: left" id="logo" src="<c:url value='/resources/img/logo.png'/>">
-		<div style="text-align: center;">
-			<div style="float: left; margin-left: 100px;"> <!-- 세로 정렬좀... -->
-				<form name="search_project" action="">
-					<input size=50 type="text" placeholder="다양한 프로젝트를 검색해보세요." />
-					<input type="submit" value="검색" />
-				</form>
-			</div>
-			<div style="float: right;">
-				<button type="button" class="btn btn-success" onClick="location.href='../project/view';">프로젝트
-					등록하기</button>
-				<button type="button" class="btn btn-primary" onClick="location.href='../user/loginform';">로그인</button>
-				<button type="button" class="btn btn-primary" onClick="location.href='../user/register';">회원가입</button>
+<div>
+	<div id="header">
+		<div id="top">
+			<img style="float: left" id="logo" src="<c:url value='/resources/img/logo.png'/>">
+			<div style="text-align: center;">
+				<div style="float: left; margin-left: 100px;"> <!-- 세로 정렬좀... -->
+					<form name="search_project" action="">
+						<input size=50 type="text" placeholder="다양한 프로젝트를 검색해보세요." />
+						<input type="submit" value="검색" />
+					</form>
+				</div>
+				<div style="float: right;">
+					<button type="button" class="btn btn-success" onClick="location.href='../project/view';">프로젝트
+						등록하기</button>
+					<button type="button" class="btn btn-primary" onClick="location.href='../user/loginform';">로그인</button>
+					<button type="button" class="btn btn-primary" onClick="location.href='../user/register';">회원가입</button>
+				</div>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<div class="clear: both"></div><br>
+	<div style="padding-top: 10px">
+		<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a id="home" class="nav-link" href="#"
+				onclick="menuClicked(this)">홈</a></li>
+			<li class="nav-item"><a id="funding" class="nav-link" href="#"
+				onclick="menuClicked(this)">펀딩</a></li>
+			<li class="nav-item"><a id="board" class="nav-link" href="#"
+				onclick="menuClicked(this)">게시판</a></li>
+			<li class="nav-item dropdown"><a id = "category" class="nav-link dropdown-toggle"
+				data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+				aria-expanded="false">카테고리</a> <!-- nav-link가 얘도 해제된 것 같음... -->
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#">항목1</a> <a class="dropdown-item"
+						href="#">항목2</a> <a class="dropdown-item" href="#">항목3</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">분리된 항목</a>
+				</div></li>
+		</ul>
+	</div>
+	<br />
 </div>
-<br>
-<br>
-<br>
-<div class="clear: both"></div>
-<div style="padding-top: 10px">
-	<ul class="nav nav-tabs justify-content-center">
-		<li class="nav-item"><a id="home" class="nav-link" href="#"
-			onclick="menuClicked(this)">홈</a></li>
-		<li class="nav-item"><a id="funding" class="nav-link" href="#"
-			onclick="menuClicked(this)">펀딩</a></li>
-		<li class="nav-item"><a id="board" class="nav-link" href="#"
-			onclick="menuClicked(this)">게시판</a></li>
-		<li class="nav-item dropdown"><a id = "category" class="nav-link dropdown-toggle"
-			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">카테고리</a> <!-- nav-link가 얘도 해제된 것 같음... -->
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">항목1</a> <a class="dropdown-item"
-					href="#">항목2</a> <a class="dropdown-item" href="#">항목3</a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#">분리된 항목</a>
-			</div></li>
-	</ul>
-</div>
-<br />

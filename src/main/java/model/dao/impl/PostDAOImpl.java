@@ -161,10 +161,12 @@ public class PostDAOImpl implements PostDAO {
 		jdbcUtil.setSqlAndParameters(deleteQuery, param); // JDBCUtil 에 update문과 매개변수 설정
 		
 		try {
-			result = jdbcUtil.executeUpdate(); // update 문 실행
+			result = jdbcUtil.executeUpdate();
 		} catch (Exception ex) { 
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return result;
