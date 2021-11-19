@@ -10,16 +10,19 @@
 <script>
 	$(document).ready(function() {
 		$('#summernote').summernote({lang: 'ko-KR', minHeight: 500, maxHeight: null});
-		$('#post').onSubmit = function() {
-			request.setAttribute("post_content", $('#summernote').summernote('code'));
+		function submitPost() {
+			var content = $('#summernote').summernote('code');
+			request.setAttribute("post_content", content);
 			$('#summernote').summernote('destroy');
+			alert(${post_content});
+			alert(content);
 			return true;
 		}
 	});
 </script>
 </head>
 <body>
-	<form id="post" name="post" method="post" action="<c:url value='/board/create'/>">
+	<form id="post" name="post" method="post" action="<c:url value='/board/create'/>" onSubmit="submitPost();">
 	<table id="posting" align="center">
 		<tr>
 			<td></td>

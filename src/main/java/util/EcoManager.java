@@ -8,7 +8,7 @@ public class EcoManager {
 	public static void main(String args[]) {
         String s = null;
         String word = "\"고양이\"";
-        String path = "python ./knock.py " + word;
+        String path = "python ./knock.py ";
         System.out.println(path);
         
         try {    
