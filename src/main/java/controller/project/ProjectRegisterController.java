@@ -33,7 +33,7 @@ public class ProjectRegisterController implements Controller {
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
     			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
-        				request.getParameter("category"), request.getParameterValues("hashtag"), request.getParameterValues("ecotag"), 
+        				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
         				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
     					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")));
     			ProjectManager manager = ProjectManager.getInstance();
