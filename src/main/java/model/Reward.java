@@ -7,13 +7,6 @@ public class Reward {
 	private String name;
 	private int reward_price;
 	private String reward_info;
-	
-
-	public Reward(String name, int reward_price) {
-		super();
-		this.name = name;
-		this.reward_price = reward_price;
-	}
 
 	public Reward(int reward_id, int project_id, String name, int reward_price, String reward_info) {
 		this.reward_id = reward_id;

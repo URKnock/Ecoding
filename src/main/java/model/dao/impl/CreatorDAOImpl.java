@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.DAOFactory;
 import model.dao.CreatorDAO;
 import model.service.dto.CreatorDTO;
 import model.service.dto.EcoerDTO;
@@ -15,7 +16,28 @@ public class CreatorDAOImpl implements CreatorDAO {
 	public CreatorDAOImpl() {			
 		jdbcUtil = new JDBCUtil();
 	}
-
+	
+	public int confirm(CreatorDTO creator) {
+		String sql = "SELECT is_creator FROM ecoer WHERE ecoer_id=?";      
+		try {
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {creator.getEcoerId()});
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				
+				if(count == 1)
+					return update(creator);
+				else
+					return insert(creator);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return 0;
+	}
+	
 	public int insert(CreatorDTO creator) {
 		String sql = "INSERT INTO creator VALUES (?, ?, ?, ?, ?)";
 		Object[] param = new Object[]{};
@@ -154,5 +176,4 @@ public class CreatorDAOImpl implements CreatorDAO {
 		}
 		return false;
 	}
-
 }

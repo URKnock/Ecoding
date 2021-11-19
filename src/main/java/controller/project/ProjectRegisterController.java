@@ -33,7 +33,7 @@ public class ProjectRegisterController implements Controller {
     		Project project = null; 
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
-    			project = new Project(7, request.getParameter("title"), request.getParameter("simpleInfo"), 
+    			project = new Project(0, request.getParameter("title"), request.getParameter("simpleInfo"), 
         				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
         				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
     					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")));
@@ -53,6 +53,20 @@ public class ProjectRegisterController implements Controller {
     			int projectId = Integer.parseInt(request.getParameter("projectId"));
 	    		project = new Project(projectId, request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
 	    		
+<<<<<<< HEAD
+	    		Reward reward = new Reward(0, projectId, request.getParameter("rewardName"), Integer.parseInt(request.getParameter("rewardPrice")), request.getParameter("rewardInfo"));
+	
+				ProjectManager manager = ProjectManager.getInstance();
+				manager.updateProjectForm(project);
+				manager.createReward(reward);
+				request.setAttribute("project", project);
+				request.setAttribute("reward", reward);
+				return "/project/registerProjectForm_step3.jsp";
+    		} catch (Exception e) {
+        		request.setAttribute("registerFailed", true);
+        		request.setAttribute("exception", e);
+        		request.setAttribute("project", project);
+=======
 	    		//Reward reward = new Reward(request.getParameter("reward"), Integer.parseInt(request.getParameter("rewardPrice")));
 	
 				ProjectManager manager = ProjectManager.getInstance();
@@ -63,13 +77,16 @@ public class ProjectRegisterController implements Controller {
         		request.setAttribute("exception", e);
         		request.setAttribute("project", project);
 				//request.setAttribute("reward", reward);
+>>>>>>> branch 'develop' of https://github.com/URKnock/Ecoding.git
         		return "/project/registerProjectForm_step2.jsp";
         	}      
     	}
     	else if(step.equals("step4")) {
-    		CreatorDTO creator = new CreatorDTO(request.getParameter("teamName"), request.getParameter("teamImage"), request.getParameter("teamDetail"), request.getParameter("account"));
-    		
+    		CreatorDTO creator = null;
     		try {
+    			creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
+    					request.getParameter("teamDetail"), request.getParameter("account"));
+        		
     			CreatorManager manager = CreatorManager.getInstance();
     			manager.update(creator);
     			request.setAttribute("creator", creator);

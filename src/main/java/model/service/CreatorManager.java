@@ -26,6 +26,6 @@ public class CreatorManager {
 	}
 	
 	public int update(CreatorDTO creator) {
-		return creatorDAO.update(creator);
+		return creatorDAO.confirm(creator);
 	}	
 }

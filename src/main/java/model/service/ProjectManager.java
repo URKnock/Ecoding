@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import model.DAOFactory;
 import model.Project;
+import model.Reward;
 import model.Support;
 import model.dao.*;
 import model.service.dto.CreatorDTO;
@@ -41,12 +42,12 @@ public class ProjectManager {
 		return manager;
 	}
 	
-	public int registerProject(Project project) {
+	public Project registerProject(Project project) {
 		return projectDAO.create(project);
 	}
 	
 	public int updateProjectForm(Project project) {
-		return projectDAO.create(project);
+		return projectDAO.updateProjectForm(project);
 	}
 	
 	public void supportProject(Support support) throws SQLException {
@@ -118,8 +119,8 @@ public class ProjectManager {
 		return noticeDAO.getProjectNoticeList(projectId);
 	}
 	
-	public int createReward(RewardDTO reward, int projectId) throws SQLException {
-		return rewardDAO.insertReward(reward, projectId);
+	public int createReward(Reward reward) {
+		return rewardDAO.insertReward(reward);
 	}
 	
 	public int updateReward(RewardDTO reward) throws SQLException {

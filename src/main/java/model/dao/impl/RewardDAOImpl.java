@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.JDBCUtil;
+import model.Reward;
 import model.dao.RewardDAO;
 import model.service.dto.RewardDTO;
 
@@ -84,24 +85,23 @@ public class RewardDAOImpl implements RewardDAO {
 	}
 	
 	// 리워드DTO와 프로젝트ID를 받아서 해당 프로젝트ID에 리워드 삽입
-	public int insertReward(RewardDTO reward, int projectId) throws SQLException {
-		int result = 0;
-		String insertQuery = "INSERT INTO project_notice VALUES (?, ?, ?, ?, ?)";
-		
-		Object[] param = new Object[] {
-				reward.getRewardId(), projectId, reward.getName(),
-				reward.getRewardPrice(), reward.getRewardInfo() };
-		jdbcUtil.setSqlAndParameters(insertQuery, param);
+	public int insertReward(Reward reward) {
+		String sql = "INSERT INTO REWARD VALUES(seq_reward.nextval, ?, ?, ?, ?)";
+		Object[] param = new Object[] {reward.getProject_id(), reward.getName(), reward.getReward_price(), reward.getReward_info()};
+		jdbcUtil.setSqlAndParameters(sql, param);
 		
 		try {
-			result = jdbcUtil.executeUpdate();
-		} catch  (Exception ex) {
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {
-			jdbcUtil.commit();
-			jdbcUtil.close();
 		}
-		return result;
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
 	}
 	
 	// 리워드 수정

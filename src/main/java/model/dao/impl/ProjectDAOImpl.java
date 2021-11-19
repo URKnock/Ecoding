@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Project;
+import model.Reward;
 import model.dao.ProjectDAO;
 import util.JDBCUtil;
 import model.service.dto.ProjectDTO;
@@ -16,7 +17,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		jdbcUtil = new JDBCUtil();
 	}	
 
-	public int create(Project project) {
+	public Project create(Project project) {
 		String insertQuery = "INSERT INTO PROJECT(project_id, title, simple_info, category, hashtag, ecotag, target_price, "
 				+ "current_price, start_date, end_date, payment_date, delivery_date) "
 				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?)";
@@ -26,10 +27,16 @@ public class ProjectDAOImpl implements ProjectDAO {
 				new java.sql.Date(project.getStartDate().getTime()), new java.sql.Date(project.getEndDate().getTime()), 
 				new java.sql.Date(project.getPaymentDate().getTime()), new java.sql.Date(project.getDeliveryDate().getTime())};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
-
+		
+		String key[] = {"project_id"};
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert 문 실행
-			return result;
+			jdbcUtil.executeUpdate(key); // insert 문 실행
+			ResultSet rs = jdbcUtil.getGeneratedKeys();
+			if(rs.next()) {
+		   		int generatedKey = rs.getInt(1); 
+		   		project.setProjectId(generatedKey); 
+		   	}
+		   	return project;
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -37,7 +44,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		return 0;
+		return null;
 	}
 	
 	public int updateProjectForm(Project project) {
@@ -47,8 +54,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 		Object[] param = new Object[] {project.getDetailInfo(), project.getPlanInfo(), 
 				project.getExchangeInfo(), project.getProjectId()};
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
+		
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update 문 실행
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
