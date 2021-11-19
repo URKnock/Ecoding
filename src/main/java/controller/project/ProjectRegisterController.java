@@ -13,7 +13,6 @@ import ch.qos.logback.classic.Logger;
 import controller.Controller;
 import model.Project;
 import model.Reward;
-import model.service.CreatorManager;
 import model.service.PostManager;
 import model.service.ProjectManager;
 import model.service.dto.CreatorDTO;

@@ -22,8 +22,8 @@ public class CommunityController implements Controller {
 	    	String postTitle = request.getParameter("title");
 	    	int postId = 0;
 	    	
-	    	if(request.getParameter("post_id") != null)
-	    		postId = Integer.parseInt(request.getParameter("post_id"));
+	    	if(request.getParameter("pid") != null)
+	    		postId = Integer.parseInt(request.getParameter("pid"));
 		   	try {
 		    	PostDTO dto = null;
 		    	List<ReplyDTO> list = null;

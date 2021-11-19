@@ -14,28 +14,22 @@ import model.service.dto.PostDTO;
 public class PostViewController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {    	
-    	int postId = 0;
-    	String postTitle = request.getParameter("title");
-    	
-    	if(request.getParameter("post_id") != null)
-    		postId = Integer.parseInt(request.getParameter("post_id"));
-    	
+    	int postId = 0;    	
+    	if(request.getParameter("pid") != null)
+    		postId = Integer.parseInt(request.getParameter("pid"));
+
     	try {
 	    	PostManager manager = PostManager.getInstance();
 	    	ReplyManager reply = ReplyManager.getInstance();
 	    	
 	    	PostDTO post = null;
 	    	List<ReplyDTO> list = null;
-	    	if(postId == 0 && !postTitle.isEmpty()) {
-	    		post = manager.getPostByTitle(postTitle);
-	    		list = reply.getReplyListByPost(post.getPostId());
-	    	} else {
-	    		post = manager.getPostById(postId);
-	    		list = reply.getReplyListByPost(postId);
-	    	}
+
+	    	post = manager.getPostById(postId);
+	    	list = reply.getReplyListByPost(postId);
 	
 	    	request.setAttribute("post", post);	
-	    	request.setAttribute("comment", list);	
+	    	request.setAttribute("comment", list);
 	    	
     	} catch (Exception e) {
     		request.setAttribute("exception", e);

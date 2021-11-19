@@ -9,21 +9,18 @@
 </head>
 <body>
 	<table id="post" align="center">
-		<caption>
-			<a href="">◀</a> &nbsp; 1 &nbsp; <a href="">▶</a>
-		</caption>
 		<tr>
-			<td>제목</td>
+			<td>${post.title}</td>
 			<td class="align_right">
 				<input type="button" value="수정"/>
 				<input type="button" value="삭제"/>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">게시글 정보</td>
+			<td colspan="2">${post.postDate} | 조회수 ${post.views} | 좋아요수 ${post.likes}</td>
 		</tr>
 		<tr>
-			<td colspan="2">본문<br/><br/></td>
+			<td colspan="2">${post.postContent}<br/><br/></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -42,17 +39,20 @@
 				</form>
 			</td>
 		</tr>
+		<c:forEach var="c" items="${comment}">
 		<tr>
-			<td>댓글 정보</td>
+			<td>${c.ecoerId}</td>
 			<td class="align_right">
+				${c.replyDATE}&nbsp;
 				<input type="button" value="수정"/>
 				<input type="button" value="삭제"/>
 				<input type="button" value="좋아요"/>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">댓글 본문</td>
+			<td colspan="2">${c.replyContent}</td>
 		</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>

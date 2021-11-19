@@ -37,12 +37,12 @@
 		</tr>
 		<c:forEach var="p" items="${postList}">
 			<tr>
-				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.postId}</a></td>
-				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.title}</a></td>
-				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.postDate}</a></td>
-				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.views}</a></td>
-				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.likes}</a></td>
-				<td><a href="<c:url value='/board/view?post_id=${p.postId}'/>">${p.reports}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postId}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.title}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postDate}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.views}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.likes}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.reports}</a></td>
 			</tr>
 		</c:forEach>
 	</table>

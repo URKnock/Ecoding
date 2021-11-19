@@ -1,1 +1,1 @@
-<% response.sendRedirect(request.getContextPath() + "/project/view"); %>
+<% response.sendRedirect(request.getContextPath() + "/home/main");
