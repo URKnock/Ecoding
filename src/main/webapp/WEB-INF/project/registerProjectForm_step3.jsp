@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="/WEB-INF/view/header.jsp"></c:import>
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script>

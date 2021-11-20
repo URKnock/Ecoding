@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="/WEB-INF/view/header.jsp"></c:import>
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script>
@@ -82,9 +83,5 @@
 			<button name="step" class="goNext" value="final" onClick="userCreate('<c:url value='/project/start' />')">등록하기</button>
 		</form>     
       </div>
-    </div>
-    <div class="main">
-		하단바
-	</div>
 </body>
 </html>

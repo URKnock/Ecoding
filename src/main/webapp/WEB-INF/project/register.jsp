@@ -1,74 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/projectRegister.css'/>"/>
 <script>
     function searchData() {
         alert("Enter Key로 제출\n프로젝트 조회.");
     }
 </script>
 <style>
-	a {
-		text-decoration-line: none;
-		color: inherit;
-	}
-	
-	a:hover { text-decoration: underline; }
-	
-	div {
-		border: 1px solid #87CEFA;
-        width: 100%;
-        height: 624px;
-    }
-      
-    .main {
-		height: 35px;
-	}
-      
-    div.stepList {
-      	width: 20%;
-        float: left;
-        box-sizing: border-box;
-    }
 </style>
 </head>
 <body>
-	<div class="main">
-		상단바
-		<input type="search" name="projectsearch" size="50" placeholder="다양한 프로젝트를 검색해보세요." onkeyup="if(window.event.keyCode==13){searchData();}">
-   		<span>
-			<button type="button"><img src="돋보기 그림(?)" alt="">버튼</button>
-      	</span>
-    </div>
     <div class="main">
-    	<a href="registerStart.jsp" target="_self">프로젝트 등록</a>
+    	<a href="<c:url value='/project/view' />" target="_self">프로젝트 등록</a>
     	<span class="step">Step 01</span>
     </div>
-    <div>
-      <div class="stepList">
-      	<div id="step01">
-      		Step 01
-      		<p>프로젝트 정보 작성</p>
-      	</div>
-      	<div id="step02">
-      		Step 02
-      		<p>프로젝트 상세 정보 작성</p>
-      	</div>
-      	<div id="step03">
-      		Step 03
-      		<p>프로젝트 창작자 정보 작성</p>
-      	</div>
-      	<div id="step04">
-      		Step 04
-      		<p>서약서 제출</p>
-      	</div>
-      	<div style="height: 260px;">
-      	</div>
-      	<div id="enrollProgress">
-      		진행도 <progress value="0.25"></progress>
-      	</div>
-      </div>
+	    <div class="stepList">
+	    	<div id="step01">
+	    		Step 01
+	    		<p>프로젝트 정보 작성</p>
+	    	</div>
+	    	<div id="step02">
+	    		Step 02
+	    		<p>프로젝트 상세 정보 작성</p>
+	    	</div>
+	    	<div id="step03">
+	    		Step 03
+	    		<p>프로젝트 창작자 정보 작성</p>
+	    	</div>
+	    	<div id="step04">
+	    		Step 04
+	    		<p>서약서 제출</p>
+	    	</div>
+	    	<div style="height: 150px;">
+	    	</div>
+	    	<div id="enrollProgress">
+	    		진행도 <progress value="0.25" id="pro"></progress>
+	    	</div>
+	    </div>
 </body>
 </html>

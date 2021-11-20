@@ -1,0 +1,53 @@
+@charset "UTF-8";
+a {
+	text-decoration-line: none;
+	color: inherit;
+}
+
+a:hover { text-decoration: underline; }
+
+.main {
+	height: 35px;
+	border: 1px solid #87CEFA;
+	width: 100%;
+}
+
+div.stepList {
+     	width: 20%;
+       float: left;
+       box-sizing: border-box;
+       border: 1px solid #87CEFA;
+       height: 550px;
+}
+
+div.right {
+      	width: 80%;
+        float: right;
+        box-sizing: border-box;
+        border: none;
+        overflow-y:auto; 
+        overflow-x:hidden;
+        height: 550px;
+   }
+   
+   .stepList > div {
+   	height: 80px;
+   	border-top: none;
+   	border-left: none;
+   	border-right: none;
+   	margin: -1px;
+   }
+   
+   .enrollProgress {
+   	 height: 55px;
+   	 text-align: center;
+   }
+   
+.goNext{
+	background-color: #87CEFA;
+	width: 10%;
+	height: 80px;
+	border: 0;
+	outline: 0;
+	color: white;
+}

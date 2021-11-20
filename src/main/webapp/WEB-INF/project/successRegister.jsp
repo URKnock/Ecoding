@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="/WEB-INF/view/header.jsp"></c:import>
 <meta charset="utf-8">
 <title>프로젝트 등록 완료</title>
 <style>

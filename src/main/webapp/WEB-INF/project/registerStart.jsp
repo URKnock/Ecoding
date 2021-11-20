@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="/WEB-INF/view/header.jsp"></c:import>
 <meta charset="utf-8">
 <title>프로젝트 등록 시작</title>
 <script>
@@ -53,13 +54,6 @@
 </style>
 </head>
 <body>
-	<div class="main">
-		상단바
-		<input type="search" name="projectsearch" size="50" placeholder="다양한 프로젝트를 검색해보세요." onkeyup="if(window.event.keyCode==13){searchData();}">
-   		<span>
-			<button type="button"><img src="돋보기 그림(?)" alt="">버튼</button>
-      	</span>
-    </div>
     <div class="main">
     	<a href="enrollStart.jsp" target="_self">프로젝트 등록</a>
     	> 프로젝트 등록 시작
