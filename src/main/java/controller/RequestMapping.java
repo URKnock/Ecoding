@@ -33,6 +33,7 @@ public class RequestMapping {
         mappings.put("/user/update", new UpdateUserController()); //유저 수정 컨트롤러
         mappings.put("/user/register", new RegisterUserController()); //회원가입 폼으로 이동
         
+        // 프로젝트 관련
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
     	mappings.put("/project/start", new ForwardController("/project/registerProjectForm_step1.jsp"));   
         mappings.put("/project/register/form", new ProjectRegisterController());

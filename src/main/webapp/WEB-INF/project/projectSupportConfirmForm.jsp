@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Project Support Confirm</title>
+<title>후원 확인 - ${project.title}</title>
 <style>
 	div {
 		border:1px black solid;

@@ -14,7 +14,7 @@ public class ViewProjectController implements Controller {
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
-		int projectId = (int) request.getAttribute("projectId");
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		
 		// project_id를 이용하여 project를 찾아서 project에 대입한 후 request에 저장
 		ProjectManager manager = ProjectManager.getInstance();

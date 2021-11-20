@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <!DOCTYPE html>
 
@@ -114,6 +115,19 @@
 				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
 				<div class="card-body">
 					<a href="http://naver.com" class="card-title">프로젝트 명</a>
+					<p class="card-text">상품 한줄 설명
+					<p class="card-text comment">프로젝트 달성도: n%</p>
+				</div>
+			</div>
+			
+			
+			<div class="card">
+				<img class="card-img-top"
+					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
+					alt="Card imagecap">
+				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
+				<div class="card-body">
+					<a href="<c:url value='/project/support/view?projectId=1130' />" class="card-title">프로젝트 명</a>
 					<p class="card-text">상품 한줄 설명
 					<p class="card-text comment">프로젝트 달성도: n%</p>
 				</div>

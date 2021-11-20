@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Project Support Option Form</title>
+<title>리워드 선택 - ${project.title}</title>
 <style>
 	div {
 		border:1px black solid;

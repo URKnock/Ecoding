@@ -14,5 +14,6 @@ public interface CreatorDAO {
 	public int delete(String ecoerId);
 	public CreatorDTO findCreator(String ecoerId);
 	public Creator findCreatorName(String creatorId) throws SQLException;
+	public CreatorDTO findCreatorSimpleInfo(String ecoerId) throws SQLException;
 	public boolean existingCreator(String creatorId);
 }

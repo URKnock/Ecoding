@@ -133,6 +133,25 @@ public class CreatorDAOImpl implements CreatorDAO {
 		return null;
 	}
 	
+	public CreatorDTO findCreatorSimpleInfo(String ecoerId) throws SQLException {
+		String sql = "SELECT nick_name, image FROM creator WHERE ecoer_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				CreatorDTO creator = new CreatorDTO(
+						rs.getString("nick_name"), rs.getString("image"));
+				return creator;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
 	public Creator findCreatorName(String creatorId) throws SQLException {
 //      String sql = "SELECT password";
 //      String[] cols = Creator.columns;
