@@ -14,16 +14,17 @@ import model.service.dto.ReplyDTO;
 public class CommunityController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		ReplyDTO reply = (ReplyDTO) request.getAttribute("reply");
+    	PostManager post = PostManager.getInstance();
 		ReplyManager manager = ReplyManager.getInstance();
-		PostManager post = PostManager.getInstance();
+		ReplyDTO reply = (ReplyDTO) request.getAttribute("reply");
+		
+    	int postId = 0;
+    	if(request.getParameter("pid") != null)
+    		postId = Integer.parseInt(request.getParameter("pid"));
 		
 		if(request.getMethod().equals("GET")) {
 	    	String postTitle = request.getParameter("title");
-	    	int postId = 0;
 	    	
-	    	if(request.getParameter("post_id") != null)
-	    		postId = Integer.parseInt(request.getParameter("post_id"));
 		   	try {
 		    	PostDTO dto = null;
 		    	List<ReplyDTO> list = null;
@@ -41,34 +42,44 @@ public class CommunityController implements Controller {
 		   	}
 		   	return "/board/postView.jsp";  
 		} else if(request.getMethod().equals("POST")) {
-		    try {		
-		    	manager.insert(reply);
-		    	return "redirect:/board/view";
-		    } catch (Exception e) {
-		   		request.setAttribute("replyFailed", true);
-		   		request.setAttribute("exception", e);
-		    	request.setAttribute("reply", reply);
+			String method = request.getParameter("_method").toUpperCase();
+			System.out.println(method);
+		    if(method.equals("PUT")) {
+		    	try {
+		    		manager.update(reply);
+		    		return "redirect:/board/view?pid=" + postId;
+		    	} catch (Exception e) {
+		    		request.setAttribute("replyFailed", true);
+		    		request.setAttribute("exception", e);
+		    		request.setAttribute("reply", reply);
+		    	} 
+		    } else if(method.equals("DELETE")) {
+		    	try {
+		        	int replyId = 0;
+		        	if(request.getParameter("rid") != null)
+		        		replyId = Integer.parseInt(request.getParameter("rid"));
+		    		manager.delete(replyId);
+		    		return "redirect:/board/view?pid=" + postId;
+		    	} catch (Exception e) {
+		    		request.setAttribute("replyFailed", true);
+		    		request.setAttribute("exception", e);
+		    		request.setAttribute("reply", reply);
+		    	} 
+		    } else {
+			    try {
+			    	reply = new ReplyDTO();
+			    	reply.setPostId(postId);
+			    	reply.setReplyContent(request.getParameter("reply_content"));
+			    	reply.setEcoerId("test");
+			    	manager.insert(reply);
+			    	return "redirect:/board/view?pid=" + postId;
+			    } catch (Exception e) {
+			   		request.setAttribute("replyFailed", true);
+			   		request.setAttribute("exception", e);
+			    	request.setAttribute("reply", reply);
+			    }
 		    }
-		} else if(request.getMethod().equals("PUT")) {
-	    	try {
-	    		manager.update(reply);
-	    		return "redirect:/board/view";
-	    	} catch (Exception e) {
-	    		request.setAttribute("replyFailed", true);
-	    		request.setAttribute("exception", e);
-	    		request.setAttribute("reply", reply);
-	    	} 
-		} else if(request.getMethod().equals("DELETE")) {
-	    	try {
-	    		manager.delete(reply.getReplyId());
-	    		return "redirect:/board/view";
-	    	} catch (Exception e) {
-	    		request.setAttribute("replyFailed", true);
-	    		request.setAttribute("exception", e);
-	    		request.setAttribute("reply", reply);
-	    	}  
 		}
-		
 		return "/board/postList.jsp";
     }
 }

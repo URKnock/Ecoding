@@ -6,32 +6,40 @@ package util;
 import java.sql.*;
 
 public class JDBCUtil {
-	private static ConnectionManager connMan = new ConnectionManager();
-	private String sql = null; // 실행할 query
-	private Object[] parameters = null;; // PreparedStatement 의 매개변수 값을 저장하는 배열
+	private static ConnectionManager connMan = new ConnectionManager();  
+	private String sql = null; 				// 실행할 query
+	private Object[] parameters = null;; 	// PreparedStatement 의 매개변수 값을 저장하는 배열
 	private static Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private CallableStatement cstmt = null;
 	private ResultSet rs = null;
-	private int resultSetType = ResultSet.TYPE_FORWARD_ONLY, resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
+	private int resultSetType = ResultSet.TYPE_FORWARD_ONLY,
+				resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
 
 	// 기본 생성자
-	public JDBCUtil() {
+	public JDBCUtil() {	}
+
+	// 매개변수 없는 query를 전달받아 query를 설정하는 생성자
+	public JDBCUtil(String sql) {
+		this.setSql(sql);		
 	}
 
-	/*
-	 * // 매개변수 없는 query를 전달받아 query를 설정하는 생성자 public JDBCUtil(String sql) {
-	 * this.setSql(sql); }
-	 * 
-	 * // 매개변수의 배열과 함께 query를 전달받아 각각을 설정하는 생성자 public JDBCUtil(String sql, Object[]
-	 * parameters) { this.setSql(sql); this.setParameters(parameters); }
-	 * 
-	 * // sql 변수 setter public void setSql(String sql) { this.sql = sql; }
-	 * 
-	 * // Object[] 변수 setter public void setParameters(Object[] parameters) {
-	 * this.parameters = parameters; }
-	 */
+	// 매개변수의 배열과 함께 query를 전달받아 각각을 설정하는 생성자
+	public JDBCUtil(String sql, Object[] parameters) {
+		this.setSql(sql);
+		this.setParameters(parameters);
+	}
+	
+	// sql 변수 setter
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
 
+	// Object[] 변수 setter
+	public void setParameters(Object[] parameters) {
+		this.parameters = parameters;
+	}
+	
 	// sql 변수 getter
 	public String getSql() {
 		return this.sql;
@@ -56,7 +64,7 @@ public class JDBCUtil {
 		this.resultSetType = ResultSet.TYPE_FORWARD_ONLY;
 		this.resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
 	}
-
+	
 	// sql 및 Object[], resultSetType, resultSetConcurrency 변수 setter
 	public void setSqlAndParameters(String sql, Object[] parameters, int resultSetType, int resultSetConcurrency) {
 		this.sql = sql;
@@ -65,20 +73,19 @@ public class JDBCUtil {
 		this.resultSetConcurrency = resultSetConcurrency;
 	}
 
-	// 현재의 PreparedStatement를 반환
+	// 현재의  PreparedStatement를 반환
 	private PreparedStatement getPreparedStatement() throws SQLException {
 		if (conn == null) {
 			conn = connMan.getConnection();
 			conn.setAutoCommit(false);
 		}
-		if (pstmt != null)
-			pstmt.close();
+		if (pstmt != null) pstmt.close();
 		pstmt = conn.prepareStatement(sql, resultSetType, resultSetConcurrency);
 		// JDBCUtil.printDataSourceStats(ds);
 		return pstmt;
 	}
 
-	// JDBCUtil의 쿼리와 매개변수를 이용해 executeQuery를 수행하는 메소드
+	// JDBCUtil의 쿼리와 매개변수를 이용해  executeQuery를 수행하는 메소드
 	public ResultSet executeQuery() {
 		try {
 			pstmt = getPreparedStatement();
@@ -107,19 +114,18 @@ public class JDBCUtil {
 		return pstmt.executeUpdate();
 	}
 
-	// 현재의 CallableStatement를 반환
+	// 현재의  CallableStatement를 반환
 	private CallableStatement getCallableStatement() throws SQLException {
 		if (conn == null) {
 			conn = connMan.getConnection();
 			conn.setAutoCommit(false);
 		}
-		if (cstmt != null)
-			cstmt.close();
+		if (cstmt != null) cstmt.close();
 		cstmt = conn.prepareCall(sql);
 		return cstmt;
 	}
 
-	// JDBCUtil의 쿼리와 매개변수를 이용해 CallableStatement의 execute를 수행하는 메소드
+	// JDBCUtil의 쿼리와 매개변수를 이용해  CallableStatement의  execute를 수행하는 메소드
 	public boolean execute(JDBCUtil source) throws SQLException, Exception {
 		cstmt = getCallableStatement();
 		for (int i = 0; i < source.getParameterSize(); i++) {
@@ -127,7 +133,7 @@ public class JDBCUtil {
 		}
 		return cstmt.execute();
 	}
-
+	
 	// PK 컬럼 이름 배열을 이용하여 PreparedStatement를 생성 (INSERT문에서 Sequence를 통해 PK 값을 생성하는 경우)
 	private PreparedStatement getPreparedStatement(String[] columnNames) throws SQLException {
 		if (conn == null) {
@@ -163,7 +169,7 @@ public class JDBCUtil {
 		}
 		return null;
 	}
-
+		
 	// 자원 반환
 	public void close() {
 		if (rs != null) {

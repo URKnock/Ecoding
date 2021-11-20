@@ -35,22 +35,16 @@
 			<td>댓글수</td>
 			<td>좋아요</td>
 		</tr>
-		<tr>
-			<td><a href="<c:url value='postView.jsp'/>">글글글</a></td>
-			<td><a href="<c:url value='postView.jsp'/>">글글글</a></td>		
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>	
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>											
-		</tr>
-		<tr>
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>		
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>	
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>
-			<td><a href="<c:url value='post.jsp'/>">글글글</a></td>		
-		</tr>
+		<c:forEach var="p" items="${postList}">
+			<tr>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postId}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.title}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postDate}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.views}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.likes}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.reports}</a></td>
+			</tr>
+		</c:forEach>
 	</table>
 	</div>
 </body>

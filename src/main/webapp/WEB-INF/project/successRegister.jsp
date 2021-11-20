@@ -1,28 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>га╥на╖ф╝ ╣Н╥о ©о╥А</title>
-<script>
-    function searchData() {
-        alert("Enter Key╥н а╕цБ\nга╥на╖ф╝ а╤х╦.");
-    }
-</script>
+<meta charset="utf-8">
+<title>М■└К║°Л═²М┼╦ К⌠╠К║² Л≥└Кё▄</title>
 <style>
-	a {
-		text-decoration-line: none;
-		color: inherit;
-	}
-	
-	a:hover { text-decoration: underline; }
-	
-	.contents { 
-		padding: 13% 0%;
-		text-align: center;
-	}
-	
 	div {
 		border: 1px solid #87CEFA;
 	}
@@ -47,26 +30,16 @@
 </style>
 </head>
 <body>
-	<div class="main">
-		╩С╢э╧ы
-		<input type="search" name="projectsearch" size="50" placeholder="╢ы╬Ггя га╥на╖ф╝╦╕ ╟к╩Жгь╨╦╪╪©Д." onkeyup="if(window.event.keyCode==13){searchData();}">
-   		<span>
-			<button type="button"><img src="╣╦╨╦╠Б ╠в╦╡(?)" alt="">╧Жф╟</button>
-      	</span>
-    </div>
-    <div class="main">
-    	<a href="enrollStart.jsp" target="_self">га╥на╖ф╝ ╣Н╥о</a>
-    	> га╥на╖ф╝ ╣Н╥о ©о╥А
-    </div>
+	<c:import url="/WEB-INF/view/header.jsp"></c:import>
     <div class="contents">
-    	<p>цЮгогу╢о╢ы. ╫ец╩го╫е га╥на╖ф╝╟║ ╧╚╩ГхВ ╣Н╥о╣г╬З╫ю╢о╢ы!</p>
-		<p>╫и╩Г ╟За╓ю╩ ╟ецд ╟Э╦╝юз╟║ га╥на╖ф╝╦╕ ╫бюнго╦И а╓╫д га╥на╖ф╝╥н юЭх╞╣к╢о╢ы.</p>
+    	<p>Л╤∙М∙≤М∙╘К▀┬К▀╓. Л▀═Л╡╜М∙≤Л▀═ М■└К║°Л═²М┼╦Й╟─ К╛╢Л┌╛М·┬ К⌠╠К║²К░≤Л≈┬Л┼╣К▀┬К▀╓!</p>
+		<p>Л▀╛Л┌╛ ЙЁ╪Л═∙Л²└ Й╠╟ЛЁ░ Й╢─К╕╛Л·░Й╟─ М■└К║°Л═²М┼╦К╔╪ Л┼╧Л²╦М∙≤К╘╢ Л═∙Л▀² М■└К║°Л═²М┼╦К║° Л═└М≥≤К░╘К▀┬К▀╓.</p>
     </div>
     <div class="goList">
-    	<button onclick="location='home.jsp'">©о╪╨╣х га╥на╖ф╝ ╣я╥╞╨╦╠Б</button>
+    	<button onclick="location.href='<c:url value='/home/list' />'">Л≥└Л└╠К░° М■└К║°Л═²М┼╦ К▒≤К÷╛КЁ╢Й╦╟</button>
     </div>
     <div class="main">
-		го╢э╧ы
+		М∙≤К▀╗К╟■
 	</div>
 </body>
 </html>

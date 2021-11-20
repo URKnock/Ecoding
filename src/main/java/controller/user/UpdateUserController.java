@@ -39,24 +39,27 @@ public class UpdateUserController implements Controller {
 			// else (���� �Ұ����� ���) ����� ���� ȭ������ ���� �޼����� ����
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", 
-					new IllegalStateException("Ÿ���� ������ ������ �� �����ϴ�."));            
+					new IllegalStateException("정보를 수정할 수 없습니다."));            
 			return "/user/userView.jsp";	// ����� ���� ȭ������ �̵� (forwarding)
 	    }	
     	
     	// POST request (ȸ�������� parameter�� ���۵�)
-    	EcoerDTO updateEcoer = new EcoerDTO(
-    			request.getParameter("ecoerId"),
-    			request.getParameter("name"),
-    			request.getParameter("address"),
-    			request.getParameter("phone"),
-    			request.getParameter("email"),
-    			request.getParameter("password"),
-    			Boolean.parseBoolean(request.getParameter("isCreator")));
+       	EcoerDTO updateEcoer = new EcoerDTO(
+			request.getParameter("ecoerId"),
+			request.getParameter("password"),
+			request.getParameter("name"),
+			request.getParameter("code"),
+			request.getParameter("address"),
+			request.getParameter("detailAddress"),
+			request.getParameter("phone"),
+			request.getParameter("email"),
+			Boolean.parseBoolean(request.getParameter("isCreator"))
+			);
 
     	log.debug("Update Ecoer : {}", updateEcoer);
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateEcoer);			
-        return "redirect:/user/list";	//list 안 쓸 것 같다.		
+        return "/user/userView.jsp";		
     }
 }

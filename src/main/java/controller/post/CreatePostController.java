@@ -10,20 +10,29 @@ import model.service.dto.PostDTO;
 public class CreatePostController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-    	PostDTO post = (PostDTO) request.getAttribute("post");
-    	//for(int i = 0; i < PostDTO.cols; i++) {
-    	//	post.setWithIndex(i, request.getParameter(PostDTO.columns[i]));
-    	//}
-    	
+    	PostDTO post = new PostDTO();
+    	PostManager manager = PostManager.getInstance();
     	try {
-    		PostManager manager = PostManager.getInstance();
-    		manager.insert(post);
-    		return "redirect:/board/view";
+        	for(int i = 0; i < PostDTO.cols; i++) {
+        		String req = request.getParameter(PostDTO.columns[i]);
+        		if(i == 0)
+        			post.setWithIndex(i, 0);
+        		else if(i == 8)
+        			post.setWithIndex(i, "test");	//session.user로 바꿀 것
+        		else if(i == 9)
+        			post.setWithIndex(i, Integer.parseInt(req));
+        		else
+        			post.setWithIndex(i, req);
+        		
+        	}
+    		int pid = manager.insert(post);   		
+    		return "redirect:/board/view?pid=" + pid;
     	} catch (Exception e) {
     		request.setAttribute("postFailed", true);
     		request.setAttribute("exception", e);
     		request.setAttribute("post", post);
+    		e.printStackTrace();
     		return "/board/postForm.jsp";
-    	}      
+    	}
     }
 }

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <script>
     function projectCreate(targetUri) {
@@ -55,42 +55,45 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			<h3>Q1. га╥на╖ф╝ а╕╦Яю╩ ют╥бгьаж╪╪©Д.</h3>
-			<input type="text" name="projectName">
-			<h3>Q2. га╥на╖ф╝ ╢Кг╔ юл╧лаЖ╦╕ ц╥╨нгьаж╪╪©Д.</h3>
+			<h3>Q1. М■└К║°Л═²М┼╦ Л═°К╙╘Л²└ Л·┘К═╔М∙╢Лё╪Л└╦Л ■.</h3>
+			<input type="text" name="title">
+			<h3>Q2. М■└К║°Л═²М┼╦ К▄─М▒° Л²╢К╞╦Л╖─К╔╪ Л╡╗К╤─М∙╢Лё╪Л└╦Л ■.</h3>
 			<input type="file" name="thumbnailImage">
-			<h3>Q3. ╟ё╢эгя га╥на╖ф╝ ╪Ё╦Мю╩ юш╪╨гьаж╪╪©Д.</h3>
-			<input type="text" name="projectBrief">
-			<h3>Q4. га╥на╖ф╝ д╚ев╟М╦╝╦╕ ╪╠ецгьаж╪╪©Д.</h3>
-			<input type="radio" name="category" value="1">1╧Ь д╚ев╟М╦╝
-			<input type="radio" name="category" value="2">2╧Ь д╚ев╟М╦╝
-			<input type="radio" name="category" value="3">3╧Ь д╚ев╟М╦╝
-			<input type="radio" name="category" value="4">4╧Ь д╚ев╟М╦╝
-			<h3>Q5. га╥на╖ф╝©м ╟Э╥ц╣х гь╫цеб╠в╦╕ ют╥бгьаж╪╪©Д.</h3>
+			<h3>Q3. Й╟└К▀╗М∙° М■└К║°Л═²М┼╦ Л└╓К╙┘Л²└ Л·▒Л└╠М∙╢Лё╪Л└╦Л ■.</h3>
+			<input type="text" name="simpleInfo">
+			<h3>Q4. М■└К║°Л═²М┼╦ Л╧╢М┘▄ЙЁ═К╕╛К╔╪ Л└═М┐²М∙╢Лё╪Л└╦Л ■.</h3>
+			<input type="radio" name="category" value="Л▀²М▓┬">Л▀²М▓┬
+			<input type="radio" name="category" value="М▄╗Л┘≤">М▄╗Л┘≤
+			<input type="radio" name="category" value="Л┐²М≥°">Л┐²М≥°
+			<input type="radio" name="category" value="Й╠╢Й╟∙">Й╠╢Й╟∙
+			<input type="radio" name="category" value="К╛╦Й╣╛">К╛╦Й╣╛
+			<input type="radio" name="category" value="Л²╦М┘▄К╕╛Л√╢">Л²╦М┘▄К╕╛Л√╢
+			<input type="radio" name="category" value="К╟≤К═╓К▐≥К╛╪">К╟≤К═╓К▐≥К╛╪
+			<input type="radio" name="category" value="К╞╦Л ╘">К╞╦Л ╘
+			<input type="radio" name="category" value="Л▀²К╛╪">Л▀²К╛╪
+			<input type="radio" name="category" value="К▐└Л└°">К▐└Л└°
+			<input type="radio" name="category" value="К▐└Л└°">М┘▄М│╛
+			<h3>Q5. М■└К║°Л═²М┼╦Л≥─ Й╢─К═╗К░° М∙╢Л▀°М┐°Й╥╦К╔╪ Л·┘К═╔М∙╢Лё╪Л└╦Л ■.</h3>
 			<input type="text" name="hashtag">
-			<h3>Q6. х╞╟Ф╟З ╟Э╥ц╣х еб╠в╦╕ ╦П╣н ц╪е╘гьаж╪╪©Д.</h3>
-			<input type="checkbox" name="ecotag" value="1">1╧Ь еб╠в
-			<input type="checkbox" name="ecotag" value="2">2╧Ь еб╠в
-			<input type="checkbox" name="ecotag" value="3">3╧Ь еб╠в
-			<input type="checkbox" name="ecotag" value="4">4╧Ь еб╠в
-			<h3>Q7. га╥на╖ф╝ ╦Яг╔ ╠щ╬вю╩ юш╪╨гьаж╪╪©Д.</h3>
+			<h3>Q6. М≥≤Й╡╫ЙЁ╪ Й╢─К═╗К░° М┐°Й╥╦К╔╪ Л╡╢М│╛М∙╢Лё╪Л└╦Л ■.</h3>
+			<input type="radio" name="ecotag" value="К╧└Й╠╢">К╧└Й╠╢
+			<input type="radio" name="ecotag" value="Л╧°М≥≤Й╡╫">Л╧°М≥≤Й╡╫
+			<input type="radio" name="ecotag" value="Л·╛М≥°Л ╘">Л·╛М≥°Л ╘
+			<h3>Q7. М■└К║°Л═²М┼╦ К╙╘М▒° Й╦┬Л∙║Л²└ Л·▒Л└╠М∙╢Лё╪Л└╦Л ■.</h3>
 			<input type="text" name="targetAmount">
-			<h3>Q8. га╥на╖ф╝ ╠Б╟ёю╩ ╪Ёа╓гьаж╪╪©Д.</h3>
-			╫цюшюо ╪Ёа╓: <input type="date" name="startDate">
-			╦╤╟╗юо ╪Ёа╓: <input type="date" name="endDate">
+			<h3>Q8. М■└К║°Л═²М┼╦ Й╦╟Й╟└Л²└ Л└╓Л═∙М∙╢Лё╪Л└╦Л ■.</h3>
+			Л▀°Л·▒Л²╪ Л└╓Л═∙: <input type="date" name="startDate">
+			К╖┬Й╟░Л²╪ Л└╓Л═∙: <input type="date" name="endDate">
 			<p></p>
-			╫цюш ╫ц╟ё ╪Ёа╓: <input type="time" name="startTime">
-			╦╤╟╗ ╫ц╟ё ╪Ёа╓: <input type="time" name="endTime">
-			<p></p>
-			╟Аа╕юо ╪Ёа╓: <input type="date" name="payDate">
-			╧Х╪ш ╫цюшюо ╪Ёа╓: <input type="date" name="deliveryDate">
+			Й╡╟Л═°Л²╪ Л└╓Л═∙: <input type="date" name="payDate">
+			К╟╟Л├║ Л▀°Л·▒Л²╪ Л└╓Л═∙: <input type="date" name="deliveryDate">
 			<p></p>
 			<button name="step" class="goNext" value="step2">Step 02</button>
 		</form>
       </div>
     </div>
     <div class="main">
-		го╢э╧ы
+		М∙≤К▀╗К╟■
 	</div>
 </body>
 </html>

@@ -38,7 +38,6 @@
 }
 #posting {
 	width: 80%;
-	text-align: right;
 }
 
 form[name=search_post] {

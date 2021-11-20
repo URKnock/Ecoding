@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../view/header.jsp"%>
 
@@ -38,12 +38,12 @@ function userModify() {
 		form.email.focus();
 		return false;
 	}
-	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	if(phoneExp.test(form.phone.value)==false) {
-		alert("전화번호 형식이 올바르지 않습니다.");
-		form.phone.focus();
-		return false;
-	}
+	//var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	//if(phoneExp.test(form.phone.value)==false) {
+	//	alert("전화번호 형식이 올바르지 않습니다.");
+	//	form.phone.focus();
+	//	return false;
+	//}
 	form.submit();
 }
 </script>
@@ -55,7 +55,7 @@ function userModify() {
 		<br>
 		<!-- Update Form  -->
 		<form name="form" method="POST"
-			action="<c:url value='/user/update' />">
+			action="<c:url value='../user/update' />">
 			<input type="hidden" name="ecoerId" value="${ecoer.ecoerId}" />
 			<div class="form-group row">
 				<label class="col-lg-2 col-form-label">사용자 ID</label>
@@ -93,10 +93,24 @@ function userModify() {
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="code" class="col-lg-2 col-form-label">우편번호</label>
+				<div class="col-lg-10">
+					<input type="text" name="code" class="form-control"
+						value="${ecoer.code}">
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="address" class="col-lg-2 col-form-label">주소</label>
 				<div class="col-lg-10">
 					<input type="text" name="address" class="form-control"
 						value="${ecoer.address}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="detailAddress" class="col-lg-2 col-form-label">상세주소</label>
+				<div class="col-lg-10">
+					<input type="text" name="detailAddress" class="form-control"
+						value="${ecoer.detailAddress}">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -111,7 +125,9 @@ function userModify() {
 			<div class="form-group">
 				<input type="button" class="btn btn-primary" value="수정"
 					onClick="userModify()"> <a
-					href="<c:url value='/user/view'/>" class="btn btn-link">사용자 목록
+					href="<c:url value='../user/view'>
+					   <c:param name='ecoerId' value='${ecoerId}'/>
+			 		 </c:url>" class="btn btn-link">돌아가기
 				</a>
 			</div>
 		</form>

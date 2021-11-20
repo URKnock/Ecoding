@@ -2,7 +2,7 @@ package model.service.dto;
 
 public class CreatorDTO extends EcoerDTO {
 	
-	private String ecoderId, nickName, image, creatorInfo, account;
+	private String ecoerId, nickName, image, creatorInfo, account;
 	public static String[] columns = { "ecoer_id", "nick_name", "image", "creator_info", "account" };
 	public static int cols = columns.length;
 	
@@ -10,13 +10,23 @@ public class CreatorDTO extends EcoerDTO {
 		
 	}
 
-	public CreatorDTO(String ecoderId, String nickName, String image, String creatorInfo, String account) {
-		this.ecoderId = ecoderId;
+	
+	public CreatorDTO(String ecoerId, String nickName, String creatorInfo, String account) {
+		super();
+		this.ecoerId = ecoerId;
+		this.nickName = nickName;
+		this.creatorInfo = creatorInfo;
+		this.account = account;
+	}
+	
+	public CreatorDTO(String ecoerId, String nickName, String image, String creatorInfo, String account) {
+		this.ecoerId = ecoerId;
 		this.nickName = nickName;
 		this.image = image;
 		this.creatorInfo = creatorInfo;
 		this.account = account;
 	}
+
 
 	public Object getWithIndex(int index) {
 		switch(index) {
@@ -73,12 +83,12 @@ public class CreatorDTO extends EcoerDTO {
 		}
 	}
 	
-	public String getEcoderId() {
-		return ecoderId;
+	public String getEcoerId() {
+		return ecoerId;
 	}
 
-	public void setEcoderId(String ecoderId) {
-		this.ecoderId = ecoderId;
+	public void setEcoerId(String ecoerId) {
+		this.ecoerId = ecoerId;
 	}
 
 	public String getNickName() {

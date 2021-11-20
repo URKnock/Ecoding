@@ -1,52 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script>
-    function projectCreate(targetUri) {
-    	form.action = targetUri; 
-    	form.submit();
-    }
-</script>
-<style>      
-    div.right {
-      	width: 80%;
-        float: right;
-        box-sizing: border-box;
-        border: none;
-        overflow-y:auto; 
-        overflow-x:hidden;
-    }
-    
-    .stepList > div {
-    	height: 80px;
-    	border-top: none;
-    	border-left: none;
-    	border-right: none;
-    	margin: -1px;
-    }
-    
-    #step02 {
-    	background-color: #87CEFA;
-    }
-    
-    .enrollProgress {
-    	 height: 55px;
-    	 text-align: center;
-    }
-    
-    .goNext{
-		background-color: #87CEFA;
-		width: 10%;
-		height: 80px;
-		border: 0;
-		outline: 0;
-		color: white;
-	}
-</style>
+	<meta charset="utf-8">
+	<title>Insert title here</title>
+	<script>
+	    function projectCreate(targetUri) {
+	    	form.action = targetUri; 
+	    	form.submit();
+	    }
+	</script>
+	<style>      
+	    div.right {
+	      	width: 80%;
+	        float: right;
+	        box-sizing: border-box;
+	        border: none;
+	        overflow-y:auto; 
+	        overflow-x:hidden;
+	    }
+	    
+	    .stepList > div {
+	    	height: 80px;
+	    	border-top: none;
+	    	border-left: none;
+	    	border-right: none;
+	    	margin: -1px;
+	    }
+	    
+	    #step02 {
+	    	background-color: #87CEFA;
+	    }
+	    
+	    .enrollProgress {
+	    	 height: 55px;
+	    	 text-align: center;
+	    }
+	    
+	    .goNext{
+			background-color: #87CEFA;
+			width: 10%;
+			height: 80px;
+			border: 0;
+			outline: 0;
+			color: white;
+		}
+	</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/project/register.jsp">
@@ -54,21 +55,20 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			<h3>Q1. ÇÁ·ÎÁ§Æ® ´ëÇ¥ ¿µ»óÀ» Ã·ºÎÇØÁÖ¼¼¿ä.</h3>
+      		<input type="hidden" name="projectId" value="${project.projectId}"/>
+			<h3>Q1. í”„ë¡œì íŠ¸ ëŒ€í‘œ ì˜ìƒì„ ì²¨ë¶€í•´ì£¼ì„¸ìš”.</h3>
 			<input type="file" name="thumbnailVideo">
-			<h3>Q2. »ó¼¼ÇÑ ÇÁ·ÎÁ§Æ® ¼³¸íÀ» ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
-			<textarea rows="15" cols="100"></textarea>
-			<h3>Q3. ¸®¿öµå Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.</h3>
-			<input type="text" name="reward" placeholder="¸®¿öµå Á¤º¸">
-			<input type="text" name="rewardPrice" placeholder="±İ¾× ¹üÀ§">
-			<p></p>
-			<input type="text" name="reward" placeholder="¸®¿öµå Á¤º¸">
-			<input type="text" name="rewardPrice" placeholder="±İ¾× ¹üÀ§">
-			<h3>Q4. ¿¹»ê »ç¿ë ¹× ÀÏÁ¤ °èÈ¹À» ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
-			<textarea rows="15" cols="100"></textarea>
-			<h3>Q5. ±³È¯ ¹× È¯ºÒ ¾È³» »çÇ×À» ÀÛ¼ºÇØÁÖ¼¼¿ä.</h3>
-			<textarea rows="15" cols="100"></textarea>
-			<h3>Q6. ÇÁ·ÎÁ§Æ®¿Í °ü·ÃµÈ °¢Á¾ ÀÎÁõ Á¤º¸ ¹× ±âÅ¸ ¼­·ù¸¦ Ã·ºÎÇØÁÖ¼¼¿ä.</h3>
+			<h3>Q2. ìƒì„¸í•œ í”„ë¡œì íŠ¸ ì„¤ëª…ì„ ì‘ì„±í•´ì£¼ì„¸ìš”.</h3>
+			<textarea rows="15" cols="100" name="detailInfo"></textarea>
+			<h3>Q3. ë¦¬ì›Œë“œ ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.</h3>
+			<input type="text" name="rewardName" placeholder="ë¦¬ì›Œë“œ ì´ë¦„">
+			<input type="text" name="rewardPrice" placeholder="ê¸ˆì•¡ ë²”ìœ„">
+			<input type="text" name="rewardInfo" placeholder="ë¦¬ì›Œë“œ ì •ë³´">
+			<h3>Q4. ì˜ˆì‚° ì‚¬ìš© ë° ì¼ì • ê³„íšì„ ì‘ì„±í•´ì£¼ì„¸ìš”.</h3>
+			<textarea rows="15" cols="100" name="planInfo"></textarea>
+			<h3>Q5. êµí™˜ ë° í™˜ë¶ˆ ì•ˆë‚´ ì‚¬í•­ì„ ì‘ì„±í•´ì£¼ì„¸ìš”.</h3>
+			<textarea rows="15" cols="100" name="exchangeInfo"></textarea>
+			<h3>Q6. í”„ë¡œì íŠ¸ì™€ ê´€ë ¨ëœ ê°ì¢… ì¸ì¦ ì •ë³´ ë° ê¸°íƒ€ ì„œë¥˜ë¥¼ ì²¨ë¶€í•´ì£¼ì„¸ìš”.</h3>
 			<input type="file" name="projectFile">
 			<p></p>
 			<button name="step" class="goNext" value="step1">Step 01</button>
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="main">
-		ÇÏ´Ü¹Ù
+		í•˜ë‹¨ë°”
 	</div>
 </body>
 </html>

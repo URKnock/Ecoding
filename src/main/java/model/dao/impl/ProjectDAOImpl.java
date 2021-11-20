@@ -6,43 +6,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Project;
-import model.dao.JDBCUtil;
+import model.Reward;
 import model.dao.ProjectDAO;
+import util.JDBCUtil;
+import model.service.dto.ProjectDTO;
 
 public class ProjectDAOImpl implements ProjectDAO {
 	private JDBCUtil jdbcUtil = null;
-	public ProjectDAOImpl() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
-	}
+	public ProjectDAOImpl() {
+		jdbcUtil = new JDBCUtil();
+	}	
+
+	public Project create(Project project) {
+		String insertQuery = "INSERT INTO PROJECT(project_id, title, simple_info, category, hashtag, ecotag, target_price, "
+				+ "current_price, start_date, end_date, payment_date, delivery_date) "
+				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?)";
 		
-	//비워도 되는 필드는 null 째로 insert
-	//외래키는 어떻게 가져오나? ==> 다른 객체도 같이 매개변수로 받는지?
-	public int create(Project project) throws SQLException {
-		String sql = "INSERT INTO PROJECT VALUES (?, ?, ?, ?, ?"
-				+ "?, ?, ?, ?, ?, ?"
-				+ "?, ?, ?, ?, ?, ?"
-				+ "?, ?, ?)"; //20개의 컬럼
-		Object[] param = new Object[] {};
-		for(int i = 0; i < Project.cols; i++) { //0번부터 일괄 삽입
-			param[i] = project.getWithIndex(i); 
-		}		
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
-						
+		Object[] param = new Object[] {project.getTitle(), project.getSimpleInfo(), project.getCategory(), 
+				project.getHashTag(), project.getEcoTag(), project.getTargetPrice(), 
+				new java.sql.Date(project.getStartDate().getTime()), new java.sql.Date(project.getEndDate().getTime()), 
+				new java.sql.Date(project.getPaymentDate().getTime()), new java.sql.Date(project.getDeliveryDate().getTime())};
+		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
+		
+		String key[] = {"project_id"};
+		try {
+			jdbcUtil.executeUpdate(key); // insert 문 실행
+			ResultSet rs = jdbcUtil.getGeneratedKeys();
+			if(rs.next()) {
+		   		int generatedKey = rs.getInt(1); 
+		   		project.setProjectId(generatedKey); 
+		   	}
+		   	return project;
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public int updateProjectForm(Project project) {
+		String sql = "UPDATE PROJECT "
+					+ "SET detail_info = ?, plan_info = ?, exchange_info =? "
+					+ "WHERE project_id=?";
+		Object[] param = new Object[] {project.getDetailInfo(), project.getPlanInfo(), 
+				project.getExchangeInfo(), project.getProjectId()};
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
+		
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {		
+		}
+		finally {
 			jdbcUtil.commit();
 			jdbcUtil.close();	// resource 반환
 		}		
-		return 0;			
+		return 0;
 	}
 
 	// 기존의 프로젝트 정보를 수정.
-	public int update(Project project) throws SQLException {
+	public int update(Project project) {
 		String sql = "UPDATE PROJECT "
 					+ "SET title=?"; //2번
 		for(int i = 3; i < Project.cols; i++) { //0번(PK), 1번(FK), 2번(title) 제외
@@ -55,7 +83,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		param[Project.cols + 1] = project.getProjectId();
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
-			
+
 		try {				
 			int result = jdbcUtil.executeUpdate();	// update 문 실행
 			return result;
@@ -127,7 +155,7 @@ public class ProjectDAOImpl implements ProjectDAO {
         sql += " FROM PROJECT ";
         sql += "ORDER BY project_id"; //등록 순으로 정렬? id 순으로 정렬?
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
-					
+
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
 			List<Project> projectList = new ArrayList<Project>();	// Project들의 리스트 생성
@@ -139,7 +167,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 				projectList.add(project);				// List에 Project 객체 저장
 			}		
 			return projectList;					
-			
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -147,7 +175,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		return null;
 	}
-	
+
 	//전체 프로젝트 정보를 검색한 후 현재 페이지와 페이지당 출력할 사용자 수를 이용하여, 해당하는 프로젝트만을 List에 저장하여 반환.
 	public List<Project> findProjectList(int currentPage, int countPerPage) throws SQLException {
         String sql = "SELECT project_id";
@@ -160,7 +188,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
 				ResultSet.CONCUR_READ_ONLY);						
-		
+
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();				// query 실행			
 			int start = ((currentPage-1) * countPerPage) + 1;	// 출력을 시작할 행 번호 계산
@@ -194,7 +222,7 @@ public class ProjectDAOImpl implements ProjectDAO {
         sql += " FROM PROJECT ";
         sql += "WHERE category LIKE ?"; //like로 검색?            
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + categoryName + "%"});
-		 
+
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			List<Project> projectList = new ArrayList<Project>();	// Project들의 리스트 생성
@@ -206,7 +234,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 				projectList.add(project);				// List에 Project 객체 저장
 			}		
 			return projectList;					
-				
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -220,7 +248,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		String sql = "SELECT COUNT(project_id) FROM PROJECT "
      				+ "WHERE category LIKE ?"; //like로 검색?              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + categoryName + "%"});
-		
+
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			rs.next();										
@@ -232,7 +260,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		return 0;
 	}
-	
+
 	//주어진 프로젝트 ID에 해당하는 프로젝트가 존재하는지 검사 
 	public boolean existingProject(String projectId) throws SQLException {
 		String sql = "SELECT count(project_id) FROM PROJECT WHERE project_id=?";      

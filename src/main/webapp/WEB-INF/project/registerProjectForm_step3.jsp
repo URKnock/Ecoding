@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <script>
     function projectCreate(targetUri) {
@@ -54,13 +54,16 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			<h3>Q1. â����(��) �̸��� �Է����ּ���.</h3>
+      		<input type="hidden" name="projectId" value="${project.projectId}"/>
+      		<h3>아이디를 입력해주세요</h3>
+      		<input type="text" name="ecoerId">
+			<h3>Q1. 창작자(팀) 이름을 입력해주세요.</h3>
 			<input type="text" name="teamName">
-			<h3>Q2. â����(��) �̹����� ÷�����ּ���.</h3>
+			<h3>Q2. 창작자(팀) 이미지를 첨부해주세요.</h3>
 			<input type="file" name="teamImage">
-			<h3>Q3. â����(��) �Ұ��� �ۼ����ּ���.</h3>
-			<textarea rows="15" cols="100"></textarea>
-			<h3>Q4. �Ա� ���� ������ �Է����ּ���.</h3>
+			<h3>Q3. 창작자(팀) 소개를 작성해주세요.</h3>
+			<textarea rows="15" cols="100" name="teamDetail"></textarea>
+			<h3>Q4. 입금 계좌 정보를 입력해주세요.</h3>
 			<input type="text" name="account">
 			<p></p>
 			<button name="step" class="goNext" value="step2" onClick="userCreate('<c:url value='/project/start' />')">Step 02</button>
@@ -69,7 +72,7 @@
       </div>
     </div>
     <div class="main">
-		�ϴܹ�
+		하단바
 	</div>
 </body>
 </html>

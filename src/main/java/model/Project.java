@@ -1,6 +1,6 @@
 package model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Project {
 
@@ -10,18 +10,18 @@ public class Project {
 		private String image; //이미지 경로
 		private String simpleInfo; //간단 설명
 
-		private String[] category;
-		private String[] hashTag;
-		private String[] ecoTag;
+		private String category;
+		private String hashTag;
+		private String ecoTag;
 		private double ecoScore; //NUMBER(10, 9)
 
 		private int targetPrice; // ==> 필수
 		private int currentPrice; //자동 생성 
 		
-		private LocalDate startDate; //자동 생성
-		private LocalDate endDate; // ==> 필수
-		private LocalDate paymentDate; // ==> 필수
-		private LocalDate deliveryDate; // ==> 필수
+		private Date startDate; //자동 생성
+		private Date endDate; // ==> 필수
+		private Date paymentDate; // ==> 필수
+		private Date deliveryDate; // ==> 필수
 		
 		private String detailInfo; // ==> 필수
 		private String planInfo; // ==> 필수
@@ -45,9 +45,56 @@ public class Project {
 			
 		}
 		
+		public Project(String title) {
+			this.title = title;
+		}
+
+		//image 제외
+		public Project(int projectId, String title, String simpleInfo, String category, String hashTag, String ecoTag,
+				int targetPrice, Date startDate, Date endDate, Date paymentDate,
+				Date deliveryDate) {
+			super();
+			this.projectId = projectId;
+			this.title = title;
+			this.simpleInfo = simpleInfo;
+			this.category = category;
+			this.hashTag = hashTag;
+			this.ecoTag = ecoTag;
+			this.targetPrice = targetPrice;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.paymentDate = paymentDate;
+			this.deliveryDate = deliveryDate;
+		}
+		
+		public Project(String title, String image, String simpleInfo, String category, String hashTag,
+				String ecoTag, int targetPrice, Date startDate, Date endDate, Date paymentDate,
+				Date deliveryDate) {
+			super();
+			this.title = title;
+			this.image = image;
+			this.simpleInfo = simpleInfo;
+			this.category = category;
+			this.hashTag = hashTag;
+			this.ecoTag = ecoTag;
+			this.targetPrice = targetPrice;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.paymentDate = paymentDate;
+			this.deliveryDate = deliveryDate;
+		}
+		
+		public Project(int projectId, String detailInfo, String planInfo, String exchangeInfo) {
+			super();
+			this.projectId = projectId;
+			this.detailInfo = detailInfo;
+			this.planInfo = planInfo;
+			this.exchangeInfo = exchangeInfo;
+		}
+
 		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo,
-				String[] category, String[] hashTag, String[] ecoTag, double ecoScore, int targetPrice, int currentPrice,
-				LocalDate startDate, LocalDate endDate, LocalDate paymentDate, LocalDate deliveryDate, String detailInfo,
+				String category, String hashTag, String ecoTag, double ecoScore, int targetPrice, int currentPrice,
+				Date startDate, Date endDate, Date paymentDate, Date deliveryDate, String detailInfo,
 				String planInfo, String exchangeInfo, String projectVideo, String projectFile) {
 			super();
 			this.projectId = projectId;
@@ -71,7 +118,7 @@ public class Project {
 			this.projectVideo = projectVideo;
 			this.projectFile = projectFile;
 		}
-		
+
 		public Object getWithIndex(int index) {
 			switch(index) {
 			case 0: return getProjectId();
@@ -116,13 +163,13 @@ public class Project {
 				setSimpleInfo((String)data);
 				break;
 			case 5:
-				setCategory((String[])data);
+				setCategory((String)data);
 				break;
 			case 6:
-				setHashTag((String[])data);
+				setHashTag((String)data);
 				break;
 			case 7:
-				setEcoTag((String[])data);
+				setEcoTag((String)data);
 				break;
 			case 8:
 				setEcoScore((double)data);
@@ -134,16 +181,16 @@ public class Project {
 				setCurrentPrice((int)data);
 				break;
 			case 11:
-				setStartDate((LocalDate)data);
+				setStartDate((Date)data);
 				break;
 			case 12:
-				setEndDate((LocalDate)data);
+				setEndDate((Date)data);
 				break;
 			case 13:
-				setPaymentDate((LocalDate)data);
+				setPaymentDate((Date)data);
 				break;
 			case 14:
-				setDeliveryDate((LocalDate)data);
+				setDeliveryDate((Date)data);
 				break;
 			case 15:
 				setDetailInfo((String)data);
@@ -203,27 +250,27 @@ public class Project {
 			this.simpleInfo = simpleInfo;
 		}
 
-		public String[] getCategory() {
+		public String getCategory() {
 			return category;
 		}
 
-		public void setCategory(String[] category) {
+		public void setCategory(String category) {
 			this.category = category;
 		}
 
-		public String[] getHashTag() {
+		public String getHashTag() {
 			return hashTag;
 		}
 
-		public void setHashTag(String[] hashTag) {
+		public void setHashTag(String hashTag) {
 			this.hashTag = hashTag;
 		}
 
-		public String[] getEcoTag() {
+		public String getEcoTag() {
 			return ecoTag;
 		}
 
-		public void setEcoTag(String[] ecoTag) {
+		public void setEcoTag(String ecoTag) {
 			this.ecoTag = ecoTag;
 		}
 
@@ -251,35 +298,35 @@ public class Project {
 			this.currentPrice = currentPrice;
 		}
 
-		public LocalDate getStartDate() {
+		public Date getStartDate() {
 			return startDate;
 		}
 
-		public void setStartDate(LocalDate startDate) {
+		public void setStartDate(Date startDate) {
 			this.startDate = startDate;
 		}
 
-		public LocalDate getEndDate() {
+		public Date getEndDate() {
 			return endDate;
 		}
 
-		public void setEndDate(LocalDate endDate) {
+		public void setEndDate(Date endDate) {
 			this.endDate = endDate;
 		}
 
-		public LocalDate getPaymentDate() {
+		public Date getPaymentDate() {
 			return paymentDate;
 		}
 
-		public void setPaymentDate(LocalDate paymentDate) {
+		public void setPaymentDate(Date paymentDate) {
 			this.paymentDate = paymentDate;
 		}
 
-		public LocalDate getDeliveryDate() {
+		public Date getDeliveryDate() {
 			return deliveryDate;
 		}
 
-		public void setDeliveryDate(LocalDate deliveryDate) {
+		public void setDeliveryDate(Date deliveryDate) {
 			this.deliveryDate = deliveryDate;
 		}
 

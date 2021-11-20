@@ -1,27 +1,29 @@
 package model.service;
 
+import java.util.Date;
+import java.util.List;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-
 import model.DAOFactory;
-
 import model.Project;
+import model.Reward;
 import model.Support;
-
 import model.dao.*;
-import model.service.dto.*;
+import model.service.dto.CreatorDTO;
+import model.service.dto.ProjectDTO;
+import model.service.dto.ProjectNoticeDTO;
+import model.service.dto.RewardDTO;
 
 public class ProjectManager {
-	private static ProjectManager projectMan = new ProjectManager();
+	private static ProjectManager manager = new ProjectManager();
 	private DAOFactory factory;
-	
 	private ProjectDAO projectDAO; //Impl 통해서 가져오기
-	private static CreatorDAO creatorDAO;
-	private static SupportDAO supportDAO;
-	private static ProjectNoticeDAO noticeDAO;
-	private static RewardDAO rewardDAO;
+	private CreatorDAO creatorDAO;
+	private SupportDAO supportDAO;
+	private ProjectNoticeDAO noticeDAO;
+	private RewardDAO rewardDAO;
 	
 	private ProjectManager() {
 		try {
@@ -37,9 +39,17 @@ public class ProjectManager {
 	}
 	
 	public static ProjectManager getInstance() {
-		return projectMan;
+		return manager;
 	}
-
+	
+	public Project registerProject(Project project) {
+		return projectDAO.create(project);
+	}
+	
+	public int updateProjectForm(Project project) {
+		return projectDAO.updateProjectForm(project);
+	}
+	
 	public void supportProject(Support support) throws SQLException {
 		// 후원 테이블 추가
 		supportDAO.create(support);
@@ -57,6 +67,7 @@ public class ProjectManager {
 	public ProjectDTO findProjectInfo(Project project) throws SQLException {
 		ProjectDTO dto = null;
 		CreatorDTO creator = creatorDAO.findCreator(project.getEcoerId());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 		
 		int projectId = project.getProjectId();
 		String title = project.getTitle();
@@ -64,8 +75,7 @@ public class ProjectManager {
 		String creatorImage = creator.getImage();
 		String creatorName = creator.getNickName();
 		int pricePercent = project.getCurrentPrice() / project.getTargetPrice() * 100;
-		long remainTime = ChronoUnit.DAYS.between(
-				project.getStartDate(), project.getEndDate());
+		long remainTime = project.getStartDate().getTime() - project.getEndDate().getTime();
 		int countSupporter = supportDAO.countSupporter(projectId);
 
 		dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName,
@@ -83,15 +93,11 @@ public class ProjectManager {
 		String image = project.getImage();
 		String creatorImage = creator.getImage();
 		String creatorName = creator.getNickName();
-		LocalDate paymentDate = project.getPaymentDate();
+		Date paymentDate = project.getPaymentDate();
 
-		dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
+		//dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
 		
 		return dto;
-	}
-	
-	public int registerProjecct(Project proj) throws SQLException {
-		return projectDAO.create(proj);
 	}
 	
 	public int createNotice(ProjectNoticeDTO notice, int projectId) throws SQLException {
@@ -113,8 +119,8 @@ public class ProjectManager {
 		return noticeDAO.getProjectNoticeList(projectId);
 	}
 	
-	public int createReward(RewardDTO reward, int projectId) throws SQLException {
-		return rewardDAO.insertReward(reward, projectId);
+	public int createReward(Reward reward) {
+		return rewardDAO.insertReward(reward);
 	}
 	
 	public int updateReward(RewardDTO reward) throws SQLException {
@@ -132,4 +138,12 @@ public class ProjectManager {
 	public List<RewardDTO> getRewardList(int projectId) throws SQLException {
 		return rewardDAO.getRewardList(projectId);
 	}
+	
+	public int updateProject(Project proj) {
+		return projectDAO.update(proj);
+	}
+	
+	public int removeProject(String projId) throws SQLException {
+		return projectDAO.remove(projId);
+	};
 }

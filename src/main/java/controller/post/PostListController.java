@@ -16,13 +16,19 @@ public class PostListController implements Controller {
     	PostManager manager = PostManager.getInstance();
     	String keyword = request.getParameter("searchKeyword");
     	String type = request.getParameter("searchType");
+    	int cid = 0;
+    	
+    	if(request.getParameter("cid") != null)	//Community ID;
+    		cid = Integer.parseInt(request.getParameter("cid"));
 		
     	if(keyword != null && type != null) {
     		postList = manager.findPostList(keyword, type);
-    		
     	} else {
-    		postList = manager.display();
+    		postList = manager.display(cid);
     	}
+    	
+    	System.out.println(postList);
+    	
 		request.setAttribute("postList", postList);				
 		return "/board/postList.jsp";        
     }

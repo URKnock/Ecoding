@@ -8,7 +8,9 @@ public class EcoManager {
 	public static void main(String args[]) {
         String s = null;
         String word = "\"고양이\"";
-        String path = "python ./knock.py " + word;
+        String path = System.getProperty("user.dir");
+        
+        path = "python " + path + "/src/main/java/util/knock.py " + word;
         System.out.println(path);
         
         try {    

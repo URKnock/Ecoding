@@ -4,14 +4,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.dao.ReplyDAO;
-import model.util.JDBCUtil;
+import util.JDBCUtil;
 import model.service.dto.ReplyDTO;
 
 public class ReplyDAOImpl implements ReplyDAO{
 	private JDBCUtil jdbcUtil = null;
 	
-	private static String query = "REPLY.reply_id AS reply_id, REPLY.reply_date AS reply_date, " +
-								"REPLY.reply_content, REPLY.post_id AS post_id, REPLY.ecoer_id AS ecoer_id ";
+	private static String query = "SELECT * ";
 		
 	public ReplyDAOImpl() {
 		jdbcUtil = new JDBCUtil();
@@ -28,7 +27,7 @@ public class ReplyDAOImpl implements ReplyDAO{
 				dto.setReplyContent(rs.getString("reply_content"));
 				dto.setReplyDate(rs.getString("reply_date"));
 				dto.setReplyId(rs.getInt("reply_id"));
-				dto.setEcoerId(rs.getString("ecoers"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setPostId(rs.getInt("post_id"));
 				list.add(dto); // 리스트에 DTO 객체 저장
 			}
@@ -42,16 +41,18 @@ public class ReplyDAOImpl implements ReplyDAO{
 
 	public int insertReply(ReplyDTO reply) {
 		int result = 0;
-		String insertQuery = "INSERT INTO REPLY VALUES (seq_reply.nextval, ?, ?, ?, ?, ?, ?) ";
+		String insertQuery = "INSERT INTO REPLY VALUES (seq_reply.nextval, SYSDATE, ?, ?, ?)";
 		
-		Object[] param = new Object[] {reply.getReplyDate(), reply.getReplyContent(), reply.getPostId(), reply.getEcoerId()};
+		Object[] param = new Object[] {reply.getReplyContent(), reply.getPostId(), reply.getEcoerId()}; // getEcoerId()
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
 		
 		try {
 			result = jdbcUtil.executeUpdate(); // insert 문 실행
 		} catch (Exception ex) { 
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return result;
@@ -84,8 +85,10 @@ public class ReplyDAOImpl implements ReplyDAO{
 		try {
 			result = jdbcUtil.executeUpdate(); // update 문 실행
 		} catch (Exception ex) { 
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return result;
@@ -107,7 +110,7 @@ public class ReplyDAOImpl implements ReplyDAO{
 				dto.setReplyId(replyId);
 				dto.setReplyContent(rs.getString("reply_content"));
 				dto.setReplyDate(rs.getString("reply_date"));
-				dto.setEcoerId(rs.getString("ecoers"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setPostId(rs.getInt("post_id"));
 			}
 			return dto;
@@ -136,7 +139,7 @@ public class ReplyDAOImpl implements ReplyDAO{
 				dto.setReplyContent(rs.getString("reply_content"));
 				dto.setReplyDate(rs.getString("reply_date"));
 				dto.setReplyId(rs.getInt("reply_id"));
-				dto.setEcoerId(rs.getString("ecoers"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
 				list.add(dto);
 			}
 			return list;
