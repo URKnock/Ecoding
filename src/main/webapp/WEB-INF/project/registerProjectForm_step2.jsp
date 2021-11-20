@@ -13,15 +13,11 @@
 	    	form.action = targetUri; 
 	    	form.submit();
 	    }
-	    document.getElementById( 'pro' ).value = '0.5';
+	    document.getElementById( 'pro' ).value = '50';
 	</script>
 	<style>     
 	    #step02 {
 	    	background-color: #87CEFA;
-	    }
-	    
-	    progree {
-	    	value = "0.5";
 	    }
 	</style>
 </head>
