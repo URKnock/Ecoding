@@ -104,7 +104,7 @@ public class ProjectManager {
 	public ProjectDTO findProjectSimpleInfo(int projectId) throws SQLException {
 		ProjectDTO dto = null;
 		Project project = findProject(projectId);
-		CreatorDTO creator = creatorDAO.findCreator(project.getEcoerId());
+		CreatorDTO creator = creatorDAO.findCreatorSimpleInfo(project.getEcoerId());
 		
 		String title = project.getTitle();
 		String image = project.getImage();
