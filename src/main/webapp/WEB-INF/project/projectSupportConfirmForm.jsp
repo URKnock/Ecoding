@@ -9,49 +9,85 @@
 <title>후원 확인 - ${project.title}</title>
 <style>
 	div {
-		border:1px black solid;
 		text-align:center;
-		width:1000;
+		width:1000px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	table {
-		border:1px black solid;
 		margin-left:auto;
 		margin-right:auto;
 		text-align:center;
 	}
 	h4 {
 		text-align:left;
-		padding-left:20;
+		padding-left:20px;
+	}
+	hr {
+		border:0;
+		height:1px;
+		background-color:#97e6e4;
+	}
+	.t {
+		height:100px;
+		text-align:center;
+		width:480px;
+	 	border-top:1px solid #6495ED;
+	 	border-bottom:1px solid #6495ED;
+	}
+	#support {
+		height:50px;
+		border:0;
+		width:380px;
+		height:50px;
+		font-size:18px;
+		font-weight:bold;
+		color:white;
+		background-color:#87e2f5;
+		border-radius:5px;
+	}
+	#support:hover {
+		background-color:#70b3ff;
+	}
+	#change {
+		width:50px;
+		height:25px;
+		border:0;
+		color:white;
+		background-color:#d2d2d2;
+		border-radius:3px;
+	}
+	#change:hover {
+		background-color:#6EDCDC;
 	}
 </style>
 </head>
 <body>
 	<div>
-		<table border="1" style="width:1000">
+		<table style="width:1000px">
 			<tr>
 				<td width="25%">
-					<img src="image.jpg" width="150" height="150">
+					<img src="image.jpg" width="150px" height="150px">
 				</td>
 				<td style="font-size:20pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="image.jpg" width="30" height="30"> <!-- 이미지 수정 **** -->
+					<img src="image.jpg" width="30px" height="30px"> <!-- 이미지 수정 **** -->
 				</td>
 				<td width="20%" style="text-align:left;">${project.creatorName}</td>
 			</tr>
 		</table>
 	</div>
+	<hr>
 	<div>	
 	<form action="<c:url value='/project/support/complete' />" method="POST">
-		<table border="1" style="width:1000">
+		<table style="width:1000px">
 			<tr>
 				<td style="width:55%">
 					<h4>후원정보</h4>
-					<table style="width:480; height:100;">
+					<table class="t" style="width:480px; height:100px;">
 						<tr>
 							<td>${reward.name}</td>
-							<td><button type="button" onclick="location.href='<c:url value='/project/support?projectId=${project.projectId}' />'">
+							<td><button id="change" type="button" onclick="location.href='<c:url value='/project/support?projectId=${project.projectId}' />'">
 									변경
 							</button></td>
 						</tr>
@@ -62,7 +98,7 @@
 					</table>
 				</td>
 				<td rowspan="4">
-					<table style="width:400; height:200;">
+					<table style="width:450px; height:220px; border-left:3px solid #6495ED;">
 						<tr>
 							<td>최종 후원 금액</td>
 							<td style="font-weight:bold">${reward.rewardPrice + add}원</td>
@@ -80,7 +116,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="후원하기" style="width:380; height:50;">
+								<input id="support" type="submit" value="후원하기">
 							</td>
 						</tr>
 					</table>
@@ -89,7 +125,7 @@
 			<tr>
 				<td>
 					<h4>후원자 정보</h4>
-					<table style="width:480; height:100;">
+					<table class="t">
 						<tr>
 							<td>이름</td>
 							<td>${ecoer.name}</td>
@@ -108,7 +144,7 @@
 			<tr>
 				<td>
 					<h4>배송지 정보</h4>
-					<table style="width:480; height:100;">
+					<table class="t">
 						<tr>
 							<td>우편번호</td>
 							<td>12345</td>
@@ -127,14 +163,14 @@
 			<tr>
 				<td>
 					<h4>결제 수단</h4>
-					<table style="width:480; height:100;">
+					<table class="t">
 						<tr>
 							<td>카드</td>
-							<td><input type="text" name="bank" size="10"></td>
+							<td><input type="text" name="bank" size="10px"></td>
 						</tr>
 						<tr>
 							<td>카드 번호</td>
-							<td><input type="text" name="card" size="20"></td>
+							<td><input type="text" name="card" size="20px"></td>
 						</tr>
 					</table>
 				</td>
