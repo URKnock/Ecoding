@@ -1,9 +1,11 @@
 package model.dao.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Ecoer;
 import model.dao.EcoerDAO;
 import model.service.dto.EcoerDTO;
 import util.JDBCUtil;
@@ -101,6 +103,45 @@ public class EcoerDAOImpl implements EcoerDAO{
 				for(int i = 1; i < EcoerDTO.cols; i++) {
 					ecoer.setWithIndex(i, rs.getObject(cols[i]));
 				}
+				return ecoer;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public Ecoer findEcoerInfo(String ecoerId) throws SQLException {
+        String sql = "SELECT password";
+        String[] cols = Ecoer.columns;
+        for(int i = 2; i < Ecoer.cols; i++) {
+        	sql += ", " + cols[i];
+        }
+        sql += " FROM ecoer ";
+        sql += "WHERE ecoer_id=?";        
+        
+        
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				Ecoer ecoer = new Ecoer();
+				ecoer.setEcoerId(ecoerId);
+				
+				for(int i = 1; i < Ecoer.cols - 1; i++) {
+					ecoer.setWithIndex(i, rs.getObject(cols[i]));
+				}
+				
+//				for(int i = 1; i < Ecoer.cols; i++) {
+//					ecoer.setWithIndex(i, rs.getObject(cols[i]));
+//				}
+				
+				
+		
+				
 				return ecoer;
 			}
 		} catch (Exception ex) {

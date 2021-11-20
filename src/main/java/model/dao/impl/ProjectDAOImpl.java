@@ -75,6 +75,25 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}		
 		return 0;
 	}
+	
+	public int updatePriceProject(int projectId, int price) throws SQLException {
+		String sql = "UPDATE PROJECT SET current_price = ? WHERE project_id = ?";
+		
+		Object[] param = new Object[] {price, projectId};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		return 0;
+	}
 
 	//프로젝트 ID에 해당하는 프로젝트를 삭제.
 	public int remove(String projectId) throws SQLException {
@@ -96,23 +115,61 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	// 주어진 projectId에 해당하는 프로젝트 정보를 데이터베이스에서 찾아 Project 도메인 클래스에 저장하여 반환.
 	public Project findProject(int projectId) throws SQLException {
-        String sql = "SELECT ecoer_id"; //project_id 제외 
-        String[] cols = Project.columns; //미리 정의한 컬럼 배열 참조 
-        for(int i = 2; i < Project.cols; i++) { //title부터 시작
-        	sql += ", " + cols[i];
-        }
-        sql += " FROM PROJECT ";
-        sql += "WHERE project_id=? ";   
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {projectId});	// JDBCUtil에 query문과 매개 변수 설정
-
+//        String sql = "SELECT ecoer_id"; //project_id 제외 
+//        String[] cols = Project.columns; //미리 정의한 컬럼 배열 참조 
+//        for(int i = 2; i < Project.cols; i++) { //title부터 시작
+//        	sql += ", " + cols[i];
+//        }
+//        sql += " FROM PROJECT ";
+//        sql += "WHERE project_id=? ";   
+//		jdbcUtil.setSqlAndParameters(sql, new Object[] {projectId});	// JDBCUtil에 query문과 매개 변수 설정
+//
+//		try {
+//			ResultSet rs = jdbcUtil.executeQuery();	// query 실행
+//			if (rs.next()) {						// 학생 정보를 발견하면
+//				Project project = new Project();		// Project 객체를 생성하여 정보를 저장
+//				project.setProjectId(projectId);	//i = 0은 제외
+//				for(int i = 1; i < Project.cols; i++) {
+//					project.setWithIndex(i, rs.getObject(cols[i]));
+//				}
+//				return project;
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			jdbcUtil.close();		// resource 반환
+//		}
+//		return null;
+		
+		String sql = "SELECT * ";
+        sql += "FROM PROJECT ";
+        sql += "WHERE project_id=?";   
+        
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {projectId});
+		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();	// query 실행
 			if (rs.next()) {						// 학생 정보를 발견하면
-				Project project = new Project();		// Project 객체를 생성하여 정보를 저장
-				project.setProjectId(projectId);	//i = 0은 제외
-				for(int i = 1; i < Project.cols; i++) {
-					project.setWithIndex(i, rs.getObject(cols[i]));
-				}
+				Project project = new Project(
+						projectId,
+						rs.getString("ecoer_id"),
+						rs.getString("title"),
+						rs.getString("image"),
+						rs.getString("simple_info"),
+						rs.getString("category"),
+						rs.getString("hashTag"),
+						rs.getString("ecoTag"),
+						rs.getDouble("eco_score"),
+						rs.getInt("target_price"),
+						rs.getInt("current_price"),
+						rs.getDate("start_date"),
+						rs.getDate("end_date"),
+						rs.getDate("payment_date"),
+						rs.getDate("delivery_date"),
+						rs.getString("detail_info"),
+						rs.getString("plan_info"),
+						rs.getString("exchange_info"));
+				
 				return project;
 			}
 		} catch (Exception ex) {

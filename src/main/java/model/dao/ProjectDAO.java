@@ -10,6 +10,7 @@ import model.service.dto.ProjectDTO;
 public interface ProjectDAO {
 	public int create(Project project);
 	public int update(Project project);
+	public int updatePriceProject(int projectId, int price) throws SQLException;
 	public int remove(String projectId) throws SQLException;
 	public Project findProject(int projectId) throws SQLException;
 	public List<Project> findProjectList() throws SQLException;

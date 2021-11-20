@@ -10,7 +10,12 @@ public class CreatorDTO extends EcoerDTO {
 		
 	}
 
-	
+	public CreatorDTO(String nickName, String image) {
+		super();
+		this.nickName = nickName;
+		this.image = image;
+	}
+
 	public CreatorDTO(String ecoerId, String nickName, String creatorInfo, String account) {
 		super();
 		this.ecoerId = ecoerId;

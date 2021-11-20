@@ -1,9 +1,11 @@
 package model.dao.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Creator;
 import model.DAOFactory;
 import model.dao.CreatorDAO;
 import model.service.dto.CreatorDTO;
@@ -130,6 +132,64 @@ public class CreatorDAOImpl implements CreatorDAO {
 		}
 		return null;
 	}
+	
+	public CreatorDTO findCreatorSimpleInfo(String ecoerId) throws SQLException {
+		String sql = "SELECT nick_name, image FROM creator WHERE ecoer_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				CreatorDTO creator = new CreatorDTO(
+						rs.getString("nick_name"), rs.getString("image"));
+				return creator;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public Creator findCreatorName(String creatorId) throws SQLException {
+//      String sql = "SELECT password";
+//      String[] cols = Creator.columns;
+//      for(int i = 2; i < Creator.cols; i++) {
+//      	sql += ", " + cols[i];
+//      }
+		
+		String sql = "SELECT nick_name";
+		
+      sql += " FROM creator ";
+      sql += "WHERE ecoer_id=?";           
+      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {creatorId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				Creator creator = new Creator();
+				
+				creator.setEcoderId(creatorId);
+				creator.setNickName(rs.getString("nick_name"));
+				
+//				creator.setEcoerId(creatorId);
+//				for(int i = 1; i < Creator.cols; i++) {
+//					creator.setWithIndex(i, rs.getObject(cols[i]));
+//				}
+				
+				return creator;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+
 
 	public List<CreatorDTO> getCreatorList() {
         String sql = "SELECT * FROM creator JOIN ecoer USING(ecoer_id)";

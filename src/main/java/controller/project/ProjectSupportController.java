@@ -15,7 +15,7 @@ public class ProjectSupportController implements Controller {
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
-		int projectId = (int) request.getAttribute("projectId");
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		
 		ProjectManager manager = ProjectManager.getInstance();
 		UserManager uManager = UserManager.getInstance();
@@ -35,12 +35,12 @@ public class ProjectSupportController implements Controller {
 		int addPrice = Integer.parseInt(request.getParameter("addPrice"));
 		RewardDTO reward = manager.findReward(rewardId);
 		
-		//Project project = manager.findProject(projectId); // 제목, 창작자, 창작자 이미지만 필요하므로 DTO 생성 필요해보임
 		ProjectDTO project = manager.findProjectSimpleInfo(projectId);
 		
 		// ecoerId를 이용해 ecoer 찾은 후 request에 저장
 		//String ecoerId = session.getAttribute("ecoer");
 		String ecoerId = (String) request.getAttribute("ecoer"); // 세션 이용해야하는데 지금은 request 이용
+		
 		EcoerDTO ecoer = uManager.findEcoer(ecoerId);
 		
 		request.setAttribute("ecoer", ecoer);

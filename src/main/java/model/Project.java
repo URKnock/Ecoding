@@ -62,6 +62,32 @@ public class Project {
 			this.exchangeInfo = exchangeInfo;
 		}
 
+		
+
+		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo, String category,
+				String hashTag, String ecoTag, double ecoScore, int targetPrice, int currentPrice, Date startDate,
+				Date endDate, Date paymentDate, Date deliveryDate, String detailInfo, String planInfo,
+				String exchangeInfo) {
+			this.projectId = projectId;
+			this.ecoerId = ecoerId;
+			this.title = title;
+			this.image = image;
+			this.simpleInfo = simpleInfo;
+			this.category = category;
+			this.hashTag = hashTag;
+			this.ecoTag = ecoTag;
+			this.ecoScore = ecoScore;
+			this.targetPrice = targetPrice;
+			this.currentPrice = currentPrice;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.paymentDate = paymentDate;
+			this.deliveryDate = deliveryDate;
+			this.detailInfo = detailInfo;
+			this.planInfo = planInfo;
+			this.exchangeInfo = exchangeInfo;
+		}
+
 		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo,
 				String category, String hashTag, String ecoTag, double ecoScore, int targetPrice, int currentPrice,
 				Date startDate, Date endDate, Date paymentDate, Date deliveryDate, String detailInfo,

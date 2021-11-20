@@ -8,6 +8,7 @@ import java.util.List;
 import model.Support;
 import util.JDBCUtil;
 import model.dao.SupportDAO;
+import model.service.dto.SupportDTO;
 
 public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 바꿀 것
 	private JDBCUtil jdbcUtil = null;
@@ -16,11 +17,10 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	}
 		
 	//후원 정보 테이블에 새로운 후원 정보를 생성.
-	public int create(Support support) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
-		String sql = "INSERT INTO SUPPORT VALUES (seq_order.nextval, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {support.getEcoerId(), 
-				support.getProjectId(), support.getRewardId(), support.getAmount(), 
-				support.getCard()};	
+	public int create(SupportDTO support) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
+		String sql = "INSERT INTO SUPPORT VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?, null)";		
+		Object[] param = new Object[] {support.getEcoerId(), support.getProjectId(),
+				support.getRewardId(), support.getAmount(), support.getBank(), support.getCard()};
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 		
 		try {				
@@ -83,11 +83,11 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	 * 저장하여 반환. ==> 필요할까? supportId를 별도로 알아낼 수 있을까??
 	 */
 	public Support findSupport(int supportId) throws SQLException {
-        String sql = "SELECT support_id, ecoer_id, project_id, reward_id, amount, card "
-        			+ "FROM SUPPORT "
-        			+ "WHERE support_id=? ";              
+		String sql = "SELECT support_id, ecoer_id, project_id, reward_id, amount, card "
+    			+ "FROM SUPPORT "
+    			+ "WHERE support_id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {supportId});
-
+	
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 주문 정보 발견
@@ -97,6 +97,7 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 					rs.getInt("project_id"),
 					rs.getInt("reward_id"),
 					rs.getInt("amount"),
+					rs.getString("bank"),
 					rs.getString("card"));
 				return support;
 			}
@@ -110,9 +111,9 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 
 	//전체 후원 정보를 검색하여 List에 저장 및 반환 ==> 사용자 페이지에서 한꺼번에 보여주기
 	public List<Support> findSupportList() throws SQLException {
-        String sql = "SELECT support_id, ecoer_id, project_id, reward_id, amount, card " 
-        		   + "FROM SUPPORT "
-        		   + "ORDER BY support_id"; //날짜 순으로 정렬하는 게 좋지 않을까? 
+		String sql = "SELECT support_id, ecoer_id, project_id, reward_id, amount, card " 
+     		   + "FROM SUPPORT "
+     		   + "ORDER BY support_id"; //날짜 순으로 정렬하는 게 좋지 않을까? 
 		jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil에 query문 설정
 					
 		try {
@@ -125,6 +126,7 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 						rs.getInt("project_id"),
 						rs.getInt("reward_id"),
 						rs.getInt("amount"),
+						rs.getString("bank"),
 						rs.getString("card"));
 				supportList.add(support);		// List에 Support 객체 저장
 			}		
