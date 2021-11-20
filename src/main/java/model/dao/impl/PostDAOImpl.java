@@ -237,4 +237,34 @@ public class PostDAOImpl implements PostDAO {
 		}
 		return null;
 	}
+	
+	public List<PostDTO> getPostListByKeyword(String keyword, String type) {
+		String searchQuery = query + "FROM POST WHERE " + type + "=? AND LIKE '%" + keyword + "%'";
+		jdbcUtil.setSqlAndParameters(searchQuery, null);
+	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<PostDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				PostDTO dto = new PostDTO();
+				dto.setPostId(rs.getInt("post_id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setPostDate(rs.getString("post_date"));
+				dto.setPostContent(rs.getString("post_content"));
+				dto.setPostFile(rs.getString("post_file"));
+				dto.setViews(rs.getString("views"));
+				dto.setLikes(rs.getString("likes"));
+				dto.setReports(rs.getString("reports"));
+				dto.setEcoerId(rs.getString("ecoer_id"));
+				dto.setCommunityId(rs.getInt("community_id"));
+				list.add(dto);
+			}
+			return list;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
 }
