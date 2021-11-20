@@ -2,6 +2,7 @@ package controller.project;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,12 +34,10 @@ public class ProjectRegisterController implements Controller {
     		Project project = null; 
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
-    			project = new Project(0, request.getParameter("title"), request.getParameter("simpleInfo"), 
+    			project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
         				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
         				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
-    					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")));
-    			ProjectManager manager = ProjectManager.getInstance();
-    			manager.registerProject(project);
+    					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")), null, null, null);	
     			request.setAttribute("project", project);
     			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
@@ -48,17 +47,19 @@ public class ProjectRegisterController implements Controller {
         	}      
     	}
     	else if(step.equals("step3")) {
-    		Project project = null;
+    		SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+    		Project project = new Project(request.getParameter("project"), request.getParameter("simpleInfo"), 
+    				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
+    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
+					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")), null, null, null);
+			
     		try {
-    			int projectId = Integer.parseInt(request.getParameter("projectId"));
-	    		project = new Project(projectId, request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
-	    		
-<<<<<<< HEAD
-	    		Reward reward = new Reward(0, projectId, request.getParameter("rewardName"), Integer.parseInt(request.getParameter("rewardPrice")), request.getParameter("rewardInfo"));
-	
-				ProjectManager manager = ProjectManager.getInstance();
-				manager.updateProjectForm(project);
-				manager.createReward(reward);
+    			project.setDetailInfo(request.getParameter("detailInfo"));
+    			project.setPlanInfo(request.getParameter("planInfo"));
+    			project.setExchangeInfo(request.getParameter("exchangeInfo"));
+    			
+	    		Reward reward = new Reward(request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+
 				request.setAttribute("project", project);
 				request.setAttribute("reward", reward);
 				return "/project/registerProjectForm_step3.jsp";
@@ -66,39 +67,65 @@ public class ProjectRegisterController implements Controller {
         		request.setAttribute("registerFailed", true);
         		request.setAttribute("exception", e);
         		request.setAttribute("project", project);
-=======
-	    		//Reward reward = new Reward(request.getParameter("reward"), Integer.parseInt(request.getParameter("rewardPrice")));
-	
-				ProjectManager manager = ProjectManager.getInstance();
-				manager.updateProjectForm(project);				
-				return "/project/registerProjectForm_step3.jsp";
-    		} catch (Exception e) {
-        		request.setAttribute("registerFailed", true);
-        		request.setAttribute("exception", e);
-        		request.setAttribute("project", project);
-				//request.setAttribute("reward", reward);
->>>>>>> branch 'develop' of https://github.com/URKnock/Ecoding.git
         		return "/project/registerProjectForm_step2.jsp";
         	}      
     	}
     	else if(step.equals("step4")) {
-    		CreatorDTO creator = null;
+    		SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+    		Project project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
+    				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
+    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), 
+    				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
+    				sdf.parse(request.getParameter("deliveryDate")), request.getParameter("detailInfo"), 
+    				request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
+    		Reward reward = new Reward(request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+    		
     		try {
-    			creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
+    			CreatorDTO creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
     					request.getParameter("teamDetail"), request.getParameter("account"));
-        		
-    			CreatorManager manager = CreatorManager.getInstance();
-    			manager.update(creator);
+    			
+    			request.setAttribute("project", project);
+				request.setAttribute("reward", reward);
     			request.setAttribute("creator", creator);
     			return "/project/registerProjectForm_step4.jsp";
     		} catch (Exception e) {
     			request.setAttribute("registerFailed", true);
     			request.setAttribute("exception", e);
+    			request.setAttribute("project", project);
+				request.setAttribute("reward", reward);
     			return "/project/registerProjectForm_step3.jsp";
     		}
     	}
     	else if(step.equals("final")) {
-    		return "/project/successRegister.jsp";
+    		SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+    		Project project = new Project(request.getParameter("title"), request.getParameter("simpleInfo"), 
+    				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
+    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), 
+    				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
+    				sdf.parse(request.getParameter("deliveryDate")), request.getParameter("detailInfo"), 
+    				request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
+			
+    		Reward reward = new Reward(-1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+    		
+    		CreatorDTO creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
+					request.getParameter("teamDetail"), request.getParameter("account"));
+    		
+    		try {
+    			ProjectManager manager = ProjectManager.getInstance();
+    			int projectId = manager.registerProject(project);
+				
+    			reward.setProject_id(projectId);
+	    		manager.createReward(reward);
+	    		
+    			CreatorManager cmanager = CreatorManager.getInstance();
+    			cmanager.update(creator);
+				
+    			return "/project/successRegister.jsp";
+    		} catch (Exception e) {
+    			request.setAttribute("registerFailed", true);
+    			request.setAttribute("exception", e);
+				return "/project/registerStart.jsp";
+    		}
     	}
     	else {
     		return "/project/registerStart.jsp";    		

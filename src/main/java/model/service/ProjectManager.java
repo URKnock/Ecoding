@@ -42,12 +42,8 @@ public class ProjectManager {
 		return manager;
 	}
 	
-	public Project registerProject(Project project) {
+	public int registerProject(Project project) {
 		return projectDAO.create(project);
-	}
-	
-	public int updateProjectForm(Project project) {
-		return projectDAO.updateProjectForm(project);
 	}
 	
 	public void supportProject(Support support) throws SQLException {

@@ -3,7 +3,6 @@ package model;
 import java.util.Date;
 
 public class Project {
-
 		private int projectId; //PK ==> 필수
 		private String ecoerId; //FK ==> 필수
 		private String title; // ==> 필수
@@ -45,16 +44,9 @@ public class Project {
 			
 		}
 		
-		public Project(String title) {
-			this.title = title;
-		}
-
-		//image 제외
-		public Project(int projectId, String title, String simpleInfo, String category, String hashTag, String ecoTag,
-				int targetPrice, Date startDate, Date endDate, Date paymentDate,
-				Date deliveryDate) {
-			super();
-			this.projectId = projectId;
+		public Project(String title, String simpleInfo, String category, String hashTag, String ecoTag,
+				int targetPrice, Date startDate, Date endDate, Date paymentDate, Date deliveryDate,
+				String detailInfo, String planInfo, String exchangeInfo) {
 			this.title = title;
 			this.simpleInfo = simpleInfo;
 			this.category = category;
@@ -65,28 +57,6 @@ public class Project {
 			this.endDate = endDate;
 			this.paymentDate = paymentDate;
 			this.deliveryDate = deliveryDate;
-		}
-		
-		public Project(String title, String image, String simpleInfo, String category, String hashTag,
-				String ecoTag, int targetPrice, Date startDate, Date endDate, Date paymentDate,
-				Date deliveryDate) {
-			super();
-			this.title = title;
-			this.image = image;
-			this.simpleInfo = simpleInfo;
-			this.category = category;
-			this.hashTag = hashTag;
-			this.ecoTag = ecoTag;
-			this.targetPrice = targetPrice;
-			this.startDate = startDate;
-			this.endDate = endDate;
-			this.paymentDate = paymentDate;
-			this.deliveryDate = deliveryDate;
-		}
-		
-		public Project(int projectId, String detailInfo, String planInfo, String exchangeInfo) {
-			super();
-			this.projectId = projectId;
 			this.detailInfo = detailInfo;
 			this.planInfo = planInfo;
 			this.exchangeInfo = exchangeInfo;

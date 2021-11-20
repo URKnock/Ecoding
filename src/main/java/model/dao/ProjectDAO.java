@@ -8,8 +8,7 @@ import model.Reward;
 import model.service.dto.ProjectDTO;
 
 public interface ProjectDAO {
-	public Project create(Project project);
-	public int updateProjectForm(Project project);
+	public int create(Project project);
 	public int update(Project project);
 	public int remove(String projectId) throws SQLException;
 	public Project findProject(int projectId) throws SQLException;

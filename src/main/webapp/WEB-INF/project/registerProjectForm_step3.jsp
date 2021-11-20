@@ -54,7 +54,23 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-      		<input type="hidden" name="projectId" value="${project.projectId}"/>
+      		<input type="hidden" name="title" value="${project['title']}">
+      		<input type="hidden" name="simpleInfo" value="${project['simpleInfo']}">
+      		<input type="hidden" name="category" value="${project['category']}">
+      		<input type="hidden" name="hashtag" value="${project['hashTag']}">
+      		<input type="hidden" name="ecotag" value="${project['ecoTag']}">
+      		<input type="hidden" name="targetAmount" value="${project['targetPrice']}">
+      		<input type="hidden" name="startDate" value="${project['startDate']}">
+      		<input type="hidden" name="endDate" value="${project['endDate']}">
+      		<input type="hidden" name="payDate" value="${project['paymentDate']}">
+      		<input type="hidden" name="deliveryDate" value="${project['deliveryDate']}">
+      		<input type="hidden" name="detailInfo" value="${project['detailInfo']}">
+      		<input type="hidden" name="planInfo" value="${project['planInfo']}">
+      		<input type="hidden" name="exchangeInfo" value="${project['exchangeInfo']}">
+      		<input type="hidden" name="name" value="${reward['rewardName']}">
+      		<input type="hidden" name="reward_price" value="${reward['rewardPrice']}">
+      		<input type="hidden" name="reward_info" value="${reward['rewardInfo']}">
+      		
       		<h3>아이디를 입력해주세요</h3>
       		<input type="text" name="ecoerId">
 			<h3>Q1. 창작자(팀) 이름을 입력해주세요.</h3>
