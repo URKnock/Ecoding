@@ -5,6 +5,7 @@
 <html>
 <head>
 <c:import url="/WEB-INF/view/header.jsp"></c:import>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/projectRegister.css'/>"/>
 <meta charset="utf-8">
 <title>프로젝트 등록 시작</title>
 <script>
@@ -18,56 +19,23 @@
     }
 </script>
 <style>
-	a {
-		text-decoration-line: none;
-		color: inherit;
-	}
-	
-	a:hover { text-decoration: underline; }
-	
-	.contents { 
-		padding: 14% 0%;
-		text-align: center;
-	}
-	
-	div {
-		border: 1px solid #87CEFA;
-	}
-	
-	.main {
-		height: 35px;
-	}
-	
-	.goList > button{
-		background-color: #87CEFA;
-		width: 300px;
-		height: 80px;
-		border: 0;
-		outline: 0;
-		color: white;
-	}
-
-	.goList {
-		 padding: 25px;
-		 text-align: center;
+	img {
+		width: 500px;
 	}
 </style>
 </head>
 <body>
     <div class="main">
     	<a href="enrollStart.jsp" target="_self">프로젝트 등록</a>
-    	> 프로젝트 등록 시작
+    	&nbsp> 프로젝트 등록 시작
     </div>
     <div class="contents">
-    	<p>에코딩 서비스를 사용해야 하는 이유 소개글</p>
+    	<p>착한 사람에게만 보이는 에코딩 서비스를 사용해야 하는 이유 소개글</p>
+    	<img src="<c:url value='/resources/img/kai.jpg'/>">
     </div>
     <div class="goList">
     	<form name="form" method="post" action="<c:url value='/project/start' />">
     		<input type="button" class="goNext" value="등록하기" onClick="projectCreate('<c:url value='/project/start' />')">
    		</form>
 	</div>
-    <div class="main">
-		하단바
-	</div>
-</body>
 </html>

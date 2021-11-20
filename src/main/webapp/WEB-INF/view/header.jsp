@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -44,6 +45,8 @@
 }
 </style>
 
+</head>
+
 <script>
 function userCreate(targetUri) {
 	console.log("버튼 눌림");
@@ -70,31 +73,57 @@ function menuClicked(obj) {
 	}
 }
 
+function loginCheck() {
+	if ( ecoerId == null ) {
+		alert("로그인이 필요합니다.");
+	    document.write ( '<p>로그인이 필요합니다.</p>' );
+	}
+	else {
+		alert("로그인 되었습니다.");
+		document.write ( '<p>로그인 되었습니다.</p>' );
+	}
+}
+  
 </script>
-<div>
+<body onload="loginCheck()">
 	<div id="header">
 		<div id="top">
-			<img style="float: left" id="logo" src="<c:url value='/resources/img/logo.png'/>">
+			<img style="float: left" id="logo"
+				src="<c:url value='/resources/img/logo.png'/>">
 			<div style="text-align: center;">
-				<div style="float: left; margin-left: 100px;"> <!-- 세로 정렬좀... -->
+				<div style="float: left; margin-left: 100px;">
+					<!-- 세로 정렬좀... -->
 					<form name="search_project" action="">
-						<input size=50 type="text" placeholder="다양한 프로젝트를 검색해보세요." />
-						<input type="submit" value="검색" />
+						<input size=50 type="text" placeholder="다양한 프로젝트를 검색해보세요." /> <input
+							type="submit" value="검색" />
 					</form>
 				</div>
 				<div style="float: right;">
-					<button type="button" class="btn btn-success" onClick="location.href='../project/view';">프로젝트
-						등록하기</button>
-					<button type="button" class="btn btn-primary" onClick="location.href='../user/loginform';">로그인</button>
-					<button type="button" class="btn btn-primary" onClick="location.href='../user/register';">회원가입</button>
+					<button id="project" type="button" class="btn btn-success"
+						onClick="location.href='../project/view';">프로젝트 등록하기</button>
+					<button id="login" type="button" class="btn btn-primary"
+						onClick="location.href='../user/loginform';">로그인</button>
+					<c:if test="${ecoerId ne null}">
+						<button id="login" type="button" class="btn btn-primary"
+							onClick="location.href='../user/logout';">로그아웃</button>
+							<!-- <script>alert("로그인 되었습니다.");</script> -->
+					</c:if>
+					<button id="register" type="button" class="btn btn-primary"
+						onClick="location.href='../user/register';">회원가입</button>
 				</div>
+				<c:if test="${ecoerId ne null}">
+					<li class="nav-item"><a class="nav-link btn-link"
+						href="<c:url value='../user/view'>
+					   <c:param name='ecoerId' value='${ecoerId}'/>
+			 		 </c:url>">${ecoerId}님 환영합니다.</a></li>
+				</c:if>
 			</div>
 		</div>
 	</div>
 	<br>
 	<br>
 	<br>
-	<div class="clear: both"></div><br>
+	<div class="clear: both"></div>
 	<div style="padding-top: 10px">
 		<ul class="nav nav-tabs justify-content-center">
 			<li class="nav-item"><a id="home" class="nav-link" href="#"
@@ -103,9 +132,9 @@ function menuClicked(obj) {
 				onclick="menuClicked(this)">펀딩</a></li>
 			<li class="nav-item"><a id="board" class="nav-link" href="#"
 				onclick="menuClicked(this)">게시판</a></li>
-			<li class="nav-item dropdown"><a id = "category" class="nav-link dropdown-toggle"
-				data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-				aria-expanded="false">카테고리</a> <!-- nav-link가 얘도 해제된 것 같음... -->
+			<li class="nav-item dropdown"><a id="category"
+				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+				role="button" aria-haspopup="true" aria-expanded="false">카테고리</a> <!-- board에 있을 때 말고는 nav-link가 해제됨... -->
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#">항목1</a> <a class="dropdown-item"
 						href="#">항목2</a> <a class="dropdown-item" href="#">항목3</a>
@@ -115,4 +144,4 @@ function menuClicked(obj) {
 		</ul>
 	</div>
 	<br />
-</div>
+</body>

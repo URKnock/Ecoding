@@ -4,6 +4,7 @@
 <html>
 <head>
 <c:import url="/WEB-INF/view/header.jsp"></c:import>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/projectRegister.css'/>"/>
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script>
@@ -13,46 +14,24 @@
     }
 </script>
 <style>
-    div.right {
-      	width: 80%;
-        float: right;
-        box-sizing: border-box;
-        border: none;
-        overflow-y:auto; 
-        overflow-x:hidden;
-    }
-    
-    .stepList > div {
-    	height: 80px;
-    	border-top: none;
-    	border-left: none;
-    	border-right: none;
-    	margin: -1px;
-    }
-    
     #step03 {
     	background-color: #87CEFA;
+    	color: white;
     }
-    
-    .enrollProgress {
-    	 height: 55px;
-    	 text-align: center;
-    }
-    
-    .goNext{
-		background-color: #87CEFA;
-		width: 10%;
-		height: 80px;
-		border: 0;
-		outline: 0;
-		color: white;
-	}
 </style>
 </head>
 <body>
+ <div class="main">
+    	<a href="<c:url value='/project/view' />" target="_self">프로젝트 등록</a>
+    	<span class="step"> > Step 03</span>
+    </div>
 	<c:import url="/WEB-INF/project/register.jsp">
 		<c:param name="main"></c:param>
 	</c:import>
+	<div id="enrollProgress">
+	    		진행도 <progress value="0.6"></progress>
+	    	</div>
+	    </div>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
       		<input type="hidden" name="title" value="${project['title']}">
@@ -72,24 +51,20 @@
       		<input type="hidden" name="reward_price" value="${reward['rewardPrice']}">
       		<input type="hidden" name="reward_info" value="${reward['rewardInfo']}">
       		
-      		<h3>아이디를 입력해주세요</h3>
+      		<p>아이디를 입력해주세요</p>
       		<input type="text" name="ecoerId">
-			<h3>Q1. 창작자(팀) 이름을 입력해주세요.</h3>
+			<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
 			<input type="text" name="teamName">
-			<h3>Q2. 창작자(팀) 이미지를 첨부해주세요.</h3>
+			<p>Q2. 창작자(팀) 이미지를 첨부해주세요.</p>
 			<input type="file" name="teamImage">
-			<h3>Q3. 창작자(팀) 소개를 작성해주세요.</h3>
+			<p>Q3. 창작자(팀) 소개를 작성해주세요.</p>
 			<textarea rows="15" cols="100" name="teamDetail"></textarea>
-			<h3>Q4. 입금 계좌 정보를 입력해주세요.</h3>
+			<p>Q4. 입금 계좌 정보를 입력해주세요.</p>
 			<input type="text" name="account">
 			<p></p>
-			<button name="step" class="goNext" value="step2" onClick="userCreate('<c:url value='/project/start' />')">Step 02</button>
-			<button name="step" class="goNext" value="step4" onClick="userCreate('<c:url value='/project/start' />')">Step 04</button>
+			<button name="step" class="goNext" value="step2">Step 02</button>
+			<button name="step" class="goNext" value="step4">Step 04</button>
 		</form>
       </div>
-    </div>
-    <div class="main">
-		하단바
-	</div>
 </body>
 </html>

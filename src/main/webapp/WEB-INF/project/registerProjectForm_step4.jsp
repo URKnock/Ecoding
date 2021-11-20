@@ -4,6 +4,7 @@
 <html>
 <head>
 <c:import url="/WEB-INF/view/header.jsp"></c:import>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/projectRegister.css'/>"/>
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script>
@@ -13,51 +14,29 @@
     }
 </script>
 <style>
-    div.right {
-      	width: 80%;
-        float: right;
-        box-sizing: border-box;
-        border: none;
-        overflow-y:auto; 
-        overflow-x:hidden;
-    }
-    
-    .stepList > div {
-    	height: 80px;
-    	border-top: none;
-    	border-left: none;
-    	border-right: none;
-    	margin: -1px;
-    }
-    
     #step04 {
     	background-color: #87CEFA;
+    	color: white;
     }
-    
-    .enrollProgress {
-    	 height: 55px;
-    	 text-align: center;
-    }
-    
-    .goNext{
-		background-color: #87CEFA;
-		width: 10%;
-		height: 80px;
-		border: 0;
-		outline: 0;
-		color: white;
-	}
 </style>
 </head>
 <body>
+ <div class="main">
+    	<a href="<c:url value='/project/view' />" target="_self">프로젝트 등록</a>
+    	<span class="step"> > Step 04</span>
+    </div>
 	<c:import url="/WEB-INF/project/register.jsp">
 		<c:param name="main"></c:param>
 	</c:import>
+		<div id="enrollProgress">
+	    		&nbsp진행도 <progress value="0.8"></progress>
+	    	</div>
+	    </div>
       <div class="right">
       	<h2>서약서</h2>
       	<p>1. 사기를 치지 않겠습니다.</p>
       	<p>2. 그럼에도 사기를 쳐서 경찰서에서 만나게 되는 경우 금액의 200%를 모든 후원자 분들께 보상하겠습니다.</p>
-      	<p>대충 사기를 치지 않고 윤리적이고 올바르면서 깨끗한 펀딩 문화를 만들겠다는 다짐</p>
+      	<p>암튼 사기를 치지 않고 윤리적이고 올바르면서 깨끗한 펀딩 문화를 만들겠다는 다짐</p>
 		<form name="form" method="post" action="<c:url value='/project/register/form' />">
 			<input type="hidden" name="title" value="${project['title']}">
       		<input type="hidden" name="simpleInfo" value="${project['simpleInfo']}">
@@ -79,8 +58,8 @@
       		<input type="hidden" name="teamName" value="${creator['nickName']}">
       		<input type="hidden" name="teamDetail" value="${creator['creatorInfo']}">
       		<input type="hidden" name="account" value="${creator['account']}">
-			<button name="step" class="goNext" value="step3" onClick="userCreate('<c:url value='/project/start' />')">Step 03</button>
-			<button name="step" class="goNext" value="final" onClick="userCreate('<c:url value='/project/start' />')">등록하기</button>
+			&nbsp<button name="step" class="goNext" value="step3">Step 03</button>
+			<button name="step" class="goNext" value="final">등록하기</button>
 		</form>     
       </div>
 </body>
