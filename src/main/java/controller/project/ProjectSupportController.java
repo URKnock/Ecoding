@@ -39,7 +39,8 @@ public class ProjectSupportController implements Controller {
 		
 		// ecoerId를 이용해 ecoer 찾은 후 request에 저장
 		//String ecoerId = session.getAttribute("ecoer");
-		String ecoerId = (String) request.getAttribute("ecoer"); // 세션 이용해야하는데 지금은 request 이용
+		//String ecoerId = (String) request.getAttribute("ecoer"); // 세션 이용해야하는데 지금은 request 이용
+		String ecoerId = "kai"; // 예시
 		
 		EcoerDTO ecoer = uManager.findEcoer(ecoerId);
 		
