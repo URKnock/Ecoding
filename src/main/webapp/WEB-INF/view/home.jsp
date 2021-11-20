@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import="model.service.ProjectManager, model.service.dto.ProjectDTO, model.Project" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <!DOCTYPE html>
@@ -49,6 +50,14 @@
 </style>
 
 </head>
+<%
+int projectId = 1130;
+ProjectManager manager = ProjectManager.getInstance();
+Project project = manager.findProject(projectId);
+ProjectDTO projectDTO = manager.findProjectInfo(project);
+request.setAttribute("project", project); // 임시로 프로젝트 하나 넘김
+request.setAttribute("percent", projectDTO.getPricePercent());
+%>
 <body>
 	<div class="wrap">
 		<!-- 캐러셀 -->
@@ -127,9 +136,9 @@
 					alt="Card imagecap">
 				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
 				<div class="card-body">
-					<a href="<c:url value='/project/support/view?projectId=1130' />" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
+					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">프로젝트 명</a>
+					<p class="card-text">${project.simpleInfo}
+					<p class="card-text comment">${percent}n%</p>
 				</div>
 			</div>
 		</div>
