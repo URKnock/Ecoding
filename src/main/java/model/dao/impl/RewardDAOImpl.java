@@ -87,7 +87,7 @@ public class RewardDAOImpl implements RewardDAO {
 	// 리워드DTO와 프로젝트ID를 받아서 해당 프로젝트ID에 리워드 삽입
 	public int insertReward(Reward reward) {
 		String sql = "INSERT INTO REWARD VALUES(seq_reward.nextval, ?, ?, ?, ?)";
-		Object[] param = new Object[] {reward.getProject_id(), reward.getName(), reward.getReward_price(), reward.getReward_info()};
+		Object[] param = new Object[] {reward.getProject_id(), reward.getrewardName(), reward.getrewardPrice(), reward.getrewardInfo()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
 		try {

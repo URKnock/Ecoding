@@ -4,16 +4,29 @@ public class Reward {
 
 	private int reward_id;
 	private int project_id;
-	private String name;
-	private int reward_price;
-	private String reward_info;
+	private String rewardName;
+	private int rewardPrice;
+	private String rewardInfo;
 
-	public Reward(int reward_id, int project_id, String name, int reward_price, String reward_info) {
+	public Reward(String rewardName, int rewardPrice, String rewardInfo) {
+		this.rewardName = rewardName;
+		this.rewardPrice = rewardPrice;
+		this.rewardInfo = rewardInfo;
+	}
+	
+	public Reward(int project_id, String rewardName, int rewardPrice, String rewardInfo) {
+		this.project_id = project_id;
+		this.rewardName = rewardName;
+		this.rewardPrice = rewardPrice;
+		this.rewardInfo = rewardInfo;
+	}
+
+	public Reward(int reward_id, int project_id, String rewardName, int rewardPrice, String rewardInfo) {
 		this.reward_id = reward_id;
 		this.project_id = project_id;
-		this.name = name;
-		this.reward_price = reward_price;
-		this.reward_info = reward_info;
+		this.rewardName = rewardName;
+		this.rewardPrice = rewardPrice;
+		this.rewardInfo = rewardInfo;
 	}
 
 	public int getReward_id() {
@@ -32,27 +45,27 @@ public class Reward {
 		this.project_id = project_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getrewardName() {
+		return rewardName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setrewardName(String rewardName) {
+		this.rewardName = rewardName;
 	}
 
-	public int getReward_price() {
-		return reward_price;
+	public int getrewardPrice() {
+		return rewardPrice;
 	}
 
-	public void setReward_price(int reward_price) {
-		this.reward_price = reward_price;
+	public void setrewardPrice(int rewardPrice) {
+		this.rewardPrice = rewardPrice;
 	}
 
-	public String getReward_info() {
-		return reward_info;
+	public String getrewardInfo() {
+		return rewardInfo;
 	}
 
-	public void setReward_info(String reward_info) {
-		this.reward_info = reward_info;
+	public void setrewardInfo(String rewardInfo) {
+		this.rewardInfo = rewardInfo;
 	}
 }

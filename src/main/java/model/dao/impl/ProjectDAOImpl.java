@@ -17,10 +17,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 		jdbcUtil = new JDBCUtil();
 	}	
 
-	public Project create(Project project) {
+	public int create(Project project) {
 		String insertQuery = "INSERT INTO PROJECT(project_id, title, simple_info, category, hashtag, ecotag, target_price, "
-				+ "current_price, start_date, end_date, payment_date, delivery_date) "
-				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?)";
+				+ "current_price, start_date, end_date, payment_date, delivery_date, detail_info, plan_info, exchange_info) "
+				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?)";
 		
 		Object[] param = new Object[] {project.getTitle(), project.getSimpleInfo(), project.getCategory(), 
 				project.getHashTag(), project.getEcoTag(), project.getTargetPrice(), 
@@ -35,8 +35,8 @@ public class ProjectDAOImpl implements ProjectDAO {
 			if(rs.next()) {
 		   		int generatedKey = rs.getInt(1); 
 		   		project.setProjectId(generatedKey); 
+		   		return generatedKey;
 		   	}
-		   	return project;
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -44,31 +44,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		return null;
-	}
-	
-	public int updateProjectForm(Project project) {
-		String sql = "UPDATE PROJECT "
-					+ "SET detail_info = ?, plan_info = ?, exchange_info =? "
-					+ "WHERE project_id=?";
-		Object[] param = new Object[] {project.getDetailInfo(), project.getPlanInfo(), 
-				project.getExchangeInfo(), project.getProjectId()};
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
-		
-		try {				
-			int result = jdbcUtil.executeUpdate();
-			return result;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		}
-		finally {
-			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
-		}		
 		return 0;
 	}
-
+	
 	// 기존의 프로젝트 정보를 수정.
 	public int update(Project project) {
 		String sql = "UPDATE PROJECT "

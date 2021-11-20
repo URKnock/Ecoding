@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="model.*" %>
+<% request.setCharacterEncoding("utf-8");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,15 +55,24 @@
 	</c:import>
       <div class="right">
       	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-      		<input type="hidden" name="projectId" value="${project.projectId}"/>
+      		<input type="hidden" name="title" value="${project['title']}">
+      		<input type="hidden" name="simpleInfo" value="${project['simpleInfo']}">
+      		<input type="hidden" name="category" value="${project['category']}">
+      		<input type="hidden" name="hashtag" value="${project['hashTag']}">
+      		<input type="hidden" name="ecotag" value="${project['ecoTag']}">
+      		<input type="hidden" name="targetAmount" value="${project['targetPrice']}">
+      		<input type="hidden" name="startDate" value="${project['startDate']}">
+      		<input type="hidden" name="endDate" value="${project['endDate']}">
+      		<input type="hidden" name="payDate" value="${project['paymentDate']}">
+      		<input type="hidden" name="deliveryDate" value="${project['deliveryDate']}">
 			<h3>Q1. 프로젝트 대표 영상을 첨부해주세요.</h3>
 			<input type="file" name="thumbnailVideo">
 			<h3>Q2. 상세한 프로젝트 설명을 작성해주세요.</h3>
 			<textarea rows="15" cols="100" name="detailInfo"></textarea>
 			<h3>Q3. 리워드 정보를 입력해주세요.</h3>
-			<input type="text" name="rewardName" placeholder="리워드 이름">
-			<input type="text" name="rewardPrice" placeholder="금액 범위">
-			<input type="text" name="rewardInfo" placeholder="리워드 정보">
+			<input type="text" name="name" placeholder="리워드 이름">
+			<input type="text" name="reward_price" placeholder="금액 범위">
+			<input type="text" name="reward-info" placeholder="리워드 정보">
 			<h3>Q4. 예산 사용 및 일정 계획을 작성해주세요.</h3>
 			<textarea rows="15" cols="100" name="planInfo"></textarea>
 			<h3>Q5. 교환 및 환불 안내 사항을 작성해주세요.</h3>
