@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>${project.title}</title>
-<style>
+<style type="text/css">
 	div {
-		border:1px black solid;
+		/*border:1px black solid;*/
 		text-align:center;
-		width:1000;
+		width:1000px;
 		margin-left:auto;
 		margin-right:auto;
 	}
@@ -21,50 +21,103 @@
 	}
 	h3 {
 		text-align:left;
-		padding-left:20;
+		padding-left:20px;
+	}
+	#support {
+		border:0;
+		width:300px;
+		height:70px;
+		font-size:18px;
+		font-weight:bold;
+		color:white;
+		background-color:#87e2f5;
+		border-radius:10px;
+	}
+	#support:hover {
+		background-color:#70b3ff;
+	}
+	#interest {
+		border:2px solid;
+		border-color:#d2d2d2;
+		width:70px;
+		height:70px;
+		font-size:18px;
+		font-weight:bold;
+		color:#a0a0a0;
+		background-color:white;
+		border-radius:10px;
+	}
+	#interest:hover {
+		color:#FF6464;
+	}
+	hr {
+		border:0;
+		height:1px;
+		background-color:#97e6e4;
+	}
+	#t2 {
+	 	width:380px;
+	 	height:100px;
+	 	text-align:center;
+	 	border-top:1px solid #6495ED;
+	 	border-bottom:1px solid #6495ED;
+	}
+	#t3 {
+		text-align:center;
+		width:400px;
+	 	text-align:center;
+	 	border-top:1px solid #6495ED;
+	 	border-bottom:1px solid #6495ED;
+	}
+	#t4 {
+		text-align:center;
+		width:800px;
+	 	text-align:center;
+	 	border-left:3px solid #6495ED;
 	}
 </style>
 </head>
 <body>
 	<div>
-		<table border="1" style="width:1000">
+		<table style="width:1000px">
 			<tr>
 				<td style="font-size:30pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="image.jpg" width="30" height="30"> <!-- 창작자 이미지 -> 후에 수정 ***-->
+					<img src="image.jpg" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
 				</td>
 				<td width="10%" style="text-align:center;">${projectDTO.creatorName}</td>
-				<td width="15%" style="text-align:center;">${project.category}</td>
+				<td width="15%" style="text-align:right;">${project.category}</td>
 			</tr>
 			<tr>
-				<td colspan="4">
+				<td colspan="4" style="text-align:left; padding-left:150px;">
 					<c:forEach var="hashTag" items="${project.hashTag}">
-						${hashTag}
+						#${hashTag}
 					</c:forEach>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4">
+				<td colspan="4" style="text-align:left; padding-left:150px;">
 					<c:forEach var="ecoTag" items="${project.ecoTag}">
-						${ecoTag}
+						#${ecoTag}
 					</c:forEach>
 				</td>
 			</tr>
 		</table>
 	</div>
+	<hr>
 	<div>
-		<table  border="1" style="width:1000; height:450; text-align:center;">
+		<table style="width:1000px; height:450px; text-align:center;">
 			<tr>
 				<td width="55%">
-					<img src="image.jpg" width="400" height="400"> <!-- 프로젝트 이미지 *** -->
+					<img src="image.jpg" width="400px" height="400px"> <!-- 프로젝트 이미지 *** -->
 				</td>
 				<td>
-					<button style="width:70; height:70;">찜</button>
-					<button style="width:300; height:70;" type="button"
+					<button id="interest">&#10084;</button> <!-- &#9825; &#9829;	 -->
+					<button id="support" type="button"
 						onclick="location.href='<c:url value='/project/support?projectId=${project.projectId}' />'"
 						name="projectId" value="${project.projectId}">프로젝트 후원하기</button>
 					<br><br>
-					<table border="1" style="width:380; height:160; text-align:center;">
+					<table id="t1" style="width:380px; height:160px; text-align:center;">
 						<tr>
 							<td>모인 금액</td>
 							<td>${project.currentPrice}원</td>
@@ -79,8 +132,8 @@
 							<td>${projectDTO.countSupporter}명</td>
 						</tr>
 					</table>
-					<br>
-					<table border="1" style="width:380; height:100; text-align:center;">
+					&nbsp;
+					<table id="t2">
 						<tr>
 							<td>목표 금액</td>
 							<td>${project.targetPrice}원</td>
@@ -98,6 +151,7 @@
 			</tr>
 		</table>
 	</div>
+	<hr>
 	<div>
 		<div>
 			<h3>프로젝트 소개</h3>
@@ -110,7 +164,7 @@
 		</div>
 		<div>
 			<h3>프로젝트 일정</h3>
-			<table border="1" style="width:300; text-align:center;">
+			<table id="t3">
 				<tr>
 					<td>펀딩 예고</td>
 					<td>21년9월20일</td>
@@ -139,24 +193,25 @@
 		</div>
 		<div>
 			문의사항은 이메일 ${projectDTO.creatorEmail}로 문의
-		<div>
+		</div>
 		<div>
 			<h3>공지사항</h3>
-			<table border="1" style="width:800; text-align:center;">
+			<table id="t4">
 				<c:forEach var="notice" items="${noticeList}">
 					<tr><td>${notice.noticeContent}</td></tr>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
+	<hr>
 	<div>
-		<h4 style="text-align:left; padding-left:20;">다른 프로젝트 둘러보기</h4>
-		<table border="1" style="width:800; height:180; text-align:center;">
+		<h4 style="text-align:left; padding-left:20px;">다른 프로젝트 둘러보기</h4>
+		<table style="width:800px; height:180px; text-align:center;">
 			<tr>
-				<td><img src="image.jpg" width="130" height="130"></td>
-				<td><img src="image.jpg" width="130" height="130"></td>
-				<td><img src="image.jpg" width="130" height="130"></td>
-				<td><img src="image.jpg" width="130" height="130"></td>
+				<td><img src="image.jpg" width="130px" height="130px"></td>
+				<td><img src="image.jpg" width="130px" height="130px"></td>
+				<td><img src="image.jpg" width="130px" height="130px"></td>
+				<td><img src="image.jpg" width="130px" height="130px"></td>
 			</tr>
 			<tr>
 				<td>프로젝트 이름</td>
