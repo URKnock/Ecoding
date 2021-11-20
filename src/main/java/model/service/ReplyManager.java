@@ -54,4 +54,12 @@ public class ReplyManager {
 	public ReplyDAO getReplyDAO() {
 		return this.replyDAO;
 	}
+	
+	public int like() {
+		return 0;
+	}
+	
+	public int report() {
+		return 0;
+	}
 }

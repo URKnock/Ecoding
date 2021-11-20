@@ -1,4 +1,4 @@
-package model.service;
+package model.dao.impl;
 
 import java.util.List;
 import model.DAOFactory;

@@ -8,6 +8,7 @@ public interface PostDAO {
 	public List<PostDTO> getPostList();	
 	public List<PostDTO> getPostListByTitle(String pTitle);
 	public List<PostDTO> getPostByCId(int id);
+	public List<PostDTO> getPostListByKeyword(String keyword, String type);
 	public int insertPost(PostDTO post);
 	public int updatePost(PostDTO post);	
 	public int deletePost(int pId);		

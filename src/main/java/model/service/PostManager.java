@@ -57,7 +57,6 @@ public class PostManager {
 	}
 
 	public List<PostDTO> findPostList(String keyword, String type) {
-		// DB 검색 기능 구현할 것 = LIKE 연산자
-		return null;
+		return postDAO.getPostListByKeyword(keyword, type);
 	}
 }
