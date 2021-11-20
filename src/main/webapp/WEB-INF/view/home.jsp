@@ -136,7 +136,7 @@ request.setAttribute("percent", projectDTO.getPricePercent());
 					alt="Card imagecap">
 				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
 				<div class="card-body">
-					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">프로젝트 명</a>
+					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">${project.title}</a>
 					<p class="card-text">${project.simpleInfo}
 					<p class="card-text comment">${percent}n%</p>
 				</div>
