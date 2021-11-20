@@ -1,18 +1,15 @@
-package model;
+package model.service.dto;
 
-public class Support {
+public class SupportDTO {
 	
-	private int supportId; //PK ==> 필수
-	private int ecoerId; //FK ==> 필수
-	private int projectId; //FK ==> 필수 
-	private int rewardId; //FK ==> 필수
-	private int amount; //결제 총액 ==> 필수
+	private String ecoerId;
+	private int projectId;
+	private int rewardId;
+	private int amount;
 	private String bank;
-	private String card; //카드 정보 ==> 필수
+	private String card;
 	
-	public Support(int supportId, int ecoerId, int projectId, int rewardId, int amount, String bank, String card) {
-		super();
-		this.supportId = supportId;
+	public SupportDTO(String ecoerId, int projectId, int rewardId, int amount, String bank, String card) {
 		this.ecoerId = ecoerId;
 		this.projectId = projectId;
 		this.rewardId = rewardId;
@@ -21,19 +18,11 @@ public class Support {
 		this.card = card;
 	}
 
-	public int getSupportId() {
-		return supportId;
-	}
-
-	public void setSupportId(int supportId) {
-		this.supportId = supportId;
-	}
-
-	public int getEcoerId() {
+	public String getEcoerId() {
 		return ecoerId;
 	}
 
-	public void setEcoersId(int ecoerId) {
+	public void setEcoerId(String ecoerId) {
 		this.ecoerId = ecoerId;
 	}
 

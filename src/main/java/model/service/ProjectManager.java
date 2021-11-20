@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
+import model.Creator;
 import model.DAOFactory;
+import model.Ecoer;
 import model.Project;
 import model.Reward;
 import model.Support;
@@ -15,10 +18,14 @@ import model.service.dto.CreatorDTO;
 import model.service.dto.ProjectDTO;
 import model.service.dto.ProjectNoticeDTO;
 import model.service.dto.RewardDTO;
+import model.service.dto.SupportDTO;
 
 public class ProjectManager {
 	private static ProjectManager manager = new ProjectManager();
+	
 	private DAOFactory factory;
+	
+	private EcoerDAO ecoerDAO;
 	private ProjectDAO projectDAO; //Impl 통해서 가져오기
 	private CreatorDAO creatorDAO;
 	private SupportDAO supportDAO;
@@ -28,6 +35,7 @@ public class ProjectManager {
 	private ProjectManager() {
 		try {
 			factory = new DAOFactory();
+			ecoerDAO = factory.getEcoerDAO();
 			projectDAO = factory.getProjectDAO();
 			creatorDAO = factory.getCreatorDAO();
 			supportDAO = factory.getSupportDAO();
@@ -50,13 +58,13 @@ public class ProjectManager {
 		return projectDAO.updateProjectForm(project);
 	}
 	
-	public void supportProject(Support support) throws SQLException {
+	public void supportProject(SupportDTO support) throws SQLException {
 		// 후원 테이블 추가
 		supportDAO.create(support);
 		// 프로젝트 정보 변경 -> 현재 금액에 후원 금액 추가 -> DAO?Manager?그대로? -> 트랙잭션으로 묶기?
 		Project project = projectDAO.findProject(support.getProjectId()); // support의 projectId로 프로젝트 검색
-		project.setCurrentPrice(project.getCurrentPrice() + support.getAmount());
-		
+		int price = project.getCurrentPrice() + support.getAmount(); // 프로젝트 현재 금액 + 후원 금액
+		projectDAO.updatePriceProject(project.getProjectId(), price);
 		return;
 	}
 
@@ -66,20 +74,29 @@ public class ProjectManager {
 	
 	public ProjectDTO findProjectInfo(Project project) throws SQLException {
 		ProjectDTO dto = null;
-		CreatorDTO creator = creatorDAO.findCreator(project.getEcoerId());
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		Creator creator = creatorDAO.findCreatorName(project.getEcoerId());
+		Ecoer ecoer = ecoerDAO.findEcoerInfo(project.getEcoerId());
 		
 		int projectId = project.getProjectId();
 		String title = project.getTitle();
 		String image = project.getImage();
 		String creatorImage = creator.getImage();
 		String creatorName = creator.getNickName();
-		int pricePercent = project.getCurrentPrice() / project.getTargetPrice() * 100;
-		long remainTime = project.getStartDate().getTime() - project.getEndDate().getTime();
+		String creatorEmail = ecoer.getEmail();
+		
+		double pricePercent = (double) project.getCurrentPrice() / project.getTargetPrice() * 100;
+//		long remainTime = ChronoUnit.DAYS.between(
+//				project.getStartDate(), project.getEndDate());
+		
+		long remainTime = 0; //long diffDays = diffSec / (24*60*60);
+//		Date today = new Date();
+//		long remainTime = (project.getEndDate() - today) / (24 * 60 * 60 * 1000);
+		
 		int countSupporter = supportDAO.countSupporter(projectId);
 
-		dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName,
-				pricePercent, remainTime, countSupporter);
+		dto = new ProjectDTO(projectId, title, image,
+				creatorImage, creatorName, creatorEmail,
+				(int) pricePercent, remainTime, countSupporter);
 		
 		return dto;
 	}
@@ -95,7 +112,7 @@ public class ProjectManager {
 		String creatorName = creator.getNickName();
 		Date paymentDate = project.getPaymentDate();
 
-		//dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
+		dto = new ProjectDTO(projectId, title, image, creatorImage, creatorName, paymentDate);
 		
 		return dto;
 	}

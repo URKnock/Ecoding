@@ -18,6 +18,7 @@ public class ViewProjectController implements Controller {
 		
 		// project_id를 이용하여 project를 찾아서 project에 대입한 후 request에 저장
 		ProjectManager manager = ProjectManager.getInstance();
+		
 		Project project = manager.findProject(projectId);
 		ProjectDTO projectDTO = manager.findProjectInfo(project);
 		List<ProjectNoticeDTO> noticeList = manager.getNoticeList(projectId);

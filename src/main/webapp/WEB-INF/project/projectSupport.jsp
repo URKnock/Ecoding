@@ -33,12 +33,8 @@
 				<td width="5%" style="text-align:center;">
 					<img src="image.jpg" width="30" height="30"> <!-- 창작자 이미지 -> 후에 수정 ***-->
 				</td>
-				<td width="10%" style="text-align:center;">${projectDTO.creatorName}</td> <!-- 창작자 이름 -> DTO 생성해서 가져오기 -> 후에 수정 *** -->
-				<td width="15%" style="text-align:center;">
-					<c:forEach var="category" items="${project.category}">
-						${hashTag}
-					</c:forEach>
-				</td> <!-- 카테고리 하나만? -> 후에 수정 *** -->
+				<td width="10%" style="text-align:center;">${projectDTO.creatorName}</td>
+				<td width="15%" style="text-align:center;">${project.category}</td>
 			</tr>
 			<tr>
 				<td colspan="4">
@@ -65,20 +61,21 @@
 				<td>
 					<button style="width:70; height:70;">찜</button>
 					<button style="width:300; height:70;" type="button"
-						onclick="location.href='<c:url value='/project/support' />'">프로젝트 후원하기</button>
+						onclick="location.href='<c:url value='/project/support?projectId=${project.projectId}' />'"
+						name="projectId" value="${project.projectId}">프로젝트 후원하기</button>
 					<br><br>
 					<table border="1" style="width:380; height:160; text-align:center;">
 						<tr>
 							<td>모인 금액</td>
-							<td>${project.currentPrice}원</td> <!-- 여기까지 수정함 -->
+							<td>${project.currentPrice}원</td>
 							<td style="color:red; font-weight:bold;">${projectDTO.pricePercent}%</td>
 						</tr>
 						<tr>
 							<td>남은 시간</td>
-							<td>${projectDTO.remainTime}원</td> <!-- DTO 묶을수도 -->
+							<td>${projectDTO.remainTime}일</td>
 						</tr>
 						<tr>
-							<td>후원자</td> <!--DTO -->
+							<td>후원자</td>
 							<td>${projectDTO.countSupporter}명</td>
 						</tr>
 					</table>
@@ -90,11 +87,11 @@
 						</tr>
 						<tr>
 							<td>펀딩 종료일</td>
-							<td>${endDate}</td>
+							<td>${project.endDate}</td>
 						</tr>
 						<tr>
 							<td>결제일</td>
-							<td>${paymentDate}</td>
+							<td>${project.paymentDate}</td>
 						</tr>
 					</table>
 				</td>
@@ -104,8 +101,8 @@
 	<div>
 		<div>
 			<h3>프로젝트 소개</h3>
-			${porject.simpleInfo}<br>
-			${porject.datailInfo}
+			${project.simpleInfo}<br>
+			${project.detailInfo}
 		</div>
 		<div>
 			<h3>프로젝트 예산 사용</h3>
@@ -120,34 +117,34 @@
 				</tr>
 				<tr>
 					<td>펀딩 시작</td>
-					<td>${porject.startDate}</td>
+					<td>${project.startDate}</td>
 				</tr>
 				<tr>
 					<td>펀딩 종료</td>
-					<td>${porject.endDate}</td>
+					<td>${project.endDate}</td>
 				</tr>
 				<tr>
 					<td>결제</td>
-					<td>${porject.paymentDate}</td>
+					<td>${project.paymentDate}</td>
 				</tr>
 				<tr>
 					<td>배송</td>
-					<td>${porject.deliverDate}</td>
+					<td>${project.deliveryDate}</td>
 				</tr>
 			</table>
 		</div>
 		<div>
 			<h3>교환 안내</h3>
-			${porject.exchangeInfo}
+			${project.exchangeInfo}
 		</div>
 		<div>
-			문의사항은 이메일 creator@dongduk.ac.kr로 문의
+			문의사항은 이메일 ${projectDTO.creatorEmail}로 문의
 		<div>
 		<div>
 			<h3>공지사항</h3>
 			<table border="1" style="width:800; text-align:center;">
 				<c:forEach var="notice" items="${noticeList}">
-					<tr><td>${notice}</td></tr>
+					<tr><td>${notice.noticeContent}</td></tr>
 				</c:forEach>
 			</table>
 		</div>

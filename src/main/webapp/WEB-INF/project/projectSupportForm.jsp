@@ -27,7 +27,7 @@
 <body>
 <div>
 	<h3>후원선택</h3>
-	<form action="<c:url value='/project/support/confirm' />" method="POST">
+	<form action="<c:url value='/project/support/confirm?projectId=${projectId}' />" method="POST"> <!-- ?projectId=${projectId} -->
 	<table border="1" style="width:800; text-align:center;">
 		<tr style="height:100;">
 			<td width="300">

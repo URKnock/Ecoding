@@ -53,20 +53,6 @@ public class ProjectRegisterController implements Controller {
     			int projectId = Integer.parseInt(request.getParameter("projectId"));
 	    		project = new Project(projectId, request.getParameter("detailInfo"), request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
 	    		
-<<<<<<< HEAD
-	    		Reward reward = new Reward(0, projectId, request.getParameter("rewardName"), Integer.parseInt(request.getParameter("rewardPrice")), request.getParameter("rewardInfo"));
-	
-				ProjectManager manager = ProjectManager.getInstance();
-				manager.updateProjectForm(project);
-				manager.createReward(reward);
-				request.setAttribute("project", project);
-				request.setAttribute("reward", reward);
-				return "/project/registerProjectForm_step3.jsp";
-    		} catch (Exception e) {
-        		request.setAttribute("registerFailed", true);
-        		request.setAttribute("exception", e);
-        		request.setAttribute("project", project);
-=======
 	    		//Reward reward = new Reward(request.getParameter("reward"), Integer.parseInt(request.getParameter("rewardPrice")));
 	
 				ProjectManager manager = ProjectManager.getInstance();
@@ -77,7 +63,7 @@ public class ProjectRegisterController implements Controller {
         		request.setAttribute("exception", e);
         		request.setAttribute("project", project);
 				//request.setAttribute("reward", reward);
->>>>>>> branch 'develop' of https://github.com/URKnock/Ecoding.git
+
         		return "/project/registerProjectForm_step2.jsp";
         	}      
     	}

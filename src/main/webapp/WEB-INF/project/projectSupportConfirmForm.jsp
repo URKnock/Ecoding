@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Project Support Confirm</title>
 <style>
 	div {
 		border:1px black solid;
@@ -37,7 +38,7 @@
 				<td width="5%" style="text-align:center;">
 					<img src="image.jpg" width="30" height="30"> <!-- 이미지 수정 **** -->
 				</td>
-				<td width="20%" style="text-align:left;">${project.creatorName}</td> <!-- DTO로 생성 -->
+				<td width="20%" style="text-align:left;">${project.creatorName}</td>
 			</tr>
 		</table>
 	</div>
@@ -50,7 +51,7 @@
 					<table style="width:480; height:100;">
 						<tr>
 							<td>${reward.name}</td>
-							<td><button type="button" onclick="location.href='projectSupportForm.jsp'">
+							<td><button type="button" onclick="location.href='<c:url value='/project/support?projectId=${project.projectId}' />'">
 									변경
 							</button></td>
 						</tr>
@@ -110,11 +111,11 @@
 					<table style="width:480; height:100;">
 						<tr>
 							<td>우편번호</td>
-							<td>02748</td>
+							<td>12345</td>
 						</tr>
 						<tr>
 							<td>주소</td>
-							<td>서울시 성북고 화랑로 13길 60</td>
+							<td>${ecoer.address}</td>
 						</tr>
 						<tr>
 							<td>상세 주소</td>
@@ -129,16 +130,20 @@
 					<table style="width:480; height:100;">
 						<tr>
 							<td>카드</td>
-							<td><input type="text" size="10"></td>
+							<td><input type="text" name="bank" size="10"></td>
 						</tr>
 						<tr>
 							<td>카드 번호</td>
-							<td><input type="text" size="20"></td>
+							<td><input type="text" name="card" size="20"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
+		<input type="hidden" id="ecoerId" name="ecoerId" value="${ecoer.ecoerId}" />
+		<input type="hidden" id="projectId" name="projectId" value="${project.projectId}" />
+		<input type="hidden" id="rewardId" name="rewardId" value="${reward.rewardId}" />
+		<input type="hidden" id="amount" name="amount" value="${reward.rewardPrice + add}" />
 	</form>	
 	</div>
 </body>
