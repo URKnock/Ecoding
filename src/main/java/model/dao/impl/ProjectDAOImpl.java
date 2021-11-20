@@ -25,7 +25,8 @@ public class ProjectDAOImpl implements ProjectDAO {
 		Object[] param = new Object[] {project.getTitle(), project.getSimpleInfo(), project.getCategory(), 
 				project.getHashTag(), project.getEcoTag(), project.getTargetPrice(), 
 				new java.sql.Date(project.getStartDate().getTime()), new java.sql.Date(project.getEndDate().getTime()), 
-				new java.sql.Date(project.getPaymentDate().getTime()), new java.sql.Date(project.getDeliveryDate().getTime())};
+				new java.sql.Date(project.getPaymentDate().getTime()), new java.sql.Date(project.getDeliveryDate().getTime()), 
+				project.getDetailInfo(), project.getPlanInfo(), project.getExchangeInfo()};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
 		
 		String key[] = {"project_id"};

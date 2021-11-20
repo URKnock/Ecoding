@@ -53,7 +53,7 @@
 			<p>&nbspQ3. 리워드 정보를 입력해주세요.</p>
 			&nbsp<input type="text" name="name" placeholder="리워드 이름">
 			&nbsp<input type="text" name="reward_price" placeholder="금액 범위">
-			&nbsp<input type="text" name="reward-info" placeholder="리워드 정보">
+			&nbsp<input type="text" name="reward_info" placeholder="리워드 정보">
 			<p>Q4. 예산 사용 및 일정 계획을 작성해주세요.</p>
 			&nbsp<textarea rows="5" cols="100" name="planInfo"></textarea>
 			<p>Q5. 교환 및 환불 안내 사항을 작성해주세요.</p>

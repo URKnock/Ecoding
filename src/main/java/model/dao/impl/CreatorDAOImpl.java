@@ -20,17 +20,17 @@ public class CreatorDAOImpl implements CreatorDAO {
 	}
 	
 	public int confirm(CreatorDTO creator) {
-		String sql = "SELECT is_creator FROM ecoer WHERE ecoer_id=?";      
+		String sql = "SELECT is_creator FROM ecoer WHERE ecoer_id=?";  
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {creator.getEcoerId()});
 		try {
-			jdbcUtil.setSqlAndParameters(sql, new Object[] {creator.getEcoerId()});
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
-				int count = rs.getInt(1);
+				int is_creator = rs.getInt(1);
 				
-				if(count == 1)
+				if(is_creator == 1)
 					return update(creator);
 				else
-					return insert(creator);
+					return alterIsCreator(creator);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -40,12 +40,33 @@ public class CreatorDAOImpl implements CreatorDAO {
 		return 0;
 	}
 	
+	public int alterIsCreator(CreatorDTO creator) {
+		String sql = "UPDATE ecoer SET is_creator = 1 WHERE ecoer_id = ?";
+		Object[] param = new Object[] {creator.getEcoerId()};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return insert(creator);
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;	
+	}
+	
 	public int insert(CreatorDTO creator) {
-		String sql = "INSERT INTO creator VALUES (?, ?, ?, ?, ?)";
-		Object[] param = new Object[]{};
+		String sql = "INSERT INTO creator(ecoer_id, nick_name, creator_info, account) VALUES (?, ?, ?, ?)";
+		Object[] param = new Object[]{creator.getEcoerId(), creator.getNickName(),
+				creator.getCreatorInfo(), creator.getAccount()};
+		/*
 		for(int i = 0; i < CreatorDTO.cols; i++) {
 			param[i] = creator.getWithIndex(i);
-		}				
+		}	
+		*/		
 		jdbcUtil.setSqlAndParameters(sql, param);
 
 		try {				
@@ -62,16 +83,22 @@ public class CreatorDAOImpl implements CreatorDAO {
 	}
 
 	public int update(CreatorDTO creator) {
-		String sql = "UPDATE creator SET password=?";
+		String sql = "UPDATE creator SET nick_name = ?, creator_info = ?, account = ? WHERE ecoer_id = ?";
+		/*
+				SET password=?";
 		for(int i = 2; i < CreatorDTO.cols; i++) {
 			sql += ", " + CreatorDTO.columns[i];
 		}
-		sql += "WHERE creator_id=?";
+		*/
 		
-		Object[] param = new Object[]{};
+		Object[] param = new Object[]{creator.getNickName(), creator.getCreatorInfo(), creator.getAccount(), creator.getEcoerId()};
+		
+		/*
 		for(int i = 0; i < CreatorDTO.cols; i++) {
 			param[i] = creator.getWithIndex(i);
 		}
+		*/
+		
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				

@@ -8,19 +8,6 @@ public class Reward {
 	private int rewardPrice;
 	private String rewardInfo;
 
-	public Reward(String rewardName, int rewardPrice, String rewardInfo) {
-		this.rewardName = rewardName;
-		this.rewardPrice = rewardPrice;
-		this.rewardInfo = rewardInfo;
-	}
-	
-	public Reward(int project_id, String rewardName, int rewardPrice, String rewardInfo) {
-		this.project_id = project_id;
-		this.rewardName = rewardName;
-		this.rewardPrice = rewardPrice;
-		this.rewardInfo = rewardInfo;
-	}
-
 	public Reward(int reward_id, int project_id, String rewardName, int rewardPrice, String rewardInfo) {
 		this.reward_id = reward_id;
 		this.project_id = project_id;

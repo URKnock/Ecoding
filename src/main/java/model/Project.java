@@ -44,9 +44,12 @@ public class Project {
 			
 		}
 		
-		public Project(String title, String simpleInfo, String category, String hashTag, String ecoTag,
-				int targetPrice, Date startDate, Date endDate, Date paymentDate, Date deliveryDate,
+		public Project(int projectId, String ecoerId, String title, String simpleInfo, String category, String hashTag,
+				String ecoTag, int targetPrice, Date startDate, Date endDate, Date paymentDate, Date deliveryDate,
 				String detailInfo, String planInfo, String exchangeInfo) {
+			super();
+			this.projectId = projectId;
+			this.ecoerId = ecoerId;
 			this.title = title;
 			this.simpleInfo = simpleInfo;
 			this.category = category;
@@ -61,9 +64,7 @@ public class Project {
 			this.planInfo = planInfo;
 			this.exchangeInfo = exchangeInfo;
 		}
-
 		
-
 		public Project(int projectId, String ecoerId, String title, String image, String simpleInfo, String category,
 				String hashTag, String ecoTag, double ecoScore, int targetPrice, int currentPrice, Date startDate,
 				Date endDate, Date paymentDate, Date deliveryDate, String detailInfo, String planInfo,
