@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.service.PostManager;
 import model.service.ReplyManager;
 import model.service.dto.PostDTO;
@@ -70,7 +72,14 @@ public class CommunityController implements Controller {
 			    	reply = new ReplyDTO();
 			    	reply.setPostId(postId);
 			    	reply.setReplyContent(request.getParameter("reply_content"));
-			    	reply.setEcoerId("test");
+			    	
+        			HttpSession session = request.getSession();
+        			String ecoerId = UserSessionUtils.getLoginEcoerId(session);
+        			if(ecoerId == null)
+        				reply.setEcoerId("test");
+        			else
+						reply.setEcoerId(ecoerId);
+						
 			    	manager.insert(reply);
 			    	return "redirect:/board/view?pid=" + postId;
 			    } catch (Exception e) {

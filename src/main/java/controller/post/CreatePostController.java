@@ -2,8 +2,10 @@ package controller.post;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.service.PostManager;
 import model.service.dto.PostDTO;
 
@@ -18,7 +20,14 @@ public class CreatePostController implements Controller {
         		if(i == 0)
         			post.setWithIndex(i, 0);
         		else if(i == 8)
-        			post.setWithIndex(i, "test");	//session.user로 바꿀 것
+        		{
+        			HttpSession session = request.getSession();
+        			String ecoerId = UserSessionUtils.getLoginEcoerId(session);
+        			if(ecoerId == null)
+        				post.setWithIndex(i, "test");
+        			else
+						post.setEcoerId(ecoerId);
+        		}
         		else if(i == 9)
         			post.setWithIndex(i, Integer.parseInt(req));
         		else

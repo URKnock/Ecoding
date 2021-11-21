@@ -30,6 +30,7 @@
 		<tr>
 			<td>No</td>
 			<td>제목</td>
+			<td>작성자</td>
 			<td>작성일</td>
 			<td>조회수</td>
 			<td>댓글수</td>
@@ -39,6 +40,7 @@
 			<tr>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postId}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.title}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.ecoerId}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postDate}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.views}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.likes}</a></td>

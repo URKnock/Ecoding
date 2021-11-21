@@ -20,7 +20,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">${post.postDate} | 조회수 ${post.views} | 좋아요수 ${post.likes}</td>
+			<td colspan="2">작성자 ${post.ecoerId} | 작성일 ${post.postDate} | 조회수 ${post.views} | 좋아요수 ${post.likes}</td>
 		</tr>
 		<tr>
 			<td colspan="2">${post.postContent}<br/><br/></td>
@@ -39,6 +39,7 @@
 				<form name="comment" action="<c:url value='/board/view'/>" method="post">
 					<input type="text" name="reply_content" placeholder="댓글을 입력하세요">
 					<input type="submit" value="등록"/>
+					<input type="hidden" name="_method" value="post"/>
 					<input type="hidden" name="pid" value="${post.postId}"/>
 				</form>
 			</td>
