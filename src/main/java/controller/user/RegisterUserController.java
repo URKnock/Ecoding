@@ -40,7 +40,7 @@ public class RegisterUserController implements Controller {
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(ecoer);
-	        return "/user/registerDone.jsp";
+	        return "/user/registerDone.jsp"; //회원가입이 완료되었다는 페이지 표시(211121 17:48:18 추가)
 	        
 		} catch (ExistingUserException e) {	
             request.setAttribute("registerFailed", true);
