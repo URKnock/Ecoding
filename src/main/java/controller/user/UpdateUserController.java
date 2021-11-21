@@ -60,6 +60,6 @@ public class UpdateUserController implements Controller {
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateEcoer);			
-        return "redirection:/user/view";
+        return "redirect:/user/view";
     }
 }
