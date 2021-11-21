@@ -18,11 +18,21 @@ public class EcoerDAOImpl implements EcoerDAO{
 	}
 
 	public int insert(EcoerDTO ecoer) {
-		String sql = "INSERT INTO ecoer VALUES (?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[]{};
-		for(int i = 0; i < EcoerDTO.cols; i++) {
-			param[i] = ecoer.getWithIndex(i);
-		}				
+		String sql = "INSERT INTO ecoer VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		Object[] param = new Object[]{
+				ecoer.getEcoerId(),
+				ecoer.getPassword(),
+				ecoer.getName(),
+				ecoer.getCode(),
+				ecoer.getAddress(),
+				ecoer.getDetailAddress(),
+				ecoer.getPhone(),
+				ecoer.getEmail(),
+				ecoer.getIsCreator()
+		};
+		//for(int i = 0; i < EcoerDTO.cols; i++) {
+		//	param[i] = ecoer.getWithIndex(i);
+		//}				
 		jdbcUtil.setSqlAndParameters(sql, param);
 
 		try {				
@@ -45,12 +55,22 @@ public class EcoerDAOImpl implements EcoerDAO{
 		}
 		sql += " WHERE ecoer_id=?";
 		
-		Object[] param = new Object[]{};
-		for(int i = 0; i < EcoerDTO.cols - 2; i++) { //param의 0에 password부터 채운다. (0번~7번)
-			if(ecoer.getWithIndex(i + 1) != null) //여기서 자꾸 index 오류남
-				param[i] = ecoer.getWithIndex(i + 1);
-		}
-		param[EcoerDTO.cols - 1] = ecoer.getEcoerId(); //마지막 where절에 id를 넣는다. (8번)
+		Object[] param = new Object[]{
+				ecoer.getPassword(),
+				ecoer.getName(),
+				ecoer.getCode(),
+				ecoer.getAddress(),
+				ecoer.getDetailAddress(),
+				ecoer.getPhone(),
+				ecoer.getEmail(),
+				ecoer.getIsCreator(),
+				ecoer.getEcoerId()
+		};
+		//for(int i = 0; i < EcoerDTO.cols - 2; i++) { //param의 0에 password부터 채운다. (0번~7번)
+		//	if(ecoer.getWithIndex(i + 1) != null) //여기서 자꾸 index 오류남
+		//		param[i] = ecoer.getWithIndex(i + 1);
+		//}
+		//param[EcoerDTO.cols - 1] = ecoer.getEcoerId(); //마지막 where절에 id를 넣는다. (8번)
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				

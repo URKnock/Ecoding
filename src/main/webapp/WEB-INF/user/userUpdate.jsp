@@ -38,7 +38,7 @@ function userModify() {
 		form.email.focus();
 		return false;
 	}
-	//var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	//var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/; ==> 정규식 X
 	//if(phoneExp.test(form.phone.value)==false) {
 	//	alert("전화번호 형식이 올바르지 않습니다.");
 	//	form.phone.focus();

@@ -32,6 +32,7 @@ public class RequestMapping {
         mappings.put("/user/view", new ViewUserController()); //유저 정보 (내 정보 보기)
         mappings.put("/user/update", new UpdateUserController()); //유저 수정 컨트롤러
         mappings.put("/user/register", new RegisterUserController()); //회원가입 폼으로 이동
+        mappings.put("/user/drop", new DeleteUserController()); //회원 탈퇴 기능
         
         // 프로젝트 관련
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
