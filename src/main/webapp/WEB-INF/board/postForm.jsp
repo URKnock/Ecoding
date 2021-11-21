@@ -25,8 +25,8 @@
 		<tr>
 			<td></td>
 			<td class="align_right">
-				<input type="submit" value="등록"/>
-				<input type="reset" value="취소" onClick="location.href='<c:url value='/board/list'/>';"/>
+				<button type="submit" class="btn btn-primary">등록</button>
+				<button type="reset" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/list'/>';">취소</button>
 			</td>
 		</tr>
 		<tr>

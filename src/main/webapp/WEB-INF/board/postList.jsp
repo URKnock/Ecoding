@@ -10,18 +10,18 @@
 </head>
 <body>
 	<div id="communitys" class="left">
-		<div name="0"><a href="<c:url value='/board/list?cid=0'/>">자유게시판</a></div>
-		<div name="1"><a href="<c:url value='/board/list?cid=1'/>">후기게시판</a></div>
+		<p><button type="button" class="btn btn-outline-primary btn-lg" onClick="location.href='<c:url value='/board/list?cid=0'/>'">자유게시판</button></p>
+		<p><button type="button" class="btn btn-outline-info btn-lg" onClick="location.href='<c:url value='/board/list?cid=1'/>'">후기게시판</button></p>
 	</div>
 	<div class="right">
 		<form name="search_post" action="">
-			<select>
+			<select name="type">
 				<option value="title">제목</option>
-				<option value="writer">작성자</option>
+				<option value="ecoer_id">작성자</option>
 			</select>
-			<input type="text"/>
-			<input type="submit" value="검색"/>
-			<input type="button" value="글쓰기" onClick="location.href='<c:url value='/board/form'/>'"/>
+			<input type="text" name="keyword"/>
+			<button type="submit" class="btn btn-outline-primary">검색</button>
+			<button type="button" class="btn btn-primary" onClick="location.href='<c:url value='/board/form'/>'">글쓰기</button>
 		</form>
 		<br/>
 	<table id="posts">

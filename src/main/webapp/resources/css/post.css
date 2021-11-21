@@ -13,11 +13,11 @@
 	text-align: right;
 }
 
-#communitys div {
+#communitys button {
 	width:300px;
 	height:200px;
-	background-color:aliceblue;
-	text-align:center;
+	padding:20px;
+	display:inline-block;
 }
 
 #posts td {
