@@ -71,19 +71,7 @@ function menuClicked(obj) {
 		else if(clickedId == 'board')
 			location.href='../board/list';
 	}
-}
-
-function loginCheck() {
-	if ( ecoerId == null ) {
-		alert("로그인이 필요합니다.");
-	    document.write ( '<p>로그인이 필요합니다.</p>' );
-	}
-	else {
-		alert("로그인 되었습니다.");
-		document.write ( '<p>로그인 되었습니다.</p>' );
-	}
-}
-  
+}  
 </script>
 <body onload="loginCheck()">
 	<div id="header">
