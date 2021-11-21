@@ -22,27 +22,27 @@ public class DeleteUserController implements Controller {
     	UserManager manager = UserManager.getInstance();		
 		HttpSession session = request.getSession();	
 	
-		if ((UserSessionUtils.isLoginUser("admin", session) && 	// �α����� ����ڰ� �������̰� 	
-			 !deleteId.equals("admin"))							// ���� ����� �Ϲ� ������� ���, 
-			   || 												// �Ǵ� 
-			(!UserSessionUtils.isLoginUser("admin", session) &&  // �α����� ����ڰ� �����ڰ� �ƴϰ� 
-			  UserSessionUtils.isLoginUser(deleteId, session))) { // �α����� ����ڰ� ���� ����� ��� (�ڱ� �ڽ��� ����)
+		if ((UserSessionUtils.isLoginUser("admin", session) && 	// 로그인한 사용자가 관리자이고 	
+				 !deleteId.equals("admin"))							// 삭제 대상이 일반 사용자인 경우, 
+				   || 												// 또는 
+				(!UserSessionUtils.isLoginUser("admin", session) &&  // 로그인한 사용자가 관리자가 아니고 
+				  UserSessionUtils.isLoginUser(deleteId, session))) { // 로그인한 사용자가 삭제 대상인 경우 (회원 탈퇴)
 				
-			manager.remove(deleteId);				// ����� ���� ����
-			if (UserSessionUtils.isLoginUser("admin", session))	// �α����� ����ڰ� ������ 	
-				return "redirect:/user/list";		// 리스트는 사용 안 함 (여기 뭐로 바꿀지...)
-			else 									// �α����� ����ڴ� �̹� ������
-				return "redirect:/user/logout";		// logout ó��
+			manager.remove(deleteId);				// 사용자 정보 삭제
+			if (UserSessionUtils.isLoginUser("admin", session))	// 로그인한 사용자가 관리자 	
+				return "redirect:/home/main";		// 여기 뭐로 바꿀지...
+			else 									// 로그인한 사용자는 이미 삭제됨
+				return "redirect:/user/logout";		// logout 처리
 		}
 		
-		/* ������ �Ұ����� ��� */
-		EcoerDTO ecoer = manager.findEcoer(deleteId);	// ����� ���� �˻�
+		/* 삭제가 불가능한 경우 */
+		EcoerDTO ecoer = manager.findEcoer(deleteId);
 		request.setAttribute("ecoer", ecoer);						
 		request.setAttribute("deleteFailed", true);
 		String msg = (UserSessionUtils.isLoginUser("admin", session)) 
 					? "시스템 관리자 정보는 삭제할 수 없습니다."		
 					: "타인의 정보는 삭제할 수 없습니다.";											
 		request.setAttribute("exception", new IllegalStateException(msg));            
-		return "/user/userView.jsp";		// ����� ���� ȭ������ �̵� (forwarding)	
+		return "/user/userView.jsp";		// 사용자 보기 화면으로 이동 (forwarding)
 	}
 }

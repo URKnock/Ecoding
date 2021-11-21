@@ -40,7 +40,7 @@ public class RegisterUserController implements Controller {
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(ecoer);
-	        return "redirect:/home/main"; //성공하면 뭐 보여줄지 띵킹좀
+	        return "/user/registerDone.jsp";
 	        
 		} catch (ExistingUserException e) {	
             request.setAttribute("registerFailed", true);

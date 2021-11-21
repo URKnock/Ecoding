@@ -17,7 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 function userRemove() {
-	return confirm("정말 삭제하시겠습니까?");		
+	return confirm("정말로 탈퇴하시겠습니까? 탈퇴 후에는 복구할 수 없습니다.");		
 }
 </script>
 </head>
@@ -64,10 +64,10 @@ function userRemove() {
      		     <c:param name='ecoerId' value='${ecoer.ecoerId}'/>
 		 	  </c:url>">수정</a>
 		<a class="btn btn-warning"
-			href="<c:url value='../user/delete'>
+			href="<c:url value='../user/drop'>
 		     	 <c:param name='ecoerId' value='${ecoer.ecoerId}'/>
 	 	      </c:url>"
-			onclick="return userRemove();">삭제</a><br>
+			onclick="return userRemove();">회원 탈퇴</a><br>
 
 		<!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 		<c:if test="${updateFailed || deleteFailed}">
