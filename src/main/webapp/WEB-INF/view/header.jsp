@@ -65,11 +65,11 @@ function menuClicked(obj) {
 	if(clickedId != 'category'){ //카테고리는 클래스 수정을 하지 않음
 		$(obj).attr('class', 'nav-link active');	//현재 엘리먼트에 active 설정
 		if(clickedId == 'home')
-			location.href='/home/main';
+			location.href='<c:url value='/home/main'/>';
 		else if(clickedId == 'funding')
-			location.href='/home/list';
+			location.href='<c:url value='/home/list'/>';
 		else if(clickedId == 'board')
-			location.href='/board/list';
+			location.href='<c:url value='/board/list'/>';
 	}
 }  
 </script>
@@ -88,16 +88,16 @@ function menuClicked(obj) {
 				</div>
 				<div style="float: right;">
 					<button id="project" type="button" class="btn btn-success"
-						onClick="location.href='/project/view';">프로젝트 등록하기</button>
+						onClick="location.href='<c:url value='/project/view'/>';">프로젝트 등록하기</button>
 					<button id="login" type="button" class="btn btn-primary"
-						onClick="location.href='/user/loginform';">로그인</button>
+						onClick="location.href='<c:url value='/user/loginform'/>';">로그인</button>
 					<c:if test="${ecoerId ne null}">
 						<button id="login" type="button" class="btn btn-primary"
-							onClick="location.href='/user/logout';">로그아웃</button>
+							onClick="location.href='<c:url value='/user/logout'/>';">로그아웃</button>
 							<!-- <script>alert("로그인 되었습니다.");</script> -->
 					</c:if>
 					<button id="register" type="button" class="btn btn-primary"
-						onClick="location.href='/user/register';">회원가입</button>
+						onClick="location.href='<c:url value='/user/register'/>';">회원가입</button>
 				</div>
 				<c:if test="${ecoerId ne null}">
 					<li class="nav-item"><a class="nav-link btn-link"
