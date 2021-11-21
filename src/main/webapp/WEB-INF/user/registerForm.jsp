@@ -104,7 +104,7 @@ function userCreate() {
 				<label for="phone" class="col-lg-2 col-form-label">전화번호</label>
 				<div class="col-lg-10">
 					<input type="text" name="phone" class="form-control"
-						placeholder="010-XXXX-YYYY"
+						placeholder="'-' 없이 입력"
 						<c:if test="${registerFailed}">value="${ecoer.phone}"</c:if>>
 				</div>
 			</div>

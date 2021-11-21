@@ -71,13 +71,16 @@ request.setAttribute("percent", projectDTO.getPricePercent());
 			</ol>
 			<div class="carousel-inner" style="margin: 20px 0px 20px 0px;">
 				<div class="carousel-item active">
-					<img class="d-block w-100" style="width:1120px; height: 400px" src="https://postfiles.pstatic.net/MjAyMTExMDVfMTQ4/MDAxNjM2MTE5OTU3MDc4.aV8KduvwtNtR6LaHhIa3SbMTIOjrFnEHpllr7dDRk3kg.5hmdWf61L-TPhWowUPeATNi6Q6GPixTd_hNSyr5BZlgg.JPEG.ironfurniture/classroom-2787754_1920.jpg?type=w966" alt="First slide">
+					<img class="d-block w-100" style="width:1120px; height: 400px" 
+					src="<c:url value='/resources/img/first.png'/>" alt="First slide">
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" style="width:1120px; height: 400px" src="https://postfiles.pstatic.net/MjAyMTExMDVfMTMg/MDAxNjM2MTE5OTc1MTk5.420bZR2xAgPge2R7wMgMsWy6TXjnHEsHMoQptCpq0W0g.CD8Q0rkZPso-eWvnHoRkKkEaWA09JIoMP6qoZDmqJQ8g.JPEG.ironfurniture/sunflower-3792914_1920.jpg?type=w966" alt="Second slide">
+					<img class="d-block w-100" style="width:1120px; height: 400px" 
+					src="<c:url value='/resources/img/second.png'/>" alt="Second slide">
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" style="width:1120px; height: 400px" src="https://postfiles.pstatic.net/MjAyMTExMDVfMTM3/MDAxNjM2MTE5OTg1Mzc0.t3gL2C1sdWjKmmtIaJTT2YorJ-SNKLy4Nr4sJiXCOIMg.CT67rnl7g5ffIObDdfzhW-bw8sVsTigX9eFV8-hACBwg.JPEG.ironfurniture/wave-2211925_1920.jpg?type=w966" alt="Third slide">
+					<img class="d-block w-100" style="width:1120px; height: 400px" 
+					src="<c:url value='/resources/img/third.png'/>" alt="Third slide">
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls"
