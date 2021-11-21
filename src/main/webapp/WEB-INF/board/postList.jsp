@@ -4,13 +4,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<title>게시판</title>
 	<%@ include file="../view/header.jsp" %>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/post.css'/>"/>
 </head>
 <body>
 	<div id="communitys" class="left">
-		<div><a href="">자유게시판</a></div>
-		<div><a href="">후기게시판</a></div>
+		<div name="0"><a href="<c:url value='/board/list?cid=0'/>">자유게시판</a></div>
+		<div name="1"><a href="<c:url value='/board/list?cid=1'/>">후기게시판</a></div>
 	</div>
 	<div class="right">
 		<form name="search_post" action="">

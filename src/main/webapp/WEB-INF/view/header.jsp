@@ -73,7 +73,7 @@ function menuClicked(obj) {
 	}
 }  
 </script>
-<body onload="loginCheck()">
+<body>
 	<div id="header">
 		<div id="top">
 			<img style="float: left" id="logo"

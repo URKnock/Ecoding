@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>글쓰기</title>
 <%@ include file="../view/header.jsp" %>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/post.css'/>"/>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -25,7 +26,7 @@
 			<td></td>
 			<td class="align_right">
 				<input type="submit" value="등록"/>
-				<input type="reset" value="취소"/>
+				<input type="reset" value="취소" onClick="location.href='<c:url value='/board/list'/>';"/>
 			</td>
 		</tr>
 		<tr>
