@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class EcoManager {
 	public static void main(String args[]) {
         String s = null;
-        String word = "\"고양이\"";
+        String word = "\"재활용\"";
         String path = System.getProperty("user.dir");
         
         path = "python " + path + "/src/main/java/util/knock.py " + word;
@@ -16,8 +16,6 @@ public class EcoManager {
         try {    
         	Process p = Runtime.getRuntime().exec(path);            
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            
-            System.out.println("loading");
             
             while ((s = stdInput.readLine()) != null) {
                 System.out.println(s);
