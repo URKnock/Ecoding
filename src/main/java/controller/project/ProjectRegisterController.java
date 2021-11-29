@@ -38,8 +38,9 @@ public class ProjectRegisterController implements Controller {
     		try {
     			project = new Project(-1, null, request.getParameter("title"), request.getParameter("simpleInfo"), 
         				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
-        				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
-    					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")), null, null, null);	
+        				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), 
+        				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
+        				sdf.parse(request.getParameter("deliveryDate")), null, null, null);	
     			request.setAttribute("project", project);
     			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
@@ -52,15 +53,17 @@ public class ProjectRegisterController implements Controller {
     		SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
     		Project project = new Project(-1, null, request.getParameter("title"), request.getParameter("simpleInfo"), 
     				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
-    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
-					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")), null, null, null);
+    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), 
+    				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
+    				sdf.parse(request.getParameter("deliveryDate")), null, null, null);
 			
     		try {
     			project.setDetailInfo(request.getParameter("detailInfo"));
     			project.setPlanInfo(request.getParameter("planInfo"));
     			project.setExchangeInfo(request.getParameter("exchangeInfo"));
     			
-	    		Reward reward = new Reward(-1, -1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+	    		Reward reward = new Reward(-1, -1, request.getParameter("name"), 
+	    				Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
 
 				request.setAttribute("project", project);
 				request.setAttribute("reward", reward);
@@ -83,7 +86,6 @@ public class ProjectRegisterController implements Controller {
     		Reward reward = new Reward(-1, -1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
     		
     		try {
-    			project.setEcoerId(request.getParameter("ecoerId"));
     			CreatorDTO creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
     					request.getParameter("teamDetail"), request.getParameter("account"));
     			
@@ -110,8 +112,9 @@ public class ProjectRegisterController implements Controller {
     				sdf.parse(request.getParameter("deliveryDate")), request.getParameter("detailInfo"), 
     				request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
 			
-    		Reward reward = new Reward(-1, -1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
-    		
+    		Reward reward = new Reward(-1, -1, request.getParameter("name"), 
+    				Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+    		String info = request.getParameter("reward_info");
     		CreatorDTO creator = new CreatorDTO(ecoerId, request.getParameter("teamName"), 
 					request.getParameter("teamDetail"), request.getParameter("account"));
     		

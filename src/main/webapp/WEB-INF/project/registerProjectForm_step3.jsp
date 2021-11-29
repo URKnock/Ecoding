@@ -49,6 +49,7 @@
       		<input type="hidden" name="exchangeInfo" value="${project['exchangeInfo']}">
       		<input type="hidden" name="name" value="${reward['rewardName']}">
       		<input type="hidden" name="reward_price" value="${reward['rewardPrice']}">
+      		<input type="hidden" name="reward_info" value="${reward['rewardInfo']}">
       		<input type="hidden" name="ecoerId" value="${ecoer.ecoerId}">
 			<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
 			<input type="text" name="teamName">
