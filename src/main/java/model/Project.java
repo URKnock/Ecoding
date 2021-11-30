@@ -1,8 +1,9 @@
 package model;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class Project {
+public class Project implements Serializable {
 		private int projectId; //PK ==> 필수
 		private String ecoerId; //FK ==> 필수
 		private String title; // ==> 필수
