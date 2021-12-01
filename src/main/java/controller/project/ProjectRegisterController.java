@@ -1,33 +1,25 @@
 package controller.project;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
 
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.Project;
 import model.Reward;
 import model.service.CreatorManager;
-import model.service.PostManager;
 import model.service.ProjectManager;
 import model.service.dto.CreatorDTO;
-import model.service.dto.PostDTO;
-import model.service.dto.ProjectDTO;
 
 //image, video 등 file 다 빠져있음
 public class ProjectRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String step = request.getParameter("step");
+    	HttpSession session = request.getSession();			
     	
     	if(step.equals("step1")) {    		
     		return "/project/registerProjectForm_step1.jsp";
@@ -36,11 +28,13 @@ public class ProjectRegisterController implements Controller {
     		Project project = null; 
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     		try {
-    			project = new Project(-1, null, request.getParameter("title"), request.getParameter("simpleInfo"), 
-        				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
-        				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
-    					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")), null, null, null);	
-    			request.setAttribute("project", project);
+    			project = new Project(-1, null, request.getParameter("title"), null, request.getParameter("simpleInfo"), 
+        				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 0, 
+        				Integer.parseInt(request.getParameter("targetAmount")), 0, sdf.parse(request.getParameter("startDate")), 
+        				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
+        				sdf.parse(request.getParameter("deliveryDate")), null, null, null, null, null);	
+    			
+    			session.setAttribute("project", project);
     			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
@@ -49,71 +43,52 @@ public class ProjectRegisterController implements Controller {
         	}      
     	}
     	else if(step.equals("step3")) {
-    		SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-    		Project project = new Project(-1, null, request.getParameter("title"), request.getParameter("simpleInfo"), 
-    				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
-    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), sdf.parse(request.getParameter("endDate")),
-					sdf.parse(request.getParameter("payDate")), sdf.parse(request.getParameter("deliveryDate")), null, null, null);
+    		Project project =  (Project)session.getAttribute("project");
 			
     		try {
     			project.setDetailInfo(request.getParameter("detailInfo"));
     			project.setPlanInfo(request.getParameter("planInfo"));
     			project.setExchangeInfo(request.getParameter("exchangeInfo"));
     			
-	    		Reward reward = new Reward(-1, -1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+	    		Reward reward = new Reward(-1, -1, request.getParameter("name"), 
+	    				Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
 
-				request.setAttribute("project", project);
-				request.setAttribute("reward", reward);
+	    		session.setAttribute("project", project);
+	    		session.setAttribute("reward", reward);
 				return "/project/registerProjectForm_step3.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
         		request.setAttribute("exception", e);
-        		request.setAttribute("project", project);
+        		session.setAttribute("project", project);
         		return "/project/registerProjectForm_step2.jsp";
         	}      
     	}
     	else if(step.equals("step4")) {
-    		SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-    		Project project = new Project(-1, null, request.getParameter("title"), request.getParameter("simpleInfo"), 
-    				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
-    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), 
-    				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
-    				sdf.parse(request.getParameter("deliveryDate")), request.getParameter("detailInfo"), 
-    				request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
-    		Reward reward = new Reward(-1, -1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+			String ecoerId = UserSessionUtils.getLoginEcoerId(session);
+    		Project project =  (Project)session.getAttribute("project");
+    		Reward reward =  (Reward)session.getAttribute("reward");
     		
     		try {
-    			project.setEcoerId(request.getParameter("ecoerId"));
-    			CreatorDTO creator = new CreatorDTO(request.getParameter("ecoerId"), request.getParameter("teamName"), 
+    			project.setEcoerId(ecoerId);
+    			CreatorDTO creator = new CreatorDTO(ecoerId, request.getParameter("teamName"), null, 
     					request.getParameter("teamDetail"), request.getParameter("account"));
     			
-    			request.setAttribute("project", project);
-				request.setAttribute("reward", reward);
-    			request.setAttribute("creator", creator);
+    			session.setAttribute("project", project);
+    			session.setAttribute("reward", reward);
+    			session.setAttribute("creator", creator);
     			return "/project/registerProjectForm_step4.jsp";
     		} catch (Exception e) {
     			request.setAttribute("registerFailed", true);
     			request.setAttribute("exception", e);
-    			request.setAttribute("project", project);
-				request.setAttribute("reward", reward);
+    			session.setAttribute("project", project);
+    			session.setAttribute("reward", reward);
     			return "/project/registerProjectForm_step3.jsp";
     		}
     	}
     	else if(step.equals("final")) {
-    		HttpSession session = request.getSession();	
-			String ecoerId = UserSessionUtils.getLoginEcoerId(session);
-			SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-    		Project project = new Project(-1, ecoerId, request.getParameter("title"), request.getParameter("simpleInfo"), 
-    				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 
-    				Integer.parseInt(request.getParameter("targetAmount")), sdf.parse(request.getParameter("startDate")), 
-    				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
-    				sdf.parse(request.getParameter("deliveryDate")), request.getParameter("detailInfo"), 
-    				request.getParameter("planInfo"), request.getParameter("exchangeInfo"));
-			
-    		Reward reward = new Reward(-1, -1, request.getParameter("name"), Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
-    		
-    		CreatorDTO creator = new CreatorDTO(ecoerId, request.getParameter("teamName"), 
-					request.getParameter("teamDetail"), request.getParameter("account"));
+			Project project =  (Project)session.getAttribute("project");
+			Reward reward =  (Reward)session.getAttribute("reward");
+			CreatorDTO creator =  (CreatorDTO)session.getAttribute("creator");
     		
     		try {
     			ProjectManager manager = ProjectManager.getInstance();
@@ -125,6 +100,9 @@ public class ProjectRegisterController implements Controller {
     			CreatorManager cmanager = CreatorManager.getInstance();
     			cmanager.update(creator);
 				
+    			session.removeAttribute("project");
+    			session.removeAttribute("reward");
+    			session.removeAttribute("creator");
     			return "/project/successRegister.jsp";
     		} catch (Exception e) {
     			request.setAttribute("registerFailed", true);

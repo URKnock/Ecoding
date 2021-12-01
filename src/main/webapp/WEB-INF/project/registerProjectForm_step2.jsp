@@ -36,16 +36,6 @@
 	    </div>
      <div class="right">
      	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-     		<input type="hidden" name="title" value="${project['title']}">
-     		<input type="hidden" name="simpleInfo" value="${project['simpleInfo']}">
-     		<input type="hidden" name="category" value="${project['category']}">
-     		<input type="hidden" name="hashtag" value="${project['hashTag']}">
-     		<input type="hidden" name="ecotag" value="${project['ecoTag']}">
-     		<input type="hidden" name="targetAmount" value="${project['targetPrice']}">
-     		<input type="hidden" name="startDate" value="${project['startDate']}">
-     		<input type="hidden" name="endDate" value="${project['endDate']}">
-     		<input type="hidden" name="payDate" value="${project['paymentDate']}">
-     		<input type="hidden" name="deliveryDate" value="${project['deliveryDate']}">
 			<p>Q1. 프로젝트 대표 영상을 첨부해주세요.</p>
 			&nbsp<input type="file" name="thumbnailVideo">
 			<p>Q2. 상세한 프로젝트 설명을 작성해주세요.</p>

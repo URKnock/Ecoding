@@ -1,6 +1,8 @@
 package model.service.dto;
 
-public class CreatorDTO extends EcoerDTO {
+import java.io.Serializable;
+
+public class CreatorDTO extends EcoerDTO  implements Serializable {
 	
 	private String ecoerId, nickName, image, creatorInfo, account;
 	public static String[] columns = { "ecoer_id", "nick_name", "image", "creator_info", "account" };
@@ -14,14 +16,6 @@ public class CreatorDTO extends EcoerDTO {
 		super();
 		this.nickName = nickName;
 		this.image = image;
-	}
-
-	public CreatorDTO(String ecoerId, String nickName, String creatorInfo, String account) {
-		super();
-		this.ecoerId = ecoerId;
-		this.nickName = nickName;
-		this.creatorInfo = creatorInfo;
-		this.account = account;
 	}
 	
 	public CreatorDTO(String ecoerId, String nickName, String image, String creatorInfo, String account) {

@@ -1,6 +1,8 @@
 package model;
 
-public class Reward {
+import java.io.Serializable;
+
+public class Reward implements Serializable {
 
 	private int reward_id;
 	private int project_id;
