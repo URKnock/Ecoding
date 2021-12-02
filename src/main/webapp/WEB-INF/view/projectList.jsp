@@ -71,56 +71,33 @@
 		</ul>
 		<!-- 상품 리스트 -->
 		<div class="card-columns" id="cards-box">
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
+			<c:forEach var="project" items="${projectList}">
+				<div class="card">
+					<c:if test="${project.image == null}">
+						<img class="card-img-top" src="/resources/img/noImage.png"
+							alt="Card imagecap">
+					</c:if>
+					<c:if test="${project.image ne null}">
+						<img class="card-img-top" src="${project.image}"
+							alt="Card imagecap">
+					</c:if>
+					<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
+					<div class="card-body">
+						<a
+							href="<c:url value='/project/support/view?projectId=${project.projectId}' />"
+							class="card-title" style="font-size: 20px">${project.title}</a>
+						<p class="card-text">${project.simpleInfo}
+						<!-- DAO에 있는 퍼센트를 읽어오려면 DAO도 List째로 받아와야 함 -->
+						<p class="card-text comment">프로젝트 달성도: ${(project.currentPrice / project.targetPrice) * 100}%</p>
+						<div class="progress">
+							<div class="progress-bar success" role="progressbar"
+								style="width: ${(project.currentPrice / project.targetPrice) * 100}%" aria-valuenow="50" aria-valuemin="0"
+								aria-valuemax="100">${(project.currentPrice / project.targetPrice) * 100}%</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
-				</div>
-			</div>
+			</c:forEach>
+			<!-- 반복문 끝 -->			
 		</div>
 	</div>
 </body>

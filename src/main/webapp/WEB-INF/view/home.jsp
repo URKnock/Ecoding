@@ -28,7 +28,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<title>프로젝트 둘러보기</title>
+<title>에코딩 홈</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 <style>
@@ -50,14 +50,7 @@
 </style>
 
 </head>
-<%
-int projectId = 1130;
-ProjectManager manager = ProjectManager.getInstance();
-Project project = manager.findProject(projectId);
-ProjectDTO projectDTO = manager.findProjectInfo(project);
-request.setAttribute("project", project); // 임시로 프로젝트 하나 넘김
-request.setAttribute("percent", projectDTO.getPricePercent());
-%>
+
 <body>
 	<div class="wrap">
 		<!-- 캐러셀 -->
@@ -71,16 +64,17 @@ request.setAttribute("percent", projectDTO.getPricePercent());
 			</ol>
 			<div class="carousel-inner" style="margin: 20px 0px 20px 0px;">
 				<div class="carousel-item active">
-					<img class="d-block w-100" style="width:1120px; height: 400px" 
-					src="<c:url value='/resources/img/first.png'/>" alt="First slide">
+					<img class="d-block w-100" style="width: 1120px; height: 400px"
+						src="<c:url value='/resources/img/first.png'/>" alt="First slide">
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" style="width:1120px; height: 400px" 
-					src="<c:url value='/resources/img/second.png'/>" alt="Second slide">
+					<img class="d-block w-100" style="width: 1120px; height: 400px"
+						src="<c:url value='/resources/img/second.png'/>"
+						alt="Second slide">
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" style="width:1120px; height: 400px" 
-					src="<c:url value='/resources/img/third.png'/>" alt="Third slide">
+					<img class="d-block w-100" style="width: 1120px; height: 400px"
+						src="<c:url value='/resources/img/third.png'/>" alt="Third slide">
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -97,53 +91,34 @@ request.setAttribute("percent", projectDTO.getPricePercent());
 		<h3>에코딩에서 다양한 환경보호 프로젝트를 만나보세요.</h3>
 		<!-- 상품 리스트 -->
 		<div class="card-columns" id="cards-box">
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<span class="badge badge-success" style="margin: 5px 5px 5px 5px;">목표 금액 달성</span>
-				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
+
+			<c:forEach var="project" items="${projectList}">
+				<div class="card">
+					<c:if test="${project.image == null}">
+						<img class="card-img-top" src="/resources/img/noImage.png"
+							alt="Card imagecap">
+					</c:if>
+					<c:if test="${project.image ne null}">
+						<img class="card-img-top" src="${project.image}"
+							alt="Card imagecap">
+					</c:if>
+					<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
+					<div class="card-body">
+						<a
+							href="<c:url value='/project/support/view?projectId=${project.projectId}' />"
+							class="card-title" style="font-size: 20px">${project.title}</a>
+						<p class="card-text">${project.simpleInfo}
+						<!-- DAO에 있는 퍼센트를 읽어오려면 DAO도 List째로 받아와야 함 -->
+						<p class="card-text comment">프로젝트 달성도: ${(project.currentPrice / project.targetPrice) * 100}%</p>
+						<div class="progress">
+							<div class="progress-bar success" role="progressbar"
+								style="width: ${(project.currentPrice / project.targetPrice) * 100}%" aria-valuenow="50" aria-valuemin="0"
+								aria-valuemax="100">${(project.currentPrice / project.targetPrice) * 100}%</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
-				<div class="card-body">
-					<a href="http://naver.com" class="card-title">프로젝트 명</a>
-					<p class="card-text">상품 한줄 설명
-					<p class="card-text comment">프로젝트 달성도: n%</p>
-				</div>
-			</div>
-			
-			
-			<div class="card">
-				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-					alt="Card imagecap">
-				<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
-				<div class="card-body">
-					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">${project.title}</a>
-					<p class="card-text">${project.simpleInfo}
-					<p class="card-text comment">${percent}n%</p>
-				</div>
-			</div>
+			</c:forEach>
+			<!-- 반복문 끝 -->			
 		</div>
 	</div>
 </body>

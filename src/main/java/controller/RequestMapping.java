@@ -21,8 +21,8 @@ public class RequestMapping {
     	//mappings.put("/", new ForwardController("home.jsp"));
     	
         //홈페이지 기본 화면
-        mappings.put("/home/main", new ForwardController("/view/home.jsp")); //홈
-        mappings.put("/home/list", new ForwardController("/view/projectList.jsp")); //둘러보기
+        mappings.put("/home/main", new ListProjectController("/view/home.jsp")); //홈
+        mappings.put("/home/list", new ListProjectController("/view/projectList.jsp")); //둘러보기
         
         //사용자 관련(로그인, 회원가입, 로그아웃)
     	mappings.put("/user/loginform", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동

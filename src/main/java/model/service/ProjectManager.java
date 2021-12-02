@@ -68,6 +68,10 @@ public class ProjectManager {
 		return projectDAO.findProject(projectId);
 	}
 	
+	public List<Project> findProjectList() throws SQLException {
+		return projectDAO.findProjectList();
+	}
+	
 	public ProjectDTO findProjectInfo(Project project) throws SQLException {
 		ProjectDTO dto = null;
 		Creator creator = creatorDAO.findCreatorName(project.getEcoerId());
