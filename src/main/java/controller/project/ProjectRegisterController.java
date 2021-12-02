@@ -50,7 +50,6 @@ public class ProjectRegisterController implements Controller {
     		String ecoerId = UserSessionUtils.getLoginEcoerId(session);	
     		Project project =  (Project)session.getAttribute("project");
     		
-			
     		try {
     			project.setEcoerId(ecoerId);
     			project.setDetailInfo(request.getParameter("detailInfo"));
@@ -70,36 +69,12 @@ public class ProjectRegisterController implements Controller {
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
         		request.setAttribute("exception", e);
-        		session.setAttribute("project", project);
         		return "/project/registerProjectForm_step2.jsp";
         	}      
-    	}
-    	else if(step.equals("step4")) {
-    		Project project =  (Project)session.getAttribute("project");
-    		Reward reward =  (Reward)session.getAttribute("reward");
-    		
-    		try {
-    			CreatorDTO creator = new CreatorDTO(project.getEcoerId(), request.getParameter("teamName"), null, 
-    					request.getParameter("teamDetail"), request.getParameter("account"));
-    			
-    			CreatorManager cmanager = CreatorManager.getInstance();
-    			cmanager.update(creator);
-    			
-    			session.setAttribute("project", project);
-    			session.setAttribute("reward", reward);
-    			return "/project/registerProjectForm_step4.jsp";
-    		} catch (Exception e) {
-    			request.setAttribute("registerFailed", true);
-    			request.setAttribute("exception", e);
-    			session.setAttribute("project", project);
-    			session.setAttribute("reward", reward);
-    			return "/project/registerProjectForm_step3.jsp";
-    		}
     	}
     	else if(step.equals("final")) {
 			Project project =  (Project)session.getAttribute("project");
 			Reward reward =  (Reward)session.getAttribute("reward");
-			CreatorDTO creator =  (CreatorDTO)session.getAttribute("creator");
     		
     		try {
     			ProjectManager manager = ProjectManager.getInstance();

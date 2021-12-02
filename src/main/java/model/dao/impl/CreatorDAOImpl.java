@@ -59,8 +59,8 @@ public class CreatorDAOImpl implements CreatorDAO {
 	}
 	
 	public int insert(CreatorDTO creator) {
-		String sql = "INSERT INTO creator(ecoer_id, nick_name, creator_info, account) VALUES (?, ?, ?, ?)";
-		Object[] param = new Object[]{creator.getEcoerId(), creator.getNickName(),
+		String sql = "INSERT INTO creator VALUES (?, ?, ?, ?, ?)";
+		Object[] param = new Object[]{creator.getEcoerId(), creator.getNickName(), creator.getImage(), 
 				creator.getCreatorInfo(), creator.getAccount()};
 		/*
 		for(int i = 0; i < CreatorDTO.cols; i++) {
@@ -83,7 +83,7 @@ public class CreatorDAOImpl implements CreatorDAO {
 	}
 
 	public int update(CreatorDTO creator) {
-		String sql = "UPDATE creator SET nick_name = ?, creator_info = ?, account = ? WHERE ecoer_id = ?";
+		String sql = "UPDATE creator SET nick_name = ?, image = ?, creator_info = ?, account = ? WHERE ecoer_id = ?";
 		/*
 				SET password=?";
 		for(int i = 2; i < CreatorDTO.cols; i++) {
@@ -91,7 +91,7 @@ public class CreatorDAOImpl implements CreatorDAO {
 		}
 		*/
 		
-		Object[] param = new Object[]{creator.getNickName(), creator.getCreatorInfo(), creator.getAccount(), creator.getEcoerId()};
+		Object[] param = new Object[]{creator.getNickName(), creator.getImage(), creator.getCreatorInfo(), creator.getAccount(), creator.getEcoerId()};
 		
 		/*
 		for(int i = 0; i < CreatorDTO.cols; i++) {

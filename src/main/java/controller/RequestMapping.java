@@ -37,6 +37,7 @@ public class RequestMapping {
         // 프로젝트 관련
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
         mappings.put("/project/register/form", new ProjectRegisterController());
+        mappings.put("/project/register/creator", new CreatorRegisterController());
         mappings.put("/project/register", new ForwardController("/project/registerProjectForm_step4.jsp"));
         mappings.put("/project/support/view", new ViewProjectController());
         mappings.put("/project/support", new ProjectSupportController());

@@ -47,7 +47,7 @@
  			<button class="goNext" onClick="location.href='/project/register';">창작자 정보 수정하지 않고 진행</button>
  		</c:if>
  		<div id="creatorForm">
-	      	<form name="form" method="post" action="<c:url value='/project/register/form' />">
+	      	<form name="form" method="post" enctype="multipart/form-data" action="<c:url value='/project/register/creator' />">
 				<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
 				<input type="text" name="teamName">
 				<p>Q2. 창작자(팀) 이미지를 첨부해주세요.</p>
@@ -57,7 +57,7 @@
 				<p>Q4. 입금 계좌 정보를 입력해주세요.</p>
 				<input type="text" name="account">
 				<p></p>
-				<button name="step" class="goNext" value="step4">Step 04</button>
+				<button name="step" class="goNext">Step 04</button>
 			</form>
 		</div>
       </div>
