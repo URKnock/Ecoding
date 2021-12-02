@@ -12,11 +12,19 @@
     	form.action = targetUri; 
     	form.submit();
     }
+    
+    function div_show() {
+     document.getElementById("creatorForm").style.display = "block";
+    }
 </script>
 <style>
     #step03 {
     	background-color: #87CEFA;
     	color: white;
+    }
+    
+    #creatorForm {
+    	display:none;
     }
 </style>
 </head>
@@ -33,19 +41,25 @@
 	    	</div>
 	    </div>
       <div class="right">
-      	<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
-			<input type="text" name="teamName">
-			<p>Q2. 창작자(팀) 이미지를 첨부해주세요.</p>
-			<input type="file" name="teamImage">
-			<p>Q3. 창작자(팀) 소개를 작성해주세요.</p>
-			<textarea rows="15" cols="100" name="teamDetail"></textarea>
-			<p>Q4. 입금 계좌 정보를 입력해주세요.</p>
-			<input type="text" name="account">
-			<p></p>
-			<button name="step" class="goNext" value="step2">Step 02</button>
-			<button name="step" class="goNext" value="step4">Step 04</button>
-		</form>
+      	<p></p>
+        <button class="goNext" onClick="div_show();">창작자 정보 등록/수정</button>
+        <c:if test="${isCre}">
+ 			<button class="goNext" onClick="location.href='/project/register';">창작자 정보 수정하지 않고 진행</button>
+ 		</c:if>
+ 		<div id="creatorForm">
+	      	<form name="form" method="post" action="<c:url value='/project/register/form' />">
+				<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
+				<input type="text" name="teamName">
+				<p>Q2. 창작자(팀) 이미지를 첨부해주세요.</p>
+				<input type="file" name="teamImage">
+				<p>Q3. 창작자(팀) 소개를 작성해주세요.</p>
+				<textarea rows="15" cols="100" name="teamDetail"></textarea>
+				<p>Q4. 입금 계좌 정보를 입력해주세요.</p>
+				<input type="text" name="account">
+				<p></p>
+				<button name="step" class="goNext" value="step4">Step 04</button>
+			</form>
+		</div>
       </div>
 </body>
 </html>

@@ -37,13 +37,10 @@
 			<p>Q1. 프로젝트 제목을 입력해주세요.</p>
 			&nbsp<input type="text" name="title">
 			<br><br>
-			<p>Q2. 프로젝트 대표 이미지를 첨부해주세요.</p>
-			&nbsp<input type="file" name="thumbnailImage">
-			<br><br>
-			<p>Q3. 간단한 프로젝트 설명을 작성해주세요.</p>
+			<p>Q2. 간단한 프로젝트 설명을 작성해주세요.</p>
 			&nbsp<input type="text" name="simpleInfo">
 			<br><br>
-			<p>pQ4. 프로젝트 카테고리를 선택해주세요.</p>
+			<p>pQ3. 프로젝트 카테고리를 선택해주세요.</p>
 			&nbsp<input type="radio" name="category" value="식품">식품
 			&nbsp<input type="radio" name="category" value="패션">패션
 			&nbsp<input type="radio" name="category" value="생활">생활
@@ -57,25 +54,25 @@
 			&nbsp<input type="radio" name="category" value="도서">도서
 			&nbsp<input type="radio" name="category" value="도서">테크
 			<br><br>
-			<p>Q5. 프로젝트와 관련된 해시태그를 입력해주세요.</p>
+			<p>Q4. 프로젝트와 관련된 해시태그를 입력해주세요.</p>
 			&nbsp<input type="text" name="hashtag">
 			<br><br>
-			<p>Q6. 환경과 관련된 태그를 체크해주세요.</p>
+			<p>Q5. 환경과 관련된 태그를 체크해주세요.</p>
 			&nbsp<input type="radio" name="ecotag" value="비건">비건
 			&nbsp<input type="radio" name="ecotag" value="친환경">친환경
 			&nbsp<input type="radio" name="ecotag" value="재활용">재활용
 			<br><br>
-			<p>pQ7. 프로젝트 목표 금액을 작성해주세요.</p>
+			<p>pQ6. 프로젝트 목표 금액을 작성해주세요.</p>
 			&nbsp<input type="text" name="targetAmount">
 			<br><br>
-			<p>Q8. 프로젝트 기간을 설정해주세요.</p>
+			<p>Q7. 프로젝트 기간을 설정해주세요.</p>
 			&nbsp시작일 설정: <input type="date" name="startDate">
 			&nbsp마감일 설정: <input type="date" name="endDate">
 			<br><br>
 			&nbsp결제일 설정: <input type="date" name="payDate">
 			&nbsp배송 시작일 설정: <input type="date" name="deliveryDate">
 			<br><br>
-			&nbsp<button name="step" class="goNext" value="step2" onclick="proPlusFunc()">Step 02</button>
+			&nbsp<button name="step" class="goNext" value="step2">Step 02</button>
 		</form>
      </div>
 </body>
