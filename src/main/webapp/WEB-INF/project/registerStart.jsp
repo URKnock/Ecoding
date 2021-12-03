@@ -34,8 +34,8 @@
     	<img src="<c:url value='/resources/img/kai.jpg'/>">
     </div>
     <div class="goList">
-    	<form name="form" method="post" action="<c:url value='/project/start' />">
-    		<input type="button" class="goNext" value="등록하기" onClick="projectCreate('<c:url value='/project/start' />')">
+    	<form name="form" method="post" action="<c:url value='/project/register/form' />">
+    		<button name="step" class="goNext" value="step1">START</button>
    		</form>
 	</div>
 </html>

@@ -63,7 +63,7 @@ function menuClicked(obj) {
 	}
 	var clickedId = document.getElementById(obj.getAttribute('id')).getAttribute('id');
 	if(clickedId != 'category'){ //카테고리는 클래스 수정을 하지 않음
-		$(obj).attr('class', 'nav-link active');	//현재 엘리먼트에 active 설정
+		$(obj).attr('class', 'nav-link active'); //현재 엘리먼트에 active 설정
 		if(clickedId == 'home')
 			location.href='/home/main';
 		else if(clickedId == 'funding')
@@ -76,35 +76,39 @@ function menuClicked(obj) {
 <body>
 	<div id="header">
 		<div id="top">
-			<img style="float: left" id="logo"
+			<img style="float: left;" id="logo"
 				src="<c:url value='/resources/img/logo.png'/>">
 			<div style="text-align: center;">
-				<div style="float: left; margin-left: 100px;">
+				<div style="float: left; margin-left: 100px; margin-top: 30px;">
 					<!-- 세로 정렬좀... -->
 					<form name="search_project" action="">
 						<input size=50 type="text" placeholder="다양한 프로젝트를 검색해보세요." /> <input
 							type="submit" value="검색" />
 					</form>
 				</div>
-				<div style="float: right;">
+				<div style="float: right; margin-top: 25px;">
 					<button id="project" type="button" class="btn btn-success"
 						onClick="location.href='/project/view';">프로젝트 등록하기</button>
-					<button id="login" type="button" class="btn btn-primary"
-						onClick="location.href='/user/loginform';">로그인</button>
-					<c:if test="${ecoerId ne null}">
+					<c:if test="${ecoerId == null}">
 						<button id="login" type="button" class="btn btn-primary"
-							onClick="location.href='/user/logout';">로그아웃</button>
-							<!-- <script>alert("로그인 되었습니다.");</script> -->
+							onClick="location.href='/user/loginform';">로그인</button>
+						<button id="register" type="button" class="btn btn-primary"
+							onClick="location.href='/user/register';">회원가입</button>
 					</c:if>
-					<button id="register" type="button" class="btn btn-primary"
-						onClick="location.href='/user/register';">회원가입</button>
+					<c:if test="${ecoerId ne null}">
+						<a class="btn btn-primary"
+							href="<c:url value='/user/view' >
+			     		     <c:param name='ecoerId' value='${ecoerId}'/>
+					 	  </c:url>">마이페이지</a>
+					 	<button id="logout" type="button" class="btn btn-primary"
+							onClick="location.href='/user/logout';">로그아웃</button>
+					</c:if>
 				</div>
-				<c:if test="${ecoerId ne null}">
-					<li class="nav-item"><a class="nav-link btn-link"
-						href="<c:url value='/user/view'>
-					   <c:param name='ecoerId' value='${ecoerId}'/>
-			 		 </c:url>">${ecoerId}님 환영합니다.</a></li>
-				</c:if>
+				<div style="float: left; margin-left: 30px; margin-top: 35px;">
+					<c:if test="${ecoerId ne null}">
+						<a>${ecoerId}님 환영합니다.</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

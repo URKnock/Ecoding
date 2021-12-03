@@ -12,6 +12,7 @@ import model.Project;
 import model.Reward;
 import model.service.CreatorManager;
 import model.service.ProjectManager;
+import model.service.UserManager;
 import model.service.dto.CreatorDTO;
 
 //image, video 등 file 다 빠져있음
@@ -19,10 +20,13 @@ public class ProjectRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String step = request.getParameter("step");
-    	HttpSession session = request.getSession();			
+    	HttpSession session = request.getSession();		
     	
-    	if(step.equals("step1")) {    		
-    		return "/project/registerProjectForm_step1.jsp";
+    	if(step.equals("step1")) {    
+    		if(UserSessionUtils.hasLogined(session))
+    			return "/project/registerProjectForm_step1.jsp";
+    		else
+    			return "redirect:/user/loginform";
     	}
     	else if(step.equals("step2")) {
     		Project project = null; 
@@ -43,52 +47,34 @@ public class ProjectRegisterController implements Controller {
         	}      
     	}
     	else if(step.equals("step3")) {
+    		String ecoerId = UserSessionUtils.getLoginEcoerId(session);	
     		Project project =  (Project)session.getAttribute("project");
-			
+    		
     		try {
+    			project.setEcoerId(ecoerId);
     			project.setDetailInfo(request.getParameter("detailInfo"));
     			project.setPlanInfo(request.getParameter("planInfo"));
     			project.setExchangeInfo(request.getParameter("exchangeInfo"));
     			
 	    		Reward reward = new Reward(-1, -1, request.getParameter("name"), 
 	    				Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
+	    		
+	    		UserManager manager = UserManager.getInstance();
+	    		boolean check = manager.findEcoer(ecoerId).getIsCreator();
 
 	    		session.setAttribute("project", project);
 	    		session.setAttribute("reward", reward);
+	    		request.setAttribute("isCre", check);
 				return "/project/registerProjectForm_step3.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
         		request.setAttribute("exception", e);
-        		session.setAttribute("project", project);
         		return "/project/registerProjectForm_step2.jsp";
         	}      
-    	}
-    	else if(step.equals("step4")) {
-			String ecoerId = UserSessionUtils.getLoginEcoerId(session);
-    		Project project =  (Project)session.getAttribute("project");
-    		Reward reward =  (Reward)session.getAttribute("reward");
-    		
-    		try {
-    			project.setEcoerId(ecoerId);
-    			CreatorDTO creator = new CreatorDTO(ecoerId, request.getParameter("teamName"), null, 
-    					request.getParameter("teamDetail"), request.getParameter("account"));
-    			
-    			session.setAttribute("project", project);
-    			session.setAttribute("reward", reward);
-    			session.setAttribute("creator", creator);
-    			return "/project/registerProjectForm_step4.jsp";
-    		} catch (Exception e) {
-    			request.setAttribute("registerFailed", true);
-    			request.setAttribute("exception", e);
-    			session.setAttribute("project", project);
-    			session.setAttribute("reward", reward);
-    			return "/project/registerProjectForm_step3.jsp";
-    		}
     	}
     	else if(step.equals("final")) {
 			Project project =  (Project)session.getAttribute("project");
 			Reward reward =  (Reward)session.getAttribute("reward");
-			CreatorDTO creator =  (CreatorDTO)session.getAttribute("creator");
     		
     		try {
     			ProjectManager manager = ProjectManager.getInstance();
@@ -97,12 +83,8 @@ public class ProjectRegisterController implements Controller {
     			reward.setProject_id(projectId);
 	    		manager.createReward(reward);
 	    		
-    			CreatorManager cmanager = CreatorManager.getInstance();
-    			cmanager.update(creator);
-				
     			session.removeAttribute("project");
     			session.removeAttribute("reward");
-    			session.removeAttribute("creator");
     			return "/project/successRegister.jsp";
     		} catch (Exception e) {
     			request.setAttribute("registerFailed", true);

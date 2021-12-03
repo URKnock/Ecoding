@@ -38,8 +38,7 @@
       	<p>2. 그럼에도 사기를 쳐서 경찰서에서 만나게 되는 경우 금액의 200%를 모든 후원자 분들께 보상하겠습니다.</p>
       	<p>암튼 사기를 치지 않고 윤리적이고 올바르면서 깨끗한 펀딩 문화를 만들겠다는 다짐</p>
 		<form name="form" method="post" action="<c:url value='/project/register/form' />">
-			&nbsp<button name="step" class="goNext" value="step3">Step 03</button>
-			<button name="step" class="goNext" value="final">등록하기</button>
+			&nbsp<button name="step" class="goNext" value="final">등록하기</button>
 		</form>     
       </div>
 </body>
