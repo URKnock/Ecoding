@@ -14,7 +14,7 @@ public class ProjectDTO {
 	private long remainTime;
 	private int countSupporter;
 	private Date paymentDate;
-	
+	private String simpleInfo;
 	
 	public ProjectDTO(int projectId, String title, String image,
 			String creatorImage, String creatorName, Date paymentDate) {
@@ -38,6 +38,14 @@ public class ProjectDTO {
 		this.pricePercent = pricePercent;
 		this.remainTime = remainTime;
 		this.countSupporter = countSupporter;
+	}
+	
+	public ProjectDTO(int projectId, String title, String image, String simpleInfo, int pricePercent) {
+		this.projectId = projectId;
+		this.title = title;
+		this.image = image;
+		this.simpleInfo = simpleInfo;
+		this.pricePercent = pricePercent;
 	}
 	
 	
@@ -101,4 +109,11 @@ public class ProjectDTO {
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
+	public String getSimpleInfo() {
+		return simpleInfo;
+	}
+	public void setSimpleInfo(String simpleInfo) {
+		this.simpleInfo = simpleInfo;
+	}
+
 }

@@ -1,5 +1,6 @@
 package model.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import model.Reward;
 import model.Support;
 import model.dao.*;
 import model.service.dto.CreatorDTO;
+import model.service.dto.InterestProjectDTO;
 import model.service.dto.ProjectDTO;
 import model.service.dto.ProjectNoticeDTO;
 import model.service.dto.RewardDTO;
@@ -31,6 +33,7 @@ public class ProjectManager {
 	private SupportDAO supportDAO;
 	private ProjectNoticeDAO noticeDAO;
 	private RewardDAO rewardDAO;
+	private InterestProjectDAO interestDAO;
 	
 	private ProjectManager() {
 		try {
@@ -41,6 +44,7 @@ public class ProjectManager {
 			supportDAO = factory.getSupportDAO();
 			noticeDAO = factory.getNoticeDAO();
 			rewardDAO = factory.getRewardDAO();
+			interestDAO = factory.getInterestProjectDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -163,4 +167,35 @@ public class ProjectManager {
 	public int removeProject(String projId) throws SQLException {
 		return projectDAO.remove(projId);
 	};
+	
+	public int insertInterestProject(InterestProjectDTO interestDTO) throws SQLException {
+		return interestDAO.insert(interestDTO);
+	}
+	
+	public boolean isInterestProject(InterestProjectDTO interestDTO) throws SQLException {
+		return interestDAO.isInterestProject(interestDTO);
+	}
+	
+	public int removeInterestProject(InterestProjectDTO interestDTO) throws SQLException {
+		return interestDAO.delete(interestDTO);
+	}
+	
+	public List<ProjectDTO> interestProjectInfoList(String ecoerId) throws SQLException {
+		List<Project> projectList = interestDAO.getInterestProjectList(ecoerId);
+		
+		List<ProjectDTO> interestList = new ArrayList<ProjectDTO>();
+		for (Project p : projectList) {
+			double pricePercent = (double) p.getCurrentPrice() / p.getTargetPrice() * 100;
+			ProjectDTO dto = new ProjectDTO (
+					p.getProjectId(),
+					p.getTitle(),
+					p.getImage(),
+					p.getSimpleInfo(),
+					(int) pricePercent);
+			interestList.add(dto);
+					
+		}
+		
+		return interestList;
+	}
 }

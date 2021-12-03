@@ -63,15 +63,20 @@ function menuClicked(obj) {
 	}
 	var clickedId = document.getElementById(obj.getAttribute('id')).getAttribute('id');
 	if(clickedId != 'category'){ //카테고리는 클래스 수정을 하지 않음
-		$(obj).attr('class', 'nav-link active'); //현재 엘리먼트에 active 설정
+		$(obj).attr('class', 'nav-link active');	//현재 엘리먼트에 active 설정
 		if(clickedId == 'home')
-			location.href='/home/main';
+			location.href='<c:url value='/home/main'/>';
 		else if(clickedId == 'funding')
-			location.href='/home/list';
+			location.href='<c:url value='/home/list'/>';
 		else if(clickedId == 'board')
-			location.href='/board/list';
+			location.href='<c:url value='/board/list'/>';
 	}
 }  
+
+function interest() {
+	form.method="POST";
+	location.href='<c:url value='/project/interest' />';
+}
 </script>
 <body>
 	<div id="header">
@@ -88,20 +93,22 @@ function menuClicked(obj) {
 				</div>
 				<div style="float: right; margin-top: 25px;">
 					<button id="project" type="button" class="btn btn-success"
-						onClick="location.href='/project/view';">프로젝트 등록하기</button>
+						onClick="location.href='<c:url value='/project/view'/>';">프로젝트 등록하기</button>
 					<c:if test="${ecoerId == null}">
 						<button id="login" type="button" class="btn btn-primary"
-							onClick="location.href='/user/loginform';">로그인</button>
+							onClick="location.href='<c:url value='/user/loginform'/>';">로그인</button>
 						<button id="register" type="button" class="btn btn-primary"
-							onClick="location.href='/user/register';">회원가입</button>
+							onClick="location.href='<c:url value='/user/register'/>';">회원가입</button>
 					</c:if>
 					<c:if test="${ecoerId ne null}">
 						<a class="btn btn-primary"
 							href="<c:url value='/user/view' >
 			     		     <c:param name='ecoerId' value='${ecoerId}'/>
 					 	  </c:url>">마이페이지</a>
-					 	<button id="logout" type="button" class="btn btn-primary"
-							onClick="location.href='/user/logout';">로그아웃</button>
+					 	<button id="myInterest" type="button" class="btn btn-primary"
+			 		 		onClick="location.href='<c:url value='/project/interest/listView' />'">&#10084;</button>
+					 	<button id="login" type="button" class="btn btn-primary"
+							onClick="location.href='<c:url value='/user/logout'/>';">로그아웃</button>
 					</c:if>
 				</div>
 				<div style="float: left; margin-left: 30px; margin-top: 35px;">
