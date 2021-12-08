@@ -18,15 +18,14 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}	
 
 	public int create(Project project) {
-		String insertQuery = "INSERT INTO PROJECT(project_id, title, simple_info, category, hashtag, ecotag, target_price, "
-				+ "current_price, start_date, end_date, payment_date, delivery_date, detail_info, plan_info, exchange_info) "
-				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?)";
+		String insertQuery = "INSERT INTO PROJECT "
+				+ "VALUES (seq_project.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		Object[] param = new Object[] {project.getTitle(), project.getSimpleInfo(), project.getCategory(), 
-				project.getHashTag(), project.getEcoTag(), project.getTargetPrice(), 
+		Object[] param = new Object[] {project.getEcoerId(), project.getTitle(), project.getImage(), project.getSimpleInfo(), project.getCategory(), 
+				project.getHashTag(), project.getEcoTag(), project.getEcoScore(), project.getTargetPrice(), project.getCurrentPrice(), 
 				new java.sql.Date(project.getStartDate().getTime()), new java.sql.Date(project.getEndDate().getTime()), 
 				new java.sql.Date(project.getPaymentDate().getTime()), new java.sql.Date(project.getDeliveryDate().getTime()), 
-				project.getDetailInfo(), project.getPlanInfo(), project.getExchangeInfo()};
+				project.getDetailInfo(), project.getPlanInfo(), project.getExchangeInfo(), project.getProjectVideo(), project.getProjectFile()};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
 		
 		String key[] = {"project_id"};

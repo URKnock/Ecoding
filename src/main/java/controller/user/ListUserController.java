@@ -35,6 +35,6 @@ public class ListUserController implements Controller {
 				UserSessionUtils.getLoginEcoerId(request.getSession()));		
 
 		// ����� ����Ʈ ȭ������ �̵�(forwarding)
-		return "/user/list.jsp"; //list 안 씀       
+		return "/user/list.jsp"; //list 안 씀 ==> admin 페이지로 대체?      
     }
 }

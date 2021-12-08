@@ -2,88 +2,38 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.time.temporal.ChronoUnit, model.Project" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../view/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>${project.title}</title>
-<style type="text/css">
-	div {
-		/*border:1px black solid;*/
-		text-align:center;
-		width:1000px;
-		margin-left:auto;
-		margin-right:auto;
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/projectSupportView.css'/>"/>
+<script>
+	var ecoerId = '<%=session.getAttribute("ecoerId")%>';
+	function support() {
+		if (ecoerId == 'null') {
+			location.href="<c:url value='/user/loginform' />";
+		} else {
+			location.href="<c:url value='/project/support?projectId=${project.projectId}' />";
+		}
 	}
-	table {
-		margin-left:auto;
-		margin-right:auto;
+	function interest() {
+		if (ecoerId == 'null') {
+			location.href="<c:url value='/user/loginform' />";
+		} else {
+			location.href="<c:url value='/project/interest?projectId=${project.projectId}' />";
+		}
 	}
-	h3 {
-		text-align:left;
-		padding-left:20px;
-	}
-	#support {
-		border:0;
-		width:300px;
-		height:70px;
-		font-size:18px;
-		font-weight:bold;
-		color:white;
-		background-color:#87e2f5;
-		border-radius:10px;
-	}
-	#support:hover {
-		background-color:#70b3ff;
-	}
-	#interest {
-		border:2px solid;
-		border-color:#d2d2d2;
-		width:70px;
-		height:70px;
-		font-size:18px;
-		font-weight:bold;
-		color:#a0a0a0;
-		background-color:white;
-		border-radius:10px;
-	}
-	#interest:hover {
-		color:#FF6464;
-	}
-	hr {
-		border:0;
-		height:1px;
-		background-color:#97e6e4;
-	}
-	#t2 {
-	 	width:380px;
-	 	height:100px;
-	 	text-align:center;
-	 	border-top:1px solid #6495ED;
-	 	border-bottom:1px solid #6495ED;
-	}
-	#t3 {
-		text-align:center;
-		width:400px;
-	 	text-align:center;
-	 	border-top:1px solid #6495ED;
-	 	border-bottom:1px solid #6495ED;
-	}
-	#t4 {
-		text-align:center;
-		width:800px;
-	 	text-align:center;
-	 	border-left:3px solid #6495ED;
-	}
-</style>
+</script>
 </head>
 <body>
-	<div>
+	<div class="d">
 		<table style="width:1000px">
 			<tr>
-				<td style="font-size:30pt">${project.title}</td>
+				<td style="font-size:30pt">${project.title} <%=session.getAttribute("ecoerId") %> </td>
 				<td width="5%" style="text-align:center;">
-					<img src="image.jpg" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
+					<img src="<c:url value='${projectDTO.creatorImage}' />" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
 				</td>
 				<td width="10%" style="text-align:center;">${projectDTO.creatorName}</td>
 				<td width="15%" style="text-align:right;">${project.category}</td>
@@ -105,17 +55,20 @@
 		</table>
 	</div>
 	<hr>
-	<div>
+	<div class="d">
 		<table style="width:1000px; height:450px; text-align:center;">
 			<tr>
 				<td width="55%">
-					<img src="image.jpg" width="400px" height="400px"> <!-- 프로젝트 이미지 *** -->
+					<img src="<c:url value='${project.image}' />" width="400px" height="400px"> <!-- 프로젝트 이미지 *** -->
 				</td>
 				<td>
-					<button id="interest">&#10084;</button> <!-- &#9825; &#9829;	 -->
-					<button id="support" type="button"
-						onclick="location.href='<c:url value='/project/support?projectId=${project.projectId}' />'"
-						name="projectId" value="${project.projectId}">프로젝트 후원하기</button>
+					<c:if test="${isInterest eq 'false'}">
+						<button id="noInterest" type="button" onclick="interest();">&#10084;</button>
+					</c:if>
+					<c:if test="${isInterest eq 'true'}">
+						<button id="interest" type="button" onclick="interest();">&#10084;</button>
+					</c:if>
+					<button id="support" type="button" onclick="support();">프로젝트 후원하기</button>
 					<br><br>
 					<table id="t1" style="width:380px; height:160px; text-align:center;">
 						<tr>
@@ -152,23 +105,23 @@
 		</table>
 	</div>
 	<hr>
-	<div>
-		<div>
+	<div class="d">
+		<div class="d">
 			<h3>프로젝트 소개</h3>
 			${project.simpleInfo}<br>
 			${project.detailInfo}
 		</div>
-		<div>
+		<div class="d">
 			<h3>프로젝트 예산 사용</h3>
-			${porject.planInfo}
+			${project.planInfo}
 		</div>
-		<div>
+		<div class="d">
 			<h3>프로젝트 일정</h3>
 			<table id="t3">
-				<tr>
+				<!-- <tr>
 					<td>펀딩 예고</td>
 					<td>21년9월20일</td>
-				</tr>
+				</tr>-->
 				<tr>
 					<td>펀딩 시작</td>
 					<td>${project.startDate}</td>
@@ -187,14 +140,14 @@
 				</tr>
 			</table>
 		</div>
-		<div>
+		<div class="d">
 			<h3>교환 안내</h3>
 			${project.exchangeInfo}
 		</div>
-		<div>
+		<div class="d">
 			문의사항은 이메일 ${projectDTO.creatorEmail}로 문의
 		</div>
-		<div>
+		<div class="d">
 			<h3>공지사항</h3>
 			<table id="t4">
 				<c:forEach var="notice" items="${noticeList}">
@@ -204,8 +157,8 @@
 		</div>
 	</div>
 	<hr>
-	<div>
-		<h4 style="text-align:left; padding-left:20px;">다른 프로젝트 둘러보기</h4>
+	<div class="d">
+		<h4 style="text-align:left; padding-left:20px; font-size:20px;">다른 프로젝트 둘러보기</h4>
 		<table style="width:800px; height:180px; text-align:center;">
 			<tr>
 				<td><img src="image.jpg" width="130px" height="130px"></td>
