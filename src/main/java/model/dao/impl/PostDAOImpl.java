@@ -1,20 +1,37 @@
 package model.dao.impl;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import model.dao.PostDAO;
+import model.dao.impl.mapper.ReactMapper;
 import util.JDBCUtil;
 import model.service.dto.PostDTO;
 
 public class PostDAOImpl implements PostDAO {
 	private JDBCUtil jdbcUtil = null;
+	private SqlSessionFactory sqlSessionFactory = null;
 	
 	private static String query = "SELECT * ";
 		
 	public PostDAOImpl() {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		}
 		jdbcUtil = new JDBCUtil();
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}	
 
 	public List<PostDTO> getPostByCId(int cId) {
@@ -146,8 +163,10 @@ public class PostDAOImpl implements PostDAO {
 		try {
 			result = jdbcUtil.executeUpdate(); // update 문 실행
 		} catch (Exception ex) { 
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return result;
@@ -172,6 +191,57 @@ public class PostDAOImpl implements PostDAO {
 		return result;
 	}
 
+	public int viewPost(int id) {
+		int result = 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			result = sqlSession.getMapper(ReactMapper.class).viewPost(id); 
+		} catch(Exception ex) {
+			sqlSession.rollback();
+			ex.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	// 계정당 1회 -> ecoer_id / post_id / is_like
+	public int likePost(String ecoerId, int postId) {
+		int result = 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			ReactMapper mapper = sqlSession.getMapper(ReactMapper.class);
+			result = mapper.likePost(postId);
+			mapper.insertLikeEcoer(ecoerId, postId);
+		} catch(Exception ex) {
+			sqlSession.rollback();
+			ex.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+	
+	public int reportPost(String ecoerId, int postId) {
+		int result = 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			ReactMapper mapper = sqlSession.getMapper(ReactMapper.class);
+			mapper.reportPost(postId);
+			mapper.insertReportEcoer(ecoerId, postId);
+			result = mapper.getReportCount(postId);
+		} catch(Exception ex) {
+			sqlSession.rollback();
+			ex.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+	
 	public PostDTO getPostByCode(int pCode) {
 		String searchQuery = query + "FROM POST WHERE POST.post_id = ?";
 		Object[] param = new Object[] {pCode};

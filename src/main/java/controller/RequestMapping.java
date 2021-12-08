@@ -6,9 +6,24 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.post.*;
-import controller.project.*;
-import controller.user.*;
+import controller.post.CommunityController;
+import controller.post.CreatePostController;
+import controller.post.DeletePostController;
+import controller.post.LikeCommunityController;
+import controller.post.PostListController;
+import controller.post.ReportCommunityController;
+import controller.post.UpdatePostController;
+import controller.project.ProjectRegisterController;
+import controller.project.ProjectSupportCompleteController;
+import controller.project.ProjectSupportController;
+import controller.project.ViewProjectController;
+import controller.user.DeleteUserController;
+import controller.user.ListUserController;
+import controller.user.LoginController;
+import controller.user.LogoutController;
+import controller.user.RegisterUserController;
+import controller.user.UpdateUserController;
+import controller.user.ViewUserController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -50,6 +65,8 @@ public class RequestMapping {
         mappings.put("/board/create", new CreatePostController());
         mappings.put("/board/update", new UpdatePostController());
         mappings.put("/board/delete", new DeletePostController());
+        mappings.put("/board/post/like", new LikeCommunityController());
+        mappings.put("/board/post/report", new ReportCommunityController());
         
         logger.info("Initialized Request Mapping!");
     }

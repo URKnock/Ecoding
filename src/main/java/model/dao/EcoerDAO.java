@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Ecoer;
 import model.service.dto.EcoerDTO;
+import model.service.dto.ReactDTO;
 
 public interface EcoerDAO {
 	public List<EcoerDTO> getEcoerList();		
@@ -13,5 +14,6 @@ public interface EcoerDAO {
 	public int delete(String ecoerId);
 	public EcoerDTO findEcoer(String ecoerId);
 	public Ecoer findEcoerInfo(String ecoerId) throws SQLException;
+	public ReactDTO getReactByEcoer(String ecoerId);
 	public boolean existingEcoer(String ecoerId);
 }

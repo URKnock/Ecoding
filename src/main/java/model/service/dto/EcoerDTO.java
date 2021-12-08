@@ -4,12 +4,12 @@ public class EcoerDTO {
 
 	private String ecoerId, password, name, code, address, detailAddress, phone, email;
 	private boolean isCreator;
+	private ReactDTO react;
 	
 	public static String[] columns = { "ecoer_id", "password", "name", "code", "address", "detail_address", "phone", "email", "is_creator" };
 	public static int cols = columns.length;
 	
 	public EcoerDTO() {
-		
 	}
 	
 	public EcoerDTO(String ecoerId, String password, String name, String code, String address, String detailAddress,
@@ -148,7 +148,15 @@ public class EcoerDTO {
 	public void setCreator(boolean isCreator) {
 		this.isCreator = isCreator;
 	}
-	
+
+	public ReactDTO getReact() {
+		return react;
+	}
+
+	public void setReact(ReactDTO react) {
+		this.react = react;
+	}
+
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;

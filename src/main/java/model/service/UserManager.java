@@ -6,6 +6,7 @@ import java.util.List;
 import model.DAOFactory;
 import model.dao.EcoerDAO;
 import model.service.dto.EcoerDTO;
+import model.service.dto.ReactDTO;
 
 /**
  * ����� ���� API�� ����ϴ� �����ڵ��� ���� �����ϰ� �Ǵ� Ŭ����.
@@ -67,6 +68,10 @@ public class UserManager { //EcoerManager처럼 사용
 		throws SQLException {
 		return ecoerDAO.getEcoerList(); //(currentPage, countPerPage); ==> Page는 쓰지않는지?
 	}
+	
+	public ReactDTO getReactByEcoer(String ecoerId) {
+		return ecoerDAO.getReactByEcoer(ecoerId);
+	}
 
 	public boolean login(String ecoerId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
@@ -75,6 +80,7 @@ public class UserManager { //EcoerManager처럼 사용
 		if (!ecoer.matchPassword(password)) {
 			throw new PasswordMismatchException("패스워드가 올바르지 않습니다.");
 		}
+		ecoer.setReact(getReactByEcoer(ecoerId));
 		return true;
 	}
 

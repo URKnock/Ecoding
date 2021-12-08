@@ -28,6 +28,7 @@ public class CommunityController implements Controller {
 	    	String postTitle = request.getParameter("title");
 	    	
 		   	try {
+		   		post.view(postId);
 		    	PostDTO dto = null;
 		    	List<ReplyDTO> list = null;
 		    	if(postId == 0 && !postTitle.isEmpty()) {

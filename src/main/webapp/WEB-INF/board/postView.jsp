@@ -7,9 +7,6 @@
 	<title>게시글</title>
 	<%@ include file="../view/header.jsp" %>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/post.css'/>"/>
-	<script type="text/javascript">
-		function move() { location.href="<c:url value='/board/delete?pid=${post.postId}'/>"; }
-	</script>
 </head>
 <body>
 	<table id="post" align="center" cellpadding="5px">
@@ -18,7 +15,7 @@
 			<td class="align_right">
 				<!-- input type="button" value="수정"/ -->
 				<!-- input type="button" value="삭제" onClick="move();"/-->
-				<button type="button" class="btn btn-outline-primary" onClick="move();">삭제</button>
+				<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/delete?pid=${post.postId}'/>'">삭제</button>
 			</td>
 		</tr>
 		<tr>
@@ -29,8 +26,8 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button type="button" class="btn btn-outline-primary">좋아요</button>
-				<button type="button" class="btn btn-outline-primary">신고</button>
+				<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/post/like?pid=${post.postId}'/>'">좋아요</button>
+				<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/post/report?pid=${post.postId}'/>'">신고</button>
 			</td>
 		</tr>
 		<tr>
@@ -53,8 +50,12 @@
 					<input type="hidden" name="pid" value="${post.postId}"/>
 					<input type="hidden" name="rid" value="${c.replyId}"/>
 					${c.replyDate}&nbsp;
-					<button type="submit" class="btn btn-outline-primary">삭제</button>
-					<button type="button" class="btn btn-outline-primary">좋아요</button>
+					<c:if test="${c.ecoerId ne session.ecoerId}">
+						<button type="submit" class="btn btn-outline-primary">삭제</button>
+					</c:if>
+					<c:if test="${c.ecoerId eq session.ecoerId}">
+						<button type="button" class="btn btn-outline-primary">좋아요</button>
+					</c:if>
 				</form>
 			</td>
 		</tr>

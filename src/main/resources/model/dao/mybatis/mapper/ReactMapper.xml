@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.impl.mapper.ReactMapper">
+<cache />
+
+	<update id="viewPost" parameterType="int">
+		UPDATE POST
+		SET views = views + 1
+		WHERE post_id = #{id}	
+	</update>
+
+	<update id="likePost" parameterType="int">
+		UPDATE POST
+		SET likes = likes + 1
+		WHERE post_id = #{id}
+	</update>
+	
+	<update id="reportPost" parameterType="int">
+		UPDATE POST
+		SET reports = reports + 1
+		WHERE post_id = #{id}	
+	</update>
+
+	<select id="getReportCount" parameterType="int" resultType="int">
+		SELECT reports
+		FROM POST
+		WHERE post_id = #{id}
+	</select>
+
+	<insert id="insertLikeEcoer">
+		INSERT INTO REACT(ecoer_id, post_id, is_like)
+		VALUES(#{ecoerId, jdbcType=VARCHAR}, #{postId, jdbcType=NUMERIC}, '1')
+	</insert>
+
+	<insert id="insertReportEcoer">
+		INSERT INTO REACT(ecoer_id, post_id, is_like)
+		VALUES(#{ecoerId, jdbcType=VARCHAR}, #{postId, jdbcType=NUMERIC}, '0')
+	</insert>
+
+</mapper>

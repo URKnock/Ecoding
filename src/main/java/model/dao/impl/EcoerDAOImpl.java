@@ -8,6 +8,7 @@ import java.util.List;
 import model.Ecoer;
 import model.dao.EcoerDAO;
 import model.service.dto.EcoerDTO;
+import model.service.dto.ReactDTO;
 import util.JDBCUtil;
 
 public class EcoerDAOImpl implements EcoerDAO{
@@ -158,10 +159,7 @@ public class EcoerDAOImpl implements EcoerDAO{
 //				for(int i = 1; i < Ecoer.cols; i++) {
 //					ecoer.setWithIndex(i, rs.getObject(cols[i]));
 //				}
-				
-				
-		
-				
+
 				return ecoer;
 			}
 		} catch (Exception ex) {
@@ -197,6 +195,35 @@ public class EcoerDAOImpl implements EcoerDAO{
 		return null;
 	}
 
+	public ReactDTO getReactByEcoer(String ecoerId) {
+        String sql = "SELECT * FROM react WHERE ecoer_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			ReactDTO dto = new ReactDTO();
+			List<Integer> like = new ArrayList<>();
+			List<Integer> report = new ArrayList<>();
+			while (rs.next()) {
+				int postId = rs.getInt("post_id");
+				if(rs.getString("is_like").charAt(0) == '1') {
+					like.add(postId);
+				} else {
+					report.add(postId);
+				}
+			}
+			dto.setLike(like);
+			dto.setReport(report);
+			return dto;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
 	public boolean existingEcoer(String ecoerId) {
 		String sql = "SELECT count(*) FROM ecoer WHERE ecoer_id=?";      
 		try {
