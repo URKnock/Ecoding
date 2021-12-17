@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Project;
 import model.Support;
 import util.JDBCUtil;
 import model.dao.SupportDAO;
@@ -17,15 +18,23 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	}
 		
 	//후원 정보 테이블에 새로운 후원 정보를 생성.
-	public int create(SupportDTO support) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
-		String sql = "INSERT INTO SUPPORT VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?, null)";		
-		Object[] param = new Object[] {support.getEcoerId(), support.getProjectId(),
-				support.getRewardId(), support.getAmount(), support.getBank(), support.getCard()};
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
-		
+	public int create(SupportDTO support, int price) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
+		String sql = null;
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
-			return result;
+			sql = "INSERT INTO SUPPORT VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?, null)";		
+			Object[] param = new Object[] {support.getEcoerId(), support.getProjectId(),
+					support.getRewardId(), support.getAmount(), support.getBank(), support.getCard()};
+			jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+			int result1 = jdbcUtil.executeUpdate();	// insert 문 실행
+			
+			sql = "UPDATE PROJECT SET current_price = ? WHERE project_id = ?";
+			Object[] param2 = new Object[] {price, support.getProjectId()};
+			jdbcUtil.setSqlAndParameters(sql, param2);
+			int result2 = jdbcUtil.executeUpdate();
+			
+			if (result1 == 0 && result2 == 0) { throw new Exception(); }
+			
+			return result1 + result2;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -136,6 +145,36 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	public List<Project> getSupportProjectList(String ecoerId) {
+		String sql = "SELECT p.project_id, p.title, p.image, p.simple_info, "
+				+ "p.target_price, p.current_price ";
+        sql += "FROM support i JOIN project p ON i.project_id = p.project_id ";
+        sql += "WHERE i.ecoer_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<Project> projectList = new ArrayList<Project>();
+			while (rs.next()) {				
+				Project dto = new Project();
+				dto.setProjectId(rs.getInt("project_id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setImage(rs.getString("image"));
+				dto.setSimpleInfo(rs.getString("simple_info"));
+				dto.setTargetPrice(rs.getInt("target_price"));
+				dto.setCurrentPrice(rs.getInt("current_price"));
+				
+				projectList.add(dto);
+			}
+			return projectList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
 		}
 		return null;
 	}

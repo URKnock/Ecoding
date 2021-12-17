@@ -59,12 +59,10 @@ public class ProjectManager {
 	}
 	
 	public void supportProject(SupportDTO support) throws SQLException {
-		// 후원 테이블 추가
-		supportDAO.create(support);
-		// 프로젝트 정보 변경 -> 현재 금액에 후원 금액 추가 -> DAO?Manager?그대로? -> 트랙잭션으로 묶기?
 		Project project = projectDAO.findProject(support.getProjectId()); // support의 projectId로 프로젝트 검색
 		int price = project.getCurrentPrice() + support.getAmount(); // 프로젝트 현재 금액 + 후원 금액
-		projectDAO.updatePriceProject(project.getProjectId(), price);
+		
+		supportDAO.create(support, price);
 		return;
 	}
 
@@ -198,5 +196,24 @@ public class ProjectManager {
 		}
 		
 		return interestList;
+	}
+	
+	public List<ProjectDTO> supportProjectInfoList(String ecoerId) throws SQLException {
+		List<Project> projectList = supportDAO.getSupportProjectList(ecoerId);
+		
+		List<ProjectDTO> supportList = new ArrayList<ProjectDTO>();
+		for (Project p : projectList) {
+			double pricePercent = (double) p.getCurrentPrice() / p.getTargetPrice() * 100;
+			ProjectDTO dto = new ProjectDTO (
+					p.getProjectId(),
+					p.getTitle(),
+					p.getImage(),
+					p.getSimpleInfo(),
+					(int) pricePercent);
+			supportList.add(dto);
+					
+		}
+		
+		return supportList;
 	}
 }
