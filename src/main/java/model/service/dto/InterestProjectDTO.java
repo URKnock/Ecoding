@@ -3,6 +3,7 @@ package model.service.dto;
 public class InterestProjectDTO {
 	private String ecoerId;
 	private int projectId;
+	private boolean isInterest;
 	
 	public static String[] columns = { "ecoer_id", "project_id" };
 	public static int cols = columns.length;
@@ -10,7 +11,7 @@ public class InterestProjectDTO {
 	public InterestProjectDTO() {
 		
 	}
-	
+
 	public Object getWithIndex(int index) {
 		switch(index) {
 			case 0: return getEcoerId();
@@ -51,6 +52,13 @@ public class InterestProjectDTO {
 		this.projectId = projectId;
 	}
 
+	public boolean isInterest() {
+		return isInterest;
+	}
+
+	public void setInterest(boolean isInterest) {
+		this.isInterest = isInterest;
+	}
 	
 
 }

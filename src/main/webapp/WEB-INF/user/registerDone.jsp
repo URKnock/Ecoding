@@ -27,7 +27,7 @@
 		<br>
 		
 		<div>
-			<a href="<c:url value='../user/login' />" class="btn btn-link">로그인하기</a>
+			<a href="<c:url value='/user/loginform' />" class="btn btn-link">로그인하기</a>
 			<a href="<c:url value='../home/main' />" class="btn btn-link">돌아가기</a>
 		</div>
 		

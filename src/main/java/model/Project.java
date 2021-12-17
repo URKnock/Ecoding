@@ -146,7 +146,7 @@ public class Project implements Serializable {
 		public void setWithIndex(int index, Object data) {
 			switch(index) {
 			case 0:
-				setProjectId((int)data);
+				setProjectId(Integer.parseInt(String.valueOf(data)));
 				break;
 			case 1:
 				setEcoerId((String)data);
@@ -170,13 +170,14 @@ public class Project implements Serializable {
 				setEcoTag((String)data);
 				break;
 			case 8:
-				setEcoScore((double)data);
+				double val = (data != null) ? Double.parseDouble(String.valueOf(data)) : 0.0;
+				setEcoScore(val);
 				break;
 			case 9:
-				setTargetPrice((int)data);
+				setTargetPrice(Integer.parseInt(String.valueOf(data)));
 				break;
 			case 10:
-				setCurrentPrice((int)data);
+				setCurrentPrice(Integer.parseInt(String.valueOf(data)));
 				break;
 			case 11:
 				setStartDate((Date)data);

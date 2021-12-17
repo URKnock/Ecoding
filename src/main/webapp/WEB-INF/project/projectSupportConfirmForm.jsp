@@ -147,7 +147,7 @@
 					<table class="t">
 						<tr>
 							<td>우편번호</td>
-							<td>12345</td>
+							<td>${ecoer.code}</td>
 						</tr>
 						<tr>
 							<td>주소</td>
@@ -155,7 +155,7 @@
 						</tr>
 						<tr>
 							<td>상세 주소</td>
-							<td>동덕여자대학교 인문관 B312호</td>
+							<td>${ecoer.detailAddress}</td>
 						</tr>
 					</table>
 				</td>
