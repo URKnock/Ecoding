@@ -140,8 +140,9 @@ public class ProjectManager {
 		return noticeDAO.getProjectNoticeList(projectId);
 	}
 	
-	public int createReward(Reward reward) {
-		return rewardDAO.insertReward(reward);
+	public void createReward(Reward[] reward) {
+		for(int i = 0; i < reward.length; i++)
+			rewardDAO.insertReward(reward[i]);
 	}
 	
 	public int updateReward(RewardDTO reward) throws SQLException {

@@ -1,6 +1,8 @@
 package controller.project;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +40,17 @@ public class ProjectRegisterController implements Controller {
         				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
         				sdf.parse(request.getParameter("deliveryDate")), null, null, null, null, null);	
     			
+    			String[] name = request.getParameterValues( "name" );
+    			String[] rewardName = request.getParameterValues( "reward_price" );
+    			String[] info = request.getParameterValues( "reward_info" );
+				
+				Reward[] reward = new Reward[name.length];
+				
+				for(int i = 0; i < name.length; i++)
+					reward[i] = new Reward(-1, -1, name[i], Integer.parseInt(rewardName[i]), info[i]);
+				
     			session.setAttribute("project", project);
+    			session.setAttribute("reward", reward);
     			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
@@ -46,41 +58,16 @@ public class ProjectRegisterController implements Controller {
         		return "/project/registerProjectForm_step1.jsp";
         	}      
     	}
-    	else if(step.equals("step3")) {
-    		String ecoerId = UserSessionUtils.getLoginEcoerId(session);	
-    		Project project =  (Project)session.getAttribute("project");
-    		
-    		try {
-    			project.setEcoerId(ecoerId);
-    			project.setDetailInfo(request.getParameter("detailInfo"));
-    			project.setPlanInfo(request.getParameter("planInfo"));
-    			project.setExchangeInfo(request.getParameter("exchangeInfo"));
-    			
-	    		Reward reward = new Reward(-1, -1, request.getParameter("name"), 
-	    				Integer.parseInt(request.getParameter("reward_price")), request.getParameter("reward_info"));
-	    		
-	    		UserManager manager = UserManager.getInstance();
-	    		boolean check = manager.findEcoer(ecoerId).getIsCreator();
-
-	    		session.setAttribute("project", project);
-	    		session.setAttribute("reward", reward);
-	    		request.setAttribute("isCre", check);
-				return "/project/registerProjectForm_step3.jsp";
-    		} catch (Exception e) {
-        		request.setAttribute("registerFailed", true);
-        		request.setAttribute("exception", e);
-        		return "/project/registerProjectForm_step2.jsp";
-        	}      
-    	}
     	else if(step.equals("final")) {
 			Project project =  (Project)session.getAttribute("project");
-			Reward reward =  (Reward)session.getAttribute("reward");
+			Reward[] reward =  (Reward[])session.getAttribute("reward");
     		
     		try {
     			ProjectManager manager = ProjectManager.getInstance();
     			int projectId = manager.registerProject(project);
 				
-    			reward.setProject_id(projectId);
+    			for(int i = 0; i < reward.length; i++)
+    				reward[i].setProject_id(projectId);
 	    		manager.createReward(reward);
 	    		
     			session.removeAttribute("project");
