@@ -17,15 +17,23 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 	}
 		
 	//후원 정보 테이블에 새로운 후원 정보를 생성.
-	public int create(SupportDTO support) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
-		String sql = "INSERT INTO SUPPORT VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?, null)";		
-		Object[] param = new Object[] {support.getEcoerId(), support.getProjectId(),
-				support.getRewardId(), support.getAmount(), support.getBank(), support.getCard()};
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
-		
+	public int create(SupportDTO support, int price) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
+		String sql = null;
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
-			return result;
+			sql = "INSERT INTO SUPPORT VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?, null)";		
+			Object[] param = new Object[] {support.getEcoerId(), support.getProjectId(),
+					support.getRewardId(), support.getAmount(), support.getBank(), support.getCard()};
+			jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+			int result1 = jdbcUtil.executeUpdate();	// insert 문 실행
+			
+			sql = "UPDATE PROJECT SET current_price = ? WHERE project_id = ?";
+			Object[] param2 = new Object[] {price, support.getProjectId()};
+			jdbcUtil.setSqlAndParameters(sql, param2);
+			int result2 = jdbcUtil.executeUpdate();
+			
+			if (result1 == 0 && result2 == 0) { throw new Exception(); }
+			
+			return result1 + result2;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
