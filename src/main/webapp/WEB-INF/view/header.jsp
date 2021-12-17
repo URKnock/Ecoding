@@ -107,6 +107,8 @@ function interest() {
 					 	  </c:url>">마이페이지</a>
 					 	<button id="myInterest" type="button" class="btn btn-primary"
 			 		 		onClick="location.href='<c:url value='/project/interest/listView' />'">&#10084;</button>
+			 		 	<button id="mySupport" type="button" class="btn btn-primary"
+			 		 		onClick="location.href='<c:url value='/project/support/listView' />'">후원 내역</button>
 					 	<button id="login" type="button" class="btn btn-primary"
 							onClick="location.href='<c:url value='/user/logout'/>';">로그아웃</button>
 					</c:if>

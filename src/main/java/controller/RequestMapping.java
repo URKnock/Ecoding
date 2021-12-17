@@ -53,6 +53,7 @@ public class RequestMapping {
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
         mappings.put("/project/register/form", new ProjectRegisterController());
         mappings.put("/project/register/creator", new CreatorRegisterController());
+        mappings.put("/project/register/file", new ProjectFileRegisterController());
         mappings.put("/project/register", new ForwardController("/project/registerProjectForm_step4.jsp"));
         mappings.put("/project/support/view", new ViewProjectController());
         mappings.put("/project/support", new ProjectSupportController());
@@ -60,6 +61,8 @@ public class RequestMapping {
         mappings.put("/project/support/complete", new ProjectSupportCompleteController());
         mappings.put("/project/interest", new ProjectInterestController());
         mappings.put("/project/interest/listView", new ProjectInterestListViewController());
+        mappings.put("/project/support/listView", new SupportProjectListViewController());
+        
         
         // 커뮤니티 관련
         mappings.put("/board/list", new PostListController());

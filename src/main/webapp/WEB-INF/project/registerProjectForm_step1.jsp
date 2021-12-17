@@ -12,6 +12,43 @@
     	form.action = targetUri; 
     	form.submit();
     }
+    
+    function addReward() {
+    	var form = document.getElementById('rewardDiv');
+    	
+    	var text = document.createTextNode("\u00a0");
+    	form.appendChild(text);
+    	
+    	var rewardName = document.createElement('input');
+    	rewardName.type = 'text';
+    	rewardName.name = 'name';
+    	rewardName.placeholder = '리워드 이름';
+    	form.appendChild(rewardName);
+    	
+    	var text = document.createTextNode("\u00a0\u00a0");
+    	form.appendChild(text);
+    	
+    	var rewardPrice = document.createElement('input');
+    	rewardPrice.type = 'text';
+    	rewardPrice.name = 'reward_price';
+    	rewardPrice.placeholder = '리워드 이름';
+    	form.appendChild(rewardPrice);
+    	
+    	var text = document.createTextNode("\u00a0\u00a0");
+    	form.appendChild(text);
+    	
+    	var rewardInfo = document.createElement('input');
+    	rewardInfo.type = 'text';
+    	rewardInfo.name = 'reward_info';
+    	rewardInfo.placeholder = '리워드 이름';
+    	form.appendChild(rewardInfo);
+    	
+    	var next = document.createElement('p');
+    	form.appendChild(next);
+    	
+    	var text = document.createTextNode("\u00a0\u00a0\u00a0");
+    	form.appendChild(text);
+    }
 </script>
 <style>
 #step01 {
@@ -72,6 +109,13 @@
 			&nbsp결제일 설정: <input type="date" name="payDate">
 			&nbsp배송 시작일 설정: <input type="date" name="deliveryDate">
 			<br><br>
+			&nbspQ8. 리워드 정보를 입력해주세요.
+			<p>&nbsp<input type="text" name="name" placeholder="리워드 이름">
+			&nbsp<input type="text" name="reward_price" placeholder="금액 범위">
+			&nbsp<input type="text" name="reward_info" placeholder="리워드 정보"></p>
+			<div id="rewardDiv"></div>
+			<a href="javascript:addReward()">리워드 추가</a><p>
+			<br>
 			&nbsp<button name="step" class="goNext" value="step2">Step 02</button>
 		</form>
      </div>
