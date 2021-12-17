@@ -45,6 +45,8 @@ public class RequestMapping {
         mappings.put("/project/support/complete", new ProjectSupportCompleteController());
         mappings.put("/project/interest", new ProjectInterestController());
         mappings.put("/project/interest/listView", new ProjectInterestListViewController());
+        mappings.put("/project/support/listView", new SupportProjectListViewController());
+        
         
         // 커뮤니티 관련
         mappings.put("/board/list", new PostListController());

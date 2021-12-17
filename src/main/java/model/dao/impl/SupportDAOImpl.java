@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Project;
 import model.Support;
 import util.JDBCUtil;
 import model.dao.SupportDAO;
@@ -144,6 +145,36 @@ public class SupportDAOImpl implements SupportDAO { //DAO를 인터페이스로 
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	public List<Project> getSupportProjectList(String ecoerId) {
+		String sql = "SELECT p.project_id, p.title, p.image, p.simple_info, "
+				+ "p.target_price, p.current_price ";
+        sql += "FROM support i JOIN project p ON i.project_id = p.project_id ";
+        sql += "WHERE i.ecoer_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<Project> projectList = new ArrayList<Project>();
+			while (rs.next()) {				
+				Project dto = new Project();
+				dto.setProjectId(rs.getInt("project_id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setImage(rs.getString("image"));
+				dto.setSimpleInfo(rs.getString("simple_info"));
+				dto.setTargetPrice(rs.getInt("target_price"));
+				dto.setCurrentPrice(rs.getInt("current_price"));
+				
+				projectList.add(dto);
+			}
+			return projectList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
 		}
 		return null;
 	}
