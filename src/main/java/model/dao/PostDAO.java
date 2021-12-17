@@ -15,6 +15,7 @@ public interface PostDAO {
 	public int viewPost(int id);
 	public int likePost(String ecoerId, int postId);
 	public int reportPost(String ecoerId, int postId);
+	public int deleteReactByPid(int postId);
 	public PostDTO getPostByCode(int pCode);
 	public PostDTO getPostByTitle(String title);
 }

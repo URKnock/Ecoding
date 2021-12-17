@@ -2,10 +2,13 @@ package model.dao.impl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import model.dao.ReplyDAO;
-import util.JDBCUtil;
 import model.service.dto.ReplyDTO;
+import util.JDBCUtil;
 
 public class ReplyDAOImpl implements ReplyDAO{
 	private JDBCUtil jdbcUtil = null;
@@ -87,6 +90,7 @@ public class ReplyDAOImpl implements ReplyDAO{
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
 			ex.printStackTrace();
+			return -1;
 		} finally {
 			jdbcUtil.commit();
 			jdbcUtil.close();
@@ -98,9 +102,6 @@ public class ReplyDAOImpl implements ReplyDAO{
 		String searchQuery = query + "FROM REPLY WHERE reply_id = ?";
 		Object[] param = new Object[] {replyId};
 		jdbcUtil.setSqlAndParameters(searchQuery, param); 
-		
-		jdbcUtil.setSql(searchQuery);
-		jdbcUtil.setParameters(param);
 	
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -123,11 +124,9 @@ public class ReplyDAOImpl implements ReplyDAO{
 	}
 	
 	public List<ReplyDTO> getReplyListByPost(int postId) {
-		String searchQuery = query + "FROM REPLY WHERE post_id = ?";
+		String searchQuery = "SELECT * FROM REPLY WHERE post_id = ?";
 		Object[] param = new Object[] { postId };
 		jdbcUtil.setSqlAndParameters(searchQuery, param); 
-		jdbcUtil.setSql(searchQuery);
-		jdbcUtil.setParameters(param);
 	
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -143,6 +142,26 @@ public class ReplyDAOImpl implements ReplyDAO{
 				list.add(dto);
 			}
 			return list;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public Map<Integer, Integer> getAllReplyCount() {
+		String searchQuery = "SELECT * FROM REPLY";
+		jdbcUtil.setSqlAndParameters(searchQuery, null); 
+	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+			while (rs.next()) {
+				int postId = rs.getInt("post_id");
+				map.put(postId, map.getOrDefault(postId, 0) + 1);
+			}
+			return map;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

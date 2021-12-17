@@ -44,8 +44,8 @@
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.ecoerId}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.postDate}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.views}</a></td>
+				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.replyCnt}</a></td>
 				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.likes}</a></td>
-				<td><a href="<c:url value='/board/view?pid=${p.postId}'/>">${p.reports}</a></td>
 			</tr>
 		</c:forEach>
 	</table>

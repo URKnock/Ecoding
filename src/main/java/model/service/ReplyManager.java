@@ -1,6 +1,7 @@
 package model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import model.DAOFactory;
 import model.dao.ReplyDAO;
@@ -49,6 +50,10 @@ public class ReplyManager {
 	
 	public ReplyDTO getReply(int replyentId) {
 		return replyDAO.getReply(replyentId);
+	}
+	
+	public Map<Integer, Integer> getAllReplyCount() {
+		return replyDAO.getAllReplyCount();
 	}
 	
 	public ReplyDAO getReplyDAO() {

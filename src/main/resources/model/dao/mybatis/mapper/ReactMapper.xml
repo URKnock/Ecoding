@@ -37,4 +37,8 @@
 		VALUES(#{ecoerId, jdbcType=VARCHAR}, #{postId, jdbcType=NUMERIC}, '0')
 	</insert>
 
+	<delete id="deleteReactByPostId" parameterType="int">
+		DELETE FROM REACT
+		WHERE post_id = #{id}
+	</delete>
 </mapper>

@@ -11,6 +11,7 @@ public class PostDTO {
 	private String reports;
 	private String ecoerId;
 	private int communityId;
+	private int replyCnt;
 	
 	public static String[] columns = { "post_id", "title", "post_date", "post_content", "post_file", "views", "likes", "reports", "ecoer_id", "community_id" };
 	public static int cols = columns.length;
@@ -142,5 +143,13 @@ public class PostDTO {
 
 	public void setCommunityId(int communityId) {
 		this.communityId = communityId;
+	}
+
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
 	}
 }

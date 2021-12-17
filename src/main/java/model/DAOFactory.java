@@ -12,11 +12,7 @@ public class DAOFactory {
 	public ReplyDAO getReplyDAO() {
 		return new ReplyDAOImpl();		
 	}
-	
-	public CommunityDAO getCommunityDAO() {
-		return new CommunityDAOImpl();		
-	}
-	
+
 	//211113 ProejectDAO, SupportDAO 추가 (진주)
 	public ProjectDAO getProjectDAO() {
 		return new ProjectDAOImpl();		

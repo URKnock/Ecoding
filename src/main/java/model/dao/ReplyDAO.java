@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import model.service.dto.ReplyDTO;
 
@@ -11,4 +12,5 @@ public interface ReplyDAO {
 	public int updateReply(ReplyDTO reply);	
 	public int deleteReply(int replyId);
 	public ReplyDTO getReply(int replyId);
+	public Map<Integer, Integer> getAllReplyCount();
 }

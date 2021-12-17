@@ -12,4 +12,5 @@ public interface ReactMapper {
 							  @Param("postId") int postId);
 	public int insertReportEcoer(@Param("ecoerId") String ecoerId,
 			  				  	@Param("postId") int postId);
+	public int deleteReactByPostId(int id);
 }

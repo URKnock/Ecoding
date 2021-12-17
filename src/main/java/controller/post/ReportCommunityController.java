@@ -1,7 +1,5 @@
 package controller.post;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,13 +21,14 @@ public class ReportCommunityController implements Controller {
 			//response.setContentType("text/html; charset=UTF-8");
 			//PrintWriter out = response.getWriter();
 			int reportCnt = manager.report(postId, ecoerId);
-			if(reportCnt == 0) {
-				//out.println("<script>alert('이미 신고한 게시글입니다.');</script>");
-				//out.flush();
-			} else if(reportCnt >= 10) {
+			System.out.println("그것: " + reportCnt);
+			if(reportCnt >= 10) {
 				//out.println("<script>alert('신고 횟수가 누적되어 해당 게시물은 삭제되었습니다.');</script>");
 				//out.flush();
-				return "redirect:/board/delete?pid=" + postId;
+				return "redirect:/board/list";
+			} else if(reportCnt == -1) {
+				//out.println("<script>alert('이미 신고한 게시물입니다.');</script>");
+				//out.flush();
 			}
 			return "redirect:/board/view?pid=" + postId;
 		} catch(Exception e) {
