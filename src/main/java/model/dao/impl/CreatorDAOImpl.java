@@ -51,10 +51,7 @@ public class CreatorDAOImpl implements CreatorDAO {
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();
-		}		
+		} 		
 		return 0;	
 	}
 	

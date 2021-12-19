@@ -99,7 +99,7 @@
 			&nbsp<input type="radio" name="ecotag" value="친환경">친환경
 			&nbsp<input type="radio" name="ecotag" value="재활용">재활용
 			<br><br>
-			<p>pQ6. 프로젝트 목표 금액을 작성해주세요.</p>
+			<p>Q6. 프로젝트 목표 금액을 작성해주세요.</p>
 			&nbsp<input type="text" name="targetAmount">
 			<br><br>
 			<p>Q7. 프로젝트 기간을 설정해주세요.</p>

@@ -35,8 +35,8 @@
 	    	</div>
 	    </div>
      <div class="right">
-     	<form name="form" method="post" action="<c:url value='/project/register/file' />">
-			<p>Q1. 프로젝트 대표 영상을 첨부해주세요.</p>
+     	<form name="form" method="post" enctype="multipart/form-data" action="<c:url value='/project/register/file' />">
+			<p>Q1. 프로젝트 대표 영상을 첨부해주세요.(10MB 미만만 가능)</p>
 			&nbsp<input type="file" name="thumbnailVideo">
 			<p>Q2. 프로젝트 대표 이미지를 첨부해주세요.</p>
 			&nbsp<input type="file" name="thumbnailImage">
