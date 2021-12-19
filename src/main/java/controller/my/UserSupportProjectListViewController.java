@@ -1,4 +1,4 @@
-package controller.project;
+package controller.my;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import controller.user.UserSessionUtils;
 import model.service.ProjectManager;
 import model.service.dto.ProjectDTO;
 
-public class SupportProjectListViewController implements Controller {
+public class UserSupportProjectListViewController implements Controller {
 
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,7 +24,8 @@ public class SupportProjectListViewController implements Controller {
 		List<ProjectDTO> supportProjectInfoList = manager.supportProjectInfoList(ecoerId);
 		request.setAttribute("supportList", supportProjectInfoList);
 		
-		return "/project/supportProjectListView.jsp";
+		return "/user/mySupportProjectView.jsp";
 
 	}
 }
+

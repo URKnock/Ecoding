@@ -13,9 +13,9 @@
 		<tr>
 			<td><h2>${post.title}</h2></td>
 			<td class="align_right">
-				<!-- input type="button" value="수정"/ -->
-				<!-- input type="button" value="삭제" onClick="move();"/-->
-				<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/delete?pid=${post.postId}'/>'">삭제</button>
+				<c:if test="${post.ecoerId eq ecoerId}">
+					<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/delete?pid=${post.postId}'/>'">삭제</button>
+				</c:if>
 			</td>
 		</tr>
 		<tr>
@@ -24,12 +24,14 @@
 		<tr>
 			<td colspan="2">${post.postContent}<br/><br/></td>
 		</tr>
+		<c:if test="${post.ecoerId ne ecoerId}">
 		<tr>
 			<td colspan="2">
 				<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/post/like?pid=${post.postId}'/>'">좋아요</button>
 				<button type="button" class="btn btn-outline-primary" onClick="location.href='<c:url value='/board/post/report?pid=${post.postId}'/>'">신고</button>
 			</td>
 		</tr>
+		</c:if>
 		<tr>
 			<td colspan="2">
 				<form name="comment" action="<c:url value='/board/view'/>" method="post">
@@ -50,11 +52,8 @@
 					<input type="hidden" name="pid" value="${post.postId}"/>
 					<input type="hidden" name="rid" value="${c.replyId}"/>
 					${c.replyDate}&nbsp;
-					<c:if test="${c.ecoerId ne session.ecoerId}">
+					<c:if test="${c.ecoerId eq ecoerId}">
 						<button type="submit" class="btn btn-outline-primary">삭제</button>
-					</c:if>
-					<c:if test="${c.ecoerId eq session.ecoerId}">
-						<button type="button" class="btn btn-outline-primary">좋아요</button>
 					</c:if>
 				</form>
 			</td>

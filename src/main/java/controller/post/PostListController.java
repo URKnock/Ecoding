@@ -18,11 +18,11 @@ public class PostListController implements Controller {
 		Map<Integer, Integer> replyCnt;
     	PostManager manager = PostManager.getInstance();
     	ReplyManager reply = ReplyManager.getInstance();
-    	String keyword = request.getParameter("searchKeyword");
-    	String type = request.getParameter("searchType");
+    	String keyword = request.getParameter("keyword");
+    	String type = request.getParameter("type");
     	int cid = 0;
     	
-    	if(request.getParameter("cid") != null)	//Community ID;
+    	if(request.getParameter("cid") != null)	// Community ID;
     		cid = Integer.parseInt(request.getParameter("cid"));
     	
     	if(keyword != null && type != null) {

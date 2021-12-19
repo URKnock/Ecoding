@@ -42,14 +42,16 @@ public class PostManager {
 	}
 	
 	public int delete(int postId) {
-		int result = 1;
-		List<ReplyDTO> replies = replyDAO.getReplyListByPost(postId);
-		for(ReplyDTO reply : replies) {
-			result = replyDAO.deleteReply(reply.getReplyId());
-			if(result == -1) break;
+		int result = -1;
+		while(result == -1) {
+			List<ReplyDTO> replies = replyDAO.getReplyListByPost(postId);
+			for(ReplyDTO reply : replies) {
+				result = replyDAO.deleteReply(reply.getReplyId());
+				if(result == -1) break;
+			}
+			if(result != -1) result = postDAO.deleteReactByPid(postId);
+			if(result != -1) result = postDAO.deletePost(postId);
 		}
-		if(result != -1) result = postDAO.deleteReactByPid(postId);
-		if(result != -1) result = postDAO.deletePost(postId);
 		return result;
 	}
 	

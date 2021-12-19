@@ -6,6 +6,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.my.UserPostListViewController;
+import controller.my.UserProjectInterestListViewController;
+import controller.my.UserSupportProjectListViewController;
 import controller.post.CommunityController;
 import controller.post.CreatePostController;
 import controller.post.DeletePostController;
@@ -17,11 +20,9 @@ import controller.project.CreatorRegisterController;
 import controller.project.ListProjectController;
 import controller.project.ProjectFileRegisterController;
 import controller.project.ProjectInterestController;
-import controller.project.ProjectInterestListViewController;
 import controller.project.ProjectRegisterController;
 import controller.project.ProjectSupportCompleteController;
 import controller.project.ProjectSupportController;
-import controller.project.SupportProjectListViewController;
 import controller.project.ViewProjectController;
 import controller.user.DeleteUserController;
 import controller.user.ListUserController;
@@ -39,11 +40,16 @@ public class RequestMapping {
 
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
-    	//mappings.put("/", new ForwardController("home.jsp"));
+    	// mappings.put("/", new ForwardController("home.jsp"));
     	
         //홈페이지 기본 화면
         mappings.put("/home/main", new ListProjectController("/view/home.jsp")); //홈
         mappings.put("/home/list", new ListProjectController("/view/projectList.jsp")); //둘러보기
+
+        //사용자 정보 관련
+        mappings.put("/user/interest/listView", new UserProjectInterestListViewController());
+        mappings.put("/user/support/listView", new UserSupportProjectListViewController());
+        mappings.put("/user/post/listView", new UserPostListViewController());
         
         //사용자 관련(로그인, 회원가입, 로그아웃)
     	mappings.put("/user/loginform", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동
@@ -66,9 +72,6 @@ public class RequestMapping {
         mappings.put("/project/support/confirm", new ProjectSupportController());
         mappings.put("/project/support/complete", new ProjectSupportCompleteController());
         mappings.put("/project/interest", new ProjectInterestController());
-        mappings.put("/project/interest/listView", new ProjectInterestListViewController());
-        mappings.put("/project/support/listView", new SupportProjectListViewController());
-        
         
         // 커뮤니티 관련
         mappings.put("/board/list", new PostListController());

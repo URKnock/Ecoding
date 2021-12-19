@@ -1,0 +1,33 @@
+*{
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.wrap {
+	margin: auto;
+	width: 900px;
+}
+
+.comment {
+	font-weight: bold;
+	color: blue;
+}
+.d1 {
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+}
+hr {
+	border:0;
+	height:1px;
+	background-color:#97e6e4;
+}
+
+#posts td {
+	padding-left:50px;
+	padding-right:50px;
+	padding-bottom:25px;
+	padding-top:25px;
+}
+#posts{
+	margin: auto;
+}

@@ -1,4 +1,4 @@
-package controller.project;
+package controller.my;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.user.UserSessionUtils;
-import model.service.ProjectManager;
-import model.service.dto.ProjectDTO;
+import model.service.PostManager;
+import model.service.dto.PostDTO;
 
-public class ProjectInterestListViewController implements Controller {
+public class UserPostListViewController implements Controller {
 
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,12 +19,12 @@ public class ProjectInterestListViewController implements Controller {
 		HttpSession session = request.getSession();
 		String ecoerId = UserSessionUtils.getLoginEcoerId(session);
 		
-		ProjectManager manager = ProjectManager.getInstance();
+		PostManager manager = PostManager.getInstance();
+		List<PostDTO> postList = manager.findPostList(ecoerId, "ecoer_id");
+		request.setAttribute("postList", postList);
 		
-		List<ProjectDTO> interestProjectInfoList = manager.interestProjectInfoList(ecoerId);
-		request.setAttribute("interestList", interestProjectInfoList);
-		
-		return "/project/interestProjectListView.jsp";
+		return "/user/myPostView.jsp";
 
 	}
 }
+

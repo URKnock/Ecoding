@@ -326,7 +326,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 	
 	public List<PostDTO> getPostListByKeyword(String keyword, String type) {
-		String searchQuery = query + "FROM POST WHERE " + type + "=? AND LIKE '%" + keyword + "%'";
+		String searchQuery = query + "FROM POST WHERE " + type + " LIKE '%" + keyword + "%' ORDER BY post_id";
 		jdbcUtil.setSqlAndParameters(searchQuery, null);
 	
 		try {
