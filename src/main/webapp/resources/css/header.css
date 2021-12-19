@@ -1,12 +1,41 @@
 @charset "UTF-8";
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
 .clear {
 	clear: both;
 }
+.new_clear {
+	flex-wrap: wrap;
+	width:300px;
+	display:block;
+	clear:both;
+	margin:auto;
+}
+
+.txLeft {
+	text-align:left;
+}
+.txCenter {
+	text-align:center;
+	
+}
+.txRight {
+	text-align:right;
+}
+
+.userInfo {
+	margin-top: 40px;
+	margin-right: 20px;
+}
 
 #logo {
-	float:left;
-	height: 30px;
+	height: 50px;
+	margin-left: 50px;
+	margin-top: 40px;
 }
+
 #top div {
 	display: inline-block;
 	float: right;
@@ -23,3 +52,130 @@ form[name=search_project] {
 	float: left;
 	padding-left: 25px;
 }
+
+.input {
+	 top: 20px;
+	 position: relative;
+	 font-size: 2.25em;
+	 background: linear-gradient(21deg, #10abff, #1beabd);
+	 padding: 5px;
+	 display: inline-block;
+	 border-radius: 1em;
+}
+ .input *:not(span) {
+	 position: relative;
+	 display: inherit;
+	 border-radius: inherit;
+	 margin: 0;
+	 border: none;
+	 outline: none;
+	 padding: 0 0.325em;
+	 z-index: 1;
+}
+ .input *:not(span):focus + span {
+	 opacity: 1;
+	 transform: scale(1);
+}
+ .input span {
+	 transform: scale(1.25, 1.25);
+	 transition: transform 0.5s, opacity 0.25s;
+	 opacity: 0;
+	 position: absolute;
+	 z-index: 0;
+	 margin: 20px;
+	 left: 0;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 border-radius: inherit;
+	 pointer-events: none;
+	 box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
+}
+ .input input {
+	 font-family: 'Nanum Gothic';
+	 color: #2e3750;
+	 min-width: 12em;
+}
+ .input ::placeholder {
+	 color: #cbd0d5;
+}
+
+.button, .button_reg, .button_in, .button_out {
+	 top: 20px;
+	 border: 2px solid #10abff;
+	 height: 60px;
+	 width: 125px;
+	 border-radius: 20px;
+	 position: relative;
+	 display:inline-block;
+	 cursor: pointer;
+	 font-family: "Nanum Gothic", sans-serif;
+}
+
+ .button::after, .button_reg::after, .button_in::after, .button_out::after {
+	 content: "검색";
+	 position: absolute;
+	 font-weight:bold;
+	 top: 30%;
+	 left: 50%;
+	 transform: translate(-50%);
+	 color: #10abff;
+	 transition: all 0.1s linear;
+}
+
+.button_reg::after {
+	 content: "회원가입" !important;
+ }
+.button_in::after {
+	 content: "로그인" !important;
+ }
+.button_out::after {
+	 content: "로그아웃" !important;
+ }
+ 
+ .button::before, .button_reg::before, .button_in::before, .button_out::before {
+	 content: "";
+	 position: relative;
+	 display: block;
+	 height: 15px;
+	 width: 15px;
+	 background: #1beabd;
+	 box-shadow: 0px 0px 10px 3px #0ff;
+	 margin-left: -8px;
+	 margin-top: -8px;
+	 opacity: 0;
+	 transition: all 0.1s linear;
+	 border-radius: 100%;
+	 animation: star 1.3s linear infinite;
+}
+ @keyframes star {
+	 0% {
+		 margin-left: -6px;
+		 margin-top: -6px;
+	}
+	 25% {
+		 margin-left: 114px;
+		 margin-top: -6px;
+	}
+	 50% {
+		 margin-left: 114px;
+		 margin-top: 50px;
+	}
+	 75% {
+		 margin-left: -6px;
+		 margin-top: 50px;
+	}
+	 100% {
+		 margin-left: -6px;
+		 margin-top: -6px;
+	}
+}
+ .button:hover::before, .button_reg:hover::before, .button_in:hover::before, .button_out:hover::before {
+	 opacity: 1;
+	 animation: star 1.3s linear infinite;
+}
+ .button:hover::after, .button_reg:hover::after, .button_in:hover::after, .button_out:hover::after {
+	 content: "Ecoding";
+	 text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #82bedc, 0 0 30px #82bedc, 0 0 40px #82bedc, 0 0 50px #82bedc, 0 0 60px #82bedc;
+}
+ 
