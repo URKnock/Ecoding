@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Project;
-import model.Reward;
 import model.dao.ProjectDAO;
 import util.JDBCUtil;
-import model.service.dto.ProjectDTO;
 
 public class ProjectDAOImpl implements ProjectDAO {
 	private JDBCUtil jdbcUtil = null;

@@ -11,9 +11,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.Project;
-import model.service.CreatorManager;
 import model.service.UserManager;
-import model.service.dto.CreatorDTO;
 
 //파일 업로드를 위한 API를 사용하기 위해...
 import org.apache.commons.fileupload.*;
@@ -34,25 +32,22 @@ public class ProjectFileRegisterController implements Controller {
     	String projectFile = null;    
     	
     	boolean check = ServletFileUpload.isMultipartContent(request);
-		//전송된 데이터의 인코드 타입이 multipart 인지 여부를 체크한다.
-		//만약 multipart가 아니라면 파일 전송을 처리하지 않는다.
 		
-		if(check) {//파일 전송이 포함된 상태가 맞다면
-			
-			// 아래와 같이 하면 Tomcat 내부에 복사된 프로젝트의 폴더 밑에 upload 폴더가 생성됨 
+		if(check) {
 			ServletContext context = request.getServletContext();
 			String path = context.getRealPath("/resources/img");
 			File dir = new File(path);
 			
-			// Tomcat 외부의 폴더에 저장하려면 아래와 같이 절대 경로로 폴더 이름을 지정함
-			// File dir = new File("C:/Temp");
-			
 			if(!dir.exists()) dir.mkdir();
-			//전송된 파일을 저장할 실제 경로를 만든다.
 			
 			try {
+				HttpSession session = request.getSession();
+				String ecoerId = UserSessionUtils.getLoginEcoerId(session);	
+	    		Project project =  (Project)session.getAttribute("project");
+	    		project.setEcoerId(ecoerId);
+	    		
 				DiskFileItemFactory factory = new DiskFileItemFactory();
-                factory.setSizeThreshold(10 * 1024);
+                factory.setSizeThreshold(1024 * 1024 * 10);
                 factory.setRepository(dir);            
     
                 ServletFileUpload upload = new ServletFileUpload(factory);
@@ -67,55 +62,58 @@ public class ProjectFileRegisterController implements Controller {
                 	String value = item.getString("utf-8");
                 	
                 	if(item.isFormField()) {             		
-                		if(item.getFieldName().equals("detailInfo")) detailInfo = value;
-                		else if(item.getFieldName().equals("planInfo")) planInfo = value;
-                		else if(item.getFieldName().equals("exchangeInfo")) exchangeInfo = value;
+                		if(item.getFieldName().equals("detailInfo")) {
+                			detailInfo = value;
+                			project.setDetailInfo(detailInfo);
+                		}
+                		else if(item.getFieldName().equals("planInfo")) {
+                			planInfo = value;
+            				project.setPlanInfo(planInfo);
+                		}
+                		else if(item.getFieldName().equals("exchangeInfo")) {
+                			exchangeInfo = value;
+            				project.setExchangeInfo(exchangeInfo);
+                		}
                 	}
-                	else {//파일이라면...
+                	else {
                 		if(item.getFieldName().equals("thumbnailVideo")) {
-                			thumbnailVideo = item.getName();//파일 이름 획득 (자동 한글 처리 됨)
+                			thumbnailVideo = item.getName();
                 			if(thumbnailVideo == null || thumbnailVideo.trim().length() == 0) continue;
-                			//파일이 전송되어 오지 않았다면 건너 뛴다.
                 			thumbnailVideo = thumbnailVideo.substring(thumbnailVideo.lastIndexOf("\\") + 1);
-                			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
-                			//실제 C:\Web_Java\aaa.gif라고 하면 aaa.gif만 추출하기 위한 코드이다.
                 			File file = new File(dir, thumbnailVideo);
                 			item.write(file);
-                			//파일을 upload 경로에 실제로 저장한다.
-                			//FileItem 객체를 통해 바로 출력 저장할 수 있다.
+                			project.setProjectVideo(thumbnailVideo);
                 		}
                 		if(item.getFieldName().equals("thumbnailImage")) {
-                			thumbnailImage = item.getName();//파일 이름 획득 (자동 한글 처리 됨)
+                			thumbnailImage = item.getName();
                 			if(thumbnailImage == null || thumbnailImage.trim().length() == 0) continue;
-                			//파일이 전송되어 오지 않았다면 건너 뛴다.
                 			thumbnailImage = thumbnailImage.substring(thumbnailImage.lastIndexOf("\\") + 1);
-                			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
-                			//실제 C:\Web_Java\aaa.gif라고 하면 aaa.gif만 추출하기 위한 코드이다.
                 			File file = new File(dir, thumbnailImage);
                 			item.write(file);
-                			//파일을 upload 경로에 실제로 저장한다.
-                			//FileItem 객체를 통해 바로 출력 저장할 수 있다.
+                			project.setImage(thumbnailImage);
                 		}
                 		if(item.getFieldName().equals("projectFile")) {
-                			projectFile = item.getName();//파일 이름 획득 (자동 한글 처리 됨)
+                			projectFile = item.getName();
                 			if(projectFile == null || projectFile.trim().length() == 0) continue;
-                			//파일이 전송되어 오지 않았다면 건너 뛴다.
                 			projectFile = projectFile.substring(projectFile.lastIndexOf("\\") + 1);
-                			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
-                			//실제 C:\Web_Java\aaa.gif라고 하면 aaa.gif만 추출하기 위한 코드이다.
                 			File file = new File(dir, projectFile);
                 			item.write(file);
-                			//파일을 upload 경로에 실제로 저장한다.
-                			//FileItem 객체를 통해 바로 출력 저장할 수 있다.
+                			project.setProjectFile(projectFile);
                 		}
                 	}
                 }
+                
+                UserManager manager = UserManager.getInstance();
+        		boolean ck = manager.findEcoer(ecoerId).getIsCreator();
+
+        		session.setAttribute("project", project);
+        		
+        		request.setAttribute("isCre", ck);
+    			
 			}catch(SizeLimitExceededException e) {
-			//업로드 되는 파일의 크기가 지정된 최대 크기를 초과할 때 발생하는 예외처리
 				e.printStackTrace();          
 				return "/project/registerProjectForm_step2.jsp";
             }catch(FileUploadException e) {
-            //파일 업로드와 관련되어 발생할 수 있는 예외 처리
                 e.printStackTrace();
                 return "/project/registerProjectForm_step2.jsp";
             }catch(Exception e) {            
@@ -123,28 +121,6 @@ public class ProjectFileRegisterController implements Controller {
                 return "/project/registerProjectForm_step2.jsp";
             }
 		}
-		
-		try {
-			HttpSession session = request.getSession();
-			String ecoerId = UserSessionUtils.getLoginEcoerId(session);	
-    		Project project =  (Project)session.getAttribute("project");
-    		
-			project.setEcoerId(ecoerId);
-			project.setDetailInfo(request.getParameter("detailInfo"));
-			project.setPlanInfo(request.getParameter("planInfo"));
-			project.setExchangeInfo(request.getParameter("exchangeInfo"));
-			
-    		UserManager manager = UserManager.getInstance();
-    		boolean ck = manager.findEcoer(ecoerId).getIsCreator();
-
-    		session.setAttribute("project", project);
-    		
-    		request.setAttribute("isCre", ck);
-			return "/project/registerProjectForm_step3.jsp";
-		} catch (Exception e) {
-			request.setAttribute("registerFailed", true);
-			request.setAttribute("exception", e);
-			return "/project/registerProjectForm_step2.jsp";
-		}
+		return "/project/registerProjectForm_step3.jsp";
     }
 }
