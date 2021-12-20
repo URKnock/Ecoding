@@ -16,8 +16,9 @@
 	<div class="card-columns" id="cards-box">
 		<c:forEach var="project" items="${myProjectList}" varStatus="i">
 			<div class="card">
+				사진 저장 경로 : ${pageContext.request.contextPath} <br/>
 				<img class="card-img-top"
-					src=".metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Ecoding\resources\img\=${project.image}"
+					src="<c:url value='${dir}/${project.image}' />"
 					alt="Card imagecap">
 				<div class="card-body">
 					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">${project.title}</a>
