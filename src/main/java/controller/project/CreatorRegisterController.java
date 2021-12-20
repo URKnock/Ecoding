@@ -37,7 +37,7 @@ public class CreatorRegisterController implements Controller {
 			
 			// 아래와 같이 하면 Tomcat 내부에 복사된 프로젝트의 폴더 밑에 upload 폴더가 생성됨 
 			ServletContext context = request.getServletContext();
-			String path = context.getRealPath("/resources/img");
+			String path = context.getRealPath("/upload");
 			File dir = new File(path);
 			
 			// Tomcat 외부의 폴더에 저장하려면 아래와 같이 절대 경로로 폴더 이름을 지정함

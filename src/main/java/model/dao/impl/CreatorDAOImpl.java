@@ -132,21 +132,16 @@ public class CreatorDAOImpl implements CreatorDAO {
 
 	public CreatorDTO findCreator(String ecoerId) {
         String sql = "SELECT * FROM creator JOIN ecoer USING(ecoer_id) WHERE ecoer_id=?";
-        String[] cols1 = CreatorDTO.columns;
-        String[] cols2 = EcoerDTO.columns;
         jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
 				CreatorDTO creator = new CreatorDTO();
-				creator.setEcoerId(ecoerId);
-				for(int i = 1; i < CreatorDTO.cols + EcoerDTO.cols; i++) {
-					if(i < CreatorDTO.cols)
-						creator.setWithIndex(i, rs.getObject(cols1[i]));
-					else
-						creator.setWithIndex(i, rs.getObject(cols2[i]));
-				}
+				creator.setNickName(rs.getString("nick_name"));
+				creator.setImage(rs.getString("image"));
+				creator.setCreatorInfo(rs.getString("creator_info"));
+				creator.setAccount(rs.getString("account"));
 				return creator;
 			}
 		} catch (Exception ex) {

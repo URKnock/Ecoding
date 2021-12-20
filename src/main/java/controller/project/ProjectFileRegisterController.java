@@ -11,7 +11,10 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.Project;
+import model.service.CreatorManager;
 import model.service.UserManager;
+import model.service.dto.CreatorDTO;
+import model.service.dto.EcoerDTO;
 
 //파일 업로드를 위한 API를 사용하기 위해...
 import org.apache.commons.fileupload.*;
@@ -35,7 +38,7 @@ public class ProjectFileRegisterController implements Controller {
 		
 		if(check) {
 			ServletContext context = request.getServletContext();
-			String path = context.getRealPath("/resources/img");
+			String path = context.getRealPath("/upload");
 			File dir = new File(path);
 			
 			if(!dir.exists()) dir.mkdir();
@@ -82,7 +85,8 @@ public class ProjectFileRegisterController implements Controller {
                 			thumbnailVideo = thumbnailVideo.substring(thumbnailVideo.lastIndexOf("\\") + 1);
                 			File file = new File(dir, thumbnailVideo);
                 			item.write(file);
-                			project.setProjectVideo(thumbnailVideo);
+                			if(thumbnailVideo != null)
+                				project.setProjectVideo(thumbnailVideo);
                 		}
                 		if(item.getFieldName().equals("thumbnailImage")) {
                 			thumbnailImage = item.getName();
@@ -90,7 +94,8 @@ public class ProjectFileRegisterController implements Controller {
                 			thumbnailImage = thumbnailImage.substring(thumbnailImage.lastIndexOf("\\") + 1);
                 			File file = new File(dir, thumbnailImage);
                 			item.write(file);
-                			project.setImage(thumbnailImage);
+                			if(thumbnailImage != null)
+                				project.setImage(thumbnailImage);
                 		}
                 		if(item.getFieldName().equals("projectFile")) {
                 			projectFile = item.getName();
@@ -98,16 +103,24 @@ public class ProjectFileRegisterController implements Controller {
                 			projectFile = projectFile.substring(projectFile.lastIndexOf("\\") + 1);
                 			File file = new File(dir, projectFile);
                 			item.write(file);
-                			project.setProjectFile(projectFile);
+                			if(projectFile != null)
+                				project.setProjectFile(projectFile);
                 		}
                 	}
                 }
                 
                 UserManager manager = UserManager.getInstance();
-        		boolean ck = manager.findEcoer(ecoerId).getIsCreator();
+        		EcoerDTO ecoer = manager.findEcoer(ecoerId);
+        		boolean ck = ecoer.getIsCreator();
+        		CreatorDTO creator = new CreatorDTO();
+        		
+        		if(ck) {
+        			CreatorManager cmanager = CreatorManager.getInstance();
+        			creator = cmanager.findCreator(ecoerId);
+        			request.setAttribute("creator", creator);
+        		}
 
         		session.setAttribute("project", project);
-        		
         		request.setAttribute("isCre", ck);
     			
 			}catch(SizeLimitExceededException e) {

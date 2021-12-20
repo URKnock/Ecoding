@@ -28,4 +28,8 @@ public class CreatorManager {
 	public int update(CreatorDTO creator) {
 		return creatorDAO.confirm(creator);
 	}	
+	
+	public CreatorDTO findCreator(String ecoer_id) {
+		return creatorDAO.findCreator(ecoer_id);
+	}
 }

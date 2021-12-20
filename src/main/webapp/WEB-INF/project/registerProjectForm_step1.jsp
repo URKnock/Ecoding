@@ -8,6 +8,16 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script>
+	var is_empty = false;
+	$('#form').find('input[type!="hidden"]').each(function(){
+	    if(!$(this).val()) {
+	        is_empty = true;
+	    }
+	});
+	 
+	if(is_empty) {
+	    alert('값을 전부 입력하시오');
+	}
     function projectCreate(targetUri) {
     	form.action = targetUri; 
     	form.submit();
@@ -33,6 +43,9 @@
     	rewardPrice.name = 'reward_price';
     	rewardPrice.placeholder = '리워드 이름';
     	form.appendChild(rewardPrice);
+    	
+    	var won = document.createTextNode("원");
+    	form.appendChild(won);
     	
     	var text = document.createTextNode("\u00a0\u00a0");
     	form.appendChild(text);
@@ -71,51 +84,54 @@
 	    </div>
      <div class="right">
      	<form name="form" method="post" action="<c:url value='/project/register/form' />">
+     		<input type="hidden" name="projectId" value="${project.projectId}">
 			<p>Q1. 프로젝트 제목을 입력해주세요.</p>
-			&nbsp<input type="text" name="title">
+			&nbsp<input type="text" name="title" value="${project.title}">
 			<br><br>
 			<p>Q2. 간단한 프로젝트 설명을 작성해주세요.</p>
-			&nbsp<input type="text" name="simpleInfo">
+			&nbsp<input type="text" name="simpleInfo" value="${project.simpleInfo}">
 			<br><br>
 			<p>pQ3. 프로젝트 카테고리를 선택해주세요.</p>
-			&nbsp<input type="radio" name="category" value="식품">식품
-			&nbsp<input type="radio" name="category" value="패션">패션
-			&nbsp<input type="radio" name="category" value="생활">생활
-			&nbsp<input type="radio" name="category" value="건강">건강
-			&nbsp<input type="radio" name="category" value="문구">문구
-			&nbsp<input type="radio" name="category" value="인테리어">인테리어
+			&nbsp<input type="radio" name="category" value="식품" <c:if test="${project.category eq '식품'}"> checked </c:if>>식품
+			&nbsp<input type="radio" name="category" value="패션" <c:if test="${project.category eq '패션'}"> checked </c:if>>패션
+			&nbsp<input type="radio" name="category" value="생활" <c:if test="${project.category eq '생활'}"> checked </c:if>>생활
+			&nbsp<input type="radio" name="category" value="건강" <c:if test="${project.category eq '건강'}"> checked </c:if>>건강
+			&nbsp<input type="radio" name="category" value="문구" <c:if test="${project.category eq '문구'}"> checked </c:if>>문구
+			&nbsp<input type="radio" name="category" value="인테리어" <c:if test="${project.category eq '인테리어'}"> checked </c:if>>인테리어
 			<br>
-			&nbsp<input type="radio" name="category" value="반려동물">반려동물
-			&nbsp<input type="radio" name="category" value="미용">미용
-			&nbsp<input type="radio" name="category" value="식물">식물
-			&nbsp<input type="radio" name="category" value="도서">도서
-			&nbsp<input type="radio" name="category" value="도서">테크
+			&nbsp<input type="radio" name="category" value="반려동물" <c:if test="${project.category eq '반려동물'}"> checked </c:if>>반려동물
+			&nbsp<input type="radio" name="category" value="미용" <c:if test="${project.category eq '미용'}"> checked </c:if>>미용
+			&nbsp<input type="radio" name="category" value="식물" <c:if test="${project.category eq '식물'}"> checked </c:if>>식물
+			&nbsp<input type="radio" name="category" value="도서" <c:if test="${project.category eq '도서'}"> checked </c:if>>도서
+			&nbsp<input type="radio" name="category" value="도서" <c:if test="${project.category eq '테크'}"> checked </c:if>>테크
 			<br><br>
 			<p>Q4. 프로젝트와 관련된 해시태그를 입력해주세요.</p>
-			&nbsp<input type="text" name="hashtag">
+			&nbsp<input type="text" name="hashtag" value="${project.hashTag}">
 			<br><br>
 			<p>Q5. 환경과 관련된 태그를 체크해주세요.</p>
-			&nbsp<input type="radio" name="ecotag" value="비건">비건
-			&nbsp<input type="radio" name="ecotag" value="친환경">친환경
-			&nbsp<input type="radio" name="ecotag" value="재활용">재활용
+			&nbsp<input type="radio" name="ecotag" value="비건" <c:if test="${project.ecoTag eq '비건'}"> checked </c:if>>비건
+			&nbsp<input type="radio" name="ecotag" value="친환경" <c:if test="${project.ecoTag eq '친환경'}"> checked </c:if>>친환경
+			&nbsp<input type="radio" name="ecotag" value="재활용" <c:if test="${project.ecoTag eq '재활용'}"> checked </c:if>>재활용
 			<br><br>
 			<p>Q6. 프로젝트 목표 금액을 작성해주세요.</p>
-			&nbsp<input type="text" name="targetAmount">
+			&nbsp<input type="text" name="targetAmount" value="${project.targetPrice}">
 			<br><br>
 			<p>Q7. 프로젝트 기간을 설정해주세요.</p>
-			&nbsp시작일 설정: <input type="date" name="startDate">
-			&nbsp마감일 설정: <input type="date" name="endDate">
+			&nbsp시작일 설정: <input type="date" name="startDate" value="${project.startDate}">
+			&nbsp마감일 설정: <input type="date" name="endDate" value="${project.endDate}">
 			<br><br>
-			&nbsp결제일 설정: <input type="date" name="payDate">
-			&nbsp배송 시작일 설정: <input type="date" name="deliveryDate">
+			&nbsp결제일 설정: <input type="date" name="payDate" value="${project.paymentDate}">
+			&nbsp배송 시작일 설정: <input type="date" name="deliveryDate" value="${project.deliveryDate}">
 			<br><br>
-			&nbspQ8. 리워드 정보를 입력해주세요.
-			<p>&nbsp<input type="text" name="name" placeholder="리워드 이름">
-			&nbsp<input type="text" name="reward_price" placeholder="금액 범위">
-			&nbsp<input type="text" name="reward_info" placeholder="리워드 정보"></p>
-			<div id="rewardDiv"></div>
-			<a href="javascript:addReward()">리워드 추가</a><p>
-			<br>
+			<c:if test="${project.projectId == -1}">
+				&nbspQ8. 리워드 정보를 입력해주세요.
+				<p>&nbsp<input type="text" name="name" placeholder="리워드 이름">
+				&nbsp<input type="text" name="reward_price" placeholder="금액 범위">원
+				&nbsp<input type="text" name="reward_info" placeholder="리워드 정보"></p>
+				<div id="rewardDiv"></div>
+				<a href="javascript:addReward()">리워드 추가</a><p></p>
+				<br>
+			</c:if>
 			&nbsp<button name="step" class="goNext" value="step2">Step 02</button>
 		</form>
      </div>

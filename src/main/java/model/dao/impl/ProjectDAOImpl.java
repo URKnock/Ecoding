@@ -47,17 +47,20 @@ public class ProjectDAOImpl implements ProjectDAO {
 	
 	// 기존의 프로젝트 정보를 수정.
 	public int update(Project project) {
-		String sql = "UPDATE PROJECT "
-					+ "SET title=?"; //2번
-		for(int i = 3; i < Project.cols; i++) { //0번(PK), 1번(FK), 2번(title) 제외
-			sql += ", " + Project.columns[i] + "=?";
-		}
-		sql += " WHERE project_id=?";
-		Object[] param = new Object[] {};
-		for(int i = 2; i < Project.cols; i++) { //2번부터 일괄 수정
-			param[i] = project.getWithIndex(i); 
-		}
-		param[Project.cols + 1] = project.getProjectId();
+		String sql = "UPDATE project "
+					+ "SET title = ?, image = ?, simple_info = ?, category = ?, hashtag = ?, ecotag = ?, eco_score = ?, "
+					+ "target_price = ?, start_date = ?, end_date = ?, payment_date = ?, delivery_date = ?, "
+					+ "detail_info = ?, plan_info = ?, exchange_info = ?, project_video = ?, project_file = ? "
+					+ "WHERE project_id = ?";
+		
+		Object[] param = new Object[]{project.getTitle(), project.getImage(), project.getSimpleInfo(), 
+				project.getCategory(), project.getHashTag(), project.getEcoTag(), project.getEcoScore(), 
+				project.getTargetPrice(), new java.sql.Date(project.getStartDate().getTime()), 
+				new java.sql.Date(project.getEndDate().getTime()), new java.sql.Date(project.getPaymentDate().getTime()), 
+				new java.sql.Date(project.getDeliveryDate().getTime()), project.getDetailInfo(), 
+				project.getPlanInfo(), project.getExchangeInfo(), project.getProjectVideo(), project.getProjectFile(), 
+				project.getProjectId()};
+		
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 
 		try {				
@@ -94,7 +97,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	//프로젝트 ID에 해당하는 프로젝트를 삭제.
-	public int remove(String projectId) throws SQLException {
+	public int remove(int projectId) throws SQLException {
 		String sql = "DELETE FROM PROJECT WHERE project_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {projectId}); // JDBCUtil에 delete문과 매개 변수 설정
 		try {				
@@ -166,7 +169,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 						rs.getDate("delivery_date"),
 						rs.getString("detail_info"),
 						rs.getString("plan_info"),
-						rs.getString("exchange_info"));
+						rs.getString("exchange_info"), 
+						rs.getString("project_video"),
+						rs.getString("project_file"));
 				
 				return project;
 			}

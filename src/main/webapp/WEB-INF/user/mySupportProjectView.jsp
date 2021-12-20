@@ -17,7 +17,7 @@
 		<c:forEach var="project" items="${supportList}" varStatus="i">
 			<div class="card">
 				<img class="card-img-top"
-					src="${dir}/${project.image}"
+					src="<c:url value='/upload/${project.image}' />"
 					alt="Card imagecap">
 				<div class="card-body">
 					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">${project.title}</a>

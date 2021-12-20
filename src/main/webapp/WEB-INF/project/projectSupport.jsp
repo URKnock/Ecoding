@@ -33,7 +33,7 @@
 			<tr>
 				<td style="font-size:30pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="<c:url value='${dir}/${projectDTO.creatorImage}' />" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
+					<img src="<c:url value='/upload/${projectDTO.creatorImage}' />" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
 				</td>
 				<td width="10%" style="text-align:center;">${projectDTO.creatorName}</td>
 				<td width="15%" style="text-align:right;">${project.category}</td>
@@ -59,7 +59,7 @@
 		<table style="width:1000px; height:450px; text-align:center;">
 			<tr>
 				<td width="55%">
-					<img src="<c:url value='${dir}/${project.image}' />" width="400px" height="400px"> <!-- 프로젝트 이미지 *** -->
+					<img src="<c:url value='/upload/${project.image}' />" width="400px" height="400px"> <!-- 프로젝트 이미지 *** -->
 				</td>
 				<td>
 					<c:if test="${isInterest eq 'false'}">

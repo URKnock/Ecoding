@@ -1,6 +1,7 @@
 package controller.project;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import model.service.CreatorManager;
 import model.service.ProjectManager;
 import model.service.UserManager;
 import model.service.dto.CreatorDTO;
+import model.service.dto.RewardDTO;
 
 //image, video 등 file 다 빠져있음
 public class ProjectRegisterController implements Controller {
@@ -23,32 +25,64 @@ public class ProjectRegisterController implements Controller {
     	HttpSession session = request.getSession();		
     	
     	if(step.equals("step1")) {    
-    		if(UserSessionUtils.hasLogined(session))
+    		if(UserSessionUtils.hasLogined(session)) {
+    			Project project = new Project();
+    			if(request.getParameter("projectId") != null) {
+    				int projectId = Integer.parseInt(request.getParameter("projectId"));
+    				ProjectManager manager = ProjectManager.getInstance();
+    				project = manager.findProject(projectId);
+    				
+    				/*리워드 수정 가능하게 할거면 주석 풀고 코드 추가
+    				List<RewardDTO> rewardList = manager.getRewardList(projectId);
+    				
+    				request.setAttribute("rewardList", rewardList);
+    				*/
+    			}
+    			else
+    				project.setProjectId(-1);
+    			
+    			session.setAttribute("project", project);
+    			
     			return "/project/registerProjectForm_step1.jsp";
+    		}
     		else
     			return "redirect:/user/loginform";
     	}
     	else if(step.equals("step2")) {
-    		Project project = null; 
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		Project project = null;
     		try {
-    			project = new Project(-1, null, request.getParameter("title"), null, request.getParameter("simpleInfo"), 
-        				request.getParameter("category"), request.getParameter("hashtag"), request.getParameter("ecotag"), 0, 
-        				Integer.parseInt(request.getParameter("targetAmount")), 0, sdf.parse(request.getParameter("startDate")), 
-        				sdf.parse(request.getParameter("endDate")), sdf.parse(request.getParameter("payDate")), 
-        				sdf.parse(request.getParameter("deliveryDate")), null, null, null, null, null);	
+    			if(request.getParameter("projectId") != "-1")
+    				project = (Project)session.getAttribute("project");
+    			else
+    				project = new Project();
+    			
+    			project.setProjectId(Integer.parseInt(request.getParameter("projectId")));
+    			project.setTitle(request.getParameter("title"));
+    			project.setSimpleInfo(request.getParameter("simpleInfo"));
+    			project.setCategory(request.getParameter("category"));
+    			project.setHashTag(request.getParameter("hashtag"));
+    			project.setEcoTag(request.getParameter("ecotag"));
+    			project.setTargetPrice(Integer.parseInt(request.getParameter("targetAmount")));
+    			project.setStartDate(sdf.parse(request.getParameter("startDate")));
+    			project.setEndDate(sdf.parse(request.getParameter("endDate")));
+    			project.setPaymentDate(sdf.parse(request.getParameter("payDate")));
+    			project.setDeliveryDate(sdf.parse(request.getParameter("deliveryDate")));
     			
     			String[] name = request.getParameterValues( "name" );
     			String[] rewardName = request.getParameterValues( "reward_price" );
     			String[] info = request.getParameterValues( "reward_info" );
 				
-				Reward[] reward = new Reward[name.length];
-				
-				for(int i = 0; i < name.length; i++)
-					reward[i] = new Reward(-1, -1, name[i], Integer.parseInt(rewardName[i]), info[i]);
-				
+    			if(project.getProjectId() == -1) {
+					Reward[] reward = new Reward[name.length];
+					
+					for(int i = 0; i < name.length; i++)
+						reward[i] = new Reward(-1, -1, name[i], Integer.parseInt(rewardName[i]), info[i]);
+					
+					session.setAttribute("reward", reward);
+    			}
+    			
     			session.setAttribute("project", project);
-    			session.setAttribute("reward", reward);
     			return "/project/registerProjectForm_step2.jsp";
     		} catch (Exception e) {
         		request.setAttribute("registerFailed", true);
@@ -58,24 +92,38 @@ public class ProjectRegisterController implements Controller {
     	}
     	else if(step.equals("final")) {
 			Project project =  (Project)session.getAttribute("project");
-			Reward[] reward =  (Reward[])session.getAttribute("reward");
-    		
+			ProjectManager manager = ProjectManager.getInstance();
+			
     		try {
-    			ProjectManager manager = ProjectManager.getInstance();
-    			int projectId = manager.registerProject(project);
-				
-    			for(int i = 0; i < reward.length; i++)
-    				reward[i].setProject_id(projectId);
-	    		manager.createReward(reward);
-	    		
+    			if(project.getProjectId() != -1) {
+    				manager.updateProject(project);
+    			}
+    			else {
+	    			int projectId = manager.registerProject(project);
+					
+	    			Reward[] reward =  (Reward[])session.getAttribute("reward");
+	    			
+	    			for(int i = 0; i < reward.length; i++)
+	    				reward[i].setProject_id(projectId);
+		    		manager.createReward(reward);
+		    		
+		    		session.removeAttribute("reward");
+    			}
+    			
     			session.removeAttribute("project");
-    			session.removeAttribute("reward");
     			return "/project/successRegister.jsp";
     		} catch (Exception e) {
     			request.setAttribute("registerFailed", true);
     			request.setAttribute("exception", e);
 				return "/project/registerStart.jsp";
     		}
+    	}
+    	else if(step.equals("delete")) {
+    		int projectId = Integer.parseInt(request.getParameter("projectId"));
+			ProjectManager manager = ProjectManager.getInstance();
+			manager.removeProject(projectId);
+			
+			return "redirect:/user/project/listView";
     	}
     	else {
     		return "/project/registerStart.jsp";    		

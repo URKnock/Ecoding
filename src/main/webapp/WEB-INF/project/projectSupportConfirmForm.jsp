@@ -71,7 +71,7 @@
 				</td>
 				<td style="font-size:20pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="${dir}/${project.image}" width="30px" height="30px"> <!-- 이미지 수정 **** -->
+					<img src="/upload/${project.image}" width="30px" height="30px"> <!-- 이미지 수정 **** -->
 				</td>
 				<td width="20%" style="text-align:left;">${project.creatorName}</td>
 			</tr>

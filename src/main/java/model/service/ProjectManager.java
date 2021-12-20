@@ -163,7 +163,7 @@ public class ProjectManager {
 		return projectDAO.update(proj);
 	}
 	
-	public int removeProject(String projId) throws SQLException {
+	public int removeProject(int projId) throws SQLException {
 		return projectDAO.remove(projId);
 	};
 	

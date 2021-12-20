@@ -16,7 +16,7 @@
 <body>
  <div class="main">
     	<a href="<c:url value='/project/view' />" target="_self">프로젝트 등록</a>
-    	<span class="step"> > 프로젝트 등록 완료</span>
+    	<span class="step"> > Step 01 > Step 02 > Step 03 > Step 04 > 프로젝트 등록 완료</span>
     </div>
     <div class="contents">
     	<p>축하합니다. 신청하신 프로젝트가 무사히 등록되었습니다!</p>

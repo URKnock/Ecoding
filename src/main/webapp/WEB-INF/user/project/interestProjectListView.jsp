@@ -67,7 +67,7 @@ hr {
 		<c:forEach var="project" items="${interestList}" varStatus="i">
 			<div class="card">
 				<img class="card-img-top"
-					src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
+					src="/upload/${project.image}"
 					alt="Card imagecap">
 				<div class="card-body">
 					<a href="<c:url value='/project/support/view?projectId=${project.projectId}' />" class="card-title">${project.title}</a>
