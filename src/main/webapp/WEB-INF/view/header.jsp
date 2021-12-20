@@ -111,6 +111,8 @@ function interest() {
 			 		 		onClick="location.href='<c:url value='/user/support/listView' />'">후원 내역</button>
 			 		 	<button id="mySupport" type="button" class="btn btn-primary"
 			 		 		onClick="location.href='<c:url value='/user/post/listView' />'">작성한 글</button>
+			 		 	<button id="myProject" type="button" class="btn btn-primary"
+			 		 		onClick="location.href='<c:url value='/user/project/listView' />'">내 프로젝트</button>
 					 	<button id="login" type="button" class="btn btn-primary"
 							onClick="location.href='<c:url value='/user/logout'/>';">로그아웃</button>
 					</c:if>

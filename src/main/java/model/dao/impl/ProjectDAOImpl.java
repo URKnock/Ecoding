@@ -244,6 +244,36 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return null;
 	}
 
+	public List<Project> findProjectList(String ecoer_id) throws SQLException {
+        String sql = "SELECT project_id";
+        String[] cols = Project.columns; //미리 정의한 컬럼 배열 참조 
+        for(int i = 1; i < Project.cols; i++) { //ecoer_id부터 시작
+        	sql += ", " + cols[i];
+        }
+        sql += " FROM PROJECT ";
+        sql += "WHERE ecoer_id = ? ";
+        sql += "ORDER BY project_id"; //등록 순으로 정렬
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoer_id});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Project> projectList = new ArrayList<Project>();	// Project들의 리스트 생성
+			while (rs.next()) {
+				Project project = new Project();		// Project 객체를 생성하여 정보를 저장
+				for(int i = 0; i < Project.cols; i++) {
+					project.setWithIndex(i, rs.getObject(cols[i]));
+				}
+				projectList.add(project);				// List에 Project 객체 저장
+			}		
+			return projectList;					
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 
 	//특정 카테고리에 속한 프로젝트들을 검색하여 List에 저장 및 반환  ==> 어떻게 검색할까?
 	public List<Project> findProjectInCategory(String categoryName) throws SQLException {

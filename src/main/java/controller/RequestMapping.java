@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.my.UserPostListViewController;
 import controller.my.UserProjectInterestListViewController;
+import controller.my.UserProjectListViewController;
 import controller.my.UserSupportProjectListViewController;
 import controller.post.CommunityController;
 import controller.post.CreatePostController;
@@ -50,6 +51,7 @@ public class RequestMapping {
         mappings.put("/user/interest/listView", new UserProjectInterestListViewController());
         mappings.put("/user/support/listView", new UserSupportProjectListViewController());
         mappings.put("/user/post/listView", new UserPostListViewController());
+        mappings.put("/user/project/listView", new UserProjectListViewController());
         
         //사용자 관련(로그인, 회원가입, 로그아웃)
     	mappings.put("/user/loginform", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동

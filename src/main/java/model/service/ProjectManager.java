@@ -216,4 +216,23 @@ public class ProjectManager {
 		
 		return supportList;
 	}
+	
+	public List<ProjectDTO> myProjectInfoList(String ecoerId) throws SQLException {
+		List<Project> projectList = projectDAO.findProjectList(ecoerId);
+		
+		List<ProjectDTO> myProjectList = new ArrayList<ProjectDTO>();
+		for (Project p : projectList) {
+			double pricePercent = (double) p.getCurrentPrice() / p.getTargetPrice() * 100;
+			ProjectDTO dto = new ProjectDTO (
+					p.getProjectId(),
+					p.getTitle(),
+					p.getImage(),
+					p.getSimpleInfo(),
+					(int) pricePercent);
+			myProjectList.add(dto);
+					
+		}
+		
+		return myProjectList;
+	}
 }
