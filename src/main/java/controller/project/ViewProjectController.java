@@ -1,6 +1,9 @@
 package controller.project;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +19,10 @@ public class ViewProjectController implements Controller {
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
-int projectId = Integer.parseInt(request.getParameter("projectId"));
+		int projectId = Integer.parseInt(request.getParameter("projectId"));
+		ServletContext context = request.getServletContext();
+		String path = context.getRealPath("/resources/img");
+		File dir = new File(path);
 		
 		// project_id를 이용하여 project를 찾아서 project에 대입한 후 request에 저장
 		ProjectManager manager = ProjectManager.getInstance();
@@ -39,7 +45,7 @@ int projectId = Integer.parseInt(request.getParameter("projectId"));
     	request.setAttribute("noticeList", noticeList);
     	request.setAttribute("isSupport", isSupport);
     	request.setAttribute("isInterest", isInterest);
-		
+    	request.setAttribute("dir", dir);
 		return "/project/projectSupport.jsp";
 	}
 }

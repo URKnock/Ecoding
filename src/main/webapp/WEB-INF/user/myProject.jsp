@@ -16,7 +16,6 @@
 	<div class="card-columns" id="cards-box">
 		<c:forEach var="project" items="${myProjectList}" varStatus="i">
 			<div class="card">
-				사진 저장 경로 : ${pageContext.request.contextPath} <br/>
 				<img class="card-img-top"
 					src="<c:url value='${dir}/${project.image}' />"
 					alt="Card imagecap">

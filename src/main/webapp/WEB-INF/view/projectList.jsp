@@ -78,7 +78,7 @@
 							alt="Card imagecap">
 					</c:if>
 					<c:if test="${project.image ne null}">
-						<img class="card-img-top" src="${project.image}"
+						<img class="card-img-top" src="${dir}/${project.image}"
 							alt="Card imagecap">
 					</c:if>
 					<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>

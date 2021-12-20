@@ -1,6 +1,9 @@
 package controller.project;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
@@ -20,7 +23,9 @@ public class ListProjectController implements Controller {
 
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-    	
+		ServletContext context = request.getServletContext();
+		String path = context.getRealPath("/resources/img");
+		File dir = new File(path);
     	/*
     	String currentPageStr = request.getParameter("currentPage");	
 		int currentPage = 1;
@@ -35,7 +40,7 @@ public class ListProjectController implements Controller {
 
 		// projectList 객체를 request에 저장하여 전달
 		request.setAttribute("projectList", projectList);				
-
+		request.setAttribute("dir", dir);
 		// 홈 화면 또는 둘러보기 화면으로 이동(forwarding)
 		return forwardUrl; //구현을 FowardController처럼
     }
