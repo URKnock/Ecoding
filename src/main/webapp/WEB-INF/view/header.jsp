@@ -108,7 +108,7 @@ function interest() {
 					 	<button id="myInterest" type="button" class="btn btn-primary"
 			 		 		onClick="location.href='<c:url value='/user/interest/listView' />'">&#10084;</button>
 			 		 	<button id="mySupport" type="button" class="btn btn-primary"
-			 		 		onClick="location.href='<c:url value='/user/support/listView' />'">후원 내역</button>
+			 		 		onClick="location.href='<c:url value='/user/project/support/listView' />'">후원 내역</button>
 			 		 	<button id="mySupport" type="button" class="btn btn-primary"
 			 		 		onClick="location.href='<c:url value='/user/post/listView' />'">작성한 글</button>
 			 		 	<button id="myProject" type="button" class="btn btn-primary"

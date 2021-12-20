@@ -1,7 +1,7 @@
 package model.service.dto;
 
 public class SupportDTO {
-	
+	private int supportId;
 	private String ecoerId;
 	private int projectId;
 	private int rewardId;
@@ -9,13 +9,39 @@ public class SupportDTO {
 	private String bank;
 	private String card;
 	
-	public SupportDTO(String ecoerId, int projectId, int rewardId, int amount, String bank, String card) {
+	public SupportDTO() {}
+	
+	public SupportDTO(String ecoerId, int projectId) {
+		this.ecoerId = ecoerId;
+		this.projectId = projectId;
+	}
+	
+	public SupportDTO(int supportId, String ecoerId, int projectId, int rewardId, int amount, String bank, String card) {
+		this.supportId = supportId;
 		this.ecoerId = ecoerId;
 		this.projectId = projectId;
 		this.rewardId = rewardId;
 		this.amount = amount;
 		this.bank = bank;
 		this.card = card;
+	}
+	
+	public SupportDTO(String ecoerId, int projectId, int rewardId, int amount, String bank, String card) {
+		super();
+		this.ecoerId = ecoerId;
+		this.projectId = projectId;
+		this.rewardId = rewardId;
+		this.amount = amount;
+		this.bank = bank;
+		this.card = card;
+	}
+
+	public int getSupportId() {
+		return supportId;
+	}
+
+	public void setSupportId(int supportId) {
+		this.supportId = supportId;
 	}
 
 	public String getEcoerId() {
