@@ -31,7 +31,7 @@
 	<div class="d">
 		<table style="width:1000px">
 			<tr>
-				<td style="font-size:30pt">${project.title} <%=session.getAttribute("ecoerId") %> </td>
+				<td style="font-size:30pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
 					<img src="<c:url value='${projectDTO.creatorImage}' />" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
 				</td>
@@ -68,7 +68,12 @@
 					<c:if test="${isInterest eq 'true'}">
 						<button id="interest" type="button" onclick="interest();">&#10084;</button>
 					</c:if>
-					<button id="support" type="button" onclick="support();">프로젝트 후원하기</button>
+					<c:if test="${isSupport eq 'false'}">
+						<button id="support" type="button" onclick="support();">프로젝트 후원하기</button>
+					</c:if>
+					<c:if test="${isSupport eq 'true'}">
+						<button id="supportDone" type="button">후원 완료</button>
+					</c:if>
 					<br><br>
 					<table id="t1" style="width:380px; height:160px; text-align:center;">
 						<tr>

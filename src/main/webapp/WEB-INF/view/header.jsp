@@ -212,11 +212,20 @@
 	                </div>
 	            </div>
             </a>
+            <a href="<c:url value='/user/project/listView' />">
+            <div class="icon-box">
+                <div class="icon"><i class="fas fa-book-spell"></i></div>
+                <div class="text">
+                    <div class="title"> 나의 프로젝트 <i class="far fa-arrow-right"></i></div>
+                    <div class="sub-text"> 커뮤니티에 작성한 글을 한 눈에 살펴봅니다. </div>
+                </div>
+            </div>
+            </a>
             <a href="<c:url value='/user/post/listView' />">
             <div class="icon-box">
                 <div class="icon"><i class="fas fa-clipboard-list"></i></div>
                 <div class="text">
-                    <div class="title"> 작성한 글 <i class="far fa-arrow-right"></i></div>
+                    <div class="title"> 나의 커뮤니티 <i class="far fa-arrow-right"></i></div>
                     <div class="sub-text"> 커뮤니티에 작성한 글을 한 눈에 살펴봅니다. </div>
                 </div>
             </div>

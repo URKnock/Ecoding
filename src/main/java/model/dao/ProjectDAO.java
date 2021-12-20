@@ -15,6 +15,7 @@ public interface ProjectDAO {
 	public Project findProject(int projectId) throws SQLException;
 	public List<Project> findProjectList() throws SQLException;
 	public List<Project> findProjectList(int currentPage, int countPerPage) throws SQLException;
+	public List<Project> findProjectList(String eocer_id) throws SQLException;
 	public List<Project> findProjectInCategory(String categoryName) throws SQLException;
 	public int getNumberOfProjectInCategory(String categoryName);
 	public boolean existingProject(String projectId) throws SQLException;

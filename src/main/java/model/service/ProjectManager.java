@@ -216,4 +216,58 @@ public class ProjectManager {
 		
 		return supportList;
 	}
+	
+	public List<ProjectDTO> myProjectInfoList(String ecoerId) throws SQLException {
+		List<Project> projectList = projectDAO.findProjectList(ecoerId);
+		
+		List<ProjectDTO> myProjectList = new ArrayList<ProjectDTO>();
+		for (Project p : projectList) {
+			double pricePercent = (double) p.getCurrentPrice() / p.getTargetPrice() * 100;
+			ProjectDTO dto = new ProjectDTO (
+					p.getProjectId(),
+					p.getTitle(),
+					p.getImage(),
+					p.getSimpleInfo(),
+					(int) pricePercent);
+			myProjectList.add(dto);
+					
+		}
+		
+		return myProjectList;
+	}
+	public boolean isSupportProject(SupportDTO supportDTO) throws SQLException {
+		return supportDAO.isSupportProject(supportDTO);
+	}
+	
+	public SupportDTO findSupport(String ecoerId, int projectId) throws SQLException {
+		return supportDAO.findSupport(ecoerId, projectId);
+	}
+	
+	public int updateRewardSupport(SupportDTO support, int addPrice) throws SQLException {
+		RewardDTO reward = rewardDAO.findRewardById(support.getRewardId());
+		int amount = reward.getRewardPrice() + addPrice;
+		support.setAmount(amount);
+		
+		Project project = projectDAO.findProject(support.getProjectId());
+		SupportDTO originSupport = supportDAO.findSupport(support.getSupportId());
+		int current = project.getCurrentPrice() - originSupport.getAmount() + amount;
+		project.setCurrentPrice(current);
+		
+		return supportDAO.updateReward(support, project);
+	}
+	
+	public int updateSupport(SupportDTO support) throws SQLException {
+		return supportDAO.update(support);
+	}
+	
+	public int deleteSupport(int supportId) throws SQLException {
+		SupportDTO support = supportDAO.findSupport(supportId);
+		int amount = support.getAmount();
+		
+		Project project = projectDAO.findProject(support.getProjectId());
+		int current = project.getCurrentPrice() - amount;
+		project.setCurrentPrice(current);
+		
+		return supportDAO.remove(supportId, project);
+	}
 }

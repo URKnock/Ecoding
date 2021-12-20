@@ -19,7 +19,7 @@ public class DAOFactory {
 	}
 	
 	public SupportDAO getSupportDAO() {
-		return new SupportDAOImpl();		
+		return new SupportDAO();		
 	}
 	
 	public ProjectNoticeDAO getNoticeDAO() {

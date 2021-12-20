@@ -16,7 +16,7 @@ public class ViewProjectController implements Controller {
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
-		int projectId = Integer.parseInt(request.getParameter("projectId"));
+int projectId = Integer.parseInt(request.getParameter("projectId"));
 		
 		// project_id를 이용하여 project를 찾아서 project에 대입한 후 request에 저장
 		ProjectManager manager = ProjectManager.getInstance();
@@ -27,12 +27,17 @@ public class ViewProjectController implements Controller {
 		
 		HttpSession session = request.getSession();   
 		String ecoerId = UserSessionUtils.getLoginEcoerId(session);
+		
+		SupportDTO supportDTO = new SupportDTO(ecoerId, projectId);
+		boolean isSupport = manager.isSupportProject(supportDTO);
+		
 		InterestProjectDTO interestDTO = new InterestProjectDTO(ecoerId, projectId);
 		boolean isInterest = manager.isInterestProject(interestDTO);
 
     	request.setAttribute("project", project);
     	request.setAttribute("projectDTO", projectDTO);
     	request.setAttribute("noticeList", noticeList);
+    	request.setAttribute("isSupport", isSupport);
     	request.setAttribute("isInterest", isInterest);
 		
 		return "/project/projectSupport.jsp";

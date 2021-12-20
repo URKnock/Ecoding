@@ -98,7 +98,7 @@ nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
 }
 nav .menu-item:nth-of-type(5):hover ~ #sub-menu-container #sub-menu-holder {
     left: 15em;
-    height: 13em;
+    height: 17em;
 }
 .menu-item .sub-menu {
     position: absolute;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.my.UserPostListViewController;
 import controller.my.UserProjectInterestListViewController;
+import controller.my.UserProjectListViewController;
 import controller.my.UserSupportProjectListViewController;
 import controller.post.CommunityController;
 import controller.post.CreatePostController;
@@ -20,9 +21,15 @@ import controller.project.CreatorRegisterController;
 import controller.project.ListProjectController;
 import controller.project.ProjectFileRegisterController;
 import controller.project.ProjectInterestController;
+import controller.project.ProjectInterestListViewController;
 import controller.project.ProjectRegisterController;
 import controller.project.ProjectSupportCompleteController;
 import controller.project.ProjectSupportController;
+import controller.project.SupportDeleteController;
+import controller.project.SupportProjectListViewController;
+import controller.project.SupportRewardUpdateController;
+import controller.project.SupportUpdateController;
+import controller.project.SupportViewController;
 import controller.project.ViewProjectController;
 import controller.user.DeleteUserController;
 import controller.user.ListUserController;
@@ -50,6 +57,7 @@ public class RequestMapping {
         mappings.put("/user/interest/listView", new UserProjectInterestListViewController());
         mappings.put("/user/support/listView", new UserSupportProjectListViewController());
         mappings.put("/user/post/listView", new UserPostListViewController());
+        mappings.put("/user/project/listView", new UserProjectListViewController());
         
         //사용자 관련(로그인, 회원가입, 로그아웃)
     	mappings.put("/user/loginform", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동
@@ -60,6 +68,16 @@ public class RequestMapping {
         mappings.put("/user/update", new UpdateUserController()); //유저 수정 컨트롤러
         mappings.put("/user/register", new RegisterUserController()); //회원가입 폼으로 이동
         mappings.put("/user/drop", new DeleteUserController()); //회원 탈퇴 기능
+        
+        // 사용자 프로젝트 조회 (후원리스트, 관심리스트, 후원정보)
+        mappings.put("/user/project/interest/listView", new ProjectInterestListViewController());
+        mappings.put("/user/project/support/listView", new SupportProjectListViewController());
+        mappings.put("/user/project/support/view", new SupportViewController());
+        
+        // 후원 정보 수정, 삭제
+        mappings.put("/support/update/reward", new SupportRewardUpdateController());
+        mappings.put("/support/update", new SupportUpdateController());
+        mappings.put("/support/delete", new SupportDeleteController());
         
         // 프로젝트 관련
     	mappings.put("/project/view", new ForwardController("/project/registerStart.jsp"));   
