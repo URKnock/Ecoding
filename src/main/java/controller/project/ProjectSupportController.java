@@ -2,8 +2,10 @@ package controller.project;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.service.ProjectManager;
 import model.service.UserManager;
 import model.service.dto.*;
@@ -37,10 +39,8 @@ public class ProjectSupportController implements Controller {
 		
 		ProjectDTO project = manager.findProjectSimpleInfo(projectId);
 		
-		// ecoerId를 이용해 ecoer 찾은 후 request에 저장
-		//String ecoerId = session.getAttribute("ecoer");
-		//String ecoerId = (String) request.getAttribute("ecoer"); // 세션 이용해야하는데 지금은 request 이용
-		String ecoerId = "kai"; // 예시
+		HttpSession session = request.getSession();   
+		String ecoerId = UserSessionUtils.getLoginEcoerId(session);
 		
 		EcoerDTO ecoer = uManager.findEcoer(ecoerId);
 		
