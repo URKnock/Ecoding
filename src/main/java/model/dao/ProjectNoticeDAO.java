@@ -72,11 +72,10 @@ public class ProjectNoticeDAO {
 	public int updateNotice(ProjectNoticeDTO notice) throws SQLException {
 		int result = 0;
 		String insertQuery = "UPDATE project_notice "
-				+ "SET notice_date = ?, notice_content = ? "
+				+ "SET notice_content = ? "
 				+ "WHERE notice_id = ?";
 		
-		Object[] param = new Object[] {
-				notice.getNoticeDate(), notice.getNoticeContent(), notice.getNoticeId() };
+		Object[] param = new Object[] { notice.getNoticeContent(), notice.getNoticeId() };
 		jdbcUtil.setSqlAndParameters(insertQuery, param);
 		
 		try {

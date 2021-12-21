@@ -85,7 +85,8 @@ hr {
 					<p class="card-text">${project.simpleInfo}
 					<p class="card-text comment">프로젝트 달성도: ${project.pricePercent}%</p>
 				</div>
-				<button type="button" id="info" onClick="location.href='<c:url value='/user/project/support/view?projectId=${project.projectId}' />'">후원 정보</button>
+				<button type="button" id="info"
+					onClick="location.href='<c:url value='/user/project/support/view?projectId=${project.projectId}' />'">후원 정보</button>
 			</div>
 		</c:forEach>
 	</div>

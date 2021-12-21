@@ -127,7 +127,8 @@
 					</td>
 					<td class="delete"  class="delete">
 						<button type="button" class="deleteBtn"
-							onClick="location.href='<c:url value='/project/notice/delete?noticeId=${notice.noticeId}&projectId=${project.projectId}' />'">삭제</button>
+							onClick="location.href='<c:url value='/project/notice/delete?noticeId=${notice.noticeId}&projectId=${project.projectId}' />'">
+						삭제</button>
 					</td>
 				</tr>
 			</c:forEach>

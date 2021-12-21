@@ -29,19 +29,6 @@ public class NoticeRegisterController implements Controller {
 		ProjectNoticeDTO notice = new ProjectNoticeDTO(projectId, content);
 		manager.createNotice(notice);
 		
-		HttpSession session = request.getSession();		
-		session.setAttribute("projectId", projectId);
-		
-//		// 다시 정보 저장해서 넘기기
-//		List<ProjectNoticeDTO> noticeList = manager.getNoticeList(projectId);
-//		request.setAttribute("noticeList", noticeList);
-//
-//		ProjectDTO project = manager.findProjectSimpleInfo(projectId);
-//		request.setAttribute("project", project);
-		
-		
-//		return "/project/notice/viewNotice.jsp";
-//		return "redirect:/project/notice/registerNotice";
 		return "redirect:/project/notice?projectId=" + projectId;
 	}
 

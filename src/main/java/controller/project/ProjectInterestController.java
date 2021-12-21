@@ -31,26 +31,10 @@ public class ProjectInterestController implements Controller {
 		
 		if (isInterest == false) {
 			manager.insertInterestProject(interestDTO);
-			request.setAttribute("isInterest", true);
 		} else {
 			manager.removeInterestProject(interestDTO);
-			request.setAttribute("isInterest", false);
 		}
 
-		Project project = manager.findProject(projectId);
-		ProjectDTO projectDTO = manager.findProjectInfo(project);
-		List<ProjectNoticeDTO> noticeList = manager.getNoticeList(projectId);
-		
-		SupportDTO supportDTO = new SupportDTO(ecoerId, projectId);
-		boolean isSupport = manager.isSupportProject(supportDTO);
-
-		request.setAttribute("isSupport", isSupport);
-    	request.setAttribute("project", project);
-    	request.setAttribute("projectDTO", projectDTO);
-    	request.setAttribute("noticeList", noticeList);
-
-		return "/project/projectSupport.jsp";
+		return "redirect:/project/support/view?projectId=" + projectId;
 	}
-	
-
 }

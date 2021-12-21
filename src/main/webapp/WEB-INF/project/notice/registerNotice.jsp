@@ -22,7 +22,7 @@
 		padding-top:2px;
 		padding-left:10px;
 		width:450px;
-		height:200px;
+		height:100px;
 	}
 	#inputT {
 		text-align:center;
@@ -69,7 +69,7 @@
 			<td id="inputT"><input id="inputC" type="text" name="content" size="20px"></td>
 		</tr>
 		<tr>
-			<td id="btn"><input id="register" type="submit" size="20px" value="추가"></td>
+			<td id="btn"><input id="register" type="submit" value="추가"></td>
 		</tr>
 	</table>
 	</form>

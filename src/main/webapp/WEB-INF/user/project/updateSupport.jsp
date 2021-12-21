@@ -60,11 +60,11 @@
 		</tr>
 		<tr>
 			<th>결제 카드</th>
-			<td><input type="text" name="bank" size="10px"></td>
+			<td><input type="text" name="bank" size="10px" required></td>
 		</tr>
 		<tr>
 			<th>카드 번호</th>
-			<td><input type="text" name="card" size="20px"></td>
+			<td><input type="text" name="card" size="20px" required></td>
 		</tr>
 		<tr>
 			<td colspan="2" id="btn"><input id="change" type="submit" value="변경하기"></td>

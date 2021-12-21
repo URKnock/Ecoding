@@ -83,7 +83,7 @@ public class ProjectManager {
 	
 	public ProjectDTO findProjectInfo(Project project) throws SQLException {
 		ProjectDTO dto = null;
-		Creator creator = creatorDAO.findCreatorName(project.getEcoerId());
+		CreatorDTO creator = creatorDAO.findCreatorSimpleInfo(project.getEcoerId());
 		Ecoer ecoer = ecoerDAO.findEcoerInfo(project.getEcoerId());
 		
 		int projectId = project.getProjectId();
@@ -95,7 +95,6 @@ public class ProjectManager {
 		
 		double pricePercent = (double) project.getCurrentPrice() / project.getTargetPrice() * 100;
 
-		
 		Date now = java.sql.Date.valueOf(LocalDate.now());
 		Date end = project.getEndDate();
 		
@@ -125,11 +124,7 @@ public class ProjectManager {
 		
 		return dto;
 	}
-	
-	
-	
-	
-	
+
 	public int createNotice(ProjectNoticeDTO notice) throws SQLException {
 		// 창작자가 만든 프로젝트인지 확인, 관련 없는 유저/창작자이면 실패
 		return noticeDAO.insertNotice(notice);
@@ -152,16 +147,6 @@ public class ProjectManager {
 	public List<ProjectNoticeDTO> getNoticeList(int projectId) throws SQLException {
 		return noticeDAO.getProjectNoticeList(projectId);
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public void createReward(Reward[] reward) {
 		for(int i = 0; i < reward.length; i++)

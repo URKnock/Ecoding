@@ -35,6 +35,7 @@ public class ProjectSupportController implements Controller {
 		// POST 프로젝트 최종 확인 폼으로
 		int rewardId = Integer.parseInt(request.getParameter("reward"));
 		int addPrice = Integer.parseInt(request.getParameter("addPrice"));
+		
 		RewardDTO reward = manager.findReward(rewardId);
 		
 		ProjectDTO project = manager.findProjectSimpleInfo(projectId);

@@ -15,7 +15,7 @@ public class DAOFactory {
 
 	//211113 ProejectDAO, SupportDAO 추가 (진주)
 	public ProjectDAO getProjectDAO() {
-		return new ProjectDAOImpl();		
+		return new ProjectDAO();		
 	}
 	
 	public SupportDAO getSupportDAO() {
@@ -40,7 +40,7 @@ public class DAOFactory {
 	}
 	
 	public InterestProjectDAO getInterestProjectDAO() {
-		return new InterestProjectDAOImpl();
+		return new InterestProjectDAO();
 	}
 	
 }

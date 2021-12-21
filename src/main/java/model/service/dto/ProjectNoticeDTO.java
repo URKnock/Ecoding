@@ -9,20 +9,18 @@ public class ProjectNoticeDTO {
 	private Date noticeDate;
 	private String noticeContent;
 	
-
-
+	public ProjectNoticeDTO() {}
+	
 	public ProjectNoticeDTO(int projectId, String noticeContent) {
 		this.projectId = projectId;
 		this.noticeContent = noticeContent;
 	}
 
 	public ProjectNoticeDTO(int noticeId, Date noticeDate, String noticeContent) {
-		super();
 		this.noticeId = noticeId;
 		this.noticeDate = noticeDate;
 		this.noticeContent = noticeContent;
 	}
-
 
 	public int getNoticeId() {
 		return noticeId;
