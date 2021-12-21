@@ -13,6 +13,12 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/header_new.css'/>" type="text/css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<style>
+		input::placeholder {
+		  font-size: 18pt;
+		}
+	</style>
 </head>
 <table align="center" width="100%">
 	<tr>
@@ -25,7 +31,7 @@
 				<tr>
 					<td>
 						<span class="input">
-							<input size="50" type="text" placeholder="다양한 프로젝트를 검색해보세요." />
+							<input size="40" type="text" placeholder="다양한 프로젝트를 검색해보세요." />
 						</span>
 					</td>
 					<td>
@@ -41,7 +47,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${ecoerId == null}">
-								<div class="button_in" onClick="location.href='<c:url value='/user/login'/>';"></div>
+								<div class="button_in" onClick="location.href='<c:url value='/user/loginform'/>';"></div>
 							</c:when>
 							<c:otherwise>
 								<div class="userinfo"><a>${ecoerId}님<br/>환영합니다.</a></div>
