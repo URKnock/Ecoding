@@ -119,9 +119,13 @@ public class ProjectManager {
 		return dto;
 	}
 	
-	public int createNotice(ProjectNoticeDTO notice, int projectId) throws SQLException {
+	
+	
+	
+	
+	public int createNotice(ProjectNoticeDTO notice) throws SQLException {
 		// 창작자가 만든 프로젝트인지 확인, 관련 없는 유저/창작자이면 실패
-		return noticeDAO.insertNotice(notice, projectId);
+		return noticeDAO.insertNotice(notice);
 	}
 	
 	public int updateNotice(ProjectNoticeDTO notice) throws SQLException {
@@ -129,14 +133,28 @@ public class ProjectManager {
 		return noticeDAO.updateNotice(notice);
 	}
 	
-	public int deleteNotice(ProjectNoticeDTO notice) throws SQLException {
+	public int deleteNotice(int noticeId) throws SQLException {
 		// 창작자가 만든 프로젝트인지 확인, 관련 없는 유저/창작자이면 실패
-		return noticeDAO.deleteNotice(notice);
+		return noticeDAO.deleteNotice(noticeId);
+	}
+	
+	public ProjectNoticeDTO findNoticeById(int noticeId) throws SQLException {
+		return noticeDAO.findNotice(noticeId);
 	}
 	
 	public List<ProjectNoticeDTO> getNoticeList(int projectId) throws SQLException {
 		return noticeDAO.getProjectNoticeList(projectId);
 	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void createReward(Reward[] reward) {
 		for(int i = 0; i < reward.length; i++)
@@ -270,4 +288,6 @@ public class ProjectManager {
 		
 		return supportDAO.remove(supportId, project);
 	}
+	
+	
 }

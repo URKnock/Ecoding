@@ -30,6 +30,8 @@
 			    		<button name="step" class="goNext" value="step1">수정</button>
 			    		<button name="step" class="goNext" value="delete">삭제</button>
 			   		</form>
+			   		<button type="button" class="goNext"
+			   			onClick="location.href='<c:url value='/project/notice?projectId=${project.projectId}' />'">공지</button>
 				</div>
 			</div>
 		</c:forEach>

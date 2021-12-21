@@ -23,7 +23,7 @@ public class DAOFactory {
 	}
 	
 	public ProjectNoticeDAO getNoticeDAO() {
-		return new ProjectNoticeDAOImpl();
+		return new ProjectNoticeDAO();
 	}
 	
 	public RewardDAO getRewardDAO() {

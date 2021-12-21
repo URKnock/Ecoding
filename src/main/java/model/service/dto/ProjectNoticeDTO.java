@@ -1,19 +1,29 @@
 package model.service.dto;
 
+import java.util.Date;
+
 public class ProjectNoticeDTO {
 	
-	// project_id는 DTO에서 제외
-	
 	private int noticeId;
-	private String noticeDate;
+	private int projectId;
+	private Date noticeDate;
 	private String noticeContent;
 	
-	public ProjectNoticeDTO(int noticeId, String noticeDate, String noticeContent) {
+
+
+	public ProjectNoticeDTO(int projectId, String noticeContent) {
+		this.projectId = projectId;
+		this.noticeContent = noticeContent;
+	}
+
+	public ProjectNoticeDTO(int noticeId, Date noticeDate, String noticeContent) {
+		super();
 		this.noticeId = noticeId;
 		this.noticeDate = noticeDate;
 		this.noticeContent = noticeContent;
 	}
-	
+
+
 	public int getNoticeId() {
 		return noticeId;
 	}
@@ -22,11 +32,19 @@ public class ProjectNoticeDTO {
 		this.noticeId = noticeId;
 	}
 
-	public String getNoticeDate() {
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+
+	public Date getNoticeDate() {
 		return noticeDate;
 	}
 
-	public void setNoticeDate(String noticeDate) {
+	public void setNoticeDate(Date noticeDate) {
 		this.noticeDate = noticeDate;
 	}
 
