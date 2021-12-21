@@ -21,7 +21,9 @@ public class SupportDAO {
 	public int create(SupportDTO support, int price) throws SQLException { //혹시 매개변수가 (Ecoer ecoer, Support support) ? 
 		String sql = null;
 		try {				
-			sql = "INSERT INTO SUPPORT VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?, null)";		
+			sql = "INSERT INTO SUPPORT "
+					+ "(support_id, ecoer_id, project_id, reward_id, amount, bank, card) "
+					+ "VALUES (seq_reward.nextval, ?, ?, ?, ?, ?, ?)";		
 			Object[] param = new Object[] {support.getEcoerId(), support.getProjectId(),
 					support.getRewardId(), support.getAmount(), support.getBank(), support.getCard()};
 			jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정

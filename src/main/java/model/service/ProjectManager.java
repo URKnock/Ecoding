@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import model.Creator;
 import model.DAOFactory;
@@ -93,12 +94,12 @@ public class ProjectManager {
 		String creatorEmail = ecoer.getEmail();
 		
 		double pricePercent = (double) project.getCurrentPrice() / project.getTargetPrice() * 100;
-//		long remainTime = ChronoUnit.DAYS.between(
-//				project.getStartDate(), project.getEndDate());
+
 		
-		long remainTime = 0; //long diffDays = diffSec / (24*60*60);
-//		Date today = new Date();
-//		long remainTime = (project.getEndDate() - today) / (24 * 60 * 60 * 1000);
+		Date now = java.sql.Date.valueOf(LocalDate.now());
+		Date end = project.getEndDate();
+		
+		long remainTime = ((end.getTime() - now.getTime()) / 1000) / (24 * 60 * 60);
 		
 		int countSupporter = supportDAO.countSupporter(projectId);
 
