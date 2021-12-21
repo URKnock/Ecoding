@@ -40,7 +40,6 @@ public class EcoManager {
             while ((result = stdInput.readLine()) != null) {
                 System.out.println(result);
             }
-            System.exit(0);
 		}
 		catch(IOException e) {
 			e.printStackTrace();
@@ -52,6 +51,7 @@ public class EcoManager {
         String result = null;
         double score = 0;
         String currentPath = location.toString() + "util";
+		currentPath = currentPath.replace("file:/", "");
         String pythonPath = "python " + currentPath + "/knock.py " + '\"' + word + '\"';
         
         try {    
@@ -62,11 +62,9 @@ public class EcoManager {
                 System.out.println(result);
                 score = Double.parseDouble(result);
             }
-            System.exit(0);
         }
         catch (IOException e) {
             e.printStackTrace();
-            System.exit(-1);
         }
         return score;
     }
