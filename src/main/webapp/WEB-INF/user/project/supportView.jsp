@@ -101,8 +101,8 @@ function addUpdateForm() {
  	<div class="d">
  		<table style="width:900px">
  			<tr>
- 				<td width="25%"><img src="image.jpg" width="150px" height="150px"></td>
- 				<td style="font-size:30px;">${project.title}</td>
+ 				<td width="25%"><img src="<c:url value='/upload/${project.image}' />" width="150px" height="150px" ></td>
+ 				<td style="font-size:30px;">${project.title} ${project.image}</td>
  				<td width="20%" style="text-align:left;">${project.creatorName}</td>
  		</table>
  		<hr>
@@ -184,5 +184,7 @@ function addUpdateForm() {
 			</tr>
 		</table>
  	</div>
+ 	<p />
+ 	<p />
 </body>
 </html>

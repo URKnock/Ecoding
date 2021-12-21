@@ -10,10 +10,11 @@ public class PostDTO {
 	private String likes;
 	private String reports;
 	private String ecoerId;
+	private String projectInfo;
 	private int communityId;
 	private int replyCnt;
 	
-	public static String[] columns = { "post_id", "title", "post_date", "post_content", "post_file", "views", "likes", "reports", "ecoer_id", "community_id" };
+	public static String[] columns = { "post_id", "title", "post_date", "post_content", "post_file", "views", "likes", "reports", "ecoer_id", "community_id", "project_info" };
 	public static int cols = columns.length;
 	
 	public Object getWithIndex(int index) {
@@ -28,6 +29,7 @@ public class PostDTO {
 			case 7: return getReports();
 			case 8: return getEcoerId();
 			case 9: return getCommunityId();
+			case 10: return getProjectInfo();
 		}
 		return null;
 	}
@@ -44,6 +46,7 @@ public class PostDTO {
 			case 7: setReports((String) data); break;
 			case 8: setEcoerId((String) data); break;
 			case 9: setCommunityId((int) data); break;
+			case 10: setProjectInfo((String) data); break;
 		}
 	}
 	
@@ -51,7 +54,7 @@ public class PostDTO {
 		
 	}
 
-	public PostDTO(int postId, String title, String postDate, String postContent, String postFile, String views,
+	public PostDTO(int postId, String title, String postDaste, String postContent, String postFile, String views,
 			String likes, String reports, String ecoerId, int communityId) {
 		this.postId = postId;
 		this.title = title;
@@ -152,4 +155,17 @@ public class PostDTO {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
+
+	public String getProjectInfo() {
+		return projectInfo;
+	}
+
+	public void setProjectInfo(String projectInfo) {
+		if(projectInfo == null || projectInfo.equals("null")) {
+			this.projectInfo = null;
+		} else {
+			this.projectInfo = projectInfo;
+		}
+	}
+	
 }

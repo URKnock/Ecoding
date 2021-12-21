@@ -20,7 +20,8 @@ public class ProjectDTO {
 			String creatorImage, String creatorName, Date paymentDate) {
 		this.projectId = projectId;
 		this.title = title;
-		this.creatorImage = image;
+		this.image = image;
+		this.creatorImage = creatorImage;
 		this.creatorImage = creatorImage;
 		this.creatorName = creatorName;
 		this.paymentDate = paymentDate;

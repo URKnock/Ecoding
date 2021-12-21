@@ -42,8 +42,8 @@ public class PostManager {
 	}
 	
 	public int delete(int postId) {
-		int result = -1;
-		while(result == -1) {
+		int result = 0;
+		do {
 			List<ReplyDTO> replies = replyDAO.getReplyListByPost(postId);
 			for(ReplyDTO reply : replies) {
 				result = replyDAO.deleteReply(reply.getReplyId());
@@ -51,7 +51,7 @@ public class PostManager {
 			}
 			if(result != -1) result = postDAO.deleteReactByPid(postId);
 			if(result != -1) result = postDAO.deletePost(postId);
-		}
+		} while(result == -1);
 		return result;
 	}
 	

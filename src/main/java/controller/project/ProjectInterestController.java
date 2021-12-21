@@ -13,6 +13,7 @@ import model.service.ProjectManager;
 import model.service.dto.InterestProjectDTO;
 import model.service.dto.ProjectDTO;
 import model.service.dto.ProjectNoticeDTO;
+import model.service.dto.SupportDTO;
 
 public class ProjectInterestController implements Controller {
 	
@@ -39,7 +40,11 @@ public class ProjectInterestController implements Controller {
 		Project project = manager.findProject(projectId);
 		ProjectDTO projectDTO = manager.findProjectInfo(project);
 		List<ProjectNoticeDTO> noticeList = manager.getNoticeList(projectId);
+		
+		SupportDTO supportDTO = new SupportDTO(ecoerId, projectId);
+		boolean isSupport = manager.isSupportProject(supportDTO);
 
+		request.setAttribute("isSupport", isSupport);
     	request.setAttribute("project", project);
     	request.setAttribute("projectDTO", projectDTO);
     	request.setAttribute("noticeList", noticeList);

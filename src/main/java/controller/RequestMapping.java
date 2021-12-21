@@ -6,38 +6,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.my.UserPostListViewController;
-import controller.my.UserProjectInterestListViewController;
-import controller.my.UserProjectListViewController;
-import controller.my.UserSupportProjectListViewController;
-import controller.post.CommunityController;
-import controller.post.CreatePostController;
-import controller.post.DeletePostController;
-import controller.post.LikeCommunityController;
-import controller.post.PostListController;
-import controller.post.ReportCommunityController;
-import controller.post.UpdatePostController;
-import controller.project.CreatorRegisterController;
-import controller.project.ListProjectController;
-import controller.project.ProjectFileRegisterController;
-import controller.project.ProjectInterestController;
-import controller.project.ProjectInterestListViewController;
-import controller.project.ProjectRegisterController;
-import controller.project.ProjectSupportCompleteController;
-import controller.project.ProjectSupportController;
-import controller.project.SupportDeleteController;
-import controller.project.SupportProjectListViewController;
-import controller.project.SupportRewardUpdateController;
-import controller.project.SupportUpdateController;
-import controller.project.SupportViewController;
-import controller.project.ViewProjectController;
-import controller.user.DeleteUserController;
-import controller.user.ListUserController;
-import controller.user.LoginController;
-import controller.user.LogoutController;
-import controller.user.RegisterUserController;
-import controller.user.UpdateUserController;
-import controller.user.ViewUserController;
+import controller.my.*;
+import controller.post.*;
+import controller.project.*;
+import controller.user.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -91,10 +63,16 @@ public class RequestMapping {
         mappings.put("/project/support/complete", new ProjectSupportCompleteController());
         mappings.put("/project/interest", new ProjectInterestController());
         
+        // 프로젝트 공지
+        mappings.put("/project/notice", new NoticeController());
+        mappings.put("/project/notice/register", new NoticeRegisterController());
+        mappings.put("/project/notice/update", new NoticeUpdateController());
+        mappings.put("/project/notice/delete", new NoticeDeleteController());
+        
         // 커뮤니티 관련
         mappings.put("/board/list", new PostListController());
         mappings.put("/board/view", new CommunityController());
-        mappings.put("/board/form", new ForwardController("/board/postForm.jsp"));
+        mappings.put("/board/form", new PostFormController());
         mappings.put("/board/create", new CreatePostController());
         mappings.put("/board/update", new UpdatePostController());
         mappings.put("/board/delete", new DeletePostController());

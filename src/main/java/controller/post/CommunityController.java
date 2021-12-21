@@ -31,6 +31,7 @@ public class CommunityController implements Controller {
 		   		post.view(postId);
 		    	PostDTO dto = null;
 		    	List<ReplyDTO> list = null;
+		    	
 		    	if(postId == 0 && !postTitle.isEmpty()) {
 		    		dto = post.getPostByTitle(postTitle);
 		    		list = manager.getReplyListByPost(dto.getPostId());
@@ -38,6 +39,15 @@ public class CommunityController implements Controller {
 		    		dto = post.getPostById(postId);
 		    		list = manager.getReplyListByPost(postId);
 		    	}
+		    	
+		    	String projectInfo = dto.getProjectInfo();
+		    	if(projectInfo != null) {
+		    		String[] project = projectInfo.split(":");
+		    		System.out.println(project);
+		    		request.setAttribute("project_id", project[0]);
+		    		request.setAttribute("project_title", project[1]);
+		    	}
+		    	
 		    	request.setAttribute("post", dto);	
 		    	request.setAttribute("comment", list);	
 		   	} catch (Exception e) {

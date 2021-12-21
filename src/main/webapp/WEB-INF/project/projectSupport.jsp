@@ -25,9 +25,21 @@
 			location.href="<c:url value='/project/interest?projectId=${project.projectId}' />";
 		}
 	}
+	function notice() {
+		if(confirm('현재 존재하지 않는 프로젝트입니다.')) {
+			location.href = "<c:url value='/home/main'/>"
+		} else {
+			location.href = "<c:url value='/home/main'/>"	
+		}
+	}	
 </script>
 </head>
 <body>
+	<c:if test="${no_project ne null}">
+		<script type="text/javascript">
+			notice();
+		</script>
+	</c:if>
 	<div class="d">
 		<table style="width:1000px">
 			<tr>

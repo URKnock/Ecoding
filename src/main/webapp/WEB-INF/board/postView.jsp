@@ -21,6 +21,13 @@
 		<tr>
 			<td colspan="2">작성자 ${post.ecoerId} | 작성일 ${post.postDate} | 조회수 ${post.views} | 좋아요수 ${post.likes}</td>
 		</tr>
+		<c:if test="${project_id ne null}">
+		<tr>
+			<td colspan="2">관련 프로젝트 바로가기
+				<a href="<c:url value='/project/support/view?projectId=${project_id}'/>">[${project_title}]</a>
+			</td>
+		</tr>
+		</c:if>
 		<tr>
 			<td colspan="2">${post.postContent}<br/><br/></td>
 		</tr>
