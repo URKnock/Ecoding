@@ -1,0 +1,2 @@
+heap 초기화: init(HeapType* h)
+

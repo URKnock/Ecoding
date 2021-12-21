@@ -1,0 +1,5 @@
+prim: 인접행렬
+
+최소 dist[v] 값을 갖는 정점을 반환: get_min_vertex(int n)
+
+prim(GraphType* g, int s)
