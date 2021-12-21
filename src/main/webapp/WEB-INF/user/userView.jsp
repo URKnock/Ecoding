@@ -57,6 +57,24 @@ function userRemove() {
 					<th>이메일 주소</th>
 					<td>${ecoer.email}</td>
 				</tr>
+				<c:if test="${ecoer.isCreator}">
+					<tr>
+						<th>창작자명</th>
+						<td>${creator.nickName}</td>
+					</tr>
+					<tr>
+						<th>창작자 이미지</th>
+						<td><img src="<c:url value='/upload/${creator.image}' />" alt="No Image"></td>
+					</tr>
+					<tr>
+						<th>창작자 정보</th>
+						<td>${creator.creatorInfo}</td>
+					</tr>
+					<tr>
+						<th>창작자 계좌</th>
+						<td>${creator.account}</td>
+					</tr>
+				</c:if>
 			</tbody>
 		</table>
 		<br> <a class="btn btn-primary"
@@ -67,7 +85,7 @@ function userRemove() {
 			href="<c:url value='../user/drop'>
 		     	 <c:param name='ecoerId' value='${ecoer.ecoerId}'/>
 	 	      </c:url>"
-			onclick="return userRemove();">회원 탈퇴</a><br>
+			onclick="return userRemove();">회원 탈퇴</a><br><br>
 
 		<!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 		<c:if test="${updateFailed || deleteFailed}">

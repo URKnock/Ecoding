@@ -107,7 +107,7 @@
 			&nbsp&nbsp<input type="radio" name="category" value="도서" <c:if test="${project.category eq '테크'}"> checked </c:if>>테크
 			<br><br>
 			<p>Q4. 프로젝트와 관련된 해시태그를 입력해주세요.</p>
-			&nbsp&nbsp<input type="text" name="hashtag" value="${project.hashTag}">
+			&nbsp&nbsp#<input type="text" name="hashtag" value="${project.hashTag}">
 			<br><br>
 			<p>Q5. 환경과 관련된 태그를 체크해주세요.</p>
 			&nbsp&nbsp<input type="radio" name="ecotag" value="비건" <c:if test="${project.ecoTag eq '비건'}"> checked </c:if>>비건
