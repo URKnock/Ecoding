@@ -16,6 +16,7 @@ import model.service.ProjectManager;
 import model.service.UserManager;
 import model.service.dto.CreatorDTO;
 import model.service.dto.RewardDTO;
+import util.EcoManager;
 
 //image, video 등 file 다 빠져있음
 public class ProjectRegisterController implements Controller {
@@ -50,6 +51,7 @@ public class ProjectRegisterController implements Controller {
     	}
     	else if(step.equals("step2")) {
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		EcoManager ecoManager = new EcoManager();
     		Project project = null;
     		try {
     			if(request.getParameter("projectId") != "-1")
@@ -57,9 +59,12 @@ public class ProjectRegisterController implements Controller {
     			else
     				project = new Project();
     			
+    			String sInfo = request.getParameter("simpleInfo");
+    			String sWord = ecoManager.extrude(sInfo);
+    			Double ecoScore = ecoManager.calcEcoScore(sWord);
     			project.setProjectId(Integer.parseInt(request.getParameter("projectId")));
     			project.setTitle(request.getParameter("title"));
-    			project.setSimpleInfo(request.getParameter("simpleInfo"));
+    			project.setSimpleInfo(sInfo);
     			project.setCategory(request.getParameter("category"));
     			project.setHashTag("#" + request.getParameter("hashtag"));
     			project.setEcoTag(request.getParameter("ecotag"));
@@ -68,6 +73,7 @@ public class ProjectRegisterController implements Controller {
     			project.setEndDate(sdf.parse(request.getParameter("endDate")));
     			project.setPaymentDate(sdf.parse(request.getParameter("payDate")));
     			project.setDeliveryDate(sdf.parse(request.getParameter("deliveryDate")));
+    			project.setEcoScore(ecoScore);
     			
     			String[] name = request.getParameterValues( "name" );
     			String[] rewardName = request.getParameterValues( "reward_price" );
