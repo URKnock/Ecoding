@@ -25,6 +25,7 @@ import controller.project.ProjectInterestListViewController;
 import controller.project.ProjectRegisterController;
 import controller.project.ProjectSupportCompleteController;
 import controller.project.ProjectSupportController;
+import controller.project.SearchProjectController;
 import controller.project.SupportDeleteController;
 import controller.project.SupportProjectListViewController;
 import controller.project.SupportRewardUpdateController;
@@ -52,6 +53,7 @@ public class RequestMapping {
         //홈페이지 기본 화면
         mappings.put("/home/main", new ListProjectController("/view/home.jsp")); //홈
         mappings.put("/home/list", new ListProjectController("/view/projectList.jsp")); //둘러보기
+        mappings.put("/home/search", new SearchProjectController()); //검색
 
         //사용자 정보 관련
         mappings.put("/user/interest/listView", new UserProjectInterestListViewController());

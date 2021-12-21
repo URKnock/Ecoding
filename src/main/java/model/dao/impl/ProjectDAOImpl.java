@@ -226,7 +226,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
 				ResultSet.CONCUR_READ_ONLY);						
-
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();				// query 실행			
 			int start = ((currentPage-1) * countPerPage) + 1;	// 출력을 시작할 행 번호 계산
@@ -279,8 +278,33 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		return null;
 	}
+	
+	// 검색 키워드를 포함하는 프로젝트들을 List에 저장 및 반환
+	public List<Project> findProjectListByKeyword(String keyword) {
+		String sql = "SELECT * FROM PROJECT WHERE title LIKE '%" + keyword + "%' ORDER BY project_id";
+		String[] cols = Project.columns; // 미리 정의한 컬럼 배열 참조
+		jdbcUtil.setSqlAndParameters(sql, null);
 
-	//특정 카테고리에 속한 프로젝트들을 검색하여 List에 저장 및 반환  ==> 어떻게 검색할까?
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Project> projectList = new ArrayList<Project>(); // Project들의 리스트 생성
+			while (rs.next()) {
+				Project project = new Project(); // Project 객체를 생성하여 정보를 저장
+				for (int i = 0; i < Project.cols; i++) {
+					project.setWithIndex(i, rs.getObject(cols[i]));
+				}
+				projectList.add(project); // List에 Project 객체 저장
+			}
+			return projectList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+
+	//특정 카테고리에 속한 프로젝트들을 검색하여 List에 저장 및 반환
 	public List<Project> findProjectInCategory(String categoryName) throws SQLException {
 		String sql = "SELECT project_id";
         String[] cols = Project.columns; //미리 정의한 컬럼 배열 참조 
@@ -311,7 +335,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return null;
 	}
 	
-	//특정 카테고리에 속한 프로젝트의 수를 count하여 반환 ==> 어떻게 검색할까?
+	//특정 카테고리에 속한 프로젝트의 수를 count하여 반환
 	public int getNumberOfProjectInCategory(String categoryName) {
 		String sql = "SELECT COUNT(project_id) FROM PROJECT "
      				+ "WHERE category LIKE ?"; //like로 검색?              

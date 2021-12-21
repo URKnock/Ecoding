@@ -26,7 +26,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<title>프로젝트 둘러보기</title>
+<title>프로젝트 검색 결과</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 <style>
@@ -50,28 +50,13 @@
 </head>
 <body>
 	<div class="wrap">
-		<!-- 옵션 선택?? ==> 다중 선택 가능? -->
-		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-			<li class="nav-item">
-			<a class="nav-link"
-				id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-				aria-controls="pills-home" aria-selected="true">달성률 순</a></li>
-			<li class="nav-item">
-			<a class="nav-link active" id="pills-profile-tab"
-				data-toggle="pill" href="#pills-profile" role="tab"
-				aria-controls="pills-profile" aria-selected="false">모인 금액 순</a></li>
-			<li class="nav-item">
-			<a class="nav-link" id="pills-contact-tab"
-				data-toggle="pill" href="#pills-contact" role="tab"
-				aria-controls="pills-contact" aria-selected="false">#해시태그1</a></li>
-			<li class="nav-item">
-			<a class="nav-link" id="pills-contact-tab"
-				data-toggle="pill" href="#pills-contact" role="tab"
-				aria-controls="pills-contact" aria-selected="false">#해시태그2</a></li>
-		</ul>
 		<!-- 상품 리스트 -->
 		<div class="card-columns" id="cards-box">
-			<c:forEach var="project" items="${projectMap}">
+			<c:if test="${projectMap.value == null}"> <!-- 검색 결과가 없다면 -->
+				검색 결과가 없습니다. 
+			</c:if>
+			<c:if test="${projectMap ne null}"> <!-- 검색 결과가 있다면 -->
+				<c:forEach var="project" items="${projectMap}">
 				<div class="card">
 					<c:if test="${project.key.image == null}">
 						<img class="card-img-top" src="/resources/img/noImage.png"
@@ -96,7 +81,8 @@
 					</div>
 				</div>
 			</c:forEach>
-			<!-- 반복문 끝 -->			
+			<!-- 반복문 끝 -->	
+			</c:if>	
 		</div>
 	</div>
 </body>

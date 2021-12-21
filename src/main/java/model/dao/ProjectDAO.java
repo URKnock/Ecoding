@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Project;
-import model.Reward;
-import model.service.dto.ProjectDTO;
+//import model.service.dto.ProjectDTO;
 
 public interface ProjectDAO {
 	public int create(Project project);
@@ -16,6 +15,7 @@ public interface ProjectDAO {
 	public List<Project> findProjectList() throws SQLException;
 	public List<Project> findProjectList(int currentPage, int countPerPage) throws SQLException;
 	public List<Project> findProjectList(String eocer_id) throws SQLException;
+	public List<Project> findProjectListByKeyword(String keyword) throws SQLException;
 	public List<Project> findProjectInCategory(String categoryName) throws SQLException;
 	public int getNumberOfProjectInCategory(String categoryName);
 	public boolean existingProject(String projectId) throws SQLException;

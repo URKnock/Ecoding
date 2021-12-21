@@ -15,6 +15,18 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	
+<script>
+function search() {
+	if (form.keyword.value == "") {
+		alert("검색어를 입력해주세요.");
+		form.keyword.focus();
+		return false;
+	} 
+	
+	form.submit();
+}
+</script>
+	
 </head>
 <table align="center" width="100%">
 	<tr>
@@ -22,19 +34,20 @@
 			<a href="<c:url value='/home/main'/>"><img id="logo" src="<c:url value='/resources/img/logo.png'/>"></a>
 		</td>
 		<td></td>
+
 		<td class="txCenter">
-			<table align="center">
-				<tr>
-					<td>
-						<span class="input">
-							<input size="40" type="text" placeholder="다양한 프로젝트를 검색해보세요." />
-						</span>
-					</td>
-					<td>
-						<div class="button" onClick=""></div>
-					</td>
-				</tr>
-			</table>
+			<form name="form" method="POST" action="<c:url value='/home/search'/>">
+				<table align="center">
+					<tr>
+						<td><span class="input"> <input size="40"
+								name="keyword" type="text" placeholder="다양한 프로젝트를 검색해보세요." />
+						</span></td>
+						<td>
+							<div class="button" onClick="search()"></div>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</td>
 		<td></td>
 		<td class="txRight">
