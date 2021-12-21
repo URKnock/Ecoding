@@ -190,7 +190,9 @@
 			</c:url>">Mypage</a>
         </div>
         <div class="sub-menu">
-        	<a href="<c:url value='/user/view' />">
+        	<a href="<c:url value='/user/view'>
+            	<c:param name='ecoerId' value='${ecoerId}'/>
+			</c:url>">
 	            <div class="icon-box">
 		            <div class="icon"><i class="fas fa-scroll"></i></div>
 					<div class="text">
