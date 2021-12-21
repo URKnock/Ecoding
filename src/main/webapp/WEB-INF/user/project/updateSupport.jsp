@@ -14,7 +14,7 @@
 		margin-left:auto;
 		margin-right:auto;
 	}
-	table {
+	.t {
 		width:500px;
 		margin-left:auto;
 		margin-right:auto;
@@ -54,7 +54,7 @@
 <body>
 <div class="d">
 	<form action="<c:url value='/support/update?projectId=${projectId}' />" method="POST">
-	<table>
+	<table class="t">
 		<tr class="top">
 			<td colspan="2"><h5>결제 정보 수정</h5></td>
 		</tr>
