@@ -28,7 +28,7 @@
 		text-align:center;
 		width:20px;
 	}
-	table {
+	.t {
 		width:500px;
 		margin-left:auto;
 		margin-right:auto;
@@ -61,7 +61,7 @@
 <div class="d">
 	<form action="<c:url value='/project/notice/register?projectId=${projectId}' />" method="POST">
 	<h4>공지 추가</h4>
-	<table>
+	<table class="t">
 		<tr>
 			<td id="txt">내용 입력</td>
 		</tr>

@@ -20,17 +20,6 @@ public class SupportDeleteController implements Controller{
 		ProjectManager manager = ProjectManager.getInstance();
 		manager.deleteSupport(supportId);
 		
-//		// 후원한 프로젝트 리스트로 넘어가기, 정보 넘기기
-//		
-//		
-//		HttpSession session = request.getSession();
-//		String ecoerId = UserSessionUtils.getLoginEcoerId(session);
-//
-//		List<ProjectDTO> supportProjectInfoList = manager.supportProjectInfoList(ecoerId);
-//		request.setAttribute("supportList", supportProjectInfoList);
-		
-//		return "/user/project/supportProjectListView.jsp";
-		
 		return "redirect:/user/project/support/listView";
 	}
 }

@@ -14,7 +14,7 @@
 		margin-left:auto;
 		margin-right:auto;
 	}
-	table {
+	.t {
 		margin-left:auto;
 		margin-right:auto;
 	}
@@ -22,7 +22,7 @@
 		text-align:left;
 		padding-left:20px;
 	}
-	table {
+	.t {
 		width:500px;
 		text-align:center;
 	 	border-top:0.5px solid #6495ED;
@@ -56,13 +56,13 @@
 <div class="d">
 	<h3>리워드 변경</h3>
 	<form action="<c:url value='/support/update/reward?projectId=${projectId}' />" method="POST">
-	<table>
+	<table class="t">
 		<c:forEach var="reward" items="${rewardList}">
 			<tr style="height:150px;">
 				<td style="border-bottom:1px solid #6495ED;">
 					<input type="radio" name="reward" value="${reward.rewardId}" required>
-					${reward.name}<br>
-					${reward.rewardInfo}<br>
+					- ${reward.rewardPrice}원<br>
+					- ${reward.rewardInfo}<br>
 				</td>
 			</tr>
 		</c:forEach>
