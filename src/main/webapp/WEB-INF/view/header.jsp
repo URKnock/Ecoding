@@ -95,20 +95,6 @@ function search() {
                     <div class="sub-text"> 다양한 환경보호 프로젝트를 만나보세요. </div>
                 </div>
             </div>
-            <div class="icon-box">
-                <div class="icon"><i class="fal fa-crown"></i></div>
-                <div class="text">
-                    <div class="title"> 인기 프로젝트 <i class="far fa-arrow-right"></i></div>
-                    <div class="sub-text"> 인기 프로젝트를 만나보세요. </div>
-                </div>
-            </div>
-            <div class="icon-box">
-                <div class="icon"><i class="fal fa-thumbs-up"></i></div>
-                <div class="text">
-                    <div class="title"> 추천 프로젝트 <i class="far fa-arrow-right"></i></div>
-                    <div class="sub-text"> Eco-Score가 높은 프로젝트를 만나보세요.</div>
-                </div>
-            </div>
             </a>
             <div class="sub-menu-holder"></div>
         </div>

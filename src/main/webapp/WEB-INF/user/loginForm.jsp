@@ -56,7 +56,6 @@ function login() {
 					href="<c:url value='/user/register'/>" class="btn btn-link">회원
 					가입 </a>
 			</div>
-			<h6 class="text-info">(관리자 로그인: admin/admin)</h6>
 		</form>
 	</div>
 </body>
