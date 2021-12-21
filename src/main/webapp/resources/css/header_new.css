@@ -2,8 +2,8 @@
 	font-family: 'Nanum Gothic', sans-serif;
 }
 :root {
-    --menu-width: 37.5em; /* Width of menu */
-    --items: 5; /* Number of items you have */
+    --menu-width: 35em; /* Width of menu */
+    --items: 4; /* Number of items you have */
     --item-width: calc(var(--menu-width) / var(--items));
 }
 
@@ -81,7 +81,7 @@ nav .menu-item::hover ~ #sub-menu-container #sub-menu-holder {
     clip-path: inset(0 10em 0 0 round 10px);
 }
 nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder {
-    left: -15em;
+    left: -13em;
     height: 13em;
 }
 nav .menu-item:nth-of-type(2):hover ~ #sub-menu-container #sub-menu-holder {
@@ -97,8 +97,8 @@ nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
     height: 9em;
 }
 nav .menu-item:nth-of-type(5):hover ~ #sub-menu-container #sub-menu-holder {
-    left: 15em;
-    height: 22em;
+    left: 13em;
+    height: 23em;
 }
 .menu-item .sub-menu {
     position: absolute;
@@ -245,8 +245,21 @@ nav .menu-item:nth-of-type(5):hover ~ #sub-menu-container #sub-menu-holder {
     width: 100%;
     height: 5em;
 }
-nav .menu-item:nth-of-type(3).highlight:hover ~ #sub-menu-container #sub-menu-holder #sub-menu-bottom {
-    height: 7.5em;
+nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder {
+    left: -15em;
+    height: 13.5em;
+}
+nav .menu-item:nth-of-type(2):hover ~ #sub-menu-container #sub-menu-holder {
+    left: -8em;
+    height: 9em;
+}
+nav .menu-item:nth-of-type(3):hover ~ #sub-menu-container #sub-menu-holder {
+    left: 0em;
+    height: 9em;
+}
+nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
+    left: 7em;
+    height: 20em;
 }
 .bottom-container {
     grid-area: 4 / -3 / 4 / 3;
