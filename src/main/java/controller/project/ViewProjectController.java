@@ -45,6 +45,7 @@ public class ViewProjectController implements Controller {
     	request.setAttribute("noticeList", noticeList);
     	request.setAttribute("isSupport", isSupport);
     	request.setAttribute("isInterest", isInterest);
+    	
 		return "/project/projectSupport.jsp";
 	}
 }

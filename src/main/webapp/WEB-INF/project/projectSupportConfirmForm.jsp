@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../view/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>후원 확인 - ${project.title}</title>
 <style>
-	div {
+	.d {
 		text-align:center;
 		width:1000px;
 		margin-left:auto;
@@ -63,15 +63,15 @@
 </style>
 </head>
 <body>
-	<div>
+	<div class="d">
 		<table style="width:1000px">
 			<tr>
 				<td width="25%">
-					<img src="image.jpg" width="150px" height="150px">
+					<img src="<c:url value='/upload/${project.image}' />" width="150px" height="150px">
 				</td>
 				<td style="font-size:20pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="/upload/${project.image}" width="30px" height="30px"> <!-- 이미지 수정 **** -->
+					<img src="<c:url value='/upload/${project.creatorImage}' />" width="30px" height="30px">
 				</td>
 				<td width="20%" style="text-align:left;">${project.creatorName}</td>
 			</tr>
@@ -111,7 +111,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="radio"> 개인정보 제 3자 제공 동의
+								<input type="radio" required> 개인정보 제 3자 제공 동의
 							</td>
 						</tr>
 						<tr>
@@ -166,11 +166,11 @@
 					<table class="t">
 						<tr>
 							<td>카드</td>
-							<td><input type="text" name="bank" size="10px"></td>
+							<td><input type="text" name="bank" size="10px" required></td>
 						</tr>
 						<tr>
 							<td>카드 번호</td>
-							<td><input type="text" name="card" size="20px"></td>
+							<td><input type="text" name="card" size="20px" required></td>
 						</tr>
 					</table>
 				</td>

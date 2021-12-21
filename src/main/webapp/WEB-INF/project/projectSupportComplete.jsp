@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../view/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>후원 완료 - ${project.title}</title>
 <style>
-	div {
+	.d {
 		text-align:center;
 		width:1000px;
 		margin-left:auto;
@@ -30,8 +31,8 @@
 </style>
 </head>
 <body>
-	<div style="text-align:center">
-		<h1>후원 완료</h1>
+	<div class="d" style="text-align:center">
+		<h2>후원 완료</h2>
 		<h3>${project.title}</h3>
 		<img src="<c:url value='/upload/${project.image}' />" width="200px" height="200px"> <!-- 이미지 **********-->
 		<h3>프로젝트 참여해주셔서 감사합니다!</h3>

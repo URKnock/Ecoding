@@ -22,7 +22,7 @@
 		padding-top:2px;
 		padding-left:10px;
 		width:450px;
-		height:200px;
+		height:100px;
 	}
 	#inputT {
 		text-align:center;

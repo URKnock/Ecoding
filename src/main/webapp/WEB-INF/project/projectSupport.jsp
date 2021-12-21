@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.time.temporal.ChronoUnit, model.Project" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../view/header.jsp" %>
 <!DOCTYPE html>
@@ -45,7 +44,7 @@
 			<tr>
 				<td style="font-size:30pt">${project.title}</td>
 				<td width="5%" style="text-align:center;">
-					<img src="<c:url value='/upload/${projectDTO.creatorImage}' />" width="30px" height="30px"> <!-- 창작자 이미지 -> 후에 수정 ***-->
+					<img src="<c:url value='/upload/${projectDTO.creatorImage}' />" width="30px" height="30px">
 				</td>
 				<td width="10%" style="text-align:center;">${projectDTO.creatorName}</td>
 				<td width="15%" style="text-align:right;">${project.category}</td>
@@ -80,8 +79,11 @@
 					<c:if test="${isInterest eq 'true'}">
 						<button id="interest" type="button" onclick="interest();">&#10084;</button>
 					</c:if>
-					<c:if test="${isSupport eq 'false'}">
+					<c:if test="${isSupport eq 'false' && projectDTO.remainTime >= 0}">
 						<button id="support" type="button" onclick="support();">프로젝트 후원하기</button>
+					</c:if>
+					<c:if test="${isSupport eq 'false' && projectDTO.remainTime < 0}">
+						<button id="end" type="button">후원 종료</button>
 					</c:if>
 					<c:if test="${isSupport eq 'true'}">
 						<button id="supportDone" type="button">후원 완료</button>
@@ -135,10 +137,6 @@
 		<div class="d">
 			<h3>프로젝트 일정</h3>
 			<table id="t3">
-				<!-- <tr>
-					<td>펀딩 예고</td>
-					<td>21년9월20일</td>
-				</tr>-->
 				<tr>
 					<td>펀딩 시작</td>
 					<td>${project.startDate}</td>
@@ -164,14 +162,16 @@
 		<div class="d">
 			문의사항은 이메일 ${projectDTO.creatorEmail}로 문의
 		</div>
-		<div class="d">
-			<h3>공지사항</h3>
-			<table id="t4">
-				<c:forEach var="notice" items="${noticeList}">
-					<tr><td>${notice.noticeContent}</td></tr>
-				</c:forEach>
-			</table>
-		</div>
+		<c:if test="${not empty noticeList}">
+			<div class="d">
+				<h3>공지사항</h3>
+				<table id="t4">
+					<c:forEach var="notice" items="${noticeList}">
+						<tr><td>${notice.noticeContent}</td></tr>
+					</c:forEach>
+				</table>
+			</div>
+		</c:if>
 	</div>
 	<hr>
 </body>

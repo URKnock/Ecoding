@@ -87,22 +87,13 @@
 		border-bottom:0;
 	}
 </style>
-<script>
-function userRemove() {
-	return confirm("정말로 탈퇴하시겠습니까? 탈퇴 후에는 복구할 수 없습니다.");		
-}
-
-function addUpdateForm() {
-	
-}
-</script>
 </head>
 <body>
  	<div class="d">
  		<table style="width:900px">
  			<tr>
  				<td width="25%"><img src="<c:url value='/upload/${project.image}' />" width="150px" height="150px" ></td>
- 				<td style="font-size:30px;">${project.title} ${project.image}</td>
+ 				<td style="font-size:30px;">${project.title}</td>
  				<td width="20%" style="text-align:left;">${project.creatorName}</td>
  		</table>
  		<hr>
@@ -112,8 +103,7 @@ function addUpdateForm() {
 				<td class="buttonTd">
 					<button class="change"
 						onClick="location.href='<c:url value='/support/update/reward?supportId=${support.supportId}&projectId=${project.projectId}' />'">
-						변경
-					</button>
+						변경</button>
 				</td>
 			</tr>	
 			<tr>
@@ -184,7 +174,6 @@ function addUpdateForm() {
 			</tr>
 		</table>
  	</div>
- 	<p />
- 	<p />
+ 	<br>
 </body>
 </html>

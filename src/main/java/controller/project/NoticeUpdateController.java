@@ -32,19 +32,13 @@ public class NoticeUpdateController implements Controller {
 		
 		String content = request.getParameter("content");
 		
-		ProjectNoticeDTO notice = new ProjectNoticeDTO(projectId, content);
-		manager.createNotice(notice);
+		ProjectNoticeDTO notice = new ProjectNoticeDTO();
+		notice.setNoticeId(noticeId);
+		notice.setNoticeContent(content);
 		
+		manager.updateNotice(notice);
 		
-		// 다시 정보 저장해서 넘기기
-		List<ProjectNoticeDTO> noticeList = manager.getNoticeList(projectId);
-		request.setAttribute("noticeList", noticeList);
-
-		ProjectDTO project = manager.findProjectSimpleInfo(projectId);
-		request.setAttribute("project", project);
-		
-		
-		return "/project/notice/viewNotice.jsp";
+		return "redirect:/project/notice?projectId=" + projectId;
 	}
 		
 }

@@ -38,23 +38,7 @@ public class SupportUpdateController implements Controller{
  		supportDTO.setBank(bank);
  		
  		manager.updateSupport(supportDTO);
- 		
- 		// 다시 보낼 정보
- 		HttpSession session = request.getSession();   
- 		String ecoerId = UserSessionUtils.getLoginEcoerId(session);
- 				
- 		UserManager uManager = UserManager.getInstance();
- 				
- 		SupportDTO support = manager.findSupport(ecoerId, projectId);
- 		ProjectDTO project = manager.findProjectSimpleInfo(projectId);
- 		RewardDTO reward = manager.findReward(support.getRewardId());
- 		EcoerDTO ecoer = uManager.findEcoer(ecoerId);
- 				
- 		request.setAttribute("support", support);
- 		request.setAttribute("project", project);
- 		request.setAttribute("reward", reward);
- 		request.setAttribute("ecoer", ecoer);
 
-		return "/user/project/supportView.jsp";
+ 		return "redirect:/user/project/support/view?projectId=" + projectId;
 	}
 }
