@@ -104,6 +104,7 @@
             <a href="<c:url value='/home/list' />">Support</a>
         </div>
         <div class="sub-menu">
+	        <a href="<c:url value='/home/list' />">
             <div class="icon-box">
                 <div class="icon"><i class="far fa-comments-dollar"></i></div>
                 <div class="text">
@@ -118,16 +119,11 @@
                     <div class="sub-text"> 마음에 드는 프로젝트를 찜하세요. </div>
                 </div>
             </div>
-            <div class="icon-box">
-                <div class="icon"><i class="far fa-scroll"></i></div>
-                <div class="text">
-                    <div class="title"> 프로젝트 등록하기 <i class="far fa-arrow-right"></i></div>
-                    <div class="sub-text"> 환경을 위한 프로젝트를 개설하세요. </div>
-                </div>
-            </div>
+            </a>
             <div><br/></div>
             <div class="bottom-container">
-                프로젝트를 개설하고 싶으신가요?
+                프로젝트를 개설하고 싶으신가요?<br/>
+                지금 시작하세요!
                 <c:choose>
 	                <c:when test="${ecoerId ne null}">
 	                	<a href="<c:url value='/project/view' />">시작하기</a>
@@ -194,6 +190,17 @@
 			</c:url>">Mypage</a>
         </div>
         <div class="sub-menu">
+        	<a href="<c:url value='/user/view'>
+            	<c:param name='ecoerId' value='${ecoerId}'/>
+			</c:url>">
+	            <div class="icon-box">
+		            <div class="icon"><i class="fas fa-scroll"></i></div>
+					<div class="text">
+	                    <div class="title"> 회원 정보 <i class="far fa-arrow-right"></i></div>
+	                    <div class="sub-text"> 내 회원 정보를 한 눈에 살펴봅니다. </div>
+	                </div>
+	            </div>
+            </a>
         	<a href="<c:url value='/user/support/listView' />">
 	            <div class="icon-box">
 		            <div class="icon"><i class="fas fa-shopping-basket"></i></div>
