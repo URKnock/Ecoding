@@ -185,13 +185,8 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	//전체 프로젝트 정보를 검색하여 List에 저장 및 반환
 	public List<Project> findProjectList() throws SQLException {
-        String sql = "SELECT project_id";
+        String sql = "SELECT * FROM PROJECT";
         String[] cols = Project.columns; //미리 정의한 컬럼 배열 참조 
-        for(int i = 1; i < Project.cols; i++) { //ecoer_id부터 시작
-        	sql += ", " + cols[i];
-        }
-        sql += " FROM PROJECT ";
-        sql += "ORDER BY project_id"; //등록 순으로 정렬? id 순으로 정렬?
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 
 		try {

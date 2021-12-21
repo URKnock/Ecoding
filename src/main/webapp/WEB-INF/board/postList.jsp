@@ -9,10 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/post.css'/>"/>
 </head>
 <body>
-	<div id="communitys" class="left">
-		<p><button type="button" class="btn btn-outline-primary btn-lg" onClick="location.href='<c:url value='/board/list?cid=0'/>'">자유게시판</button></p>
-		<p><button type="button" class="btn btn-outline-info btn-lg" onClick="location.href='<c:url value='/board/list?cid=1'/>'">후기게시판</button></p>
-	</div>
 	<div class="right">
 		<form name="search_post" action="<c:url value='/board/list'/>">
 			<select name="type">
