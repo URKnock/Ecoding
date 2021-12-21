@@ -66,6 +66,9 @@ public class UpdateUserController implements Controller {
 
     	log.debug("Update Ecoer : {}", updateEcoer);
 
+    	HttpSession session = request.getSession(); //세션에 사용자 아이디 저장
+        session.setAttribute(UserSessionUtils.USER_SESSION_KEY, updateEcoer.getEcoerId());
+    	
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateEcoer);	
 		CreatorDTO creator = new CreatorDTO(request.getParameter("ecoerId"), 
