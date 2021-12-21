@@ -32,7 +32,7 @@
 	    		&nbspStep 04
 	    		<p>&nbsp서약서 제출</p>
 	    	</div>
-	    	<div style="height: 175px;">
+	    	<div style="height: 170px;">
 	    	</div>
 </body>
 </html>

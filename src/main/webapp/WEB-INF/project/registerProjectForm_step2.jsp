@@ -7,7 +7,7 @@
 	<c:import url="/WEB-INF/view/header.jsp"></c:import>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/projectRegister.css'/>"/>
 	<meta charset="utf-8">
-	<title>Insert title here</title>
+	<title>Step2</title>
 	<script>
 	    function projectCreate(targetUri) {
 	    	form.action = targetUri; 
@@ -64,7 +64,7 @@
 </head>
 <body>
  <div class="main">
-    	<a href="<c:url value='/project/view' />" target="_self">프로젝트 등록</a>
+    	<a href="<c:url value='/project/view' />" target="_self">&nbspSTART</a>
     	<span class="step"> > Step 01 > Step 02</span>
     </div>
 	<c:import url="/WEB-INF/project/register.jsp">

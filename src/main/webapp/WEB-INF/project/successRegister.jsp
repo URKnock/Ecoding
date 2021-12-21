@@ -9,7 +9,7 @@
 <title>프로젝트 등록 완료</title>
 <style>
 .contents {
-	padding: 12%;
+	padding: 10%;
 }
 </style>
 </head>

@@ -19,9 +19,6 @@
     }
 </script>
 <style>
-	img {
-		width: 500px;
-	}
 </style>
 </head>
 <body>
@@ -30,8 +27,12 @@
     	&nbsp> 프로젝트 등록 시작
     </div>
     <div class="contents">
-    	<p>착한 사람에게만 보이는 에코딩 서비스를 사용해야 하는 이유 소개글</p>
-    	<img src="<c:url value='/resources/img/kai.jpg'/>">
+    	<p>세상엔 종강을 하지 못한</p>
+    	<p>힘든 친구들이 많습니다</p>
+		<p>지금도 힘들어하고 있을</p>
+		<p>친구들을 위해</p>
+		<p>노래를 부릅니다</p>
+		<p>힘내라 얘들아</p>
     </div>
     <div class="goList">
     	<form name="form" method="post" action="<c:url value='/project/register/form' />">
