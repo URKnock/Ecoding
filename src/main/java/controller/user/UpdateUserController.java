@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
+import model.service.CreatorManager;
 import model.service.UserManager;
+import model.service.dto.CreatorDTO;
 import model.service.dto.EcoerDTO;
 
 public class UpdateUserController implements Controller {
@@ -27,7 +29,13 @@ public class UpdateUserController implements Controller {
     		UserManager manager = UserManager.getInstance();
     		EcoerDTO ecoer = manager.findEcoer(updateId);	// �����Ϸ��� ����� ���� �˻�
 			request.setAttribute("ecoer", ecoer);			
-
+			
+			if(ecoer.getIsCreator()) {
+    			CreatorManager cmanager = CreatorManager.getInstance();
+    			CreatorDTO creator = cmanager.findCreator(updateId);
+    			request.setAttribute("creator", creator);
+    		}
+			
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(updateId, session) ||
 				UserSessionUtils.isLoginUser("admin", session)) {
@@ -59,7 +67,14 @@ public class UpdateUserController implements Controller {
     	log.debug("Update Ecoer : {}", updateEcoer);
 
 		UserManager manager = UserManager.getInstance();
-		manager.update(updateEcoer);			
+		manager.update(updateEcoer);	
+		CreatorDTO creator = new CreatorDTO(request.getParameter("ecoerId"), 
+				request.getParameter("teamName"), 
+				request.getParameter("teamImage"), 
+				request.getParameter("teamInfo"), 
+				request.getParameter("account"));
+		CreatorManager cmanager = CreatorManager.getInstance();
+		cmanager.update(creator);
         return "redirect:/user/view";
     }
 }

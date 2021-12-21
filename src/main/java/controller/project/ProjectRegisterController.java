@@ -61,7 +61,7 @@ public class ProjectRegisterController implements Controller {
     			project.setTitle(request.getParameter("title"));
     			project.setSimpleInfo(request.getParameter("simpleInfo"));
     			project.setCategory(request.getParameter("category"));
-    			project.setHashTag(request.getParameter("hashtag"));
+    			project.setHashTag("#" + request.getParameter("hashtag"));
     			project.setEcoTag(request.getParameter("ecotag"));
     			project.setTargetPrice(Integer.parseInt(request.getParameter("targetAmount")));
     			project.setStartDate(sdf.parse(request.getParameter("startDate")));

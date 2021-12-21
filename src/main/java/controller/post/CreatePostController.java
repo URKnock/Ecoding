@@ -30,6 +30,9 @@ public class CreatePostController implements Controller {
         		}
         		else if(i == 9)
         			post.setWithIndex(i, Integer.parseInt(req));
+        		else if(i == 10) {
+        			post.setWithIndex(i, req);
+        		}
         		else
         			post.setWithIndex(i, req);
         		

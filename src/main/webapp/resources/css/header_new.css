@@ -86,19 +86,19 @@ nav .menu-item:nth-of-type(1):hover ~ #sub-menu-container #sub-menu-holder {
 }
 nav .menu-item:nth-of-type(2):hover ~ #sub-menu-container #sub-menu-holder {
     left: -10em;
-    height: 17em;
+    height: 13.5em;
 }
 nav .menu-item:nth-of-type(3):hover ~ #sub-menu-container #sub-menu-holder {
     left: 0em;
-    height: 10em;
+    height: 9em;
 }
 nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
     left: 5em;
-    height: 10em;
+    height: 9em;
 }
 nav .menu-item:nth-of-type(5):hover ~ #sub-menu-container #sub-menu-holder {
     left: 15em;
-    height: 17em;
+    height: 22em;
 }
 .menu-item .sub-menu {
     position: absolute;
@@ -268,7 +268,7 @@ nav .menu-item:nth-of-type(3).highlight:hover ~ #sub-menu-container #sub-menu-ho
     font-weight: bold;
     text-decoration: none;
     right: 1.5em;
-    bottom: 0.5em;
+    bottom: 1.75em;
 }
 .bottom-container a:hover {
     background: linear-gradient(90deg, #8ea4b136, #a3b5bf33);

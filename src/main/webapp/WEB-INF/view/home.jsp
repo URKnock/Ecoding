@@ -30,7 +30,6 @@
 	crossorigin="anonymous"></script>
 <title>Ecoding</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-
 <style>
 
 *{
@@ -64,17 +63,21 @@
 			</ol>
 			<div class="carousel-inner" style="margin: 20px 0px 20px 0px;">
 				<div class="carousel-item active">
-					<img class="d-block w-100" style="width: 1120px; height: 400px"
-						src="<c:url value='/resources/img/first.png'/>" alt="First slide">
+					<a href="<c:url value='/project/support/view?projectId=146' />">
+						<img class="d-block w-100" style="width: 1120px; height: 400px"
+							src="<c:url value='/upload/coffee.png'/>" alt="First slide"></a>
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" style="width: 1120px; height: 400px"
-						src="<c:url value='/resources/img/second.png'/>"
-						alt="Second slide">
+					<a href="<c:url value='/project/support/view?projectId=69' />">
+						<img class="d-block w-100" style="width: 1120px; height: 400px"
+							src="<c:url value='/upload/peach.jpg'/>"
+							alt="Second slide"></a>
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" style="width: 1120px; height: 400px"
-						src="<c:url value='/resources/img/third.png'/>" alt="Third slide">
+					<a href="<c:url value='/project/support/view?projectId=145' />">
+						<img class="d-block w-100" style="width: 1120px; height: 400px"
+							src="<c:url value='/upload/KakaoTalk_20211221_031706959.jpg'/>" alt="Third slide">
+					</a>
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -101,7 +104,6 @@
 						<img class="card-img-top" src="<c:url value='/upload/${project.key.image}' />"
 							alt="Card imagecap">
 					</c:if>
-					<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
 					<div class="card-body">
 						<a
 							href="<c:url value='/project/support/view?projectId=${project.key.projectId}' />"

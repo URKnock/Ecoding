@@ -81,7 +81,6 @@
 						<img class="card-img-top" src="<c:url value='/upload/${project.key.image}' />"
 							alt="Card imagecap">
 					</c:if>
-					<span class="badge badge-info" style="margin: 5px 5px 5px 5px;">인기</span>
 					<div class="card-body">
 						<a
 							href="<c:url value='/project/support/view?projectId=${project.key.projectId}' />"

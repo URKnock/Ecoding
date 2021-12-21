@@ -25,9 +25,21 @@
 			location.href="<c:url value='/project/interest?projectId=${project.projectId}' />";
 		}
 	}
+	function notice() {
+		if(confirm('현재 존재하지 않는 프로젝트입니다.')) {
+			location.href = "<c:url value='/home/main'/>"
+		} else {
+			location.href = "<c:url value='/home/main'/>"	
+		}
+	}	
 </script>
 </head>
 <body>
+	<c:if test="${no_project ne null}">
+		<script type="text/javascript">
+			notice();
+		</script>
+	</c:if>
 	<div class="d">
 		<table style="width:1000px">
 			<tr>
@@ -162,22 +174,5 @@
 		</div>
 	</div>
 	<hr>
-	<div class="d">
-		<h4 style="text-align:left; padding-left:20px; font-size:20px;">다른 프로젝트 둘러보기</h4>
-		<table style="width:800px; height:180px; text-align:center;">
-			<tr>
-				<td><img src="image.jpg" width="130px" height="130px"></td>
-				<td><img src="image.jpg" width="130px" height="130px"></td>
-				<td><img src="image.jpg" width="130px" height="130px"></td>
-				<td><img src="image.jpg" width="130px" height="130px"></td>
-			</tr>
-			<tr>
-				<td>프로젝트 이름</td>
-				<td>프로젝트 이름</td>
-				<td>프로젝트 이름</td>
-				<td>프로젝트 이름</td>
-			</tr>
-		</table>
-	</div>
 </body>
 </html>
