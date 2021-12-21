@@ -120,6 +120,32 @@ function userModify() {
 						value="${ecoer.email}">
 				</div>
 			</div>
+			<input type="hidden" name="isCreator" value="${ecoer.isCreator}">
+			<c:if test="${ecoer.isCreator}">
+				<div class="form-group row">
+					<label for="email" class="col-lg-2 col-form-label">창작자명</label>
+					<div class="col-lg-10">
+						<input type="text" name="teamName" class="form-control"
+							value="${creator.nickName}">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="email" class="col-lg-2 col-form-label">창작자 정보</label>
+					<div class="col-lg-10">
+						<input type="text" name="teamInfo" class="form-control"
+							value="${creator.creatorInfo}">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="email" class="col-lg-2 col-form-label">창작자 계좌</label>
+					<div class="col-lg-10">
+						<input type="text" name="account" class="form-control"
+							value="${creator.account}">
+					</div>
+				</div>
+				창작자 이미지 수정은 프로젝트 수정 Step3에서 가능합니다.<p>
+				<input type="hidden" name="teamImage" value="${creator.image}">
+			</c:if>
 			
 			<br>
 			<div class="form-group">
