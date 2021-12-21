@@ -126,13 +126,6 @@ function search() {
                     <div class="sub-text"> 프로젝트를 둘러보고 후원하세요. </div>
                 </div>
             </div>
-            <div class="icon-box">
-                <div class="icon"><i class="far fa-heart"></i></div>
-                <div class="text">
-                    <div class="title"> 프로젝트 찜하기 <i class="far fa-arrow-right"></i></div>
-                    <div class="sub-text"> 마음에 드는 프로젝트를 찜하세요. </div>
-                </div>
-            </div>
             </a>
             <div><br/></div>
             <div class="bottom-container">
@@ -173,27 +166,6 @@ function search() {
                 </div>
             </div>
             </a>
-        </div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-text">
-            <a href="#">Category</a>
-        </div>
-        <div class="sub-menu">
-            <div class="icon-box">
-                <div class="icon"><i class="far fa-heart"></i></div>
-                <div class="text">
-                    <div class="title"> 항목 1 <i class="far fa-arrow-right"></i></div>
-                    <div class="sub-text"> 항목 1 설명 </div>
-                </div>
-            </div>
-            <div class="icon-box">
-                <div class="icon"><i class="far fa-heart"></i></div>
-                <div class="text">
-                    <div class="title"> 항목 2 <i class="far fa-arrow-right"></i></div>
-                    <div class="sub-text"> 항목 2 설명 </div>
-                </div>
-            </div>
         </div>
     </div>
     <c:if test="${ecoerId ne null}">
@@ -264,3 +236,4 @@ function search() {
     </div>
 </nav>
 <div class="new_clear"><br/></div>
+<br><br>

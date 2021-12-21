@@ -50,26 +50,6 @@
 </head>
 <body>
 	<div class="wrap">
-		<!-- 옵션 선택?? ==> 다중 선택 가능? -->
-		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-			<li class="nav-item">
-			<a class="nav-link"
-				id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-				aria-controls="pills-home" aria-selected="true">달성률 순</a></li>
-			<li class="nav-item">
-			<a class="nav-link active" id="pills-profile-tab"
-				data-toggle="pill" href="#pills-profile" role="tab"
-				aria-controls="pills-profile" aria-selected="false">모인 금액 순</a></li>
-			<li class="nav-item">
-			<a class="nav-link" id="pills-contact-tab"
-				data-toggle="pill" href="#pills-contact" role="tab"
-				aria-controls="pills-contact" aria-selected="false">#해시태그1</a></li>
-			<li class="nav-item">
-			<a class="nav-link" id="pills-contact-tab"
-				data-toggle="pill" href="#pills-contact" role="tab"
-				aria-controls="pills-contact" aria-selected="false">#해시태그2</a></li>
-		</ul>
-		<!-- 상품 리스트 -->
 		<div class="card-columns" id="cards-box">
 			<c:forEach var="project" items="${projectMap}">
 				<div class="card">
