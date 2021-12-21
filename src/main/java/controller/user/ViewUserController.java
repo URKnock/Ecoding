@@ -2,6 +2,7 @@ package controller.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.service.CreatorManager;
@@ -19,6 +20,11 @@ public class ViewUserController implements Controller {
     	
 		UserManager manager = UserManager.getInstance();
 		String ecoerId = request.getParameter("ecoerId");
+		
+		if(ecoerId == null) {
+			HttpSession session = request.getSession();
+			ecoerId = UserSessionUtils.getLoginEcoerId(session);
+		}
 		
     	EcoerDTO ecoer = null;
     	try {
