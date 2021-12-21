@@ -44,7 +44,14 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td>파일첨부: <input type="file" name="post_file"/></td>
+			<td>관련 프로젝트:
+				<select name="project_info">
+					<option value="null">없음</option>
+					<c:forEach var="p" items="${projectList}">
+						<option value="${p.projectId}:${p.title}">${p.title}</option>
+					</c:forEach>
+				</select>
+			</td>
 			<td></td>
 		</tr>
 		<tr>

@@ -57,6 +57,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("reports"));
 				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setProjectInfo(rs.getString("project_info"));
 				list.add(dto);
 			}
 			return list;
@@ -91,6 +92,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("reports"));
 				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setProjectInfo(rs.getString("project_info"));
 				list.add(dto);
 			}
 			return list;
@@ -120,6 +122,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("reports"));
 				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setProjectInfo(rs.getString("project_info"));
 				list.add(dto); // 리스트에 DTO 객체 저장
 			}
 			return list; // 게시글정보를 저장한 DTO 객체들의 리스트를 반환
@@ -132,10 +135,9 @@ public class PostDAOImpl implements PostDAO {
 
 	public int insertPost(PostDTO post) {
 		int result = 0;
-		String insertQuery = "INSERT INTO POST VALUES (seq_post.nextval, ?, SYSDATE, ?, ?, 0, 0, 0, ?, ?) ";
-		Object[] param = new Object[] {post.getTitle(), post.getPostContent(), post.getPostFile(), post.getEcoerId(), post.getCommunityId()};
+		String insertQuery = "INSERT INTO POST VALUES (seq_post.nextval, ?, SYSDATE, ?, ?, 0, 0, 0, ?, ?, ?) ";
+		Object[] param = new Object[] {post.getTitle(), post.getPostContent(), post.getPostFile(), post.getEcoerId(), post.getCommunityId(), post.getProjectInfo()};
 		jdbcUtil.setSqlAndParameters(insertQuery, param); // JDBCUtil 에 insert문과 매개변수 설정
-		
 		try {
 			jdbcUtil.executeUpdate(); // insert 문 실행
 			jdbcUtil.setSqlAndParameters("SELECT seq_post.currval AS result FROM POST", null);
@@ -282,6 +284,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("reports"));
 				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setProjectInfo(rs.getString("project_info"));
 			}
 			return dto;
 		} catch (Exception ex) {
@@ -315,6 +318,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("reports"));
 				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setProjectInfo(rs.getString("project_info"));
 			}
 			return dto;
 		} catch (Exception ex) {
@@ -344,6 +348,7 @@ public class PostDAOImpl implements PostDAO {
 				dto.setReports(rs.getString("reports"));
 				dto.setEcoerId(rs.getString("ecoer_id"));
 				dto.setCommunityId(rs.getInt("community_id"));
+				dto.setProjectInfo(rs.getString("project_info"));
 				list.add(dto);
 			}
 			return list;

@@ -14,6 +14,7 @@ import controller.post.CommunityController;
 import controller.post.CreatePostController;
 import controller.post.DeletePostController;
 import controller.post.LikeCommunityController;
+import controller.post.PostFormController;
 import controller.post.PostListController;
 import controller.post.ReportCommunityController;
 import controller.post.UpdatePostController;
@@ -94,7 +95,7 @@ public class RequestMapping {
         // 커뮤니티 관련
         mappings.put("/board/list", new PostListController());
         mappings.put("/board/view", new CommunityController());
-        mappings.put("/board/form", new ForwardController("/board/postForm.jsp"));
+        mappings.put("/board/form", new PostFormController());
         mappings.put("/board/create", new CreatePostController());
         mappings.put("/board/update", new UpdatePostController());
         mappings.put("/board/delete", new DeletePostController());
