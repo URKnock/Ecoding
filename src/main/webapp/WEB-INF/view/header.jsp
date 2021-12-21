@@ -201,7 +201,7 @@
 	                </div>
 	            </div>
             </a>
-        	<a href="<c:url value='/user/support/listView' />">
+        	<a href="<c:url value='/user/project/support/listView' />">
 	            <div class="icon-box">
 		            <div class="icon"><i class="fas fa-shopping-basket"></i></div>
 					<div class="text">
@@ -210,7 +210,7 @@
 	                </div>
 	            </div>
             </a>
-            <a href="<c:url value='/user/interest/listView' />">
+            <a href="<c:url value='/user/project/interest/listView' />">
 	            <div class="icon-box">
 	                <div class="icon"><i class="fal fa-heart"></i></div>
 	                <div class="text">
