@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import model.Creator;
 import model.DAOFactory;
 import model.Ecoer;
 import model.Project;
 import model.Reward;
-import model.Support;
+//import model.Support;
 import model.dao.*;
 import model.service.dto.CreatorDTO;
 import model.service.dto.InterestProjectDTO;
@@ -72,6 +69,15 @@ public class ProjectManager {
 	
 	public List<Project> findProjectList() throws SQLException {
 		return projectDAO.findProjectList();
+	}
+	
+	public List<Project> findProjectListByKeyword(String keyword) throws SQLException, UserNotFoundException {
+		List<Project> projectList = projectDAO.findProjectListByKeyword(keyword);
+		
+		if (projectList == null) {
+			throw new UserNotFoundException(keyword + "로 검색된 프로젝트가 없습니다.");
+		}
+		return projectList;
 	}
 	
 	public ProjectDTO findProjectInfo(Project project) throws SQLException {

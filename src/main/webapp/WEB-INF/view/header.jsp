@@ -13,6 +13,20 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/header_new.css'/>" type="text/css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	
+<script>
+function search() {
+	if (form.keyword.value == "") {
+		alert("검색어를 입력해주세요.");
+		form.keyword.focus();
+		return false;
+	} 
+	
+	form.submit();
+}
+</script>
+	
 </head>
 <table align="center" width="100%">
 	<tr>
@@ -20,19 +34,20 @@
 			<a href="<c:url value='/home/main'/>"><img id="logo" src="<c:url value='/resources/img/logo.png'/>"></a>
 		</td>
 		<td></td>
+
 		<td class="txCenter">
-			<table align="center">
-				<tr>
-					<td>
-						<span class="input">
-							<input size="50" type="text" placeholder="다양한 프로젝트를 검색해보세요." />
-						</span>
-					</td>
-					<td>
-						<div class="button" onClick=""></div>
-					</td>
-				</tr>
-			</table>
+			<form name="form" method="POST" action="<c:url value='/home/search'/>">
+				<table align="center">
+					<tr>
+						<td><span class="input"> <input size="40"
+								name="keyword" type="text" placeholder="다양한 프로젝트를 검색해보세요." />
+						</span></td>
+						<td>
+							<div class="button" onClick="search()"></div>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</td>
 		<td></td>
 		<td class="txRight">
@@ -41,7 +56,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${ecoerId == null}">
-								<div class="button_in" onClick="location.href='<c:url value='/user/login'/>';"></div>
+								<div class="button_in" onClick="location.href='<c:url value='/user/loginform'/>';"></div>
 							</c:when>
 							<c:otherwise>
 								<div class="userinfo"><a>${ecoerId}님<br/>환영합니다.</a></div>
