@@ -17,13 +17,12 @@
 	
 <script>
 function search() {
-	if (form.keyword.value == "") {
+	if (Searchform.keyword.value == "") {
 		alert("검색어를 입력해주세요.");
-		form.keyword.focus();
+		Searchform.keyword.focus();
 		return false;
 	} 
-	
-	form.submit();
+	Searchform.submit();
 }
 </script>
 	
@@ -36,7 +35,7 @@ function search() {
 		<td></td>
 
 		<td class="txCenter">
-			<form name="form" method="POST" action="<c:url value='/home/search'/>">
+			<form name="Searchform" method="POST" action="<c:url value='/home/search'/>">
 				<table align="center">
 					<tr>
 						<td><span class="input"> <input size="40"

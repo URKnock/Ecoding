@@ -14,17 +14,17 @@
 	
 <script>
 function login() {
-	if (form.ecoerId.value == "") {
+	if (Loginform.ecoerId.value == "") {
 		alert("사용자 ID를 입력하십시오.");
-		form.userId.focus();
+		Loginform.userId.focus();
 		return false;
 	} 
-	if (form.password.value == "") {
+	if (Loginform.password.value == "") {
 		alert("비밀번호를 입력하십시오.");
-		form.password.focus();
+		Loginform.password.focus();
 		return false;
 	}		
-	form.submit();
+	Loginform.submit();
 }
 </script>
 </head>
@@ -40,7 +40,7 @@ function login() {
 			</c:if>
 		</div>
 		<!-- login form  -->
-		<form class="col-md-6 col-lg-6" name="form" method="POST"
+		<form class="col-md-6 col-lg-6" name="Loginform" method="POST"
 			action="<c:url value='/user/login' />">
 			<div class="form-group">
 				<label for="ecoerId">사용자 ID</label> <input type="text" name="ecoerId"
