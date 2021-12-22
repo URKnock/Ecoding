@@ -12,10 +12,6 @@
     	form.action = targetUri; 
     	form.submit();
     }
-    
-    function div_show() {
-     document.getElementById("creatorForm").style.display = "block";
-    }
 </script>
 <style>
     #step03 {
@@ -42,25 +38,19 @@
 	    </div>
       <div class="right">
       	<p></p>
-       &nbsp&nbsp&nbsp <button class="goNext" onClick="div_show();">창작자 정보 입력</button>
- 		<div id="creatorForm">
-	      	<form name="form" method="post" enctype="multipart/form-data" action="<c:url value='/project/register/creator' />">
-				<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
-				&nbsp&nbsp<input type="text" name="teamName" value="${creator.nickName}">
-				<p>Q2. 창작자(팀) 이미지를 첨부해주세요.<c:if test="${isCre}">(수정을 원하는 경우에만 첨부해주세요)</c:if></p>
-				&nbsp&nbsp<input type="file" name="teamImage">
-				<p>Q3. 창작자(팀) 소개를 작성해주세요.</p>
-				&nbsp&nbsp<textarea rows="15" cols="100" name="teamDetail">${creator.creatorInfo}</textarea>
-				<p>Q4. 입금 계좌 정보를 입력해주세요.</p>
-				&nbsp&nbsp<input type="text" name="account" value="${creator.account}">
-				<p></p>
-				&nbsp&nbsp<button name="step" class="goNext">Step 04</button>
-				<p></p>
-			</form>
-		</div>
-		 <c:if test="${isCre}">
- 			&nbsp&nbsp<button class="goNext" onClick="location.href='/project/register';">창작자 정보 수정하지 않고 진행</button>
- 		</c:if>
+      	<form name="form" method="post" enctype="multipart/form-data" action="<c:url value='/project/register/creator' />">
+			<p>Q1. 창작자(팀) 이름을 입력해주세요.</p>
+			&nbsp&nbsp<input type="text" name="teamName" value="${creator.nickName}">
+			<p>Q2. 창작자(팀) 이미지를 첨부해주세요.<c:if test="${isCre}">(수정을 원하는 경우에만 첨부해주세요)</c:if></p>
+			&nbsp&nbsp<input type="file" name="teamImage">
+			<p>Q3. 창작자(팀) 소개를 작성해주세요.</p>
+			&nbsp&nbsp<textarea rows="15" cols="100" name="teamDetail">${creator.creatorInfo}</textarea>
+			<p>Q4. 입금 계좌 정보를 입력해주세요.</p>
+			&nbsp&nbsp<input type="text" name="account" value="${creator.account}">
+			<p></p>
+			&nbsp&nbsp<button name="step" class="goNext">Step 04</button>
+			<p></p>
+		</form>
       </div>
 </body>
 </html>
