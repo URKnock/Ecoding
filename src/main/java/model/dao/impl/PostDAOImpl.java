@@ -261,6 +261,24 @@ public class PostDAOImpl implements PostDAO {
 		return result;
 	}
 	
+	@Override
+	public int deleteReactByEcoerId(String ecoerId) {
+		int result = 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			ReactMapper mapper = sqlSession.getMapper(ReactMapper.class);
+			mapper.deleteReactByEcoerId(ecoerId);
+		} catch(Exception ex) {
+			sqlSession.rollback();
+			ex.printStackTrace();
+			return -1;
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+	
 	public PostDTO getPostByCode(int pCode) {
 		String searchQuery = query + "FROM POST WHERE POST.post_id = ?";
 		Object[] param = new Object[] {pCode};

@@ -89,21 +89,22 @@ public class EcoerDAOImpl implements EcoerDAO{
 	}
 
 	public int delete(String ecoerId) {
+		int result = 0;
 		String sql = "DELETE FROM ecoer WHERE ecoer_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {ecoerId});
 
 		try {				
-			int result = jdbcUtil.executeUpdate();
-			return result;
+			result = jdbcUtil.executeUpdate();
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
+			return -1;
 		}
 		finally {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}		
-		return 0;
+		return result;
 	}
 
 	public EcoerDTO findEcoer(String ecoerId) {

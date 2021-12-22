@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.DAOFactory;
 import model.dao.EcoerDAO;
+import model.dao.PostDAO;
 import model.service.dto.EcoerDTO;
 import model.service.dto.ReactDTO;
 
@@ -19,6 +20,7 @@ public class UserManager { //EcoerManager처럼 사용
 	private static UserManager userMan = new UserManager();
 	private DAOFactory factory;
 	private EcoerDAO ecoerDAO;
+	private PostDAO postDAO;
 
 	//private UserAnalysis userAanlysis; 사용 안 함
 
@@ -26,6 +28,7 @@ public class UserManager { //EcoerManager처럼 사용
 		try {
 			factory = new DAOFactory();
 			ecoerDAO = factory.getEcoerDAO(); //EcoerDAOImpl을 리턴
+			postDAO = factory.getPostDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -47,7 +50,12 @@ public class UserManager { //EcoerManager처럼 사용
 	}	
 
 	public int remove(String userId) throws SQLException, UserNotFoundException {
-		return ecoerDAO.delete(userId);
+		int result = 0;
+		do {
+			result = postDAO.deleteReactByEcoerId(userId);
+			if(result != -1) result = ecoerDAO.delete(userId);
+		} while(result == -1);
+		return result;
 	}
 
 	public EcoerDTO findEcoer(String ecoerId)
