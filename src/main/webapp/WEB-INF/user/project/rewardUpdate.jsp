@@ -61,6 +61,7 @@
 			<tr style="height:150px;">
 				<td style="border-bottom:1px solid #6495ED;">
 					<input type="radio" name="reward" value="${reward.rewardId}" required>
+					${reward.name}<br>
 					- ${reward.rewardPrice}원<br>
 					- ${reward.rewardInfo}<br>
 				</td>
