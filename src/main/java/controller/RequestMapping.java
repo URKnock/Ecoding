@@ -75,7 +75,6 @@ public class RequestMapping {
         mappings.put("/board/view", new CommunityController());
         mappings.put("/board/form", new PostFormController());
         mappings.put("/board/create", new CreatePostController());
-        mappings.put("/board/update", new UpdatePostController());
         mappings.put("/board/delete", new DeletePostController());
         mappings.put("/board/post/like", new LikeCommunityController());
         mappings.put("/board/post/report", new ReportCommunityController());
