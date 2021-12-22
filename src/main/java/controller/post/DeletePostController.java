@@ -20,7 +20,7 @@ public class DeletePostController implements Controller {
     		return "redirect:/board/list";
     	} catch (Exception e) {
     		request.setAttribute("exception", e);
-    		return "/board/postList.jsp?";
+    		return "/board/postList.jsp";
     	}    
     }
 }
